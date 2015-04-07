@@ -11,12 +11,6 @@ namespace DataAccess.Reposiitories
     {
         private DsaDataContext _db = new DsaDataContext();
 
-        public DsaDataContext Entity
-        {
-            get { return _db; }
-            set { _db = value; }
-        }
-        
 
         public IQueryable<User> ListAll()
         {
@@ -108,15 +102,8 @@ namespace DataAccess.Reposiitories
         public bool DoeUserNameExist(string username)
         {
             bool ans;
-            try
-            {
-                ans = _db.Users.Count(u => u.Username == username &&
-                                           username != null) > 0;
-            }
-            catch
-            {
-                throw new Exception("A user with this user-name already exists.Please try again.");
-            }
+            ans = _db.Users.Count(u => u.Username == username &&
+                                       username != null) > 0;
             return ans;
         }
 
@@ -126,7 +113,7 @@ namespace DataAccess.Reposiitories
         /// <param name="username">The user-name.</param>
         public void IncrementNoOfAttempts(string username)
         {
-            Read(new User {Username = username}).NoOfAttempts++;
+            Read(new User { Username = username }).NoOfAttempts++;
         }
 
         /// <summary>
@@ -135,7 +122,7 @@ namespace DataAccess.Reposiitories
         /// <param name="username">The string user-name.</param>
         public void ResetNoOfAttempts(string username)
         {
-            Read(new User {Username = username}).NoOfAttempts = 0;
+            Read(new User { Username = username }).NoOfAttempts = 0;
         }
 
         /// <summary>
@@ -144,7 +131,7 @@ namespace DataAccess.Reposiitories
         /// <param name="username">The string user-name.</param>
         public void UnBlockUser(string username)
         {
-            Read(new User {Username = username}).Blocked = false;
+            Read(new User { Username = username }).Blocked = false;
         }
 
         /// <summary>
@@ -154,10 +141,10 @@ namespace DataAccess.Reposiitories
         public IQueryable UserRoles()
         {
             return (from u in _db.Users
-                from r in u.Roles
-                group r.Name by u.Username
-                into urlist
-                select urlist);
+                    from r in u.Roles
+                    group r.Name by u.Username
+                        into urlist
+                        select urlist);
         }
     }
 }

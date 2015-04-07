@@ -51,29 +51,37 @@ namespace DataAccess.Reposiitories
             return singleOrDefault;
         }
 
-        public void Allocate(User user, Role role)
+        public void Allocate(string username, int roleId)
         {
-            User us = GetUser(user.Username);
-            if (us != null)
+            User us = GetUser(username);
+            Role rol = GetRole(roleId);
+            if (us != null && rol != null)
             {
-                us.Roles.Add(Read(role));
+                us.Roles.Add(rol);
             }
             _db.SaveChanges();
         }
 
-        public void DeAllocate(User user, Role role)
+        private Role GetRole(int roleId)
         {
-            User us = GetUser(user.Username);
-            if (us != null)
+            Role singleOrDefault = _db.Roles.SingleOrDefault(r => r.ID == roleId);
+            return singleOrDefault;
+        }
+
+        public void DeAllocate(string username, int roleId)
+        {
+            User us = GetUser(username);
+            Role rol = GetRole(roleId);
+            if (us != null && rol != null)
             {
-                us.Roles.Remove(Read(role));
+                us.Roles.Remove(rol);
             }
             _db.SaveChanges();
         }
 
-        public void DeAllocateAll(User user, IEnumerable<Role> roleList)
+        public void DeAllocateAll(string username, IEnumerable<Role> roleList)
         {
-            User us = GetUser(user.Username);
+            User us = GetUser(username);
             foreach (Role role in roleList)
             {
                 us.Roles.Remove(Read(role));
@@ -88,9 +96,10 @@ namespace DataAccess.Reposiitories
             return result;
         }
 
-        public Role GetRoleByName(string customer)
+        public Role GetRoleByName(string name)
         {
-            throw new System.NotImplementedException();
+            Role singleOrDefault = _db.Roles.SingleOrDefault(r => r.Name == name);
+            return singleOrDefault;
         }
     }
 }

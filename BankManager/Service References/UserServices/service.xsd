@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/DataAccess" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/BankServices" />
   <xs:element name="AllocateRole">
     <xs:complexType>
       <xs:sequence>
@@ -146,7 +146,7 @@
   <xs:element name="ListUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataAccess" minOccurs="0" name="ListUsersResult" nillable="true" type="q4:ArrayOfVwUser" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BankServices" minOccurs="0" name="ListUsersResult" nillable="true" type="q4:ArrayOfVwUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BankServices.CustomExceptions;
 using DataAccess;
@@ -8,12 +7,11 @@ using DataAccess.Reposiitories;
 
 namespace BankServices
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserServices" in both code and config file together.
     public class UserServices : IUserServices
     {
         public void AllocateRole(string username, int roleId)
         {
-            throw new NotImplementedException();
+            new RolesRepo().Allocate(username, roleId);
         }
 
         public bool Authenticate(string username, string password)
@@ -47,10 +45,9 @@ namespace BankServices
             return false;
         }
 
-        //TODO: Roles Allocation
         public void DeallocateRole(string username, int roleId)
         {
-            throw new NotImplementedException();
+            new RolesRepo().DeAllocate(username, roleId);
         }
 
         public void Delete(string username)
@@ -71,37 +68,42 @@ namespace BankServices
 
         public Role GetRoleById(int id)
         {
-            throw new NotImplementedException();
+            return new RolesRepo().Read(new Role {ID = id});
         }
 
         public int GetRoleIdByName(string name)
         {
-            throw new NotImplementedException();
+            return new RolesRepo().GetRoleByName(name).ID;
         }
 
         public IQueryable<Role> GetRoles(string username)
         {
             return new RolesRepo().GetRolesOfUser(username);
         }
+
         public bool IsUserInRole(string username, int roleId)
         {
-            throw new NotImplementedException();
+            return
+                ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
+                    t => t.ID == roleId) != null);
         }
 
-        public IEnumerable<User> ListAll()
+        public IQueryable<User> ListUsers()
         {
-            return new UsersRepo().ListAll();
+            var list = new UsersRepo().ListAll();
+            return list;
         }
 
         public IEnumerable<Role> ListRoles()
         {
-            throw new NotImplementedException();
+            return new RolesRepo().ListAll();
         }
 
         public User ReadByUsername(string username)
         {
-            return new UsersRepo().Read(new User { Username = username });
+            return new UsersRepo().Read(new User {Username = username});
         }
+
         public bool Register(User user)
         {
             var usersRepo = new UsersRepo();

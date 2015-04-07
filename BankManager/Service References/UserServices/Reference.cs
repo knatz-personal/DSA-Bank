@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebPortal.UserServices {
+namespace BankManager.UserServices {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,7 +29,7 @@ namespace WebPortal.UserServices {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.User> UsersField;
+        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,7 +68,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Users {
+        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
             get {
                 return this.UsersField;
             }
@@ -100,7 +100,7 @@ namespace WebPortal.UserServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Account> AccountsField;
+        private System.Collections.Generic.List<BankManager.UserServices.Account> AccountsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AddressField;
@@ -118,7 +118,7 @@ namespace WebPortal.UserServices {
         private string FirstNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.Gender GenderField;
+        private BankManager.UserServices.Gender GenderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> GenderIDField;
@@ -139,10 +139,10 @@ namespace WebPortal.UserServices {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Role> RolesField;
+        private System.Collections.Generic.List<BankManager.UserServices.Role> RolesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.Town TownField;
+        private BankManager.UserServices.Town TownField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TownIDField;
@@ -151,7 +151,7 @@ namespace WebPortal.UserServices {
         private System.Nullable<int> TypeIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.UserType UserTypeField;
+        private BankManager.UserServices.UserType UserTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -167,7 +167,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Account> Accounts {
+        public System.Collections.Generic.List<BankManager.UserServices.Account> Accounts {
             get {
                 return this.AccountsField;
             }
@@ -245,7 +245,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.Gender Gender {
+        public BankManager.UserServices.Gender Gender {
             get {
                 return this.GenderField;
             }
@@ -336,7 +336,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Role> Roles {
+        public System.Collections.Generic.List<BankManager.UserServices.Role> Roles {
             get {
                 return this.RolesField;
             }
@@ -349,7 +349,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.Town Town {
+        public BankManager.UserServices.Town Town {
             get {
                 return this.TownField;
             }
@@ -388,7 +388,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.UserType UserType {
+        public BankManager.UserServices.UserType UserType {
             get {
                 return this.UserTypeField;
             }
@@ -439,7 +439,7 @@ namespace WebPortal.UserServices {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.User> UsersField;
+        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -478,7 +478,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Users {
+        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
             get {
                 return this.UsersField;
             }
@@ -516,7 +516,7 @@ namespace WebPortal.UserServices {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.User> UsersField;
+        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -555,7 +555,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Users {
+        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
             get {
                 return this.UsersField;
             }
@@ -587,7 +587,7 @@ namespace WebPortal.UserServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.AccountType AccountTypeField;
+        private BankManager.UserServices.AccountType AccountTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal BalanceField;
@@ -611,16 +611,16 @@ namespace WebPortal.UserServices {
         private string RemarksField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogsField;
+        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogs1Field;
+        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TypeIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.User UserField;
+        private BankManager.UserServices.User UserField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -636,7 +636,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.AccountType AccountType {
+        public BankManager.UserServices.AccountType AccountType {
             get {
                 return this.AccountTypeField;
             }
@@ -740,7 +740,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogs {
+        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs {
             get {
                 return this.TransactionLogsField;
             }
@@ -753,7 +753,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogs1 {
+        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs1 {
             get {
                 return this.TransactionLogs1Field;
             }
@@ -779,7 +779,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.User User {
+        public BankManager.UserServices.User User {
             get {
                 return this.UserField;
             }
@@ -827,13 +827,13 @@ namespace WebPortal.UserServices {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Menu> MenusField;
+        private System.Collections.Generic.List<BankManager.UserServices.Menu> MenusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.User> UsersField;
+        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -859,7 +859,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Menu> Menus {
+        public System.Collections.Generic.List<BankManager.UserServices.Menu> Menus {
             get {
                 return this.MenusField;
             }
@@ -885,7 +885,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Users {
+        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
             get {
                 return this.UsersField;
             }
@@ -917,7 +917,7 @@ namespace WebPortal.UserServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Account> AccountsField;
+        private System.Collections.Generic.List<BankManager.UserServices.Account> AccountsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -936,7 +936,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Account> Accounts {
+        public System.Collections.Generic.List<BankManager.UserServices.Account> Accounts {
             get {
                 return this.AccountsField;
             }
@@ -994,10 +994,10 @@ namespace WebPortal.UserServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.Account AccountField;
+        private BankManager.UserServices.Account AccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.Account Account1Field;
+        private BankManager.UserServices.Account Account1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> AccountFromIDField;
@@ -1021,7 +1021,7 @@ namespace WebPortal.UserServices {
         private string RemarksField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.TransactionType TransactionTypeField;
+        private BankManager.UserServices.TransactionType TransactionTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TypeIDField;
@@ -1037,7 +1037,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.Account Account {
+        public BankManager.UserServices.Account Account {
             get {
                 return this.AccountField;
             }
@@ -1050,7 +1050,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.Account Account1 {
+        public BankManager.UserServices.Account Account1 {
             get {
                 return this.Account1Field;
             }
@@ -1154,7 +1154,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.TransactionType TransactionType {
+        public BankManager.UserServices.TransactionType TransactionType {
             get {
                 return this.TransactionTypeField;
             }
@@ -1205,7 +1205,7 @@ namespace WebPortal.UserServices {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogsField;
+        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1244,7 +1244,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.TransactionLog> TransactionLogs {
+        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs {
             get {
                 return this.TransactionLogsField;
             }
@@ -1288,10 +1288,10 @@ namespace WebPortal.UserServices {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebPortal.UserServices.Menu Menu1Field;
+        private BankManager.UserServices.Menu Menu1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Menu> Menus1Field;
+        private System.Collections.Generic.List<BankManager.UserServices.Menu> Menus1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -1300,7 +1300,7 @@ namespace WebPortal.UserServices {
         private System.Nullable<int> ParentIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<WebPortal.UserServices.Role> RolesField;
+        private System.Collections.Generic.List<BankManager.UserServices.Role> RolesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> SortOrderField;
@@ -1371,7 +1371,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebPortal.UserServices.Menu Menu1 {
+        public BankManager.UserServices.Menu Menu1 {
             get {
                 return this.Menu1Field;
             }
@@ -1384,7 +1384,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Menu> Menus1 {
+        public System.Collections.Generic.List<BankManager.UserServices.Menu> Menus1 {
             get {
                 return this.Menus1Field;
             }
@@ -1423,7 +1423,7 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<WebPortal.UserServices.Role> Roles {
+        public System.Collections.Generic.List<BankManager.UserServices.Role> Roles {
             get {
                 return this.RolesField;
             }
@@ -1473,7 +1473,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VwUser", Namespace="http://schemas.datacontract.org/2004/07/DataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VwUser", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
     [System.SerializableAttribute()]
     public partial class VwUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1759,16 +1759,16 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<bool> DoesUsernameExistAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.Gender> Genders();
+        System.Collections.Generic.List<BankManager.UserServices.Gender> Genders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Gender>> GendersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Gender>> GendersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
-        WebPortal.UserServices.Role GetRoleById(int id);
+        BankManager.UserServices.Role GetRoleById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
-        System.Threading.Tasks.Task<WebPortal.UserServices.Role> GetRoleByIdAsync(int id);
+        System.Threading.Tasks.Task<BankManager.UserServices.Role> GetRoleByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleIdByName", ReplyAction="http://tempuri.org/IUserServices/GetRoleIdByNameResponse")]
         int GetRoleIdByName(string name);
@@ -1777,10 +1777,10 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<int> GetRoleIdByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.Role> GetRoles(string username);
+        System.Collections.Generic.List<BankManager.UserServices.Role> GetRoles(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Role>> GetRolesAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> GetRolesAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
         bool IsUserInRole(string username, int roleId);
@@ -1789,55 +1789,55 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.VwUser> ListUsers();
+        System.Collections.Generic.List<BankManager.UserServices.VwUser> ListUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.VwUser>> ListUsersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.VwUser>> ListUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.Role> ListRoles();
+        System.Collections.Generic.List<BankManager.UserServices.Role> ListRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Role>> ListRolesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> ListRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
-        WebPortal.UserServices.User ReadByUsername(string username);
+        BankManager.UserServices.User ReadByUsername(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
-        System.Threading.Tasks.Task<WebPortal.UserServices.User> ReadByUsernameAsync(string username);
+        System.Threading.Tasks.Task<BankManager.UserServices.User> ReadByUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        bool Register(WebPortal.UserServices.User user);
+        bool Register(BankManager.UserServices.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.User user);
+        System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.User> Search(string query);
+        System.Collections.Generic.List<BankManager.UserServices.User> Search(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.User>> SearchAsync(string query);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.User>> SearchAsync(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.UserType> TypesList();
+        System.Collections.Generic.List<BankManager.UserServices.UserType> TypesList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserType>> TypesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserType>> TypesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        void Update(WebPortal.UserServices.User user);
+        void Update(BankManager.UserServices.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.User user);
+        System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.User user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUserServicesChannel : WebPortal.UserServices.IUserServices, System.ServiceModel.IClientChannel {
+    public interface IUserServicesChannel : BankManager.UserServices.IUserServices, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserServicesClient : System.ServiceModel.ClientBase<WebPortal.UserServices.IUserServices>, WebPortal.UserServices.IUserServices {
+    public partial class UserServicesClient : System.ServiceModel.ClientBase<BankManager.UserServices.IUserServices>, BankManager.UserServices.IUserServices {
         
         public UserServicesClient() {
         }
@@ -1898,19 +1898,19 @@ namespace WebPortal.UserServices {
             return base.Channel.DoesUsernameExistAsync(username);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.Gender> Genders() {
+        public System.Collections.Generic.List<BankManager.UserServices.Gender> Genders() {
             return base.Channel.Genders();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Gender>> GendersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Gender>> GendersAsync() {
             return base.Channel.GendersAsync();
         }
         
-        public WebPortal.UserServices.Role GetRoleById(int id) {
+        public BankManager.UserServices.Role GetRoleById(int id) {
             return base.Channel.GetRoleById(id);
         }
         
-        public System.Threading.Tasks.Task<WebPortal.UserServices.Role> GetRoleByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BankManager.UserServices.Role> GetRoleByIdAsync(int id) {
             return base.Channel.GetRoleByIdAsync(id);
         }
         
@@ -1922,11 +1922,11 @@ namespace WebPortal.UserServices {
             return base.Channel.GetRoleIdByNameAsync(name);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.Role> GetRoles(string username) {
+        public System.Collections.Generic.List<BankManager.UserServices.Role> GetRoles(string username) {
             return base.Channel.GetRoles(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Role>> GetRolesAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> GetRolesAsync(string username) {
             return base.Channel.GetRolesAsync(username);
         }
         
@@ -1938,59 +1938,59 @@ namespace WebPortal.UserServices {
             return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.VwUser> ListUsers() {
+        public System.Collections.Generic.List<BankManager.UserServices.VwUser> ListUsers() {
             return base.Channel.ListUsers();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.VwUser>> ListUsersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.VwUser>> ListUsersAsync() {
             return base.Channel.ListUsersAsync();
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.Role> ListRoles() {
+        public System.Collections.Generic.List<BankManager.UserServices.Role> ListRoles() {
             return base.Channel.ListRoles();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.Role>> ListRolesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> ListRolesAsync() {
             return base.Channel.ListRolesAsync();
         }
         
-        public WebPortal.UserServices.User ReadByUsername(string username) {
+        public BankManager.UserServices.User ReadByUsername(string username) {
             return base.Channel.ReadByUsername(username);
         }
         
-        public System.Threading.Tasks.Task<WebPortal.UserServices.User> ReadByUsernameAsync(string username) {
+        public System.Threading.Tasks.Task<BankManager.UserServices.User> ReadByUsernameAsync(string username) {
             return base.Channel.ReadByUsernameAsync(username);
         }
         
-        public bool Register(WebPortal.UserServices.User user) {
+        public bool Register(BankManager.UserServices.User user) {
             return base.Channel.Register(user);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.User user) {
+        public System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.User user) {
             return base.Channel.RegisterAsync(user);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Search(string query) {
+        public System.Collections.Generic.List<BankManager.UserServices.User> Search(string query) {
             return base.Channel.Search(query);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.User>> SearchAsync(string query) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.User>> SearchAsync(string query) {
             return base.Channel.SearchAsync(query);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.UserType> TypesList() {
+        public System.Collections.Generic.List<BankManager.UserServices.UserType> TypesList() {
             return base.Channel.TypesList();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserType>> TypesListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserType>> TypesListAsync() {
             return base.Channel.TypesListAsync();
         }
         
-        public void Update(WebPortal.UserServices.User user) {
+        public void Update(BankManager.UserServices.User user) {
             base.Channel.Update(user);
         }
         
-        public System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.User user) {
+        public System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.User user) {
             return base.Channel.UpdateAsync(user);
         }
     }

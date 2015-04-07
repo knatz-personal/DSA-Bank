@@ -21,6 +21,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPortal.Tests", "WebPortal.Tests\WebPortal.Tests.csproj", "{A4FC4A3D-3E8A-4165-AFF2-A6CD560DA99D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankManager", "BankManager\BankManager.csproj", "{ECFFF1CC-A8C9-4FCE-9BF3-E934354659B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{95E80A77-741E-4878-B87A-C837EC13238D} = {95E80A77-741E-4878-B87A-C837EC13238D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

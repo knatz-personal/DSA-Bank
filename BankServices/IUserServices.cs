@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using DataAccess;
 using DataAccess.EntityModel;
 
 namespace BankServices
@@ -39,7 +40,7 @@ namespace BankServices
         bool IsUserInRole(string username, int roleId);
 
         [OperationContract]
-        IEnumerable<User> ListAll();
+        IQueryable<User> ListUsers();
 
         [OperationContract]
         IEnumerable<Role> ListRoles();
