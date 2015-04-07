@@ -5,7 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/DataAccess" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/BankServices" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUserServices_AllocateRole_InputMessage">

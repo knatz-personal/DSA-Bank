@@ -163,11 +163,11 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\UserServices\configuration91.svcinfo" />
-    <None Include="Service References\UserServices\configuration.svcinfo" />
-    <None Include="Service References\UserServices\DataAccess.xsd">
+    <None Include="Service References\UserServices\BankServices.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UserServices\configuration91.svcinfo" />
+    <None Include="Service References\UserServices\configuration.svcinfo" />
     <None Include="Service References\UserServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -211,9 +211,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Accounts\Manage.cshtml" />
-    <Content Include="Service References\UserServices\WebPortal.UserServices.VwUser.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\Transaction\Index.cshtml" />
@@ -221,6 +218,9 @@
     <Content Include="Views\Transaction\Create.cshtml" />
     <Content Include="Views\Transaction\Edit.cshtml" />
     <Content Include="Views\Transaction\Delete.cshtml" />
+    <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

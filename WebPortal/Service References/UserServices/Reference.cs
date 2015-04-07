@@ -1473,9 +1473,9 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VwUser", Namespace="http://schemas.datacontract.org/2004/07/DataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
     [System.SerializableAttribute()]
-    public partial class VwUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class UserView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1789,10 +1789,10 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.VwUser> ListUsers();
+        System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.VwUser>> ListUsersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
         System.Collections.Generic.List<WebPortal.UserServices.Role> ListRoles();
@@ -1807,16 +1807,16 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<WebPortal.UserServices.User> ReadByUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        bool Register(WebPortal.UserServices.User user);
+        bool Register(WebPortal.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.User user);
+        System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.User> Search(string query);
+        System.Collections.Generic.List<WebPortal.UserServices.UserView> Search(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.User>> SearchAsync(string query);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> SearchAsync(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
         System.Collections.Generic.List<WebPortal.UserServices.UserType> TypesList();
@@ -1825,10 +1825,10 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserType>> TypesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        void Update(WebPortal.UserServices.User user);
+        void Update(WebPortal.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.User user);
+        System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.UserView user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1938,11 +1938,11 @@ namespace WebPortal.UserServices {
             return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.VwUser> ListUsers() {
+        public System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers() {
             return base.Channel.ListUsers();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.VwUser>> ListUsersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync() {
             return base.Channel.ListUsersAsync();
         }
         
@@ -1962,19 +1962,19 @@ namespace WebPortal.UserServices {
             return base.Channel.ReadByUsernameAsync(username);
         }
         
-        public bool Register(WebPortal.UserServices.User user) {
+        public bool Register(WebPortal.UserServices.UserView user) {
             return base.Channel.Register(user);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.User user) {
+        public System.Threading.Tasks.Task<bool> RegisterAsync(WebPortal.UserServices.UserView user) {
             return base.Channel.RegisterAsync(user);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.User> Search(string query) {
+        public System.Collections.Generic.List<WebPortal.UserServices.UserView> Search(string query) {
             return base.Channel.Search(query);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.User>> SearchAsync(string query) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> SearchAsync(string query) {
             return base.Channel.SearchAsync(query);
         }
         
@@ -1986,11 +1986,11 @@ namespace WebPortal.UserServices {
             return base.Channel.TypesListAsync();
         }
         
-        public void Update(WebPortal.UserServices.User user) {
+        public void Update(WebPortal.UserServices.UserView user) {
             base.Channel.Update(user);
         }
         
-        public System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.User user) {
+        public System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.UserView user) {
             return base.Channel.UpdateAsync(user);
         }
     }

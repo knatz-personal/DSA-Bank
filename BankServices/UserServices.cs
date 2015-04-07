@@ -88,15 +88,33 @@ namespace BankServices
                     t => t.ID == roleId) != null);
         }
 
-        public IQueryable<User> ListUsers()
-        {
-            var list = new UsersRepo().ListAll();
-            return list;
-        }
+
 
         public IEnumerable<Role> ListRoles()
         {
             return new RolesRepo().ListAll();
+        }
+
+        public IQueryable<UserView> ListUsers()
+        {
+            var list = new UsersRepo().ListAll().Select(u => new UserView()
+            {
+                Username = u.Username,
+                Password = u.Password,
+                FirstName = u.FirstName,
+                MiddleInitial = u.MiddleInitial,
+                LastName = u.LastName,
+                Email = u.Email,
+                Mobile = u.Mobile,
+                DateOfBirth = u.DateOfBirth,
+                Address = u.Address,
+                GenderID = u.GenderID,
+                TownID = u.TownID,
+                TypeID = u.TypeID,
+                Blocked = u.Blocked,
+                NoOfAttempts = u.NoOfAttempts
+            });
+            return list;
         }
 
         public User ReadByUsername(string username)
@@ -104,7 +122,7 @@ namespace BankServices
             return new UsersRepo().Read(new User {Username = username});
         }
 
-        public bool Register(User user)
+        public bool Register(UserView user)
         {
             var usersRepo = new UsersRepo();
 
@@ -127,9 +145,10 @@ namespace BankServices
             return false;
         }
 
-        public IEnumerable<User> Search(string query)
+        public IEnumerable<UserView> Search(string query)
         {
-            return new UsersRepo().Search(query);
+            //return new UsersRepo().Search(query);
+            return null;
         }
 
         public IEnumerable<UserType> TypesList()
@@ -137,9 +156,9 @@ namespace BankServices
             return new UserTypesRepo().ListAll();
         }
 
-        public void Update(User user)
+        public void Update(UserView user)
         {
-            new UsersRepo().Update(user);
+            //new UsersRepo().Update(user);
         }
     }
 }

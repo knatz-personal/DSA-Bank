@@ -1,0 +1,10 @@
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\BankServices.dll.config
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\BankServices.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\BankServices.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\DataAccess.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\EntityFramework.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\DataAccess.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\EntityFramework.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\obj\Debug\BankServices.csprojResolveAssemblyReference.cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\obj\Debug\BankServices.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\obj\Debug\BankServices.pdb
