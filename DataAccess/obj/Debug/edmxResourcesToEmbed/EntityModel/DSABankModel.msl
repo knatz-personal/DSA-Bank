@@ -61,7 +61,6 @@
           <ScalarProperty Name="ActionName" ColumnName="ActionName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-          <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />

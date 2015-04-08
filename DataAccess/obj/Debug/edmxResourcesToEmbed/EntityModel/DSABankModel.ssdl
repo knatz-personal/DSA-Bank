@@ -11,7 +11,7 @@
     <Property Name="DateOpened" Type="datetime" Nullable="false" />
     <Property Name="ExpiryDate" Type="datetime" />
     <Property Name="Balance" Type="money" Nullable="false" />
-    <Property Name="Currency" Type="nvarchar" MaxLength="5" />
+    <Property Name="Currency" Type="varchar" MaxLength="3" />
     <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="AccountTypes">
@@ -63,7 +63,6 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SortOrder" Type="int" />
-    <Property Name="Url" Type="nvarchar" MaxLength="200" />
     <Property Name="ParentID" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
     <Property Name="ActionName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -93,7 +92,7 @@
     <Property Name="TypeID" Type="int" />
     <Property Name="DateIssued" Type="datetime" Nullable="false" />
     <Property Name="Amount" Type="money" Nullable="false" />
-    <Property Name="Currency" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Currency" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="TransactionTypes">

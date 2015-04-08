@@ -16,7 +16,7 @@
           <Property Name="DateOpened" Type="datetime" Nullable="false" />
           <Property Name="ExpiryDate" Type="datetime" />
           <Property Name="Balance" Type="money" Nullable="false" />
-          <Property Name="Currency" Type="nvarchar" MaxLength="5" />
+          <Property Name="Currency" Type="varchar" MaxLength="3" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="AccountTypes">
@@ -68,7 +68,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SortOrder" Type="int" />
-          <Property Name="Url" Type="nvarchar" MaxLength="200" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="ActionName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -98,7 +97,7 @@
           <Property Name="TypeID" Type="int" />
           <Property Name="DateIssued" Type="datetime" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
-          <Property Name="Currency" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Currency" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TransactionTypes">
@@ -439,7 +438,7 @@
           <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Currency" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AccountType" Relationship="DSABankDbModel.FK_Accounts_AccountTypes" FromRole="Account" ToRole="AccountType" />
           <NavigationProperty Name="User" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
@@ -489,7 +488,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SortOrder" Type="Int32" />
-          <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -525,7 +523,7 @@
           <Property Name="TypeID" Type="Int32" />
           <Property Name="DateIssued" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Currency" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="DSABankDbModel.FK_Transactions_FAccounts" FromRole="TransactionLog" ToRole="Account" />
           <NavigationProperty Name="Account1" Relationship="DSABankDbModel.FK_Transactions_TAccounts" FromRole="TransactionLog" ToRole="Account" />
@@ -753,7 +751,6 @@
                 <ScalarProperty Name="ActionName" ColumnName="ActionName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -858,7 +855,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

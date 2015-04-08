@@ -69,7 +69,7 @@
     <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
     <Property Name="Balance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Currency" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AccountType" Relationship="DSABankDbModel.FK_Accounts_AccountTypes" FromRole="Account" ToRole="AccountType" />
     <NavigationProperty Name="User" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
@@ -119,7 +119,6 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SortOrder" Type="Int32" />
-    <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="ParentID" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -155,7 +154,7 @@
     <Property Name="TypeID" Type="Int32" />
     <Property Name="DateIssued" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="Currency" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Account" Relationship="DSABankDbModel.FK_Transactions_FAccounts" FromRole="TransactionLog" ToRole="Account" />
     <NavigationProperty Name="Account1" Relationship="DSABankDbModel.FK_Transactions_TAccounts" FromRole="TransactionLog" ToRole="Account" />

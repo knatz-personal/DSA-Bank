@@ -34,7 +34,7 @@ namespace DataAccess.EntityModel
         public Nullable<int> TypeID { get; set; }
         public bool Blocked { get; set; }
         public int NoOfAttempts { get; set; }
-
+    
         public virtual ICollection<Account> Accounts { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Town Town { get; set; }

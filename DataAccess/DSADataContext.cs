@@ -22,5 +22,6 @@ namespace DataAccess
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Menu> Menus { get; set; }
     }
 }

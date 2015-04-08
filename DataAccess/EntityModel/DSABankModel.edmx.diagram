@@ -10,13 +10,13 @@
         <EntityTypeShape EntityType="DSABankDbModel.Appointment" Width="1.5" PointX="7.75" PointY="5.75" />
         <EntityTypeShape EntityType="DSABankDbModel.EventLog" Width="1.5" PointX="7.75" PointY="8.75" />
         <EntityTypeShape EntityType="DSABankDbModel.Gender" Width="1.5" PointX="0.75" PointY="2.625" />
-        <EntityTypeShape EntityType="DSABankDbModel.Menu" Width="1.5" PointX="1.5" PointY="12.125" />
-        <EntityTypeShape EntityType="DSABankDbModel.Role" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DSABankDbModel.Menu" Width="1.5" PointX="1.5" PointY="14.375" />
+        <EntityTypeShape EntityType="DSABankDbModel.Role" Width="1.5" PointX="0.75" PointY="11" />
         <EntityTypeShape EntityType="DSABankDbModel.Town" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="DSABankDbModel.TransactionLog" Width="1.5" PointX="7.5" PointY="1.875" />
         <EntityTypeShape EntityType="DSABankDbModel.TransactionType" Width="1.5" PointX="5.25" PointY="7.625" />
         <EntityTypeShape EntityType="DSABankDbModel.User" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="DSABankDbModel.UserType" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="DSABankDbModel.UserType" Width="1.5" PointX="0.75" PointY="8.125" />
         <AssociationConnector Association="DSABankDbModel.FK_Accounts_AccountTypes" />
         <AssociationConnector Association="DSABankDbModel.FK_Accounts_Users" />
         <AssociationConnector Association="DSABankDbModel.FK_Transactions_FAccounts" />

@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebPortal.Models;
 using WebPortal.UserServices;
 
@@ -7,11 +10,11 @@ namespace WebPortal.Controllers
 {
     public class AccountsController : Controller
     {
-        private UserServicesClient client = new UserServicesClient();
-       
+        private readonly UserServicesClient client = new UserServicesClient();
+
         public ActionResult Manage()
         {
-            var list = client.ListUsers().Select(u => new UserModel()
+            IEnumerable<UserViewModel> list = client.ListUsers().Select(u => new UserViewModel
             {
                 Username = u.Username,
                 Password = u.Password,
@@ -29,12 +32,40 @@ namespace WebPortal.Controllers
                 NoOfAttempts = u.NoOfAttempts
             });
             return View(list);
-
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                String securityToken = model.SecurityToken;
+                using (var client = new UserServicesClient())
+                {
+                    try
+                    {
+                        if (client.Authenticate(model.Username, model.Password))
+                        {
+                            FormsAuthentication.RedirectFromLoginPage(model.Username, model.Remember);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        ModelState.AddModelError("", "The user name or security details provided are incorrect.");
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "The user name or security details provided are incorrect.");
+                        ModelState.AddModelError("", ex.Message);
+                    }
+                   
+                }
+            }
+            return Login();
         }
 
         [HttpGet]
@@ -43,12 +74,24 @@ namespace WebPortal.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+
         [HttpPost]
-        public ActionResult Register(UserModel user)
+        public ActionResult Register(RegisterModel model)
         {
             try
             {
-                return null;
+                if (ModelState.IsValid)
+                {
+                    //return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("", "Registration failed.");
+                }
+                return Register();
             }
             catch
             {

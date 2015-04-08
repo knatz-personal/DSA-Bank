@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BankServices.CustomExceptions;
 using DataAccess;
@@ -20,7 +21,7 @@ namespace BankServices
 
             if (user.DoeUserNameExist(username))
             {
-                User tmp = ReadByUsername(username);
+                User tmp = user.Read(new User { Username = username });
                 if (tmp != null)
                 {
                     if (tmp.NoOfAttempts <= 3)
@@ -42,6 +43,10 @@ namespace BankServices
                     }
                 }
             }
+            else
+            {
+                throw new Exception("An account with the given username was not found.");
+            }
             return false;
         }
 
@@ -52,7 +57,7 @@ namespace BankServices
 
         public void Delete(string username)
         {
-            User user = ReadByUsername(username);
+            User user = new UsersRepo().Read(new User(){Username = username});
             new UsersRepo().Delete(user);
         }
 
@@ -61,14 +66,23 @@ namespace BankServices
             return new UsersRepo().DoeUserNameExist(username);
         }
 
-        public IEnumerable<Gender> Genders()
+        public IEnumerable<GenderView> Genders()
         {
-            return new GendersRepo().ListAll();
+            return new GendersRepo().ListAll().Select(g=>new GenderView()
+            {
+                ID = g.ID,
+                Name = g.Name
+            });
         }
 
-        public Role GetRoleById(int id)
+        public RoleView GetRoleById(int id)
         {
-            return new RolesRepo().Read(new Role {ID = id});
+            var r = new RolesRepo().Read(new Role { ID = id });
+            return new RoleView()
+            {
+                ID = r.ID,
+                Name = r.Name
+            };
         }
 
         public int GetRoleIdByName(string name)
@@ -76,9 +90,13 @@ namespace BankServices
             return new RolesRepo().GetRoleByName(name).ID;
         }
 
-        public IQueryable<Role> GetRoles(string username)
+        public IQueryable<RoleView> GetRoles(string username)
         {
-            return new RolesRepo().GetRolesOfUser(username);
+            return new RolesRepo().GetRolesOfUser(username).Select(r => new RoleView()
+            {
+                ID = r.ID,
+                Name = r.Name
+            });
         }
 
         public bool IsUserInRole(string username, int roleId)
@@ -87,12 +105,14 @@ namespace BankServices
                 ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
                     t => t.ID == roleId) != null);
         }
-
-
-
-        public IEnumerable<Role> ListRoles()
+        
+        public IEnumerable<RoleView> ListRoles()
         {
-            return new RolesRepo().ListAll();
+            return new RolesRepo().ListAll().Select(r => new RoleView()
+            {
+                ID = r.ID,
+                Name = r.Name
+            });
         }
 
         public IQueryable<UserView> ListUsers()
@@ -117,9 +137,26 @@ namespace BankServices
             return list;
         }
 
-        public User ReadByUsername(string username)
+        public UserView ReadByUsername(string username)
         {
-            return new UsersRepo().Read(new User {Username = username});
+            var u = new UsersRepo().Read(new User {Username = username});
+            return new UserView()
+            {
+                Username = u.Username,
+                Password = u.Password,
+                FirstName = u.FirstName,
+                MiddleInitial = u.MiddleInitial,
+                LastName = u.LastName,
+                Email = u.Email,
+                Mobile = u.Mobile,
+                DateOfBirth = u.DateOfBirth,
+                Address = u.Address,
+                GenderID = u.GenderID,
+                TownID = u.TownID,
+                TypeID = u.TypeID,
+                Blocked = u.Blocked,
+                NoOfAttempts = u.NoOfAttempts
+            };
         }
 
         public bool Register(UserView user)
@@ -147,18 +184,53 @@ namespace BankServices
 
         public IEnumerable<UserView> Search(string query)
         {
-            //return new UsersRepo().Search(query);
-            return null;
+            return new UsersRepo().Search(query).Select(u => new UserView()
+            {
+                Username = u.Username,
+                Password = u.Password,
+                FirstName = u.FirstName,
+                MiddleInitial = u.MiddleInitial,
+                LastName = u.LastName,
+                Email = u.Email,
+                Mobile = u.Mobile,
+                DateOfBirth = u.DateOfBirth,
+                Address = u.Address,
+                GenderID = u.GenderID,
+                TownID = u.TownID,
+                TypeID = u.TypeID,
+                Blocked = u.Blocked,
+                NoOfAttempts = u.NoOfAttempts
+            });
         }
 
-        public IEnumerable<UserType> TypesList()
+        public IEnumerable<UserTypeView> TypesList()
         {
-            return new UserTypesRepo().ListAll();
+            return new UserTypesRepo().ListAll().Select(u => new UserTypeView()
+            {
+                ID = u.ID,
+                Name = u.Name
+            });
         }
 
-        public void Update(UserView user)
+        public void Update(UserView u)
         {
-            //new UsersRepo().Update(user);
+            new UsersRepo().Update(new User()
+            {
+                Username = u.Username,
+                Password = u.Password,
+                FirstName = u.FirstName,
+                MiddleInitial = u.MiddleInitial,
+                LastName = u.LastName,
+                Email = u.Email,
+                Mobile = u.Mobile,
+                DateOfBirth = u.DateOfBirth,
+                Address = u.Address,
+                GenderID = u.GenderID,
+                TownID = u.TownID,
+                TypeID = u.TypeID,
+                Blocked = u.Blocked,
+                NoOfAttempts = u.NoOfAttempts
+            });
         }
     }
 }
