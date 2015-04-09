@@ -2,9 +2,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h3>Are you sure you want to delete this?</h3>
+    <h3 class="col-md-offset-2 ">Are you sure you want to delete this?</h3>
 
-    <dl class="dl-horizontal">
+    <dl class="col-md-offset-2 dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -36,9 +36,6 @@
             @Html.DisplayFor(model => model.Mobile)
         </dd>
     </dl>
-    <i class="glyphicon glyphicon-option-horizontal"></i>
-
-
-
+    <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;text-align: center;width: 100%;"></i>
 }
 
