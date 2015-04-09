@@ -81,7 +81,7 @@ namespace BankServices
 
         public IEnumerable<MenuView> GetMenuByRole(int roleId)
         {
-            IEnumerable<MenuView> list = new MenusRepo().GetMenuByRole(roleId).Select(m => new MenuView
+            var list = new MenusRepo().GetMenuByRole(roleId).Select(m => new MenuView
             {
                 ID = m.ID,
                 Name = m.Name,

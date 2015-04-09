@@ -27,7 +27,6 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="6bb2ff0b-cc22-49dd-afce-bf6e100a2ca6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a4e67445-10b2-4502-861e-240bfbeff592" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9357f0a1-1106-4bbd-bbc9-1a11a04c85a5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
-    <MetadataFile FileName="DataAccess.EntityModel.xsd" MetadataType="Schema" ID="de270a9f-3573-44fe-9e67-0481f9fb471d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
     <MetadataFile FileName="BankServices.xsd" MetadataType="Schema" ID="7dc4595e-ea8b-4726-b784-a7d876c290e6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
   </Metadata>
   <Extensions>

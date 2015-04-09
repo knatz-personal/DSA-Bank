@@ -45,7 +45,7 @@ namespace BankServices
             }
             else
             {
-                throw new Exception("An account with the given username was not found.");
+                throw new Exception("An account with the given credentials was not found.");
             }
             return false;
         }

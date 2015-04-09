@@ -19,7 +19,7 @@ namespace WebPortal.Controllers
                 const string manRole = "Manager";
                 const string adminRole = "Administrator";
 
-                int roleId = 0;
+                int roleId = userServicesClient.GetRoleIdByName(anonRole);
                 if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole(adminRole))
@@ -35,10 +35,7 @@ namespace WebPortal.Controllers
                         roleId = userServicesClient.GetRoleIdByName(clientRole);
                     }
                 }
-                else
-                {
-                    roleId = userServicesClient.GetRoleIdByName(anonRole);
-                }
+
                 using (var client = new NavigationServicesClient())
                 {
                     var model = new MenuViewModel();

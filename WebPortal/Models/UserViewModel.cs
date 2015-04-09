@@ -26,6 +26,7 @@ namespace WebPortal.Models
 
         [Required]
         [Display(Name = "Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
         [Required]
@@ -87,6 +88,7 @@ namespace WebPortal.Models
 
         [Required]
         [Display(Name = "Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
         [Required]

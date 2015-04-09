@@ -1,5 +1,4 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@using WebPortal.Helpers
+﻿@using WebPortal.Helpers
 @model WebPortal.Models.MenuViewModel
 <div class="navbar-collapse collapse">
 
@@ -14,7 +13,8 @@
                 @Html.ActionLink("Logout", "Logout", "Accounts")
             </li>
         }
-        @else{
+        else
+        {
             <li>
                 @Html.ActionLink("Register", "Register", "Accounts")
             </li>

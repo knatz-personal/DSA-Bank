@@ -17,9 +17,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("DSA Bank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("DSA Bank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color:orange" })
                 </div>
-                @{Html.RenderAction("_Menu", "Navigation");}
+                @{ Html.RenderAction("_Menu", "Navigation"); }
             </div>
         </nav>
     </header>
@@ -27,16 +27,39 @@
         <div class="row">
             <div class="col-md-6">
                 <ol class="breadcrumb">
-                    <li><a href="#">Website</a></li>
-                    <li class="active">Home</li>
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    @if (ViewContext.RouteData.Values["controller"].ToString() != "Home")
+                    {
+                        <li>
+                            <a href="#">@ViewContext.RouteData.Values["controller"].ToString()</a>
+                        </li>
+                    }
+                    @if (ViewContext.RouteData.Values["action"].ToString() != "Index")
+                    {
+                        <li class="active">
+                            @ViewContext.RouteData.Values["action"].ToString()
+                        </li>
+                    }
                 </ol>
             </div>
             <div class="col-md-6" style="text-align: right;">
-                <h4>@Html.Partial("_Greeting")</h4>
+                <h4>
+                    <i class="glyphicon glyphicon-user"></i>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <text><strong>@User.Identity.Name</strong></text>
+
+                    }
+                    else
+                    {
+                        <text><strong>Guest</strong></text>
+                    }
+                </h4>
             </div>
         </div>
         @RenderBody()
-        <hr />
         @Html.Partial("_FooterInfo")
         <hr />
         <footer>
@@ -56,6 +79,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 </body>
 </html>

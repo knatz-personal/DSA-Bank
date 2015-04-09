@@ -10,7 +10,7 @@ using WebPortal.UserServices;
 
 namespace WebPortal
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -24,10 +24,10 @@ namespace WebPortal
         {
             if (Context.User != null)
             {
-                List<Role> usersRole = new UserServicesClient().GetRoles(Context.User.Identity.Name);
+                List<RoleView> usersRole = new UserServicesClient().GetRoles(Context.User.Identity.Name);
                 var roles = new string[usersRole.Count()];
                 int counter = 0;
-                foreach (Role r in usersRole)
+                foreach (RoleView r in usersRole)
                 {
                     roles[counter] = r.Name;
                     counter++;
@@ -42,7 +42,7 @@ namespace WebPortal
         //{
         //    Exception objErr = Server.GetLastError().GetBaseException();
         //    string err = "\n---------------START-----------------------" +
-        //                 "\nError Caught in Global.asax Application_Error of Electros Web Store event" +
+        //                 "\nError Caught in Global.asax Application_Error" +
         //                 "\n\tError in: " + Request.Url +
         //                 "\n\tError Message: " + objErr.Message +
         //                 "\n\tInnerException: " + objErr.InnerException +

@@ -215,9 +215,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Service References\CurrencyConverterService\CurrencyConvertor.wsdl" />
-    <None Include="Service References\UserServices\DataAccess.EntityModel.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UserServices\service.wsdl" />
     <None Include="Service References\UserServices\service.xsd">
       <SubType>Designer</SubType>
@@ -225,18 +222,6 @@
     <None Include="Service References\UserServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.Gender.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.UserType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Transaction\Index.cshtml" />
     <Content Include="Views\Transaction\Details.cshtml" />
     <Content Include="Views\Transaction\Create.cshtml" />
@@ -253,11 +238,21 @@
     <Content Include="Views\Accounts\Register.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Shared\_FooterInfo.cshtml" />
-    <Content Include="Views\Shared\_Greeting.cshtml" />
+    <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.RoleView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.UserTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Accounts\_Details.cshtml" />
+    <Content Include="Views\Accounts\_Edit.cshtml" />
+    <Content Include="Views\Accounts\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Navigation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -273,6 +268,12 @@
     <WCFMetadataStorage Include="Service References\CurrencyConverterService\" />
     <WCFMetadataStorage Include="Service References\NavigationServices\" />
     <WCFMetadataStorage Include="Service References\UserServices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BankManager\BankManager.csproj">
+      <Project>{ECFFF1CC-A8C9-4FCE-9BF3-E934354659B8}</Project>
+      <Name>BankManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

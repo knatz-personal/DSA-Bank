@@ -1,0 +1,44 @@
+﻿@model WebPortal.Models.UserViewModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3>Are you sure you want to delete this?</h3>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.Label("Full Name")
+        </dt>
+
+        <dd>
+            @Html.Label(string.Format("{0} {1} {2}", Model.FirstName, Model.MiddleInitial, Model.LastName))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+    </dl>
+    <i class="glyphicon glyphicon-option-horizontal"></i>
+
+
+
+}
+
