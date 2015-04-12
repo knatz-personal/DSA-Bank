@@ -11,7 +11,7 @@ namespace DataAccess.Reposiitories
         IQueryable<T> ListAll();
         void Create(T newItem);
         T Read(T itemToRead);
-        T Update(T updatedItem);
+        void Update(T updatedItem);
         void Delete(T itemToDelete);
     }
 }

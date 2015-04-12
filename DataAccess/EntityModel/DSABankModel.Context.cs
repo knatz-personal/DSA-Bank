@@ -28,6 +28,7 @@ namespace DataAccess.EntityModel
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
         public DbSet<EventLog> EventLogs { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Menu> Menus { get; set; }

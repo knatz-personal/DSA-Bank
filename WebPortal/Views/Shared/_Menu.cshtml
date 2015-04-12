@@ -10,16 +10,16 @@
         @if (Request.IsAuthenticated)
         {
             <li>
-                @Html.ActionLink("Logout", "Logout", "Accounts")
+                @Html.ActionLink("Logout", "Logout", "UserAccounts")
             </li>
         }
         else
         {
             <li>
-                @Html.ActionLink("Register", "Register", "Accounts")
+                @Html.ActionLink("Register", "Register", "UserAccounts")
             </li>
             <li>
-                @Html.ActionLink("Login", "Login", "Accounts")
+                @Html.ActionLink("Login", "Login", "UserAccounts")
             </li>
         }
     </ul>

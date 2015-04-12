@@ -28,9 +28,21 @@
       <EntityTypeMapping TypeName="DSABankDbModel.Appointment">
         <MappingFragment StoreEntitySet="Appointments">
           <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
-          <ScalarProperty Name="TimeSuggested" ColumnName="TimeSuggested" />
-          <ScalarProperty Name="DateSuggested" ColumnName="DateSuggested" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="SuggestedTime" ColumnName="SuggestedTime" />
+          <ScalarProperty Name="SuggestedDate" ColumnName="SuggestedDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="DSABankDbModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="DateTriggered" ColumnName="DateTriggered" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

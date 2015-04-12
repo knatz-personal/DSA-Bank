@@ -11,6 +11,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\WebPortal.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.Optimization.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\BankManager.exe
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\WebPortal.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.Helpers.xml
@@ -20,6 +21,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\System.Web.Optimization.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\bin\Debug\BankManager.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\obj\Debug\WebPortal.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\obj\Debug\WebPortal.Tests.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal.Tests\obj\Debug\WebPortal.Tests.pdb

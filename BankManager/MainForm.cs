@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankManager.BankTransactionServices;
 
 namespace BankManager
 {
@@ -26,6 +27,14 @@ namespace BankManager
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            using (var client = new TransactionServicesClient())
+            {
+                transactionViewBindingSource.DataSource = client.ListTransactions();
+            }
         }
     }
 }

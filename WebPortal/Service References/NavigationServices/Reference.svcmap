@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d90f5f2d-eb59-4d2b-baf6-a14c9940461b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cf89f0b1-74ef-47ae-8f32-2ba5e24121d3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -24,10 +24,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="eafcc311-e82c-4ab8-8226-1075f20b6b95" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0d5b99b9-6329-4203-ab70-38088c72fd2c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="1d289bee-ecfa-4e3a-97e9-b5ea7af2109d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
-    <MetadataFile FileName="BankServices.xsd" MetadataType="Schema" ID="baad1b0e-3d96-4db5-9638-5874606fca56" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e2f3fdc2-8ea1-426d-9910-d3273c1ac87a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f0ced80f-a17b-4094-8110-ead658b815f3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d3fa047e-1530-4c39-bc94-cace329a403d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
+    <MetadataFile FileName="BankServices.Navigation.xsd" MetadataType="Schema" ID="2110e1d0-f0da-4204-bbae-274d78ce912a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

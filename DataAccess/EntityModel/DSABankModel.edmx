@@ -32,9 +32,20 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
-          <Property Name="DateSuggested" Type="date" Nullable="false" />
-          <Property Name="TimeSuggested" Type="time" Precision="7" Nullable="false" />
+          <Property Name="SuggestedDate" Type="date" Nullable="false" />
+          <Property Name="SuggestedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IsAccepted" Type="bit" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="InnerException" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateTriggered" Type="datetime" />
         </EntityType>
         <EntityType Name="EventLog">
           <Key>
@@ -301,6 +312,7 @@
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuRoles" EntityType="Self.MenuRoles" Schema="dbo" store:Type="Tables" />
@@ -373,6 +385,7 @@
           <EntitySet Name="Accounts" EntityType="DSABankDbModel.Account" />
           <EntitySet Name="AccountTypes" EntityType="DSABankDbModel.AccountType" />
           <EntitySet Name="Appointments" EntityType="DSABankDbModel.Appointment" />
+          <EntitySet Name="ErrorLogs" EntityType="DSABankDbModel.ErrorLog" />
           <EntitySet Name="EventLogs" EntityType="DSABankDbModel.EventLog" />
           <EntitySet Name="Genders" EntityType="DSABankDbModel.Gender" />
           <EntitySet Name="Menus" EntityType="DSABankDbModel.Menu" />
@@ -459,9 +472,20 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="DateSuggested" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TimeSuggested" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="SuggestedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SuggestedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsAccepted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InnerException" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTriggered" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EventLog">
           <Key>
@@ -718,9 +742,21 @@
             <EntityTypeMapping TypeName="DSABankDbModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
                 <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
-                <ScalarProperty Name="TimeSuggested" ColumnName="TimeSuggested" />
-                <ScalarProperty Name="DateSuggested" ColumnName="DateSuggested" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SuggestedTime" ColumnName="SuggestedTime" />
+                <ScalarProperty Name="SuggestedDate" ColumnName="SuggestedDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogs">
+            <EntityTypeMapping TypeName="DSABankDbModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="DateTriggered" ColumnName="DateTriggered" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<WebPortal.Models.TransactionViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css")
+@Scripts.Render("//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js")
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h2>My Transactions</h2></div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="input-group col-md-4">
+                <input class="form-control" type="text" placeholder="Search">
+                <span class="input-group-btn">
+                    <span class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                        <span>Search</span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <table id="tblTansaction" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="#" data-sortfield="CustomerID"
+                           class="header">
+                            @Html.DisplayNameFor(model => model.DateIssued)
+                        </a>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TypeID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AccountFromID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AccountToID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Currency)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        <a class="btn btn-sm btn-default btn-block" href="@Url.Action("Create", "Transactions")" title="Create">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>New</span>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateIssued)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountFromID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountToID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Currency)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td style="width: 118px;">
+                            <a class="bttnEditThis btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Transactions", new { id = item.ID })" title="Edit">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                <span class="sr-only">Edit</span>
+                            </a>
+                            <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.ID" href="@Url.Action("Details", "Transactions", new { id = item.ID })" title="Details">
+                                <i class="glyphicon glyphicon-list"></i>
+                                <span class="sr-only">Edit</span>
+                            </a>
+                            <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Transactions", new { id = item.ID })" title="Delete">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span class="sr-only">Delete</span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="0">
+                        <div class="btn-group">
+                            <a class="btn btn-default pull-left" href="#" title="first">
+                                <i class="glyphicon glyphicon-backward"></i>
+                                <span class="sr-only">first</span>
+                            </a>
+                            <a class="btn btn-default pull-left" href="#" title="previous">
+                                <i class="glyphicon glyphicon-arrow-left"></i>
+                                <span class="sr-only">previous</span>
+                            </a>
+                            @for (var i = 0; i < 23; i++)
+                            {
+                                <a href="#" data-pageindex="@i" class="btn btn-default" href="#">@(i + 1)</a>
+                            }
+                            <a class="btn btn-default pull-left" href="#" title="next">
+                                <i class="glyphicon glyphicon-arrow-right"></i>
+                                <span class="sr-only">next</span>
+                            </a>
+                            <a class="btn btn-default pull-right" href="#" title="last">
+                                <i class="glyphicon glyphicon-forward"></i>
+                                <span class="sr-only">last</span>
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

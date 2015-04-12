@@ -44,10 +44,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -110,25 +118,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\UserAccountsController.cs" />
+    <Compile Include="Controllers\BankAccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
-    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MenuHelperExtentions.cs" />
+    <Compile Include="Models\BankAccountViewModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
+    <Compile Include="Models\UserAccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\BankAccountServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BankTransactionServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\CurrencyConverterService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,6 +160,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="SortingPagingInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boots.og.min.css" />
@@ -156,14 +173,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="Properties\DataSources\BankManager.BankTransactionServices.TransactionView.datasource" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap-dtpicker.min.css" />
     <Content Include="Scripts\bootstrap-dtpicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -174,13 +197,36 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\BankAccountServices\service.wsdl" />
+    <None Include="Service References\BankAccountServices\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankTransactionServices\BankServices.BankTransaction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankTransactionServices\service.wsdl" />
+    <None Include="Service References\BankTransactionServices\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankTransactionServices\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\BankTransactionServices\WebPortal.BankTransactionServices.TransactionView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CurrencyConverterService\configuration91.svcinfo" />
     <None Include="Service References\CurrencyConverterService\configuration.svcinfo" />
     <None Include="Service References\CurrencyConverterService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\NavigationServices\BankServices.xsd">
+    <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
+    <None Include="Service References\BankAccountServices\configuration.svcinfo" />
+    <None Include="Service References\BankAccountServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\NavigationServices\BankServices.Navigation.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NavigationServices\service.wsdl" />
@@ -190,10 +236,16 @@
     <None Include="Service References\NavigationServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\BankTransactionServices\configuration91.svcinfo" />
+    <None Include="Service References\BankTransactionServices\configuration.svcinfo" />
+    <None Include="Service References\BankTransactionServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\UserServices\BankServices.xsd">
+    <None Include="Service References\UserServices\BankServices.UserAccount.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\configuration91.svcinfo" />
@@ -222,7 +274,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Service References\CurrencyConverterService\CurrencyConvertor.wsdl" />
     <None Include="Service References\UserServices\service.wsdl" />
     <None Include="Service References\UserServices\service.xsd">
@@ -231,20 +282,19 @@
     <None Include="Service References\UserServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Transaction\Index.cshtml" />
-    <Content Include="Views\Transaction\Details.cshtml" />
-    <Content Include="Views\Transaction\Create.cshtml" />
-    <Content Include="Views\Transaction\Edit.cshtml" />
-    <Content Include="Views\Transaction\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Accounts\Manage.cshtml" />
+    <Content Include="Views\UserAccounts\Manage.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Views\Accounts\Login.cshtml" />
-    <Content Include="Views\Accounts\Register.cshtml" />
+    <Content Include="Views\UserAccounts\Login.cshtml" />
+    <Content Include="Views\UserAccounts\Register.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Shared\_FooterInfo.cshtml" />
     <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
@@ -256,9 +306,15 @@
     <Content Include="Service References\UserServices\WebPortal.UserServices.UserTypeView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Accounts\_Details.cshtml" />
-    <Content Include="Views\Accounts\_Edit.cshtml" />
-    <Content Include="Views\Accounts\_Delete.cshtml" />
+    <Content Include="Views\UserAccounts\_Details.cshtml" />
+    <Content Include="Views\UserAccounts\_Edit.cshtml" />
+    <Content Include="Views\UserAccounts\_Delete.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\BankAccounts\Index.cshtml" />
+    <Content Include="Views\BankAccounts\Details.cshtml" />
+    <Content Include="Views\BankAccounts\Create.cshtml" />
+    <Content Include="Views\BankAccounts\Edit.cshtml" />
+    <Content Include="Views\BankAccounts\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,6 +327,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BankAccountServices\" />
+    <WCFMetadataStorage Include="Service References\BankTransactionServices\" />
     <WCFMetadataStorage Include="Service References\CurrencyConverterService\" />
     <WCFMetadataStorage Include="Service References\NavigationServices\" />
     <WCFMetadataStorage Include="Service References\UserServices\" />

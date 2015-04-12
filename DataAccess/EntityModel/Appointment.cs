@@ -16,8 +16,9 @@ namespace DataAccess.EntityModel
     {
         public int ID { get; set; }
         public string Description { get; set; }
-        public System.DateTime DateSuggested { get; set; }
-        public System.TimeSpan TimeSuggested { get; set; }
+        public System.DateTime SuggestedDate { get; set; }
+        public System.TimeSpan SuggestedTime { get; set; }
+        public string Duration { get; set; }
         public Nullable<bool> IsAccepted { get; set; }
     }
 }

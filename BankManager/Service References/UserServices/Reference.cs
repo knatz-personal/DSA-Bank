@@ -15,9 +15,9 @@ namespace BankManager.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Gender", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GenderView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
     [System.SerializableAttribute()]
-    public partial class Gender : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GenderView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -28,9 +28,6 @@ namespace BankManager.UserServices {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -38,913 +35,6 @@ namespace BankManager.UserServices {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Account> AccountsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BlockedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateOfBirthField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FirstNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.Gender GenderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GenderIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MiddleInitialField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MobileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NoOfAttemptsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Role> RolesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.Town TownField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TownIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TypeIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.UserType UserTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Account> Accounts {
-            get {
-                return this.AccountsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountsField, value) != true)) {
-                    this.AccountsField = value;
-                    this.RaisePropertyChanged("Accounts");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Blocked {
-            get {
-                return this.BlockedField;
-            }
-            set {
-                if ((this.BlockedField.Equals(value) != true)) {
-                    this.BlockedField = value;
-                    this.RaisePropertyChanged("Blocked");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateOfBirth {
-            get {
-                return this.DateOfBirthField;
-            }
-            set {
-                if ((this.DateOfBirthField.Equals(value) != true)) {
-                    this.DateOfBirthField = value;
-                    this.RaisePropertyChanged("DateOfBirth");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
-            get {
-                return this.FirstNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.Gender Gender {
-            get {
-                return this.GenderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GenderField, value) != true)) {
-                    this.GenderField = value;
-                    this.RaisePropertyChanged("Gender");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GenderID {
-            get {
-                return this.GenderIDField;
-            }
-            set {
-                if ((this.GenderIDField.Equals(value) != true)) {
-                    this.GenderIDField = value;
-                    this.RaisePropertyChanged("GenderID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MiddleInitial {
-            get {
-                return this.MiddleInitialField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MiddleInitialField, value) != true)) {
-                    this.MiddleInitialField = value;
-                    this.RaisePropertyChanged("MiddleInitial");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Mobile {
-            get {
-                return this.MobileField;
-            }
-            set {
-                if ((this.MobileField.Equals(value) != true)) {
-                    this.MobileField = value;
-                    this.RaisePropertyChanged("Mobile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NoOfAttempts {
-            get {
-                return this.NoOfAttemptsField;
-            }
-            set {
-                if ((this.NoOfAttemptsField.Equals(value) != true)) {
-                    this.NoOfAttemptsField = value;
-                    this.RaisePropertyChanged("NoOfAttempts");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Role> Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.Town Town {
-            get {
-                return this.TownField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TownField, value) != true)) {
-                    this.TownField = value;
-                    this.RaisePropertyChanged("Town");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TownID {
-            get {
-                return this.TownIDField;
-            }
-            set {
-                if ((this.TownIDField.Equals(value) != true)) {
-                    this.TownIDField = value;
-                    this.RaisePropertyChanged("TownID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TypeID {
-            get {
-                return this.TypeIDField;
-            }
-            set {
-                if ((this.TypeIDField.Equals(value) != true)) {
-                    this.TypeIDField = value;
-                    this.RaisePropertyChanged("TypeID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.UserType UserType {
-            get {
-                return this.UserTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserTypeField, value) != true)) {
-                    this.UserTypeField = value;
-                    this.RaisePropertyChanged("UserType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Town", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class Town : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserType", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class UserType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Account", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class Account : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.AccountType AccountTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal BalanceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CurrencyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateOpenedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> ExpiryDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TypeIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.AccountType AccountType {
-            get {
-                return this.AccountTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountTypeField, value) != true)) {
-                    this.AccountTypeField = value;
-                    this.RaisePropertyChanged("AccountType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Balance {
-            get {
-                return this.BalanceField;
-            }
-            set {
-                if ((this.BalanceField.Equals(value) != true)) {
-                    this.BalanceField = value;
-                    this.RaisePropertyChanged("Balance");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Currency {
-            get {
-                return this.CurrencyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
-                    this.CurrencyField = value;
-                    this.RaisePropertyChanged("Currency");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateOpened {
-            get {
-                return this.DateOpenedField;
-            }
-            set {
-                if ((this.DateOpenedField.Equals(value) != true)) {
-                    this.DateOpenedField = value;
-                    this.RaisePropertyChanged("DateOpened");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> ExpiryDate {
-            get {
-                return this.ExpiryDateField;
-            }
-            set {
-                if ((this.ExpiryDateField.Equals(value) != true)) {
-                    this.ExpiryDateField = value;
-                    this.RaisePropertyChanged("ExpiryDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks {
-            get {
-                return this.RemarksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
-                    this.RemarksField = value;
-                    this.RaisePropertyChanged("Remarks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs {
-            get {
-                return this.TransactionLogsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TransactionLogsField, value) != true)) {
-                    this.TransactionLogsField = value;
-                    this.RaisePropertyChanged("TransactionLogs");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs1 {
-            get {
-                return this.TransactionLogs1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TransactionLogs1Field, value) != true)) {
-                    this.TransactionLogs1Field = value;
-                    this.RaisePropertyChanged("TransactionLogs1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TypeID {
-            get {
-                return this.TypeIDField;
-            }
-            set {
-                if ((this.TypeIDField.Equals(value) != true)) {
-                    this.TypeIDField = value;
-                    this.RaisePropertyChanged("TypeID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Menu> MenusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.User> UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Menu> Menus {
-            get {
-                return this.MenusField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MenusField, value) != true)) {
-                    this.MenusField = value;
-                    this.RaisePropertyChanged("Menus");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.User> Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AccountType", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class AccountType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Account> AccountsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Account> Accounts {
-            get {
-                return this.AccountsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountsField, value) != true)) {
-                    this.AccountsField = value;
-                    this.RaisePropertyChanged("Accounts");
-                }
             }
         }
         
@@ -986,214 +76,9 @@ namespace BankManager.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionLog", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
     [System.SerializableAttribute()]
-    public partial class TransactionLog : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.Account AccountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.Account Account1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AccountFromIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AccountToIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal AmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CurrencyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateIssuedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RemarksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.TransactionType TransactionTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TypeIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.Account Account {
-            get {
-                return this.AccountField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountField, value) != true)) {
-                    this.AccountField = value;
-                    this.RaisePropertyChanged("Account");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.Account Account1 {
-            get {
-                return this.Account1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Account1Field, value) != true)) {
-                    this.Account1Field = value;
-                    this.RaisePropertyChanged("Account1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AccountFromID {
-            get {
-                return this.AccountFromIDField;
-            }
-            set {
-                if ((this.AccountFromIDField.Equals(value) != true)) {
-                    this.AccountFromIDField = value;
-                    this.RaisePropertyChanged("AccountFromID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AccountToID {
-            get {
-                return this.AccountToIDField;
-            }
-            set {
-                if ((this.AccountToIDField.Equals(value) != true)) {
-                    this.AccountToIDField = value;
-                    this.RaisePropertyChanged("AccountToID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Amount {
-            get {
-                return this.AmountField;
-            }
-            set {
-                if ((this.AmountField.Equals(value) != true)) {
-                    this.AmountField = value;
-                    this.RaisePropertyChanged("Amount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Currency {
-            get {
-                return this.CurrencyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
-                    this.CurrencyField = value;
-                    this.RaisePropertyChanged("Currency");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateIssued {
-            get {
-                return this.DateIssuedField;
-            }
-            set {
-                if ((this.DateIssuedField.Equals(value) != true)) {
-                    this.DateIssuedField = value;
-                    this.RaisePropertyChanged("DateIssued");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarks {
-            get {
-                return this.RemarksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
-                    this.RemarksField = value;
-                    this.RaisePropertyChanged("Remarks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.TransactionType TransactionType {
-            get {
-                return this.TransactionTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TransactionTypeField, value) != true)) {
-                    this.TransactionTypeField = value;
-                    this.RaisePropertyChanged("TransactionType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TypeID {
-            get {
-                return this.TypeIDField;
-            }
-            set {
-                if ((this.TypeIDField.Equals(value) != true)) {
-                    this.TypeIDField = value;
-                    this.RaisePropertyChanged("TypeID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionType", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
-    [System.SerializableAttribute()]
-    public partial class TransactionType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class RoleView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1203,9 +88,6 @@ namespace BankManager.UserServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1243,19 +125,6 @@ namespace BankManager.UserServices {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.TransactionLog> TransactionLogs {
-            get {
-                return this.TransactionLogsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TransactionLogsField, value) != true)) {
-                    this.TransactionLogsField = value;
-                    this.RaisePropertyChanged("TransactionLogs");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1268,214 +137,9 @@ namespace BankManager.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Menu", Namespace="http://schemas.datacontract.org/2004/07/DataAccess.EntityModel")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
     [System.SerializableAttribute()]
-    public partial class Menu : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ActionNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ControllerNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankManager.UserServices.Menu Menu1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Menu> Menus1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ParentIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<BankManager.UserServices.Role> RolesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> SortOrderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UrlField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ActionName {
-            get {
-                return this.ActionNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ActionNameField, value) != true)) {
-                    this.ActionNameField = value;
-                    this.RaisePropertyChanged("ActionName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ControllerName {
-            get {
-                return this.ControllerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ControllerNameField, value) != true)) {
-                    this.ControllerNameField = value;
-                    this.RaisePropertyChanged("ControllerName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BankManager.UserServices.Menu Menu1 {
-            get {
-                return this.Menu1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Menu1Field, value) != true)) {
-                    this.Menu1Field = value;
-                    this.RaisePropertyChanged("Menu1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Menu> Menus1 {
-            get {
-                return this.Menus1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Menus1Field, value) != true)) {
-                    this.Menus1Field = value;
-                    this.RaisePropertyChanged("Menus1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ParentID {
-            get {
-                return this.ParentIDField;
-            }
-            set {
-                if ((this.ParentIDField.Equals(value) != true)) {
-                    this.ParentIDField = value;
-                    this.RaisePropertyChanged("ParentID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<BankManager.UserServices.Role> Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> SortOrder {
-            get {
-                return this.SortOrderField;
-            }
-            set {
-                if ((this.SortOrderField.Equals(value) != true)) {
-                    this.SortOrderField = value;
-                    this.RaisePropertyChanged("SortOrder");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Url {
-            get {
-                return this.UrlField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UrlField, value) != true)) {
-                    this.UrlField = value;
-                    this.RaisePropertyChanged("Url");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VwUser", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
-    [System.SerializableAttribute()]
-    public partial class VwUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class UserView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1710,6 +374,67 @@ namespace BankManager.UserServices {
                 if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
                     this.UsernameField = value;
                     this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
+    [System.SerializableAttribute()]
+    public partial class UserTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -1759,16 +484,16 @@ namespace BankManager.UserServices {
         System.Threading.Tasks.Task<bool> DoesUsernameExistAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.Gender> Genders();
+        System.Collections.Generic.List<BankManager.UserServices.GenderView> Genders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Gender>> GendersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.GenderView>> GendersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
-        BankManager.UserServices.Role GetRoleById(int id);
+        BankManager.UserServices.RoleView GetRoleById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
-        System.Threading.Tasks.Task<BankManager.UserServices.Role> GetRoleByIdAsync(int id);
+        System.Threading.Tasks.Task<BankManager.UserServices.RoleView> GetRoleByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleIdByName", ReplyAction="http://tempuri.org/IUserServices/GetRoleIdByNameResponse")]
         int GetRoleIdByName(string name);
@@ -1777,10 +502,10 @@ namespace BankManager.UserServices {
         System.Threading.Tasks.Task<int> GetRoleIdByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.Role> GetRoles(string username);
+        System.Collections.Generic.List<BankManager.UserServices.RoleView> GetRoles(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> GetRolesAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> GetRolesAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
         bool IsUserInRole(string username, int roleId);
@@ -1789,46 +514,46 @@ namespace BankManager.UserServices {
         System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.VwUser> ListUsers();
+        System.Collections.Generic.List<BankManager.UserServices.UserView> ListUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.VwUser>> ListUsersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserView>> ListUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.Role> ListRoles();
+        System.Collections.Generic.List<BankManager.UserServices.RoleView> ListRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> ListRolesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> ListRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
-        BankManager.UserServices.User ReadByUsername(string username);
+        BankManager.UserServices.UserView ReadByUsername(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
-        System.Threading.Tasks.Task<BankManager.UserServices.User> ReadByUsernameAsync(string username);
+        System.Threading.Tasks.Task<BankManager.UserServices.UserView> ReadByUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        bool Register(BankManager.UserServices.User user);
+        bool Register(BankManager.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Register", ReplyAction="http://tempuri.org/IUserServices/RegisterResponse")]
-        System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.User user);
+        System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.User> Search(string query);
+        System.Collections.Generic.List<BankManager.UserServices.UserView> Search(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.User>> SearchAsync(string query);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserView>> SearchAsync(string query);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.UserType> TypesList();
+        System.Collections.Generic.List<BankManager.UserServices.UserTypeView> TypesList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserType>> TypesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserTypeView>> TypesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        void Update(BankManager.UserServices.User user);
+        void Update(BankManager.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.User user);
+        System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.UserView user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1898,19 +623,19 @@ namespace BankManager.UserServices {
             return base.Channel.DoesUsernameExistAsync(username);
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.Gender> Genders() {
+        public System.Collections.Generic.List<BankManager.UserServices.GenderView> Genders() {
             return base.Channel.Genders();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Gender>> GendersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.GenderView>> GendersAsync() {
             return base.Channel.GendersAsync();
         }
         
-        public BankManager.UserServices.Role GetRoleById(int id) {
+        public BankManager.UserServices.RoleView GetRoleById(int id) {
             return base.Channel.GetRoleById(id);
         }
         
-        public System.Threading.Tasks.Task<BankManager.UserServices.Role> GetRoleByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BankManager.UserServices.RoleView> GetRoleByIdAsync(int id) {
             return base.Channel.GetRoleByIdAsync(id);
         }
         
@@ -1922,11 +647,11 @@ namespace BankManager.UserServices {
             return base.Channel.GetRoleIdByNameAsync(name);
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.Role> GetRoles(string username) {
+        public System.Collections.Generic.List<BankManager.UserServices.RoleView> GetRoles(string username) {
             return base.Channel.GetRoles(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> GetRolesAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> GetRolesAsync(string username) {
             return base.Channel.GetRolesAsync(username);
         }
         
@@ -1938,59 +663,59 @@ namespace BankManager.UserServices {
             return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.VwUser> ListUsers() {
+        public System.Collections.Generic.List<BankManager.UserServices.UserView> ListUsers() {
             return base.Channel.ListUsers();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.VwUser>> ListUsersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserView>> ListUsersAsync() {
             return base.Channel.ListUsersAsync();
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.Role> ListRoles() {
+        public System.Collections.Generic.List<BankManager.UserServices.RoleView> ListRoles() {
             return base.Channel.ListRoles();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.Role>> ListRolesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> ListRolesAsync() {
             return base.Channel.ListRolesAsync();
         }
         
-        public BankManager.UserServices.User ReadByUsername(string username) {
+        public BankManager.UserServices.UserView ReadByUsername(string username) {
             return base.Channel.ReadByUsername(username);
         }
         
-        public System.Threading.Tasks.Task<BankManager.UserServices.User> ReadByUsernameAsync(string username) {
+        public System.Threading.Tasks.Task<BankManager.UserServices.UserView> ReadByUsernameAsync(string username) {
             return base.Channel.ReadByUsernameAsync(username);
         }
         
-        public bool Register(BankManager.UserServices.User user) {
+        public bool Register(BankManager.UserServices.UserView user) {
             return base.Channel.Register(user);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.User user) {
+        public System.Threading.Tasks.Task<bool> RegisterAsync(BankManager.UserServices.UserView user) {
             return base.Channel.RegisterAsync(user);
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.User> Search(string query) {
+        public System.Collections.Generic.List<BankManager.UserServices.UserView> Search(string query) {
             return base.Channel.Search(query);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.User>> SearchAsync(string query) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserView>> SearchAsync(string query) {
             return base.Channel.SearchAsync(query);
         }
         
-        public System.Collections.Generic.List<BankManager.UserServices.UserType> TypesList() {
+        public System.Collections.Generic.List<BankManager.UserServices.UserTypeView> TypesList() {
             return base.Channel.TypesList();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserType>> TypesListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserTypeView>> TypesListAsync() {
             return base.Channel.TypesListAsync();
         }
         
-        public void Update(BankManager.UserServices.User user) {
+        public void Update(BankManager.UserServices.UserView user) {
             base.Channel.Update(user);
         }
         
-        public System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.User user) {
+        public System.Threading.Tasks.Task UpdateAsync(BankManager.UserServices.UserView user) {
             return base.Channel.UpdateAsync(user);
         }
     }
