@@ -12,7 +12,19 @@ namespace BankServices.BankAccount
     public interface IBankAccountServices
     {
         [OperationContract]
-        void DoWork();
+        IQueryable<AccountView> ListUserAccounts(string username);
+
+        [OperationContract]
+        IQueryable<AccountView> ListAccounts();
+
+        [OperationContract]
+        void Create(AccountView item);
+
+        [OperationContract]
+        void Update(AccountView item);
+
+        [OperationContract]
+        void Delete(int id);
     }
 
     [DataContract]

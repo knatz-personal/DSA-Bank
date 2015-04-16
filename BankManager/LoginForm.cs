@@ -25,7 +25,9 @@ namespace BankManager
                 try
                 {
                     bool isValidUser = client.Authenticate(txtUsername.Text, txtPassword.Text);
-                    if (isValidUser)
+                    int roleId = client.GetRoleIdByName("Manager");
+                    bool isManager = client.IsUserInRole(txtUsername.Text, roleId);
+                    if (isValidUser && isManager)
                     {
                         var form = new MainForm();
                         form.Show();

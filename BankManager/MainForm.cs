@@ -36,5 +36,7 @@ namespace BankManager
                 transactionViewBindingSource.DataSource = client.ListTransactions();
             }
         }
+
+
     }
 }

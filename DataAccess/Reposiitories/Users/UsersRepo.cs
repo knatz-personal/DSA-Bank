@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using System.Transactions;
 using System.Linq;
 using DataAccess.EntityModel;
 
-namespace DataAccess.Reposiitories
+namespace DataAccess.Reposiitories.Users
 {
     public class UsersRepo : IDataRepository<User>
     {
@@ -19,8 +19,30 @@ namespace DataAccess.Reposiitories
 
         public void Create(User newItem)
         {
-            _db.Users.Add(newItem);
-            _db.SaveChanges();
+            using (TransactionScope ts = new TransactionScope())
+            {
+                using (var context = new DsaDataContext())
+                {
+                    context.Database.Connection.Open();
+                    try
+                    {
+                        context.Users.Add(newItem);
+                        context.SaveChanges();
+                        ts.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        ts.Dispose();
+                    }
+                    finally
+                    {
+                        if (context.Database.Connection.State == ConnectionState.Open)
+                        {
+                            context.Database.Connection.Close();
+                        }
+                    }
+                }
+            }
         }
 
         public User Read(User itemToRead)
@@ -64,8 +86,8 @@ namespace DataAccess.Reposiitories
             }
             catch
             {
-                
-                throw new Exception("Unable to delete record");
+
+                throw new Exception("Unable to disable record (Users cannot be deleted)");
             }
         }
 

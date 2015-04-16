@@ -1,26 +1,8 @@
 ﻿@using WebPortal.Helpers
 @model WebPortal.Models.MenuViewModel
+@Html.Partial("_LoginPartial")
 <div class="navbar-collapse collapse">
-
     <ul class="nav navbar-nav">
         @Html.RenderMenu(Model)
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-        @if (Request.IsAuthenticated)
-        {
-            <li>
-                @Html.ActionLink("Logout", "Logout", "UserAccounts")
-            </li>
-        }
-        else
-        {
-            <li>
-                @Html.ActionLink("Register", "Register", "UserAccounts")
-            </li>
-            <li>
-                @Html.ActionLink("Login", "Login", "UserAccounts")
-            </li>
-        }
     </ul>
 </div>

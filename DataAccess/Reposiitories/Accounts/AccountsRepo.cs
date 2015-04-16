@@ -10,15 +10,30 @@ namespace DataAccess.Reposiitories.Accounts
     {
         private DsaDataContext _db = new DsaDataContext();
 
-        public IQueryable<Account> ListAll()
-        {
-            return _db.Accounts.AsQueryable();
-        }
-
         public void Create(Account newItem)
         {
             _db.Accounts.Add(newItem);
             _db.SaveChanges();
+        }
+
+        public void Delete(Account itemToDelete)
+        {
+            var o = _db.Accounts.Find(itemToDelete.ID);
+
+            if (o != null)
+            {
+                _db.Accounts.Remove(o);
+                _db.SaveChanges();
+            }
+        }
+
+        public IQueryable<Account> ListAll()
+        {
+            return _db.Accounts.AsQueryable();
+        }
+        public IQueryable<Account> ListByUsername(string username)
+        {
+            return _db.Accounts.Where(a => a.Username == username);
         }
 
         public Account Read(Account itemToRead)
@@ -42,17 +57,6 @@ namespace DataAccess.Reposiitories.Accounts
                 o.Currency = updatedItem.Currency;
                 o.Name = updatedItem.Name;
 
-                _db.SaveChanges();
-            }
-        }
-
-        public void Delete(Account itemToDelete)
-        {
-            var o = _db.Accounts.Find(itemToDelete.ID);
-
-            if (o != null)
-            {
-                _db.Accounts.Remove(o);
                 _db.SaveChanges();
             }
         }

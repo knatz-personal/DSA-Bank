@@ -9,17 +9,216 @@
 //------------------------------------------------------------------------------
 
 namespace WebPortal.BankAccountServices {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankAccount")]
+    [System.SerializableAttribute()]
+    public partial class AccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal BalanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateOpenedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ExpiryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Balance {
+            get {
+                return this.BalanceField;
+            }
+            set {
+                if ((this.BalanceField.Equals(value) != true)) {
+                    this.BalanceField = value;
+                    this.RaisePropertyChanged("Balance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Currency {
+            get {
+                return this.CurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
+                    this.CurrencyField = value;
+                    this.RaisePropertyChanged("Currency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateOpened {
+            get {
+                return this.DateOpenedField;
+            }
+            set {
+                if ((this.DateOpenedField.Equals(value) != true)) {
+                    this.DateOpenedField = value;
+                    this.RaisePropertyChanged("DateOpened");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ExpiryDate {
+            get {
+                return this.ExpiryDateField;
+            }
+            set {
+                if ((this.ExpiryDateField.Equals(value) != true)) {
+                    this.ExpiryDateField = value;
+                    this.RaisePropertyChanged("ExpiryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks {
+            get {
+                return this.RemarksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
+                    this.RemarksField = value;
+                    this.RaisePropertyChanged("Remarks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TypeID {
+            get {
+                return this.TypeIDField;
+            }
+            set {
+                if ((this.TypeIDField.Equals(value) != true)) {
+                    this.TypeIDField = value;
+                    this.RaisePropertyChanged("TypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BankAccountServices.IBankAccountServices")]
     public interface IBankAccountServices {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/DoWork", ReplyAction="http://tempuri.org/IBankAccountServices/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListUserAccountsResponse")]
+        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserAccounts(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/DoWork", ReplyAction="http://tempuri.org/IBankAccountServices/DoWorkResponse")]
-        System.Threading.Tasks.Task DoWorkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListUserAccountsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListAccountsResponse")]
+        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListAccounts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListAccountsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListAccountsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Create", ReplyAction="http://tempuri.org/IBankAccountServices/CreateResponse")]
+        void Create(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Create", ReplyAction="http://tempuri.org/IBankAccountServices/CreateResponse")]
+        System.Threading.Tasks.Task CreateAsync(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Update", ReplyAction="http://tempuri.org/IBankAccountServices/UpdateResponse")]
+        void Update(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Update", ReplyAction="http://tempuri.org/IBankAccountServices/UpdateResponse")]
+        System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Delete", ReplyAction="http://tempuri.org/IBankAccountServices/DeleteResponse")]
+        void Delete(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Delete", ReplyAction="http://tempuri.org/IBankAccountServices/DeleteResponse")]
+        System.Threading.Tasks.Task DeleteAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +248,44 @@ namespace WebPortal.BankAccountServices {
                 base(binding, remoteAddress) {
         }
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserAccounts(string username) {
+            return base.Channel.ListUserAccounts(username);
         }
         
-        public System.Threading.Tasks.Task DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username) {
+            return base.Channel.ListUserAccountsAsync(username);
+        }
+        
+        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListAccounts() {
+            return base.Channel.ListAccounts();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListAccountsAsync() {
+            return base.Channel.ListAccountsAsync();
+        }
+        
+        public void Create(WebPortal.BankAccountServices.AccountView item) {
+            base.Channel.Create(item);
+        }
+        
+        public System.Threading.Tasks.Task CreateAsync(WebPortal.BankAccountServices.AccountView item) {
+            return base.Channel.CreateAsync(item);
+        }
+        
+        public void Update(WebPortal.BankAccountServices.AccountView item) {
+            base.Channel.Update(item);
+        }
+        
+        public System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item) {
+            return base.Channel.UpdateAsync(item);
+        }
+        
+        public void Delete(int id) {
+            base.Channel.Delete(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteAsync(int id) {
+            return base.Channel.DeleteAsync(id);
         }
     }
 }

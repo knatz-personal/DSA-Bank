@@ -28,6 +28,9 @@ namespace BankServices.UserAccount
         IEnumerable<GenderView> Genders();
 
         [OperationContract]
+        string GetGenderNameById(int id);
+
+        [OperationContract]
         RoleView GetRoleById(int id);
 
         [OperationContract]
@@ -37,13 +40,19 @@ namespace BankServices.UserAccount
         IQueryable<RoleView> GetRoles(string username);
 
         [OperationContract]
+        string GetTownNameById(int id);
+
+        [OperationContract]
+        string GetTypeNameById(int id);
+
+        [OperationContract]
         bool IsUserInRole(string username, int roleId);
 
         [OperationContract]
-        IQueryable<UserView> ListUsers();
+        IEnumerable<RoleView> ListRoles();
 
         [OperationContract]
-        IEnumerable<RoleView> ListRoles();
+        IQueryable<UserView> ListUsers();
 
         [OperationContract]
         UserView ReadByUsername(string username);
@@ -55,60 +64,16 @@ namespace BankServices.UserAccount
         IEnumerable<UserView> Search(string query);
 
         [OperationContract]
-        IEnumerable<UserTypeView> TypesList();
+        IEnumerable<TownView> Towns();
+        [OperationContract]
+        IEnumerable<UserTypeView> Types();
 
         [OperationContract]
         void Update(UserView user);
     }
 
     [DataContract]
-    public class UserView
-    {
-        [DataMember]
-        public string Username { get; set; }
-
-        [DataMember]
-        public string Password { get; set; }
-
-        [DataMember]
-        public string FirstName { get; set; }
-
-        [DataMember]
-        public string MiddleInitial { get; set; }
-
-        [DataMember]
-        public string LastName { get; set; }
-
-        [DataMember]
-        public DateTime DateOfBirth { get; set; }
-
-        [DataMember]
-        public int? GenderID { get; set; }
-
-        [DataMember]
-        public string Email { get; set; }
-
-        [DataMember]
-        public int Mobile { get; set; }
-
-        [DataMember]
-        public string Address { get; set; }
-
-        [DataMember]
-        public int? TownID { get; set; }
-
-        [DataMember]
-        public int? TypeID { get; set; }
-
-        [DataMember]
-        public bool Blocked { get; set; }
-
-        [DataMember]
-        public int NoOfAttempts { get; set; }
-    }
-
-    [DataContract]
-    public class RoleView
+    public class GenderView
     {
         [DataMember]
         public int ID { get; set; }
@@ -118,7 +83,7 @@ namespace BankServices.UserAccount
     }
 
     [DataContract]
-    public class GenderView
+    public class RoleView
     {
         [DataMember]
         public int ID { get; set; }
@@ -145,5 +110,51 @@ namespace BankServices.UserAccount
 
         [DataMember]
         public string Name { get; set; }
+    }
+
+    [DataContract]
+    public class UserView
+    {
+        [DataMember]
+        public string Address { get; set; }
+
+        [DataMember]
+        public bool Blocked { get; set; }
+
+        [DataMember]
+        public DateTime DateOfBirth { get; set; }
+
+        [DataMember]
+        public string Email { get; set; }
+
+        [DataMember]
+        public string FirstName { get; set; }
+
+        [DataMember]
+        public int? GenderID { get; set; }
+
+        [DataMember]
+        public string LastName { get; set; }
+
+        [DataMember]
+        public string MiddleInitial { get; set; }
+
+        [DataMember]
+        public int Mobile { get; set; }
+
+        [DataMember]
+        public int NoOfAttempts { get; set; }
+
+        [DataMember]
+        public string Password { get; set; }
+
+        [DataMember]
+        public int? TownID { get; set; }
+
+        [DataMember]
+        public int? TypeID { get; set; }
+
+        [DataMember]
+        public string Username { get; set; }
     }
 }

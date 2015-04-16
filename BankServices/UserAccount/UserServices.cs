@@ -5,6 +5,7 @@ using System.Linq;
 using BankServices.CustomExceptions;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
+using DataAccess.Reposiitories.Users;
 
 namespace BankServices.UserAccount
 {
@@ -21,7 +22,7 @@ namespace BankServices.UserAccount
 
             if (user.DoeUserNameExist(username))
             {
-                User tmp = user.Read(new User { Username = username });
+                User tmp = user.Read(new User {Username = username});
                 if (tmp != null)
                 {
                     if (tmp.NoOfAttempts <= 3)
@@ -59,7 +60,7 @@ namespace BankServices.UserAccount
         {
             try
             {
-                User user = new UsersRepo().Read(new User() { Username = username });
+                User user = new UsersRepo().Read(new User {Username = username});
                 new UsersRepo().Delete(user);
             }
             catch (Exception)
@@ -75,17 +76,22 @@ namespace BankServices.UserAccount
 
         public IEnumerable<GenderView> Genders()
         {
-            return new GendersRepo().ListAll().Select(g => new GenderView()
+            return new GendersRepo().ListAll().Select(g => new GenderView
             {
                 ID = g.ID,
                 Name = g.Name
             });
         }
 
+        public string GetGenderNameById(int id)
+        {
+            return new GendersRepo().Read(new Gender(){ID = id}).Name;
+        }
+
         public RoleView GetRoleById(int id)
         {
-            var r = new RolesRepo().Read(new Role { ID = id });
-            return new RoleView()
+            Role r = new RolesRepo().Read(new Role { ID = id });
+            return new RoleView
             {
                 ID = r.ID,
                 Name = r.Name
@@ -99,11 +105,21 @@ namespace BankServices.UserAccount
 
         public IQueryable<RoleView> GetRoles(string username)
         {
-            return new RolesRepo().GetRolesOfUser(username).Select(r => new RoleView()
+            return new RolesRepo().GetRolesOfUser(username).Select(r => new RoleView
             {
                 ID = r.ID,
                 Name = r.Name
             });
+        }
+
+        public string GetTownNameById(int id)
+        {
+            return new TownsRepo().Read(new Town() { ID = id }).Name;
+        }
+
+        public string GetTypeNameById(int id)
+        {
+            return new UserTypesRepo().Read(new UserType() { ID = id }).Name;
         }
 
         public bool IsUserInRole(string username, int roleId)
@@ -115,7 +131,7 @@ namespace BankServices.UserAccount
 
         public IEnumerable<RoleView> ListRoles()
         {
-            return new RolesRepo().ListAll().Select(r => new RoleView()
+            return new RolesRepo().ListAll().Select(r => new RoleView
             {
                 ID = r.ID,
                 Name = r.Name
@@ -124,7 +140,7 @@ namespace BankServices.UserAccount
 
         public IQueryable<UserView> ListUsers()
         {
-            var list = new UsersRepo().ListAll().Select(u => new UserView()
+            IQueryable<UserView> list = new UsersRepo().ListAll().Select(u => new UserView
             {
                 Username = u.Username,
                 Password = u.Password,
@@ -146,8 +162,8 @@ namespace BankServices.UserAccount
 
         public UserView ReadByUsername(string username)
         {
-            var u = new UsersRepo().Read(new User { Username = username });
-            return new UserView()
+            User u = new UsersRepo().Read(new User { Username = username });
+            return new UserView
             {
                 Username = u.Username,
                 Password = u.Password,
@@ -172,26 +188,41 @@ namespace BankServices.UserAccount
 
             if (usersRepo.DoeUserNameExist(user.Username) == false)
             {
-                //using (var context = new DsaDataContext())
-                //{
-                //    using (var transaction = context. BeginTransaction(IsolationLevel.RepeatableRead))
-                //    {
-
-                //        context.SaveChanges();
-                //        transaction.Commit();
-                //    }
-                //}
+                try
+                {
+                    usersRepo.Create(new User
+                    {
+                        Username = user.Username,
+                        Password = user.Password,
+                        FirstName = user.FirstName,
+                        MiddleInitial = user.MiddleInitial,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Mobile = user.Mobile,
+                        DateOfBirth = user.DateOfBirth,
+                        Address = user.Address,
+                        GenderID = user.GenderID,
+                        TownID = user.TownID,
+                        TypeID = user.TypeID,
+                        Blocked = user.Blocked,
+                        NoOfAttempts = user.NoOfAttempts
+                    });
+                }
+                catch (Exception)
+                {
+                    throw new DataInsertionException();
+                }
             }
             else
             {
                 throw new UserAlreadyExistsException();
             }
-            return false;
+            return true;
         }
 
         public IEnumerable<UserView> Search(string query)
         {
-            return new UsersRepo().Search(query).Select(u => new UserView()
+            return new UsersRepo().Search(query).Select(u => new UserView
             {
                 Username = u.Username,
                 Password = u.Password,
@@ -210,19 +241,26 @@ namespace BankServices.UserAccount
             });
         }
 
-        public IEnumerable<UserTypeView> TypesList()
+        public IEnumerable<TownView> Towns()
+        {
+            return new TownsRepo().ListAll().Select(g => new TownView
+            {
+                ID = g.ID,
+                Name = g.Name
+            });
+        }
+        public IEnumerable<UserTypeView> Types()
         {
             try
             {
-                return new UserTypesRepo().ListAll().Select(u => new UserTypeView()
-        {
-            ID = u.ID,
-            Name = u.Name
-        });
+                return new UserTypesRepo().ListAll().Select(u => new UserTypeView
+                {
+                    ID = u.ID,
+                    Name = u.Name
+                });
             }
             catch (Exception)
             {
-
                 throw new DataListException();
             }
         }
@@ -231,23 +269,23 @@ namespace BankServices.UserAccount
         {
             try
             {
-                new UsersRepo().Update(new User()
-                   {
-                       Username = u.Username,
-                       Password = u.Password,
-                       FirstName = u.FirstName,
-                       MiddleInitial = u.MiddleInitial,
-                       LastName = u.LastName,
-                       Email = u.Email,
-                       Mobile = u.Mobile,
-                       DateOfBirth = u.DateOfBirth,
-                       Address = u.Address,
-                       GenderID = u.GenderID,
-                       TownID = u.TownID,
-                       TypeID = u.TypeID,
-                       Blocked = u.Blocked,
-                       NoOfAttempts = u.NoOfAttempts
-                   });
+                new UsersRepo().Update(new User
+                {
+                    Username = u.Username,
+                    Password = u.Password,
+                    FirstName = u.FirstName,
+                    MiddleInitial = u.MiddleInitial,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    Mobile = u.Mobile,
+                    DateOfBirth = u.DateOfBirth,
+                    Address = u.Address,
+                    GenderID = u.GenderID,
+                    TownID = u.TownID,
+                    TypeID = u.TypeID,
+                    Blocked = u.Blocked,
+                    NoOfAttempts = u.NoOfAttempts
+                });
             }
             catch (Exception)
             {

@@ -390,6 +390,67 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TownView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.SerializableAttribute()]
+    public partial class TownView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class UserTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -489,6 +550,12 @@ namespace WebPortal.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.GenderView>> GendersAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetGenderNameById", ReplyAction="http://tempuri.org/IUserServices/GetGenderNameByIdResponse")]
+        string GetGenderNameById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetGenderNameById", ReplyAction="http://tempuri.org/IUserServices/GetGenderNameByIdResponse")]
+        System.Threading.Tasks.Task<string> GetGenderNameByIdAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
         WebPortal.UserServices.RoleView GetRoleById(int id);
         
@@ -507,23 +574,35 @@ namespace WebPortal.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.RoleView>> GetRolesAsync(string username);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTownNameById", ReplyAction="http://tempuri.org/IUserServices/GetTownNameByIdResponse")]
+        string GetTownNameById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTownNameById", ReplyAction="http://tempuri.org/IUserServices/GetTownNameByIdResponse")]
+        System.Threading.Tasks.Task<string> GetTownNameByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTypeNameById", ReplyAction="http://tempuri.org/IUserServices/GetTypeNameByIdResponse")]
+        string GetTypeNameById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTypeNameById", ReplyAction="http://tempuri.org/IUserServices/GetTypeNameByIdResponse")]
+        System.Threading.Tasks.Task<string> GetTypeNameByIdAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
         bool IsUserInRole(string username, int roleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
         System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
         System.Collections.Generic.List<WebPortal.UserServices.RoleView> ListRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.RoleView>> ListRolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
+        System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
         WebPortal.UserServices.UserView ReadByUsername(string username);
@@ -543,11 +622,17 @@ namespace WebPortal.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Search", ReplyAction="http://tempuri.org/IUserServices/SearchResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> SearchAsync(string query);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Collections.Generic.List<WebPortal.UserServices.UserTypeView> TypesList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Towns", ReplyAction="http://tempuri.org/IUserServices/TownsResponse")]
+        System.Collections.Generic.List<WebPortal.UserServices.TownView> Towns();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/TypesList", ReplyAction="http://tempuri.org/IUserServices/TypesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserTypeView>> TypesListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Towns", ReplyAction="http://tempuri.org/IUserServices/TownsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.TownView>> TownsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Types", ReplyAction="http://tempuri.org/IUserServices/TypesResponse")]
+        System.Collections.Generic.List<WebPortal.UserServices.UserTypeView> Types();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Types", ReplyAction="http://tempuri.org/IUserServices/TypesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserTypeView>> TypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
         void Update(WebPortal.UserServices.UserView user);
@@ -631,6 +716,14 @@ namespace WebPortal.UserServices {
             return base.Channel.GendersAsync();
         }
         
+        public string GetGenderNameById(int id) {
+            return base.Channel.GetGenderNameById(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetGenderNameByIdAsync(int id) {
+            return base.Channel.GetGenderNameByIdAsync(id);
+        }
+        
         public WebPortal.UserServices.RoleView GetRoleById(int id) {
             return base.Channel.GetRoleById(id);
         }
@@ -655,6 +748,22 @@ namespace WebPortal.UserServices {
             return base.Channel.GetRolesAsync(username);
         }
         
+        public string GetTownNameById(int id) {
+            return base.Channel.GetTownNameById(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTownNameByIdAsync(int id) {
+            return base.Channel.GetTownNameByIdAsync(id);
+        }
+        
+        public string GetTypeNameById(int id) {
+            return base.Channel.GetTypeNameById(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTypeNameByIdAsync(int id) {
+            return base.Channel.GetTypeNameByIdAsync(id);
+        }
+        
         public bool IsUserInRole(string username, int roleId) {
             return base.Channel.IsUserInRole(username, roleId);
         }
@@ -663,20 +772,20 @@ namespace WebPortal.UserServices {
             return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers() {
-            return base.Channel.ListUsers();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync() {
-            return base.Channel.ListUsersAsync();
-        }
-        
         public System.Collections.Generic.List<WebPortal.UserServices.RoleView> ListRoles() {
             return base.Channel.ListRoles();
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.RoleView>> ListRolesAsync() {
             return base.Channel.ListRolesAsync();
+        }
+        
+        public System.Collections.Generic.List<WebPortal.UserServices.UserView> ListUsers() {
+            return base.Channel.ListUsers();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserView>> ListUsersAsync() {
+            return base.Channel.ListUsersAsync();
         }
         
         public WebPortal.UserServices.UserView ReadByUsername(string username) {
@@ -703,12 +812,20 @@ namespace WebPortal.UserServices {
             return base.Channel.SearchAsync(query);
         }
         
-        public System.Collections.Generic.List<WebPortal.UserServices.UserTypeView> TypesList() {
-            return base.Channel.TypesList();
+        public System.Collections.Generic.List<WebPortal.UserServices.TownView> Towns() {
+            return base.Channel.Towns();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserTypeView>> TypesListAsync() {
-            return base.Channel.TypesListAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.TownView>> TownsAsync() {
+            return base.Channel.TownsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebPortal.UserServices.UserTypeView> Types() {
+            return base.Channel.Types();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.UserTypeView>> TypesAsync() {
+            return base.Channel.TypesAsync();
         }
         
         public void Update(WebPortal.UserServices.UserView user) {

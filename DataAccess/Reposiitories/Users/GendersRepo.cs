@@ -28,7 +28,7 @@ namespace DataAccess.Reposiitories
 
         public Gender Read(Gender itemToRead)
         {
-            var result = _db.Genders.SingleOrDefault(u => u.ID == itemToRead.ID);
+            var result = _db.Genders.Find(itemToRead.ID);
             return result;
         }
 

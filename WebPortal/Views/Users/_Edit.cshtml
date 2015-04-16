@@ -1,0 +1,161 @@
+﻿@model WebPortal.Models.UserAccountViewModel
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { id = "editform" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3 class="text-warning">Unsaved changes will be lost.</h3>
+        <fieldset>
+            @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+            {
+                <div id="editAlert" class="alert alert-danger" data-dismiss="alert" role="alert">
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                    </button>
+                    @Html.ValidationSummary(true, "Error: ")
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleInitial, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.MiddleInitial, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GenderID, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.GenderID, Model.Genders, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TownID, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.TownID, Model.Towns,  new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.TownID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeID, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.TypeID, Model.Types,new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NoOfAttempts, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.NoOfAttempts, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoOfAttempts, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Blocked, htmlAttributes: new { @class = "control-label  col-md-4" })
+                <div class="col-md-8">
+                    <div class="checkbox" style="padding-left: 20px;">
+                        @Html.EditorFor(model => model.Blocked)
+                        @Html.ValidationMessageFor(model => model.Blocked, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+}
+
+<script>
+    $(function () {
+        $(".date").datetimepicker({
+            format: 'DD-MM-YYYY HH:mm:ss'
+        });
+        $("#editform").on('submit', function (ev) {
+            ev.preventDefault();
+            $.validator.unobtrusive.parse("#editform");
+            var data = {
+                "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val(),
+                "firstName": $("#FirstName").val(),
+                "middleInitial": $("#MiddleInitial").val(),
+                "lastName": $("#LastName").val(),
+                "genderId": $("#GenderID").val(),
+                "password": $("#Password").val(),
+                "dateOfBirth": $("#DateOfBirth").val(),
+                "address": $("#Address").val(),
+                "townId": $("#TownID").val(),
+                "email": $("#Email").val(),
+                "mobile": $("#Mobile").val(),
+                "typeId": $("#TypeID").val(),
+                "username": $("#Username").val(),
+                "noOfAttempts": $("#NoOfAttempts").val(),
+                "blocked": $("#Blocked").is(':checked')
+            };
+            $.post("@Url.Action("Edit", "Users")", data).done(function (response) {
+                if (response.result !== "undefined" && response.result === "OK") {
+                    $("#editModal").modal('hide');
+                    $row.remove();
+                    var $newrow = $(response.html);
+                    $("#tblUsers thead").append($newrow);
+
+                    setTimeout(function () {
+                        $newrow.removeClass("info");
+                    }, 500);
+
+                    BindGridButtonEvents();
+                } else {
+                    $("#editBody").html(response);
+                    $.validator.unobtrusive.parse("#editform");
+                }
+            });
+        });
+    });
+</script>

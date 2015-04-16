@@ -3,6 +3,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bi
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\BankServices.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\DataAccess.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\EntityFramework.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\System.Linq.Dynamic.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\DataAccess.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\bin\Debug\EntityFramework.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankServices\obj\Debug\BankServices.csprojResolveAssemblyReference.cache

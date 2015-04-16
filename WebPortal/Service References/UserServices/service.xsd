@@ -80,6 +80,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetGenderNameById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGenderNameByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetGenderNameByIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetRoleById">
     <xs:complexType>
       <xs:sequence>
@@ -122,6 +136,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTownNameById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTownNameByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTownNameByIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTypeNameById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTypeNameByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTypeNameByIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="IsUserInRole">
     <xs:complexType>
       <xs:sequence>
@@ -137,18 +179,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListUsers">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListUsersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="ListUsersResult" nillable="true" type="q4:ArrayOfUserView" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="ListRoles">
     <xs:complexType>
       <xs:sequence />
@@ -157,7 +187,19 @@
   <xs:element name="ListRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="ListRolesResult" nillable="true" type="q5:ArrayOfRoleView" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="ListRolesResult" nillable="true" type="q4:ArrayOfRoleView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="ListUsersResult" nillable="true" type="q5:ArrayOfUserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -203,22 +245,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TypesList">
+  <xs:element name="Towns">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TypesListResponse">
+  <xs:element name="TownsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="TypesListResult" nillable="true" type="q9:ArrayOfUserTypeView" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="TownsResult" nillable="true" type="q9:ArrayOfTownView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Types">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="TypesResult" nillable="true" type="q10:ArrayOfUserTypeView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q10:UserView" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q11:UserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -6,6 +6,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\B
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\EntityFramework.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Newtonsoft.Json.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Linq.Dynamic.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Helpers.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Mvc.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Optimization.dll
@@ -16,6 +17,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\S
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\WebGrease.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\BankManager.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\EntityFramework.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Newtonsoft.Json.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Helpers.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Mvc.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.Optimization.xml
@@ -24,7 +26,6 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\S
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.WebPages.Razor.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Antlr3.Runtime.pdb
-C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Newtonsoft.Json.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.csprojResolveAssemblyReference.cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.pdb

@@ -51,6 +51,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserView" nillable="true" type="tns:UserView" />
+  <xs:complexType name="ArrayOfTownView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TownView" nillable="true" type="tns:TownView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTownView" nillable="true" type="tns:ArrayOfTownView" />
+  <xs:complexType name="TownView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TownView" nillable="true" type="tns:TownView" />
   <xs:complexType name="ArrayOfUserTypeView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="UserTypeView" nillable="true" type="tns:UserTypeView" />

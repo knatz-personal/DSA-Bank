@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace WebPortal.Models
 {
@@ -57,6 +58,13 @@ namespace WebPortal.Models
 
         [Display(Name = @"Is Blocked")]
         public bool Blocked { get; set; }
+
+        public SelectList Genders { get; set; }
+        public SelectList Towns { get; set; }
+        public SelectList Types { get; set; }
+        public string GenderName { get; set; }
+        public string TownName { get; set; }
+        public string TypeName { get; set; }
     }
 
     public class RegisterModel
@@ -115,8 +123,11 @@ namespace WebPortal.Models
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [Compare("Password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password")]
         public string ConfirmPassword { get; set; }
+
+        public SelectList Genders { get; set; }
+        public SelectList Towns { get; set; }
     }
 
     public class LoginModel
@@ -134,6 +145,8 @@ namespace WebPortal.Models
         [Required]
         [Display(Name = "Security Token")]
         public string SecurityToken { get; set; }
+
+        public string SecTokenOutput { get; set; }
 
         [Display(Name = "Remember Me")]
         public bool Remember { get; set; }
