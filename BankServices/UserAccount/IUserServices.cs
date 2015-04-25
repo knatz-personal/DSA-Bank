@@ -28,7 +28,7 @@ namespace BankServices.UserAccount
         IEnumerable<GenderView> Genders();
 
         [OperationContract]
-        string GetGenderNameById(int id);
+        KeyValuePair<string, string> GenerateToken();
 
         [OperationContract]
         RoleView GetRoleById(int id);
@@ -38,12 +38,6 @@ namespace BankServices.UserAccount
 
         [OperationContract]
         IQueryable<RoleView> GetRoles(string username);
-
-        [OperationContract]
-        string GetTownNameById(int id);
-
-        [OperationContract]
-        string GetTypeNameById(int id);
 
         [OperationContract]
         bool IsUserInRole(string username, int roleId);
@@ -65,11 +59,15 @@ namespace BankServices.UserAccount
 
         [OperationContract]
         IEnumerable<TownView> Towns();
+
         [OperationContract]
         IEnumerable<UserTypeView> Types();
 
         [OperationContract]
         void Update(UserView user);
+
+        [OperationContract]
+        bool ValidateToken(KeyValuePair<string, string> securityToken);
     }
 
     [DataContract]
@@ -134,6 +132,9 @@ namespace BankServices.UserAccount
         public int? GenderID { get; set; }
 
         [DataMember]
+        public string GenderName { get; set; }
+
+        [DataMember]
         public string LastName { get; set; }
 
         [DataMember]
@@ -149,10 +150,18 @@ namespace BankServices.UserAccount
         public string Password { get; set; }
 
         [DataMember]
+        public string Salt { get; set; }
+        [DataMember]
         public int? TownID { get; set; }
 
         [DataMember]
+        public string TownName { get; set; }
+
+        [DataMember]
         public int? TypeID { get; set; }
+
+        [DataMember]
+        public string TypeName { get; set; }
 
         [DataMember]
         public string Username { get; set; }

@@ -16,8 +16,8 @@ namespace DataAccess.EntityModel
     {
         public Account()
         {
-            this.TransactionLogs = new HashSet<TransactionLog>();
-            this.TransactionLogs1 = new HashSet<TransactionLog>();
+            this.Transactions = new HashSet<Transaction>();
+            this.Transactions1 = new HashSet<Transaction>();
         }
     
         public int ID { get; set; }
@@ -30,9 +30,10 @@ namespace DataAccess.EntityModel
         public string Currency { get; set; }
         public string Remarks { get; set; }
     
+        public virtual Currency Currency1 { get; set; }
         public virtual AccountType AccountType { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<TransactionLog> TransactionLogs { get; set; }
-        public virtual ICollection<TransactionLog> TransactionLogs1 { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<Transaction> Transactions1 { get; set; }
     }
 }

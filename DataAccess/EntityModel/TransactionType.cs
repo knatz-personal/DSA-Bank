@@ -16,12 +16,12 @@ namespace DataAccess.EntityModel
     {
         public TransactionType()
         {
-            this.TransactionLogs = new HashSet<TransactionLog>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<TransactionLog> TransactionLogs { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

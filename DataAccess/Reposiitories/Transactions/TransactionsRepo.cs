@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using DataAccess.EntityModel;
 
-namespace DataAccess.Reposiitories
+namespace DataAccess.Reposiitories.Transactions
 {
-    public class TransactionsRepo : IDataRepository<TransactionLog>
+    public class TransactionsRepo : IDataRepository<Transaction>
     {
         private DsaDataContext _db = new DsaDataContext();
 
-        public IQueryable<TransactionLog> ListAll()
+        public IQueryable<Transaction> ListAll()
         {
             return _db.Transactions.AsQueryable();
         }
 
-        public void Create(TransactionLog newItem)
+        public void Create(Transaction newItem)
         {
             _db.Transactions.Add(newItem);
             _db.SaveChanges();
         }
 
-        public TransactionLog Read(TransactionLog itemToRead)
+        public Transaction Read(Transaction itemToRead)
         {
-            TransactionLog result = _db.Transactions.Find(itemToRead.ID);
+            Transaction result = _db.Transactions.Find(itemToRead.ID);
             return result;
         }
 
-        public void Update(TransactionLog updatedItem)
+        public void Update(Transaction updatedItem)
         {
             var o = _db.Transactions.Find(updatedItem.ID);
 
@@ -46,7 +43,7 @@ namespace DataAccess.Reposiitories
             }
         }
 
-        public void Delete(TransactionLog itemToDelete)
+        public void Delete(Transaction itemToDelete)
         {
             var o = _db.Transactions.Find(itemToDelete.ID);
 
@@ -57,7 +54,7 @@ namespace DataAccess.Reposiitories
             }
         }
 
-        public IQueryable<TransactionLog> ListByUsername(string username)
+        public IQueryable<Transaction> ListByUsername(string username)
         {
             return _db.Transactions.Where(t => t.Account.Username == username || t.Account1.Username == username);
         }

@@ -32,7 +32,16 @@
           <ScalarProperty Name="SuggestedTime" ColumnName="SuggestedTime" />
           <ScalarProperty Name="SuggestedDate" ColumnName="SuggestedDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="DSABankDbModel.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -95,9 +104,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TransactionLogs">
-      <EntityTypeMapping TypeName="DSABankDbModel.TransactionLog">
-        <MappingFragment StoreEntitySet="TransactionLogs">
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="DSABankDbModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="Currency" ColumnName="Currency" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -132,6 +141,7 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
         </MappingFragment>

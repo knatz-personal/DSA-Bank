@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebPortal.ErrorLogService;
 using WebPortal.UserServices;
 
 namespace WebPortal
@@ -38,16 +40,15 @@ namespace WebPortal
             }
         }
 
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
-        //    Exception objErr = Server.GetLastError().GetBaseException();
-        //    string err = "\n---------------START-----------------------" +
-        //                 "\nError Caught in Global.asax Application_Error" +
-        //                 "\n\tError in: " + Request.Url +
-        //                 "\n\tError Message: " + objErr.Message +
-        //                 "\n\tInnerException: " + objErr.InnerException +
-        //                 "\n-----------------END-----------------------";
-        //    Debug.WriteLine(err, "Error: ");
-        //}
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception objErr = Server.GetLastError().GetBaseException();
+            string err ="Location: " + Request.Url +
+                         " Message: " + objErr.Message ;
+            using (var client = new ErrorLogServicesClient())
+            {
+                client.Log(User.Identity.Name, err, objErr.InnerException.ToString());
+            }
+        }
     }
 }

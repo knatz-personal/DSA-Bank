@@ -48,6 +48,14 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -121,27 +129,37 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
-    <Compile Include="Utilities\ConverterUtil.cs" />
-    <Compile Include="Utilities\EncryptionUtil.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
+    <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Service References\AppointmentServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\MenuHelperExtentions.cs" />
-    <Compile Include="Models\BankAccountViewModel.cs" />
-    <Compile Include="Models\MenuViewModel.cs" />
-    <Compile Include="Models\TransactionViewModel.cs" />
-    <Compile Include="Models\UserAccountViewModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\BankAccountServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ErrorLogService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\MenuHelperExtentions.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\MenuViewModel.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
+    <Compile Include="Models\UserAccountViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\BankTransactionServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +186,8 @@
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\paper-bootstrap-theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -186,6 +206,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -206,6 +227,19 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\AppointmentServices\BankServices.Appointment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\service.wsdl" />
+    <None Include="Service References\AppointmentServices\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountServices\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BankAccountServices\BankServices.BankAccount.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -216,6 +250,15 @@
     <None Include="Service References\BankAccountServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
+    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
+    <None Include="Service References\AppointmentServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -229,6 +272,12 @@
     <None Include="Service References\BankTransactionServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
+    <None Include="Service References\BankAccountServices\configuration.svcinfo" />
+    <None Include="Service References\BankAccountServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\BankTransactionServices\WebPortal.BankTransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -238,11 +287,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
-    <None Include="Service References\BankAccountServices\configuration.svcinfo" />
-    <None Include="Service References\BankAccountServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="Service References\ErrorLogService\service.wsdl" />
+    <None Include="Service References\ErrorLogService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ErrorLogService\service1.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NavigationServices\BankServices.Navigation.xsd">
       <SubType>Designer</SubType>
@@ -257,6 +307,12 @@
     <None Include="Service References\BankTransactionServices\configuration91.svcinfo" />
     <None Include="Service References\BankTransactionServices\configuration.svcinfo" />
     <None Include="Service References\BankTransactionServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ErrorLogService\configuration91.svcinfo" />
+    <None Include="Service References\ErrorLogService\configuration.svcinfo" />
+    <None Include="Service References\ErrorLogService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -300,8 +356,6 @@
     <None Include="Service References\UserServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Transactions\Details.cshtml" />
-    <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
@@ -328,20 +382,34 @@
     <Content Include="Views\Users\_Edit.cshtml" />
     <Content Include="Views\Users\_Delete.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
-    <Content Include="Views\Accounts\Details.cshtml" />
-    <Content Include="Views\Accounts\Create.cshtml" />
-    <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\UserServices\WebPortal.UserServices.TownView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Accounts\_Details.cshtml" />
+    <Content Include="Views\Accounts\_Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TruncatedMultilineText.cshtml" />
+    <Content Include="Views\Accounts\_Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateFilterStart.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateFilterEnd.cshtml" />
+    <Content Include="Views\Transactions\Transfers.cshtml" />
+    <Content Include="Views\Transactions\BillPayment.cshtml" />
+    <Content Include="Views\Transactions\Deposit.cshtml" />
+    <Content Include="Views\Appointment\Index.cshtml" />
+    <Content Include="Views\Appointment\Details.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
+    <Content Include="Views\Appointment\Edit.cshtml" />
+    <Content Include="Views\Appointment\Delete.cshtml" />
+    <Content Include="Views\Transactions\Report.cshtml" />
+    <Content Include="Views\Shared\_Print.cshtml" />
+    <None Include="Service References\UserServices\System.Collections.Generic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Transactions\_Details.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -350,16 +418,18 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AppointmentServices\" />
     <WCFMetadataStorage Include="Service References\BankAccountServices\" />
     <WCFMetadataStorage Include="Service References\BankTransactionServices\" />
     <WCFMetadataStorage Include="Service References\CurrencyConverterService\" />
+    <WCFMetadataStorage Include="Service References\ErrorLogService\" />
     <WCFMetadataStorage Include="Service References\NavigationServices\" />
     <WCFMetadataStorage Include="Service References\UserServices\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BankManager\BankManager.csproj">
-      <Project>{ECFFF1CC-A8C9-4FCE-9BF3-E934354659B8}</Project>
-      <Name>BankManager</Name>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{0e2dd92d-ea34-4d28-bbcf-1bb014e41ab9}</Project>
+      <Name>CommonUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

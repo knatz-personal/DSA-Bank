@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
+using CommonUtils;
+using PagedList;
 using WebPortal.Models;
 using WebPortal.UserServices;
 
@@ -50,7 +53,7 @@ namespace WebPortal.Controllers
             }
             catch (Exception e)
             {
-                return Json(e.Message);
+                return Json(new {Result = "OK", e.Message});
             }
         }
 
@@ -71,9 +74,9 @@ namespace WebPortal.Controllers
                         Mobile = u.Mobile,
                         DateOfBirth = u.DateOfBirth,
                         Address = u.Address,
-                        GenderName = client.GetGenderNameById((int)u.GenderID),
-                        TownName = client.GetTownNameById((int)u.TownID),
-                        TypeName = client.GetTypeNameById((int)u.TypeID),
+                        GenderName = u.GenderName,
+                        TownName = u.TownName,
+                        TypeName = u.TypeName,
                         Blocked = u.Blocked,
                         NoOfAttempts = u.NoOfAttempts
                     });
@@ -184,7 +187,7 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("</tr>");
 
-                    return Json(new { result = "OK", html = htmlBuilder.ToString() });
+                    return Json(new {result = "OK", html = htmlBuilder.ToString()});
                 }
             }
             catch
@@ -194,11 +197,33 @@ namespace WebPortal.Controllers
             return Edit(id);
         }
 
+        [HttpGet]
+        public ActionResult GenerateToken()
+        {
+            try
+            {
+                using (var client = new UserServicesClient())
+                {
+                    Session["SecurityToken"] = client.GenerateToken();
+                    return
+                        Json(new {Result = "OK", Token = ((KeyValuePair<string, string>) Session["SecurityToken"]).Key});
+                }
+            }
+            catch
+            {
+                return Json(new {Result = "Fail", Message = "Could not generate a new token."});
+            }
+        }
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            using (var client = new UserServicesClient())
+            {
+                Session["SecurityToken"] = client.GenerateToken();
+                return View();
+            }
         }
 
         [ValidateAntiForgeryToken]
@@ -206,70 +231,139 @@ namespace WebPortal.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                String securityToken = model.SecurityToken;
-                using (var client = new UserServicesClient())
+                if (ModelState.IsValid)
                 {
-                    try
+                    using (var client = new UserServicesClient())
                     {
-                        if (client.Authenticate(model.Username, model.Password))
+                        if (Session["SecurityToken"] != null)
                         {
-                            FormsAuthentication.RedirectFromLoginPage(model.Username, model.Remember);
-                            return RedirectToAction("Index", "Home");
+                            if (client.ValidateToken((KeyValuePair<string, string>) Session["SecurityToken"]))
+                            {
+                                if (client.Authenticate(model.Username, model.Password))
+                                {
+                                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.Remember);
+                                }
+                                ModelState.AddModelError(string.Empty,
+                                    @"The user name or security details provided are incorrect.");
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", @"The security token is invalid or has expired.");
+                            }
                         }
-                        ModelState.AddModelError(string.Empty,
-                            @"The user name or security details provided are incorrect.");
-                    }
-                    catch (Exception ex)
-                    {
-                        ModelState.AddModelError("", @"The user name or security details provided are incorrect.");
-                        ModelState.AddModelError("", ex.Message);
+                        else
+                        {
+                            ModelState.AddModelError("", @"Something ate the security token.");
+                            Session["SecurityToken"] = client.GenerateToken();
+                        }
                     }
                 }
             }
-            return Login();
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, @"The user name or security details provided are incorrect.");
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Manage()
+        public ActionResult Manage(string sb, string q, int? p, int ps = 10)
         {
-            using (var client = new UserServicesClient())
-            {
+            IEnumerable<UserAccountViewModel> list = null;
 
-                var list = client.ListUsers().Select(u => new UserAccountViewModel
+            if (sb == "fname")
+            {
+                using (var client = new UserServicesClient())
                 {
-                    Username = u.Username,
-                    FirstName = u.FirstName,
-                    MiddleInitial = u.MiddleInitial,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    Mobile = u.Mobile,
-                    DateOfBirth = u.DateOfBirth,
-                    Address = u.Address,
-                    TypeName = new UserServicesClient().GetTypeNameById((int)u.TypeID),
-                    Blocked = u.Blocked,
-                    NoOfAttempts = u.NoOfAttempts
-                });
-              
-                return View(list);
+                    list = client.ListUsers()
+                        .Where(
+                            d =>
+                                d.FirstName.ToLower().Contains(q.ToLower()) ||
+                                d.MiddleInitial.ToLower().Contains(q.ToLower()) ||
+                                d.LastName.ToLower().Contains(q.ToLower()))
+                        .Select(u => new UserAccountViewModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            TypeName = u.TypeName,
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                }
             }
+            else if (sb == "username")
+            {
+                using (var client = new UserServicesClient())
+                {
+                    list = client.ListUsers().Where(d => d.Username.ToLower().Contains(q.ToLower()))
+                        .Select(u => new UserAccountViewModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            TypeName = u.TypeName,
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                }
+            }
+            else
+            {
+                using (var client = new UserServicesClient())
+                {
+                    list = client.ListUsers().Select(u => new UserAccountViewModel
+                    {
+                        Username = u.Username,
+                        FirstName = u.FirstName,
+                        MiddleInitial = u.MiddleInitial,
+                        LastName = u.LastName,
+                        Email = u.Email,
+                        Mobile = u.Mobile,
+                        DateOfBirth = u.DateOfBirth,
+                        Address = u.Address,
+                        TypeName = u.TypeName,
+                        Blocked = u.Blocked,
+                        NoOfAttempts = u.NoOfAttempts
+                    });
+                }
+            }
+            return View(GetPagedUserList(list, p, ps));
+        }
+
+        private static IPagedList<UserAccountViewModel> GetPagedUserList(IEnumerable<UserAccountViewModel> list,
+            int? page, int pageSize)
+        {
+            IPagedList<UserAccountViewModel> pagedList = list.ToPagedList(page ?? 1, pageSize);
+            return pagedList;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
         {
-            var model = new RegisterModel
-            {
-                Genders = GetGenderList(),
-                Towns = GetTownList()
-            };
+            var model = new RegisterModel();
+            model.Genders = GetGenderList();
+            model.Towns = GetTownList();
             return View(model);
         }
 
@@ -284,9 +378,13 @@ namespace WebPortal.Controllers
                 {
                     using (var client = new UserServicesClient())
                     {
+                        string salt = HashingUtil.GenerateSaltValue();
+                        string hashedPassword = HashingUtil.GenerateSaltedHash(model.Password, salt);
                         bool isRegistered = client.Register(new UserView
                         {
                             Username = model.Username,
+                            Password = hashedPassword,
+                            Salt = salt,
                             FirstName = model.FirstName,
                             MiddleInitial = model.MiddleInitial,
                             LastName = model.LastName,
@@ -304,16 +402,20 @@ namespace WebPortal.Controllers
                         if (isRegistered)
                         {
                             FormsAuthentication.SetAuthCookie(model.Username, false);
-                            RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home");
                         }
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, @"Registration failed.");
+                ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return Register();
+            model.Genders = GetGenderList();
+            model.Towns = GetTownList();
+            OutputModelStateErrors();
+            return View(model);
         }
 
         private SelectList GetGenderList()
@@ -337,6 +439,16 @@ namespace WebPortal.Controllers
             using (var client = new UserServicesClient())
             {
                 return new SelectList(client.Types(), "ID", "Name");
+            }
+        }
+
+        private void OutputModelStateErrors()
+        {
+            var errors =
+                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new {x.Key, x.Value.Errors}).ToArray();
+            foreach (var error in errors)
+            {
+                Debug.WriteLine("Key: " + error.Key + " Errors: \t" + error.Errors[0].ErrorMessage);
             }
         }
     }

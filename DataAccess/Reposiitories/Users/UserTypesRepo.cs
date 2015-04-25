@@ -1,9 +1,8 @@
 ﻿using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using DataAccess.EntityModel;
 
-namespace DataAccess.Reposiitories
+namespace DataAccess.Reposiitories.Users
 {
     public class UserTypesRepo : IDataRepository<UserType>
     {

@@ -34,12 +34,14 @@ namespace DataAccess
 
         public DbSet<Town> Towns { get; set; }
 
-        public DbSet<TransactionLog> Transactions { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
     }
 }

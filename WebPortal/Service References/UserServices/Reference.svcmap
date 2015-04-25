@@ -28,6 +28,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a4e67445-10b2-4502-861e-240bfbeff592" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9357f0a1-1106-4bbd-bbc9-1a11a04c85a5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
     <MetadataFile FileName="BankServices.UserAccount.xsd" MetadataType="Schema" ID="eb5edcc0-c4d4-4b1d-a929-d2e91427c813" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
+    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="a1b31065-7c46-437d-ab7e-4ec26a5f1e06" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

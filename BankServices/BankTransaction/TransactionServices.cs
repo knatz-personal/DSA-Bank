@@ -1,19 +1,19 @@
 ﻿using System.Linq;
 using DataAccess.EntityModel;
-using DataAccess.Reposiitories;
+using DataAccess.Reposiitories.Transactions;
 
 namespace BankServices.BankTransaction
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TransactionServices" in both code and config file together.
     public class TransactionServices : ITransactionServices
     {
         public IQueryable<TransactionView> ListTransactions()
         {
-            return new TransactionsRepo().ListAll().Select(t=>new TransactionView()
+            return new TransactionsRepo().ListAll().Select(t => new TransactionView
             {
                 ID = t.ID,
                 DateIssued = t.DateIssued,
                 TypeID = t.TypeID,
+                TypeName = t.TransactionType.Name,
                 AccountFromID = t.AccountFromID,
                 AccountToID = t.AccountToID,
                 Amount = t.Amount,
@@ -24,11 +24,12 @@ namespace BankServices.BankTransaction
 
         public IQueryable<TransactionView> ListUserTransactions(string username)
         {
-            return new TransactionsRepo().ListByUsername(username).Select(t => new TransactionView()
+            return new TransactionsRepo().ListByUsername(username).Select(t => new TransactionView
             {
                 ID = t.ID,
                 DateIssued = t.DateIssued,
                 TypeID = t.TypeID,
+                TypeName = t.TransactionType.Name,
                 AccountFromID = t.AccountFromID,
                 AccountToID = t.AccountToID,
                 Amount = t.Amount,
@@ -37,24 +38,26 @@ namespace BankServices.BankTransaction
             });
         }
 
-        //public void Deposit(TransactionView item)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Transfer(TransactionView item)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void PayBill(TransactionView item)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public TransactionView GetTransactionDetails(int id)
+        {
+            var t = new TransactionsRepo().Read(new Transaction() {ID = id});
+            return  new TransactionView
+            {
+                ID = t.ID,
+                DateIssued = t.DateIssued,
+                TypeID = t.TypeID,
+                TypeName = t.TransactionType.Name,
+                AccountFromID = t.AccountFromID,
+                AccountToID = t.AccountToID,
+                Amount = t.Amount,
+                Currency = t.Currency,
+                Remarks = t.Remarks
+            };
+        }
 
         public void Create(TransactionView item)
         {
-            new TransactionsRepo().Create(new TransactionLog()
+            new TransactionsRepo().Create(new Transaction
             {
                 ID = item.ID,
                 DateIssued = item.DateIssued,
@@ -69,7 +72,7 @@ namespace BankServices.BankTransaction
 
         public void Update(TransactionView item)
         {
-            new TransactionsRepo().Update(new TransactionLog()
+            new TransactionsRepo().Update(new Transaction
             {
                 ID = item.ID,
                 DateIssued = item.DateIssued,
@@ -84,7 +87,7 @@ namespace BankServices.BankTransaction
 
         public void Delete(int id)
         {
-           new TransactionsRepo().Delete(new TransactionLog(){ID = id});
+            new TransactionsRepo().Delete(new Transaction {ID = id});
         }
     }
 }

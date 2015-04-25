@@ -1,7 +1,10 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
+using WebPortal.BankAccountServices;
 using WebPortal.BankTransactionServices;
 using WebPortal.Models;
 
@@ -10,53 +13,45 @@ namespace WebPortal.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        // GET: Transaction
-        public ActionResult Index()
-        {
-            using (var client = new TransactionServicesClient())
-            {
-                IEnumerable<TransactionViewModel> list =
-                   client.ListUserTransactions(User.Identity.Name).Select(t => new TransactionViewModel
-                   {
-                       ID = t.ID,
-                       DateIssued = t.DateIssued,
-                       TypeID = t.TypeID,
-                       AccountFromID = t.AccountFromID,
-                       AccountToID = t.AccountToID,
-                       Amount = t.Amount,
-                       Currency = t.Currency,
-                       Remarks = t.Remarks
-                   });
-
-                return View(list);
-            }
-        }
-
-        // GET: Transaction/Details/5
-        public ActionResult Details(int id)
+        // GET: Transaction/Delete/5
+        public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // GET: Transaction/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Transaction/Create
+        // POST: Transaction/Delete/5
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
+            }
+        }
+
+        // GET: Transaction/Details/5
+        public ActionResult Details(int id)
+        {
+            using (var client = new TransactionServicesClient())
+            {
+                var t = client.GetTransactionDetails(id);
+                return PartialView("_Details", new TransactionDetailModel()
+                {
+                    ID = t.ID,
+                    DateIssued = t.DateIssued,
+                    TypeName = t.TypeName,
+                    AccountFromID = t.AccountFromID,
+                    AccountToID = t.AccountToID,
+                    Amount = t.Amount,
+                    Currency = t.Currency,
+                    Remarks = t.Remarks
+                });
             }
         }
 
@@ -82,26 +77,50 @@ namespace WebPortal.Controllers
             }
         }
 
-        // GET: Transaction/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Index(int? a, DateTime? st, DateTime? ed, int? p, int ps = 10)
         {
-            return View();
+            IEnumerable<TransactionListItemModel> list = null;
+            using (var client = new TransactionServicesClient())
+            {
+                list =
+                   client.ListUserTransactions(User.Identity.Name)
+                   .Where(f => ((f.AccountFromID == a || f.AccountToID == a) && (st <= f.DateIssued && f.DateIssued >= ed)) || (f.AccountFromID == a || f.AccountToID == a) || (st <= f.DateIssued && f.DateIssued >= ed))
+                   .Select(t => new TransactionListItemModel
+                   {
+                       ID = t.ID,
+                       DateIssued = t.DateIssued,
+                       TypeID = t.TypeID,
+                       TypeName = t.TypeName,
+                       AccountFromID = t.AccountFromID,
+                       AccountToID = t.AccountToID,
+                       Amount = t.Amount,
+                       Currency = t.Currency,
+                       Remarks = t.Remarks
+                   });
+            }
+            var results = new TransactionViewModel()
+            {
+                TransactionsPagedList = list.ToPagedList(p ?? 1, ps),
+                MyAccounts = GetMyAccounts(User.Identity.Name)
+            };
+            Session["CurrentResults"] = results;
+            return View(results);
         }
 
-        // POST: Transaction/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Report()
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var model = (TransactionViewModel)Session["CurrentResults"];
+            model.TransactionsList = model.TransactionsPagedList.AsEnumerable();
+            return View(model);
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        private SelectList GetMyAccounts(string username)
+        {
+            using (var client = new AccountServicesClient())
             {
-                return View();
+                return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
             }
         }
+
     }
 }

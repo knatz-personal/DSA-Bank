@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using BankServices.CustomExceptions;
+using CommonUtils;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
 using DataAccess.Reposiitories.Users;
@@ -11,6 +13,8 @@ namespace BankServices.UserAccount
 {
     public class UserServices : IUserServices
     {
+        private const string _dateFormat = "d/M/yyyy HH:mm:ss";
+
         public void AllocateRole(string username, int roleId)
         {
             new RolesRepo().Allocate(username, roleId);
@@ -29,7 +33,7 @@ namespace BankServices.UserAccount
                     {
                         if (tmp.Blocked)
                         {
-                            throw new AccountBlockedException();
+                            throw new UserAccountBlockedException();
                         }
                         if (user.Authenticate(username, password))
                         {
@@ -83,14 +87,20 @@ namespace BankServices.UserAccount
             });
         }
 
-        public string GetGenderNameById(int id)
+        public KeyValuePair<string, string> GenerateToken()
         {
-            return new GendersRepo().Read(new Gender(){ID = id}).Name;
+            DateTime current = DateTime.Now.AddMinutes(6);
+            string temp = Guid.NewGuid().ToString("N") + HashingUtil.GenerateSaltValue();
+            string token = EncryptionUtil.EncryptTripleDES(temp);
+            string dateTime =
+                EncryptionUtil.EncryptTripleDES(current.ToString(_dateFormat,
+                CultureInfo.InvariantCulture));
+            return new KeyValuePair<string, string>(token, dateTime);
         }
 
         public RoleView GetRoleById(int id)
         {
-            Role r = new RolesRepo().Read(new Role { ID = id });
+            Role r = new RolesRepo().Read(new Role {ID = id});
             return new RoleView
             {
                 ID = r.ID,
@@ -110,16 +120,6 @@ namespace BankServices.UserAccount
                 ID = r.ID,
                 Name = r.Name
             });
-        }
-
-        public string GetTownNameById(int id)
-        {
-            return new TownsRepo().Read(new Town() { ID = id }).Name;
-        }
-
-        public string GetTypeNameById(int id)
-        {
-            return new UserTypesRepo().Read(new UserType() { ID = id }).Name;
         }
 
         public bool IsUserInRole(string username, int roleId)
@@ -152,8 +152,11 @@ namespace BankServices.UserAccount
                 DateOfBirth = u.DateOfBirth,
                 Address = u.Address,
                 GenderID = u.GenderID,
+                GenderName = u.Gender.Name,
                 TownID = u.TownID,
+                TownName = u.Town.Name,
                 TypeID = u.TypeID,
+                TypeName = u.UserType.Name,
                 Blocked = u.Blocked,
                 NoOfAttempts = u.NoOfAttempts
             });
@@ -162,7 +165,7 @@ namespace BankServices.UserAccount
 
         public UserView ReadByUsername(string username)
         {
-            User u = new UsersRepo().Read(new User { Username = username });
+            User u = new UsersRepo().Read(new User {Username = username});
             return new UserView
             {
                 Username = u.Username,
@@ -194,6 +197,7 @@ namespace BankServices.UserAccount
                     {
                         Username = user.Username,
                         Password = user.Password,
+                        Salt = user.Salt,
                         FirstName = user.FirstName,
                         MiddleInitial = user.MiddleInitial,
                         LastName = user.LastName,
@@ -207,6 +211,9 @@ namespace BankServices.UserAccount
                         Blocked = user.Blocked,
                         NoOfAttempts = user.NoOfAttempts
                     });
+                    var rore = new RolesRepo();
+                    int defaultRole = rore.GetRoleByName("Customer").ID;
+                    rore.Allocate(user.Username, defaultRole);
                 }
                 catch (Exception)
                 {
@@ -249,6 +256,7 @@ namespace BankServices.UserAccount
                 Name = g.Name
             });
         }
+
         public IEnumerable<UserTypeView> Types()
         {
             try
@@ -291,6 +299,32 @@ namespace BankServices.UserAccount
             {
                 throw new UpdateException();
             }
+        }
+
+        public bool ValidateToken(KeyValuePair<string, string> securityToken)
+        {
+            //Check token expiry
+            bool isValidToken = false;
+            int guidLength = 32;
+            string token = EncryptionUtil.DecryptTripleDES(securityToken.Key);
+            string dateTime = EncryptionUtil.DecryptTripleDES(securityToken.Value);
+            var temp = new Guid();
+            if (Guid.TryParse(token.Substring(0, guidLength), out temp))
+            {
+                //is a valid GUID
+                DateTime date;
+                bool isValidTime = DateTime.TryParseExact(dateTime, _dateFormat, CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out date);
+                if (isValidTime)
+                {
+                    //is valid date time value 
+                    if (DateTime.Now < date)
+                    {
+                        isValidToken = true;
+                    }
+                }
+            }
+            return isValidToken;
         }
     }
 }

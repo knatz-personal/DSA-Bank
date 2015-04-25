@@ -46,6 +46,9 @@ namespace WebPortal.BankTransactionServices {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TypeIDField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -160,6 +163,19 @@ namespace WebPortal.BankTransactionServices {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -185,6 +201,12 @@ namespace WebPortal.BankTransactionServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
+        WebPortal.BankTransactionServices.TransactionView GetTransactionDetails(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
+        System.Threading.Tasks.Task<WebPortal.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/Create", ReplyAction="http://tempuri.org/ITransactionServices/CreateResponse")]
         void Create(WebPortal.BankTransactionServices.TransactionView item);
@@ -246,6 +268,14 @@ namespace WebPortal.BankTransactionServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username) {
             return base.Channel.ListUserTransactionsAsync(username);
+        }
+        
+        public WebPortal.BankTransactionServices.TransactionView GetTransactionDetails(int id) {
+            return base.Channel.GetTransactionDetails(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebPortal.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id) {
+            return base.Channel.GetTransactionDetailsAsync(id);
         }
         
         public void Create(WebPortal.BankTransactionServices.TransactionView item) {

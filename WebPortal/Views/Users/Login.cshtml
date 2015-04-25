@@ -1,7 +1,9 @@
-﻿@model WebPortal.Models.LoginModel
+﻿@using CommonUtils
+@model WebPortal.Models.LoginModel
 
 @{
     ViewBag.Title = "Login";
+    var sectoken = ((KeyValuePair<string, string>)Session["SecurityToken"]).Key;
 }
 <div class="well col-md-offset-3 col-md-6">
     @using (Html.BeginForm())
@@ -56,13 +58,17 @@
                         <input type="submit" value="Login" class="btn btn-lg btn-default btn-block" />
                     </div>
                 </div>
-                <fieldset class="well">
+                <fieldset>
                     <legend>
-                       Security Token
+                        Security Token
                     </legend>
                     <div class="form-group has-warning ">
-                        <div class="col-md-offset-3 col-md-7">
-                            @Html.EditorFor(model => model.SecTokenOutput, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="input-group col-md-offset-3 col-md-7">
+                            <input id="SecTokenOutput" type="text" value="@sectoken" class="form-control" />
+                            <a id="refreshToken" class="input-group-addon" href="#" title="Refresh">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                                <span class="sr-only">Refresh</span>
+                            </a>
                         </div>
                     </div>
                 </fieldset>
@@ -75,6 +81,10 @@
         $("#SecTokenOutput").on("click", function (e) {
             e.preventDefault();
             $(this).select();
+        });
+        $("#refreshToken").on("click", function (e) {
+            e.preventDefault();
+            $("#SecTokenOutput").val("");
         });
     });
 </script>

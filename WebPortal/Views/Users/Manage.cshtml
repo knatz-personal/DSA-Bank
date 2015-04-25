@@ -1,5 +1,7 @@
 ﻿@using WebPortal.Models
-@model IEnumerable<WebPortal.Models.UserAccountViewModel>
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<WebPortal.Models.UserAccountViewModel>
 
 @{
     ViewBag.Title = "Manage";
@@ -35,7 +37,7 @@
             </div>
             <div class="modal-footer">
                 <button id="save-button" type="button" class="btn btn-warning">Save changes</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -63,90 +65,142 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h2>Manage User Accounts</h2></div>
     <div class="panel-body">
+
+        @using (Html.BeginForm("Manage", "Users", FormMethod.Get, new { id = "listform" }))
+        {
+            <div class="input-group col-md-3">
+                <b>Search by: &nbsp;</b>
+                @Html.RadioButton("sb", "username", true) <text> Username</text>
+                @Html.RadioButton("sb", "fname") <text> Full Name</text>
+            </div>
+            <br />
+            <div class="input-group col-md-3">
+                <input id="query" type="text" placeholder="Search" name="q" class="form-control input-sm">
+                <span class="input-group-btn">
+                    <button id="Search" class="btn btn-default btn-sm" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search
+                    </button>
+                </span>
+            </div>
+            <br /> <hr />
+        }
+
         <table id="tblUsers" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Username)
+                        @Html.DisplayNameFor(model => model.First().Username)
                     </th>
                     <th>
-                        @Html.Label("Full Name")
+                        Full Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DateOfBirth)
+                        @Html.DisplayNameFor(model => model.First().DateOfBirth)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Email)
+                        @Html.DisplayNameFor(model => model.First().Email)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Mobile)
+                        @Html.DisplayNameFor(model => model.First().Mobile)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.TypeID)
+                        @Html.DisplayNameFor(model => model.First().TypeID)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.NoOfAttempts)
+                        @Html.DisplayNameFor(model => model.First().NoOfAttempts)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Blocked)
+                        @Html.DisplayNameFor(model => model.First().Blocked)
                     </th>
-                    <th style="width: 118px;text-align: center;">Actions</th>
+                    <th style="text-align: center; width: 118px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (UserAccountViewModel item in Model)
+                @if (!Model.Any())
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Username)
-                        </td>
-                        <td >
-                            @Html.Label(string.Format("{0} {1} {2}", item.FirstName, item.MiddleInitial, item.LastName))
-                        </td>
-                        <td >
-                            @Html.DisplayFor(modelItem => item.DateOfBirth, "DateTime")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Mobile)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TypeName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NoOfAttempts)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Blocked, "Boolean")
-                        </td>
-
-                        <td style="width: 118px;">
-                            <a class="bttnEditThis  btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Users", new {id = item.Username})" title="Edit">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                                <span class="sr-only">Edit</span>
-                            </a>
-                            <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.Username" href="@Url.Action("Details", "Users", new {id = item.Username})" title="Details">
-                                <i class="glyphicon glyphicon-list"></i>
-                                <span class="sr-only">Edit</span>
-                            </a>
-                            <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Users", new {id = item.Username})" title="Delete">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                <span class="sr-only">Delete</span>
-                            </a>
+                        <td colspan="9" style=" text-align: center; ">
+                            <b>No records found matching your query.</b>
                         </td>
                     </tr>
+                }
+                else
+                {
+                    foreach (UserAccountViewModel item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.Label(string.Format("{0} {1} {2}", item.FirstName, item.MiddleInitial, item.LastName))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfBirth, "DateTime")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mobile)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NoOfAttempts)
+                            </td>
+                            <td class="blocked">
+                                @Html.DisplayFor(modelItem => item.Blocked, "Boolean")
+                            </td>
+
+                            <td style="width: 118px;">
+                                <a class="bttnEditThis  btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Users", new {id = item.Username})" title="Edit">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <span class="sr-only">Edit</span>
+                                </a>
+                                <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.Username" href="@Url.Action("Details", "Users", new {id = item.Username})" title="Details">
+                                    <i class="glyphicon glyphicon-list"></i>
+                                    <span class="sr-only">Edit</span>
+                                </a>
+                                <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Users", new {id = item.Username})" title="Delete">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    <span class="sr-only">Delete</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>
     </div>
+    <div class="panel-footer">
+        @Html.PagedListPager(Model, page => Url.Action("Manage", "Users", new { page, sb = Request.QueryString["sb"], q = Request.QueryString["q"] }), new PagedListRenderOptions()
+        {
+            Display = PagedListDisplayMode.IfNeeded,
+            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+            DisplayItemSliceAndTotal = true,
+            MaximumPageNumbersToDisplay = 10
+        })
+    </div>
 </div>
 
-@section scripts
-{
-    <script>
-        var BindGridButtonEvents = function() {
+
+<script>
+    var USER_MANAGER = {
+        Search: function () {
+            $('#Search').on('click', function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("Manage","Users")?" + $('#listform').serialize()).done(function (response) {
+                    var html = $(response).find("#tblUsers");
+                    $("#tblUsers").replaceWith(html);
+                });
+            });
+        },
+        BindGridButtonEvents: function () {
             $(".bttnDetail").on("click", function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
@@ -159,7 +213,7 @@
                 e.preventDefault();
                 var url = $(this).attr('href');
                 $row = $(this).closest("tr");
-               
+
                 $("#editBody").load(url, function () {
                     $("#editModal").modal('show');
                 });
@@ -174,18 +228,23 @@
                 });
             });
 
-        };
+        },
+        Init: function () {
+            this.BindGridButtonEvents();
 
-        $(function () {
-            BindGridButtonEvents();
-           
-            $('#editModal').on('click', '#save-button', function() {
+            this.Search();
+
+            $('#editModal').on('click', '#save-button', function () {
                 $('#editform').submit();
             });
 
-            $('#deleteModal').on('click', '#yes-button', function(e) {
+            $('#deleteModal').on('click', '#yes-button', function (e) {
                 $('#deleteform').submit();
             });
-        });
-    </script>
-}
+        }
+    };
+
+    $(function () {
+        USER_MANAGER.Init();
+    });
+</script>

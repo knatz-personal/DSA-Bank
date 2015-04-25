@@ -163,6 +163,9 @@ namespace WebPortal.UserServices {
         private System.Nullable<int> GenderIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -178,10 +181,19 @@ namespace WebPortal.UserServices {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SaltField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TownIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TownNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -275,6 +287,19 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GenderName {
+            get {
+                return this.GenderNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderNameField, value) != true)) {
+                    this.GenderNameField = value;
+                    this.RaisePropertyChanged("GenderName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string LastName {
             get {
                 return this.LastNameField;
@@ -340,6 +365,19 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Salt {
+            get {
+                return this.SaltField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SaltField, value) != true)) {
+                    this.SaltField = value;
+                    this.RaisePropertyChanged("Salt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> TownID {
             get {
                 return this.TownIDField;
@@ -353,6 +391,19 @@ namespace WebPortal.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TownName {
+            get {
+                return this.TownNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TownNameField, value) != true)) {
+                    this.TownNameField = value;
+                    this.RaisePropertyChanged("TownName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> TypeID {
             get {
                 return this.TypeIDField;
@@ -361,6 +412,19 @@ namespace WebPortal.UserServices {
                 if ((this.TypeIDField.Equals(value) != true)) {
                     this.TypeIDField = value;
                     this.RaisePropertyChanged("TypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
                 }
             }
         }
@@ -550,11 +614,11 @@ namespace WebPortal.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.GenderView>> GendersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetGenderNameById", ReplyAction="http://tempuri.org/IUserServices/GetGenderNameByIdResponse")]
-        string GetGenderNameById(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GenerateToken", ReplyAction="http://tempuri.org/IUserServices/GenerateTokenResponse")]
+        System.Collections.Generic.KeyValuePair<string, string> GenerateToken();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetGenderNameById", ReplyAction="http://tempuri.org/IUserServices/GetGenderNameByIdResponse")]
-        System.Threading.Tasks.Task<string> GetGenderNameByIdAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GenerateToken", ReplyAction="http://tempuri.org/IUserServices/GenerateTokenResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<string, string>> GenerateTokenAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
         WebPortal.UserServices.RoleView GetRoleById(int id);
@@ -573,18 +637,6 @@ namespace WebPortal.UserServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.RoleView>> GetRolesAsync(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTownNameById", ReplyAction="http://tempuri.org/IUserServices/GetTownNameByIdResponse")]
-        string GetTownNameById(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTownNameById", ReplyAction="http://tempuri.org/IUserServices/GetTownNameByIdResponse")]
-        System.Threading.Tasks.Task<string> GetTownNameByIdAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTypeNameById", ReplyAction="http://tempuri.org/IUserServices/GetTypeNameByIdResponse")]
-        string GetTypeNameById(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetTypeNameById", ReplyAction="http://tempuri.org/IUserServices/GetTypeNameByIdResponse")]
-        System.Threading.Tasks.Task<string> GetTypeNameByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
         bool IsUserInRole(string username, int roleId);
@@ -639,6 +691,12 @@ namespace WebPortal.UserServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
         System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.UserView user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ValidateToken", ReplyAction="http://tempuri.org/IUserServices/ValidateTokenResponse")]
+        bool ValidateToken(System.Collections.Generic.KeyValuePair<string, string> securityToken);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ValidateToken", ReplyAction="http://tempuri.org/IUserServices/ValidateTokenResponse")]
+        System.Threading.Tasks.Task<bool> ValidateTokenAsync(System.Collections.Generic.KeyValuePair<string, string> securityToken);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -716,12 +774,12 @@ namespace WebPortal.UserServices {
             return base.Channel.GendersAsync();
         }
         
-        public string GetGenderNameById(int id) {
-            return base.Channel.GetGenderNameById(id);
+        public System.Collections.Generic.KeyValuePair<string, string> GenerateToken() {
+            return base.Channel.GenerateToken();
         }
         
-        public System.Threading.Tasks.Task<string> GetGenderNameByIdAsync(int id) {
-            return base.Channel.GetGenderNameByIdAsync(id);
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<string, string>> GenerateTokenAsync() {
+            return base.Channel.GenerateTokenAsync();
         }
         
         public WebPortal.UserServices.RoleView GetRoleById(int id) {
@@ -746,22 +804,6 @@ namespace WebPortal.UserServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.RoleView>> GetRolesAsync(string username) {
             return base.Channel.GetRolesAsync(username);
-        }
-        
-        public string GetTownNameById(int id) {
-            return base.Channel.GetTownNameById(id);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetTownNameByIdAsync(int id) {
-            return base.Channel.GetTownNameByIdAsync(id);
-        }
-        
-        public string GetTypeNameById(int id) {
-            return base.Channel.GetTypeNameById(id);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetTypeNameByIdAsync(int id) {
-            return base.Channel.GetTypeNameByIdAsync(id);
         }
         
         public bool IsUserInRole(string username, int roleId) {
@@ -834,6 +876,14 @@ namespace WebPortal.UserServices {
         
         public System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.UserView user) {
             return base.Channel.UpdateAsync(user);
+        }
+        
+        public bool ValidateToken(System.Collections.Generic.KeyValuePair<string, string> securityToken) {
+            return base.Channel.ValidateToken(securityToken);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ValidateTokenAsync(System.Collections.Generic.KeyValuePair<string, string> securityToken) {
+            return base.Channel.ValidateTokenAsync(securityToken);
         }
     }
 }

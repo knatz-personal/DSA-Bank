@@ -86,6 +86,7 @@ namespace WebPortal.Models
 
         [Required]
         [Display(Name = "Date Of Birth")]
+        [DataType(DataType.DateTime)]
         public DateTime DateOfBirth { get; set; }
 
         [Required]
@@ -145,8 +146,6 @@ namespace WebPortal.Models
         [Required]
         [Display(Name = "Security Token")]
         public string SecurityToken { get; set; }
-
-        public string SecTokenOutput { get; set; }
 
         [Display(Name = "Remember Me")]
         public bool Remember { get; set; }

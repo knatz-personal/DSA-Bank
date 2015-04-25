@@ -1,0 +1,115 @@
+﻿@model WebPortal.Models.AccountCreateModel
+
+@using (Html.BeginForm("Create", "Accounts", FormMethod.Post, new { id = "createform" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <fieldset>
+            @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+            {
+                <div id="createAlert" class="alert alert-danger" data-dismiss="alert" role="alert">
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                    </button>
+                    @Html.ValidationSummary(true, "Error: ")
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccFromID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.AccFromID, Model.MyAccounts, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AccFromID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Currency, Model.Currencies, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.TypeID, Model.Types, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
+    </div>
+}
+<script>
+    $(function () {
+        $(".date").datetimepicker({
+            format: 'DD/MM/YYYY HH:mm:ss'
+        });
+    });
+
+    $("#createform").on('submit', function (ev) {
+        ev.preventDefault();
+        $.validator.unobtrusive.parse("#editform");
+        var data = {
+            "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val(),
+            "typeId": $("#TypeID").val(),
+            "username": $("#Username").val(),
+            "name": $("#Name").val(),
+            "accFromID": $("#AccFromID").val(),
+            "currency": $("#Currency").val(),
+            "balance": $("#Balance").val(),
+            "expiryDate": $("#ExpiryDate").val(),
+            "remarks": $("#Remarks").val()
+        };
+        $.post("@Url.Action("Create", "Accounts")", data).done(function (response) {
+            if (response.result !== "undefined" && response.result === "OK") {
+                $("#createModal").modal('hide');
+                $row.remove();
+                var $newrow = $(response.html);
+                $("#tblAccounts thead").append($newrow);
+
+                setTimeout(function () {
+                    $newrow.removeClass("info");
+                }, 500);
+
+                BindGridButtonEvents();
+            } else {
+                $("#createBody").html(response);
+                $.validator.unobtrusive.parse("#createform");
+            }
+        });
+    });
+
+</script>

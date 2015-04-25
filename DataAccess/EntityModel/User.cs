@@ -17,11 +17,13 @@ namespace DataAccess.EntityModel
         public User()
         {
             this.Accounts = new HashSet<Account>();
+            this.Appointments = new HashSet<Appointment>();
             this.Roles = new HashSet<Role>();
         }
     
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Salt { get; set; }
         public string FirstName { get; set; }
         public string MiddleInitial { get; set; }
         public string LastName { get; set; }
@@ -36,6 +38,7 @@ namespace DataAccess.EntityModel
         public int NoOfAttempts { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Town Town { get; set; }
         public virtual UserType UserType { get; set; }

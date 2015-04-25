@@ -23,7 +23,7 @@
 }
 
 <#
-}                 else {
+}                         else {
 #>
 
 @{
@@ -45,18 +45,12 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h2>Title</h2></div>
     <div class="panel-body">
-         <div class="input-group col-md-3">
-            <input type="text" placeholder="Search" class="form-control">
+        <div class="input-group col-md-3">
+            <input type="text" placeholder="Search" class="form-control input-sm">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="reset">
-                    <span class="glyphicon glyphicon-remove">
-                        <span class="sr-only">Close</span>
-                    </span>
-                </button>
-                <button class="btn btn-default" type="submit">
-                    <span class="glyphicon glyphicon-search">
-                        <span class="sr-only">Search</span>
-                    </span>
+                <button class="btn btn-default btn-sm" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                    Search
                 </button>
             </span>
         </div>
@@ -115,15 +109,15 @@
     if (pkName != null) {
             #>
                     <td  style="width: 118px;" >
-                        <a class="bttnEditThis btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Edit", new { id=item.<#= pkName #> })" title="Edit">
+                        <a class="bttnEditThis btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Edit", new { id=item.<#=            pkName #> })" title="Edit">
                             <i class="glyphicon glyphicon-pencil"></i>
                             <span class="sr-only">Edit</span>
                         </a>
-                        <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.<#=  pkName #>" href="@Url.Action("Details", "Details", new { id=item.<#=            pkName #>  })" title="Details">
+                        <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.<#=            pkName #>" href="@Url.Action("Details", "Details", new { id=item.<#=            pkName #>  })" title="Details">
                             <i class="glyphicon glyphicon-list"></i>
-                            <span class="sr-only">Edit</span>
+                            <span class="sr-only">Details</span>
                         </a>
-                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Delete", new  { id=item.<#=  pkName #>  })" title="Delete">
+                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Delete", new  { id=item.<#=            pkName #>  })" title="Delete">
                             <i class="glyphicon glyphicon-trash"></i>
                             <span class="sr-only">Delete</span>
                         </a>

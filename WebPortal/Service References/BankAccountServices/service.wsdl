@@ -1,95 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BankAccountServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/BankServices.BankAccount" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBankAccountServices_ListUserAccounts_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListUserAccounts" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_ListUserAccounts_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListUserAccountsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_ListAccounts_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListAccounts" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_ListAccounts_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListAccountsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Create_InputMessage">
+  <wsdl:message name="IAccountServices_Create_InputMessage">
     <wsdl:part name="parameters" element="tns:Create" />
   </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Create_OutputMessage">
+  <wsdl:message name="IAccountServices_Create_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateResponse" />
   </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Update_InputMessage">
-    <wsdl:part name="parameters" element="tns:Update" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Update_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Delete_InputMessage">
+  <wsdl:message name="IAccountServices_Delete_InputMessage">
     <wsdl:part name="parameters" element="tns:Delete" />
   </wsdl:message>
-  <wsdl:message name="IBankAccountServices_Delete_OutputMessage">
+  <wsdl:message name="IAccountServices_Delete_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteResponse" />
   </wsdl:message>
-  <wsdl:portType name="IBankAccountServices">
-    <wsdl:operation name="ListUserAccounts">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBankAccountServices/ListUserAccounts" message="tns:IBankAccountServices_ListUserAccounts_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBankAccountServices/ListUserAccountsResponse" message="tns:IBankAccountServices_ListUserAccounts_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ListAccounts">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBankAccountServices/ListAccounts" message="tns:IBankAccountServices_ListAccounts_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBankAccountServices/ListAccountsResponse" message="tns:IBankAccountServices_ListAccounts_OutputMessage" />
-    </wsdl:operation>
+  <wsdl:message name="IAccountServices_GetAccountDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountDetail" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetAccountDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypes" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetCurrencyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrencyList" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetCurrencyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrencyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_ListUserAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListUserAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_ListUserAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListUserAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAccountServices">
     <wsdl:operation name="Create">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBankAccountServices/Create" message="tns:IBankAccountServices_Create_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBankAccountServices/CreateResponse" message="tns:IBankAccountServices_Create_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Update">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBankAccountServices/Update" message="tns:IBankAccountServices_Update_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBankAccountServices/UpdateResponse" message="tns:IBankAccountServices_Update_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Create" message="tns:IAccountServices_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/CreateResponse" message="tns:IAccountServices_Create_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Delete">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBankAccountServices/Delete" message="tns:IBankAccountServices_Delete_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBankAccountServices/DeleteResponse" message="tns:IBankAccountServices_Delete_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Delete" message="tns:IAccountServices_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/DeleteResponse" message="tns:IAccountServices_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetAccountDetail" message="tns:IAccountServices_GetAccountDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetAccountDetailResponse" message="tns:IAccountServices_GetAccountDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetTypes" message="tns:IAccountServices_GetTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetTypesResponse" message="tns:IAccountServices_GetTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetCurrencyList" message="tns:IAccountServices_GetCurrencyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetCurrencyListResponse" message="tns:IAccountServices_GetCurrencyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUserAccounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/ListUserAccounts" message="tns:IAccountServices_ListUserAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/ListUserAccountsResponse" message="tns:IAccountServices_ListUserAccounts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Update" message="tns:IAccountServices_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/UpdateResponse" message="tns:IAccountServices_Update_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IBankAccountServices" type="tns:IBankAccountServices">
+  <wsdl:binding name="BasicHttpBinding_IAccountServices" type="tns:IAccountServices">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="ListUserAccounts">
-      <soap:operation soapAction="http://tempuri.org/IBankAccountServices/ListUserAccounts" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListAccounts">
-      <soap:operation soapAction="http://tempuri.org/IBankAccountServices/ListAccounts" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Create">
-      <soap:operation soapAction="http://tempuri.org/IBankAccountServices/Create" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Update">
-      <soap:operation soapAction="http://tempuri.org/IBankAccountServices/Update" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/Create" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -98,7 +92,52 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Delete">
-      <soap:operation soapAction="http://tempuri.org/IBankAccountServices/Delete" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDetail">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/GetAccountDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTypes">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/GetTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyList">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/GetCurrencyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUserAccounts">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/ListUserAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/Update" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -107,9 +146,9 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="BankAccountServices">
-    <wsdl:port name="BasicHttpBinding_IBankAccountServices" binding="tns:BasicHttpBinding_IBankAccountServices">
-      <soap:address location="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/BankAccountServices/" />
+  <wsdl:service name="AccountServices">
+    <wsdl:port name="BasicHttpBinding_IAccountServices" binding="tns:BasicHttpBinding_IAccountServices">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

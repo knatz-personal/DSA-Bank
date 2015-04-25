@@ -26,9 +26,9 @@ namespace WebPortal
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
+                   "~/Content/bootstrap.min.css",
                       "~/Content/bootstrap-datetimepicker.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"));  
         }
     }
 }

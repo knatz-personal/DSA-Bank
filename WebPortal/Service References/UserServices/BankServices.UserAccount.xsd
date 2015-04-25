@@ -40,13 +40,17 @@
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GenderID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GenderName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MiddleInitial" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mobile" type="xs:int" />
       <xs:element minOccurs="0" name="NoOfAttempts" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Salt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TownID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TownName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TypeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

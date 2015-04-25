@@ -22,3 +22,11 @@ textarea {
 .form-container {
     margin: 0 auto;
 }
+
+.truncate {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

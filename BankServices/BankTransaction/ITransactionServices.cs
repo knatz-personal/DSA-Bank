@@ -14,6 +14,9 @@ namespace BankServices.BankTransaction
         [OperationContract]
         IQueryable<TransactionView> ListUserTransactions(string username);
 
+        [OperationContract]
+        TransactionView GetTransactionDetails(int id);
+
         //[OperationContract]
         //void Deposit(TransactionView item);
 
@@ -47,6 +50,9 @@ namespace BankServices.BankTransaction
 
         [DataMember]
         public int? TypeID { get; set; }
+
+        [DataMember]
+        public string TypeName { get; set; }
 
         [DataMember]
         public DateTime DateIssued { get; set; }

@@ -108,6 +108,9 @@
     <Compile Include="EntityModel\Appointment.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\Currency.cs">
+      <DependentUpon>DSABankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\DSABankModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,7 +144,7 @@
     <Compile Include="EntityModel\Town.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\TransactionLog.cs">
+    <Compile Include="EntityModel\Transaction.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TransactionType.cs">
@@ -155,25 +158,32 @@
     </Compile>
     <Compile Include="Reposiitories\Accounts\AccountsRepo.cs" />
     <Compile Include="Reposiitories\Accounts\AccountTypesRepo.cs" />
-    <Compile Include="Reposiitories\Errors\ErrorsRepo.cs" />
+    <Compile Include="Reposiitories\Appointments\AppointmentsRepo.cs" />
+    <Compile Include="Reposiitories\CurrencyRepo.cs" />
+    <Compile Include="Reposiitories\Logs\ErrorsRepo.cs" />
+    <Compile Include="Reposiitories\Logs\EventsRepo.cs" />
     <Compile Include="Reposiitories\Transactions\TransactionTypesRepo.cs" />
     <Compile Include="Reposiitories\Users\GendersRepo.cs" />
     <Compile Include="Reposiitories\Navigation\MenusRepo.cs" />
     <Compile Include="Reposiitories\Roles\RolesRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposiitories\IDataRepository.cs" />
-    <Compile Include="Reposiitories\IFiltereable.cs" />
     <Compile Include="Reposiitories\Users\TownsRepo.cs" />
     <Compile Include="Reposiitories\Transactions\TransactionsRepo.cs" />
     <Compile Include="Reposiitories\Users\UsersRepo.cs" />
     <Compile Include="Reposiitories\Users\UserTypesRepo.cs" />
-    <Compile Include="Reposiitories\SortingPagingInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{0e2dd92d-ea34-4d28-bbcf-1bb014e41ab9}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

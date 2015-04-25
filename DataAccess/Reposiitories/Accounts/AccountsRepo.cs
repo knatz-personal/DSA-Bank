@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using DataAccess.EntityModel;
 
 namespace DataAccess.Reposiitories.Accounts
 {
     public class AccountsRepo : IDataRepository<Account>
     {
-        private DsaDataContext _db = new DsaDataContext();
+        private readonly DsaDataContext _db = new DsaDataContext();
 
         public void Create(Account newItem)
         {
@@ -18,7 +16,7 @@ namespace DataAccess.Reposiitories.Accounts
 
         public void Delete(Account itemToDelete)
         {
-            var o = _db.Accounts.Find(itemToDelete.ID);
+            Account o = _db.Accounts.Find(itemToDelete.ID);
 
             if (o != null)
             {
@@ -31,10 +29,6 @@ namespace DataAccess.Reposiitories.Accounts
         {
             return _db.Accounts.AsQueryable();
         }
-        public IQueryable<Account> ListByUsername(string username)
-        {
-            return _db.Accounts.Where(a => a.Username == username);
-        }
 
         public Account Read(Account itemToRead)
         {
@@ -44,7 +38,7 @@ namespace DataAccess.Reposiitories.Accounts
 
         public void Update(Account updatedItem)
         {
-            var o = _db.Accounts.Find(updatedItem.ID);
+            Account o = _db.Accounts.Find(updatedItem.ID);
 
             if (o != null)
             {
@@ -59,6 +53,16 @@ namespace DataAccess.Reposiitories.Accounts
 
                 _db.SaveChanges();
             }
+        }
+
+        public IQueryable<Account> ListByUsername(string username)
+        {
+            return _db.Accounts.Where(a => a.Username == username);
+        }
+
+        public Account GetNewAccount(Account acc)
+        {
+            return _db.Accounts.Where(u => u.Username == acc.Username).SingleOrDefault(a => a.TypeID == acc.TypeID && a.DateOpened == acc.DateOpened);
         }
     }
 }

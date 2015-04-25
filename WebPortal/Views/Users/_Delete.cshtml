@@ -62,6 +62,7 @@
             $.post("@Url.Action("Delete", "Users")", data).done(function (response) {
                 if (response !== "undefined" && response === "OK") {
                     $("#deleteModal").modal('hide');
+                    $row.find(".blocked").text("Yes");
                     $row.addClass("danger");
                     setTimeout(function () {
                         $row.removeClass("danger");

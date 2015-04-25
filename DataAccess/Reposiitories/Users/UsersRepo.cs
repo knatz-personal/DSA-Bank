@@ -1,25 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Transactions;
 using System.Linq;
+using System.Transactions;
+using CommonUtils;
 using DataAccess.EntityModel;
 
 namespace DataAccess.Reposiitories.Users
 {
+    /// <summary>
+    /// Users Repo
+    /// </summary>
     public class UsersRepo : IDataRepository<User>
     {
-        private DsaDataContext _db = new DsaDataContext();
+        private readonly DsaDataContext _db = new DsaDataContext();
 
 
+        /// <summary>
+        /// List All
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<User> ListAll()
         {
             return _db.Users.AsQueryable();
         }
 
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="newItem">new Item</param>
+        /// <returns></returns>
         public void Create(User newItem)
         {
-            using (TransactionScope ts = new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 using (var context = new DsaDataContext())
                 {
@@ -30,7 +43,7 @@ namespace DataAccess.Reposiitories.Users
                         context.SaveChanges();
                         ts.Complete();
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         ts.Dispose();
                     }
@@ -45,15 +58,25 @@ namespace DataAccess.Reposiitories.Users
             }
         }
 
+        /// <summary>
+        /// Read
+        /// </summary>
+        /// <param name="itemToRead">item To Read</param>
+        /// <returns></returns>
         public User Read(User itemToRead)
         {
             User result = _db.Users.Find(itemToRead.Username);
             return result;
         }
 
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="updatedItem">updated Item</param>
+        /// <returns></returns>
         public void Update(User updatedItem)
         {
-            var o = _db.Users.Find(updatedItem.Username);
+            User o = _db.Users.Find(updatedItem.Username);
 
             if (o != null)
             {
@@ -73,11 +96,16 @@ namespace DataAccess.Reposiitories.Users
             }
         }
 
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="itemToDelete">item To Delete</param>
+        /// <returns></returns>
         public void Delete(User itemToDelete)
         {
             try
             {
-                var o = _db.Users.Find(itemToDelete.Username);
+                User o = _db.Users.Find(itemToDelete.Username);
                 if (o != null)
                 {
                     o.Blocked = true;
@@ -86,11 +114,15 @@ namespace DataAccess.Reposiitories.Users
             }
             catch
             {
-
                 throw new Exception("Unable to disable record (Users cannot be deleted)");
             }
         }
 
+        /// <summary>
+        /// Search
+        /// </summary>
+        /// <param name="query">query</param>
+        /// <returns></returns>
         public IEnumerable<User> Search(string query)
         {
             IQueryable<User> result = _db.Users.Where(u => u.Username.Contains(query));
@@ -107,20 +139,6 @@ namespace DataAccess.Reposiitories.Users
         }
 
         /// <summary>
-        ///     Gets the number of failed login attempts for the user account.
-        /// </summary>
-        /// <param name="username">The user-name.</param>
-        /// <returns></returns>
-        public int GetNoOfAttempts(string username)
-        {
-            return Read(new User
-            {
-                Username = username
-            }).NoOfAttempts;
-        }
-
-
-        /// <summary>
         ///     Authenticates the specified user account.
         /// </summary>
         /// <param name="username">The string user-name.</param>
@@ -128,13 +146,11 @@ namespace DataAccess.Reposiitories.Users
         /// <returns></returns>
         public bool Authenticate(string username, string password)
         {
-            if (_db.Users.SingleOrDefault(o => o.Username == username && o.Password == password)
-                != null)
-            {
-                return true;
-            }
-            return false;
+            User u = _db.Users.Find(username);
+            string hpass = HashingUtil.GenerateSaltedHash(password, u.Salt);
+            return hpass == u.Password;
         }
+
 
         /// <summary>
         ///     Blocks the specified user account.
@@ -148,6 +164,11 @@ namespace DataAccess.Reposiitories.Users
             }).Blocked = true;
         }
 
+        /// <summary>
+        /// Doe User Name Exist
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <returns></returns>
         public bool DoeUserNameExist(string username)
         {
             bool ans;

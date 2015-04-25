@@ -45,9 +45,8 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 <div>
-    <h4><#= ViewDataTypeShortName #></h4>
     <hr />
-    <dl class="col-md-offset-1 dl-horizontal">
+    <dl class="col-md-offset-0 dl-horizontal">
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {

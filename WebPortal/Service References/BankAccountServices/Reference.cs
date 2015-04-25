@@ -47,6 +47,9 @@ namespace WebPortal.BankAccountServices {
         private System.Nullable<int> TypeIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -164,6 +167,19 @@ namespace WebPortal.BankAccountServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Username {
             get {
                 return this.UsernameField;
@@ -186,66 +202,179 @@ namespace WebPortal.BankAccountServices {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BankAccountServices.IBankAccountServices")]
-    public interface IBankAccountServices {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankAccount")]
+    [System.SerializableAttribute()]
+    public partial class AccountTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListUserAccountsResponse")]
-        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserAccounts(string username);
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListUserAccountsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListAccountsResponse")]
-        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListAccounts();
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/ListAccounts", ReplyAction="http://tempuri.org/IBankAccountServices/ListAccountsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListAccountsAsync();
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Create", ReplyAction="http://tempuri.org/IBankAccountServices/CreateResponse")]
-        void Create(WebPortal.BankAccountServices.AccountView item);
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Create", ReplyAction="http://tempuri.org/IBankAccountServices/CreateResponse")]
-        System.Threading.Tasks.Task CreateAsync(WebPortal.BankAccountServices.AccountView item);
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Update", ReplyAction="http://tempuri.org/IBankAccountServices/UpdateResponse")]
-        void Update(WebPortal.BankAccountServices.AccountView item);
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Update", ReplyAction="http://tempuri.org/IBankAccountServices/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Delete", ReplyAction="http://tempuri.org/IBankAccountServices/DeleteResponse")]
-        void Delete(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankAccountServices/Delete", ReplyAction="http://tempuri.org/IBankAccountServices/DeleteResponse")]
-        System.Threading.Tasks.Task DeleteAsync(int id);
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBankAccountServicesChannel : WebPortal.BankAccountServices.IBankAccountServices, System.ServiceModel.IClientChannel {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BankAccountServices.IAccountServices")]
+    public interface IAccountServices {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Create", ReplyAction="http://tempuri.org/IAccountServices/CreateResponse")]
+        WebPortal.BankAccountServices.AccountView Create(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Create", ReplyAction="http://tempuri.org/IAccountServices/CreateResponse")]
+        System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> CreateAsync(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Delete", ReplyAction="http://tempuri.org/IAccountServices/DeleteResponse")]
+        void Delete(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Delete", ReplyAction="http://tempuri.org/IAccountServices/DeleteResponse")]
+        System.Threading.Tasks.Task DeleteAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetAccountDetail", ReplyAction="http://tempuri.org/IAccountServices/GetAccountDetailResponse")]
+        WebPortal.BankAccountServices.AccountView GetAccountDetail(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetAccountDetail", ReplyAction="http://tempuri.org/IAccountServices/GetAccountDetailResponse")]
+        System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetAccountDetailAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetTypes", ReplyAction="http://tempuri.org/IAccountServices/GetTypesResponse")]
+        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView> GetTypes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetTypes", ReplyAction="http://tempuri.org/IAccountServices/GetTypesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView>> GetTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetCurrencyList", ReplyAction="http://tempuri.org/IAccountServices/GetCurrencyListResponse")]
+        System.Collections.Generic.List<string> GetCurrencyList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetCurrencyList", ReplyAction="http://tempuri.org/IAccountServices/GetCurrencyListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCurrencyListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IAccountServices/ListUserAccountsResponse")]
+        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserAccounts(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IAccountServices/ListUserAccountsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Update", ReplyAction="http://tempuri.org/IAccountServices/UpdateResponse")]
+        void Update(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Update", ReplyAction="http://tempuri.org/IAccountServices/UpdateResponse")]
+        System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAccountServicesChannel : WebPortal.BankAccountServices.IAccountServices, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BankAccountServicesClient : System.ServiceModel.ClientBase<WebPortal.BankAccountServices.IBankAccountServices>, WebPortal.BankAccountServices.IBankAccountServices {
+    public partial class AccountServicesClient : System.ServiceModel.ClientBase<WebPortal.BankAccountServices.IAccountServices>, WebPortal.BankAccountServices.IAccountServices {
         
-        public BankAccountServicesClient() {
+        public AccountServicesClient() {
         }
         
-        public BankAccountServicesClient(string endpointConfigurationName) : 
+        public AccountServicesClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public BankAccountServicesClient(string endpointConfigurationName, string remoteAddress) : 
+        public AccountServicesClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BankAccountServicesClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public AccountServicesClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BankAccountServicesClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public AccountServicesClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public WebPortal.BankAccountServices.AccountView Create(WebPortal.BankAccountServices.AccountView item) {
+            return base.Channel.Create(item);
+        }
+        
+        public System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> CreateAsync(WebPortal.BankAccountServices.AccountView item) {
+            return base.Channel.CreateAsync(item);
+        }
+        
+        public void Delete(int id) {
+            base.Channel.Delete(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteAsync(int id) {
+            return base.Channel.DeleteAsync(id);
+        }
+        
+        public WebPortal.BankAccountServices.AccountView GetAccountDetail(int id) {
+            return base.Channel.GetAccountDetail(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetAccountDetailAsync(int id) {
+            return base.Channel.GetAccountDetailAsync(id);
+        }
+        
+        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView> GetTypes() {
+            return base.Channel.GetTypes();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView>> GetTypesAsync() {
+            return base.Channel.GetTypesAsync();
+        }
+        
+        public System.Collections.Generic.List<string> GetCurrencyList() {
+            return base.Channel.GetCurrencyList();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCurrencyListAsync() {
+            return base.Channel.GetCurrencyListAsync();
         }
         
         public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserAccounts(string username) {
@@ -256,36 +385,12 @@ namespace WebPortal.BankAccountServices {
             return base.Channel.ListUserAccountsAsync(username);
         }
         
-        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListAccounts() {
-            return base.Channel.ListAccounts();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListAccountsAsync() {
-            return base.Channel.ListAccountsAsync();
-        }
-        
-        public void Create(WebPortal.BankAccountServices.AccountView item) {
-            base.Channel.Create(item);
-        }
-        
-        public System.Threading.Tasks.Task CreateAsync(WebPortal.BankAccountServices.AccountView item) {
-            return base.Channel.CreateAsync(item);
-        }
-        
         public void Update(WebPortal.BankAccountServices.AccountView item) {
             base.Channel.Update(item);
         }
         
         public System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item) {
             return base.Channel.UpdateAsync(item);
-        }
-        
-        public void Delete(int id) {
-            base.Channel.Delete(id);
-        }
-        
-        public System.Threading.Tasks.Task DeleteAsync(int id) {
-            return base.Channel.DeleteAsync(id);
         }
     }
 }

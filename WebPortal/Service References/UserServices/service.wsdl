@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUserServices_AllocateRole_InputMessage">
@@ -43,11 +44,11 @@
   <wsdl:message name="IUserServices_Genders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GendersResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserServices_GetGenderNameById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGenderNameById" />
+  <wsdl:message name="IUserServices_GenerateToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateToken" />
   </wsdl:message>
-  <wsdl:message name="IUserServices_GetGenderNameById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGenderNameByIdResponse" />
+  <wsdl:message name="IUserServices_GenerateToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateTokenResponse" />
   </wsdl:message>
   <wsdl:message name="IUserServices_GetRoleById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRoleById" />
@@ -66,18 +67,6 @@
   </wsdl:message>
   <wsdl:message name="IUserServices_GetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_GetTownNameById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTownNameById" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_GetTownNameById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTownNameByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_GetTypeNameById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTypeNameById" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_GetTypeNameById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTypeNameByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IUserServices_IsUserInRole_InputMessage">
     <wsdl:part name="parameters" element="tns:IsUserInRole" />
@@ -133,6 +122,12 @@
   <wsdl:message name="IUserServices_Update_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserServices_ValidateToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateToken" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_ValidateToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateTokenResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserServices">
     <wsdl:operation name="AllocateRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/AllocateRole" message="tns:IUserServices_AllocateRole_InputMessage" />
@@ -158,9 +153,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Genders" message="tns:IUserServices_Genders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GendersResponse" message="tns:IUserServices_Genders_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetGenderNameById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetGenderNameById" message="tns:IUserServices_GetGenderNameById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GetGenderNameByIdResponse" message="tns:IUserServices_GetGenderNameById_OutputMessage" />
+    <wsdl:operation name="GenerateToken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GenerateToken" message="tns:IUserServices_GenerateToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GenerateTokenResponse" message="tns:IUserServices_GenerateToken_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRoleById">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetRoleById" message="tns:IUserServices_GetRoleById_InputMessage" />
@@ -173,14 +168,6 @@
     <wsdl:operation name="GetRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetRoles" message="tns:IUserServices_GetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GetRolesResponse" message="tns:IUserServices_GetRoles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTownNameById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetTownNameById" message="tns:IUserServices_GetTownNameById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GetTownNameByIdResponse" message="tns:IUserServices_GetTownNameById_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTypeNameById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetTypeNameById" message="tns:IUserServices_GetTypeNameById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GetTypeNameByIdResponse" message="tns:IUserServices_GetTypeNameById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="IsUserInRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/IsUserInRole" message="tns:IUserServices_IsUserInRole_InputMessage" />
@@ -217,6 +204,10 @@
     <wsdl:operation name="Update">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Update" message="tns:IUserServices_Update_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/UpdateResponse" message="tns:IUserServices_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateToken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ValidateToken" message="tns:IUserServices_ValidateToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ValidateTokenResponse" message="tns:IUserServices_ValidateToken_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserServices" type="tns:IUserServices">
@@ -275,8 +266,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetGenderNameById">
-      <soap:operation soapAction="http://tempuri.org/IUserServices/GetGenderNameById" style="document" />
+    <wsdl:operation name="GenerateToken">
+      <soap:operation soapAction="http://tempuri.org/IUserServices/GenerateToken" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -304,24 +295,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetRoles">
       <soap:operation soapAction="http://tempuri.org/IUserServices/GetRoles" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTownNameById">
-      <soap:operation soapAction="http://tempuri.org/IUserServices/GetTownNameById" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTypeNameById">
-      <soap:operation soapAction="http://tempuri.org/IUserServices/GetTypeNameById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -403,6 +376,15 @@
     </wsdl:operation>
     <wsdl:operation name="Update">
       <soap:operation soapAction="http://tempuri.org/IUserServices/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateToken">
+      <soap:operation soapAction="http://tempuri.org/IUserServices/ValidateToken" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
