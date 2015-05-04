@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -16,6 +17,9 @@ namespace BankServices.BankTransaction
 
         [OperationContract]
         TransactionView GetTransactionDetails(int id);
+
+        [OperationContract]
+        IEnumerable<TransactionTypeView> GetTransactionTypes();
 
         //[OperationContract]
         //void Deposit(TransactionView item);
@@ -65,5 +69,15 @@ namespace BankServices.BankTransaction
 
         [DataMember]
         public string Remarks { get; set; }
+    }
+
+    [DataContract]
+    public class TransactionTypeView
+    {
+        [DataMember]
+        public int ID { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
     }
 }

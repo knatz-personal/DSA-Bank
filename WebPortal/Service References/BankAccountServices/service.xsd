@@ -80,10 +80,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ListUserUtilityAccounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListUserUtilityAccountsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BankServices.BankAccount" minOccurs="0" name="ListUserUtilityAccountsResult" nillable="true" type="q7:ArrayOfAccountView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BankServices.BankAccount" minOccurs="0" name="item" nillable="true" type="q7:AccountView" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BankServices.BankAccount" minOccurs="0" name="item" nillable="true" type="q8:AccountView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

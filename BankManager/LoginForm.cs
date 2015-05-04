@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankManager.UserServices;
 
@@ -20,31 +15,75 @@ namespace BankManager
 
         private void bttnLogin_Click(object sender, EventArgs e)
         {
-            using (var client = new UserServicesClient())
+            errorProvider1.Clear();
+            if (!string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                try
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+                using (var client = new UserServicesClient())
                 {
-                    bool isValidUser = client.Authenticate(txtUsername.Text, txtPassword.Text);
-                    int roleId = client.GetRoleIdByName("Manager");
-                    bool isManager = client.IsUserInRole(txtUsername.Text, roleId);
-                    if (isValidUser && isManager)
+                    try
                     {
-                        var form = new MainForm();
-                        form.Show();
-                        Hide();
+                        bool isValidUser = client.Authenticate(username, password);
+                        int roleId = client.GetRoleIdByName("Manager");
+                        bool isManager = client.IsUserInRole(username, roleId);
+                        if (isValidUser && isManager)
+                        {
+                            txtPassword.Text = string.Empty;
+                            txtUsername.Text = string.Empty;
+                            lblMessage.Text = string.Empty;
+                            errorProvider1.Clear();
+                            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is MainForm);
+
+                            if (formToShow != null)
+                            {
+                                formToShow.Show();
+                                Hide();
+                            }
+                            else
+                            {
+                                var form = new MainForm();
+                                form.Show();
+                                Hide();
+                            }
+                        }
+                        else
+                        {
+                            lblMessage.Text = @"Authentication failed!";
+                            lblMessage.ForeColor = Color.Red;
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        lblMessage.Text = @"Authentication failed!";
+                        lblMessage.Text = ex.Message;
                         lblMessage.ForeColor = Color.Red;
                     }
                 }
-                catch (Exception ex)
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtUsername.Text) && string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    lblMessage.Text = ex.Message;
-                    lblMessage.ForeColor = Color.Red;
+                    errorProvider1.SetError(txtUsername, "Username cannot be empty");
+                    errorProvider1.SetError(txtPassword, "Password cannot be empty");
+                }
+                else if (string.IsNullOrEmpty(txtUsername.Text))
+                {
+                    errorProvider1.SetError(txtUsername, "Username cannot be empty");
+                }
+                else
+                {
+                    errorProvider1.SetError(txtPassword, "Password cannot be empty");
                 }
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            txtPassword.Text = string.Empty;
+            txtUsername.Text = string.Empty;
+            lblMessage.Text = string.Empty;
+            errorProvider1.Clear();
         }
     }
 }

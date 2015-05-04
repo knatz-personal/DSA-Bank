@@ -303,6 +303,12 @@ namespace WebPortal.BankAccountServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/ListUserAccounts", ReplyAction="http://tempuri.org/IAccountServices/ListUserAccountsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/ListUserUtilityAccounts", ReplyAction="http://tempuri.org/IAccountServices/ListUserUtilityAccountsResponse")]
+        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserUtilityAccounts(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/ListUserUtilityAccounts", ReplyAction="http://tempuri.org/IAccountServices/ListUserUtilityAccountsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserUtilityAccountsAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Update", ReplyAction="http://tempuri.org/IAccountServices/UpdateResponse")]
         void Update(WebPortal.BankAccountServices.AccountView item);
         
@@ -383,6 +389,14 @@ namespace WebPortal.BankAccountServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserAccountsAsync(string username) {
             return base.Channel.ListUserAccountsAsync(username);
+        }
+        
+        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> ListUserUtilityAccounts(string username) {
+            return base.Channel.ListUserUtilityAccounts(username);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> ListUserUtilityAccountsAsync(string username) {
+            return base.Channel.ListUserUtilityAccountsAsync(username);
         }
         
         public void Update(WebPortal.BankAccountServices.AccountView item) {

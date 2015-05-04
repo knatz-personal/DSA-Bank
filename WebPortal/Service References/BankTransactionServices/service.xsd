@@ -41,10 +41,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTransactionTypes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransactionTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction" minOccurs="0" name="GetTransactionTypesResult" nillable="true" type="q4:ArrayOfTransactionTypeView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Create">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q4:TransactionView" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q5:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -56,7 +68,7 @@
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q5:TransactionView" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q6:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

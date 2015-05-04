@@ -1,0 +1,15 @@
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\BankManager.exe.config
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\BankManager.exe
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\BankManager.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\EntityFramework.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\System.Linq.Dynamic.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\EntityFramework.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.csprojResolveAssemblyReference.cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.LoggingForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.LoginForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.MainForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.Properties.Resources.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.TransactionHistoryForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.csproj.GenerateResource.Cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.exe
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.pdb

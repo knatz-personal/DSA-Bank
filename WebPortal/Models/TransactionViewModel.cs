@@ -60,12 +60,12 @@ namespace WebPortal.Models
         [Required]
         public decimal Amount { get; set; }
 
-        [Required]
+  
         [Display(Name = "Start Date")]
         [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
-        [Required]
+  
         [Display(Name = "End Date")]
         [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
@@ -99,5 +99,43 @@ namespace WebPortal.Models
 
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
+    }
+    
+    public class TransactionModel
+    {
+        [Key]
+        public int ID { get; set; }
+
+        [ScaffoldColumn(false)]
+        [DataType(DataType.DateTime)]
+        public DateTime DateIssued { get; set; }
+
+        [Required]
+        [Display(Name = @"Type")]
+        public int? TypeID { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        public string Remarks { get; set; }
+
+        [Required]
+        [Display(Name = @"Account From")]
+        public int? AccountFromID { get; set; }
+
+        [Required]
+        [Display(Name = @"Account To")]
+        public int? AccountToID { get; set; }
+
+        [Required]
+        public string Currency { get; set; }
+
+        [Required]
+        [Range(10,double.MaxValue,ErrorMessage = "The minimum starting balance is EUR 10")]
+        public decimal Amount { get; set; }
+
+        public SelectList Types { get; set; }
+        public IEnumerable<SelectListItem> MyAccounts { get; set; }
+        public IEnumerable<SelectListItem> UtilityAccounts { get; set; }
+        public SelectList Currencies { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace BankServices.CustomExceptions
 {
+        [Serializable]
     public class DataRelationException : Exception
     {
         public DataRelationException()

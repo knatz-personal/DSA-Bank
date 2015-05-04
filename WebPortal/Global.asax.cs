@@ -47,7 +47,7 @@ namespace WebPortal
                          " Message: " + objErr.Message ;
             using (var client = new ErrorLogServicesClient())
             {
-                client.Log(User.Identity.Name, err, objErr.InnerException.ToString());
+                client.Log(User.Identity.Name, err, ""+objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
             }
         }
     }

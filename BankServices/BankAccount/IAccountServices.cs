@@ -27,6 +27,9 @@ namespace BankServices.BankAccount
         IQueryable<AccountView> ListUserAccounts(string username);
 
         [OperationContract]
+        IQueryable<AccountView> ListUserUtilityAccounts(string username);
+
+        [OperationContract]
         void Update(AccountView item);
     }
 

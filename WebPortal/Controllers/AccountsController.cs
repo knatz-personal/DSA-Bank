@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
@@ -53,7 +54,6 @@ namespace WebPortal.Controllers
                             ID = a.ID,
                             Name = a.Name,
                             Remarks = a.Remarks,
-                            Username = a.Username,
                             Balance = a.Balance,
                             Currency = a.Currency,
                             TypeID = a.TypeID,
@@ -102,7 +102,7 @@ namespace WebPortal.Controllers
             using (var client = new AccountServicesClient())
             {
                 var model = client.GetAccountDetail(id);
-                return PartialView("_Details", new AccountViewModel
+                return PartialView("_Details", new AccountListItemModel
                 {
                     ID = model.ID,
                     TypeID = model.TypeID,
@@ -157,12 +157,14 @@ namespace WebPortal.Controllers
         }
 
         // GET: Balances
-        public ActionResult Index(int? page, int pageSize = 10)
+        public ActionResult Index(string q, int? p, int ps = 10)
         {
+            IEnumerable<AccountListItemModel> list = null;
             using (var client = new AccountServicesClient())
             {
-                IPagedList<AccountViewModel> list =
-                    client.ListUserAccounts(User.Identity.Name).Select(t => new AccountViewModel
+                  list =  client.ListUserAccounts(User.Identity.Name)
+                      .Where(s => s.Name.Contains(q ?? string.Empty) )
+                      .Select(t => new AccountListItemModel()
                     {
                         ID = t.ID,
                         TypeID = t.TypeID,
@@ -174,15 +176,25 @@ namespace WebPortal.Controllers
                         Currency = t.Currency,
                         Balance = t.Balance,
                         Remarks = t.Remarks
-                    }).ToPagedList(page ?? 1, pageSize);
-                return View(list);
+                    });
+           
             }
+
+            var results = new AccountViewModel
+            {
+                AccountsPagedList = list.ToPagedList(p ?? 1, ps)
+            };
+            Session["AccountsCurrentResults"] = results;
+            return Request.IsAjaxRequest()
+            ? (ActionResult)PartialView("_PagedList", results.AccountsPagedList)
+            : View(results);
         }
         private SelectList GetCurrencies()
         {
             using (var client = new AccountServicesClient())
             {
-                return new SelectList(client.GetCurrencyList());
+                var list = client.GetCurrencyList();
+                return new SelectList(list, list.Find(e=>e.Equals("EUR")));
             }
         }
 
@@ -198,7 +210,7 @@ namespace WebPortal.Controllers
         {
             using (var client = new AccountServicesClient())
             {
-                return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name","EUR");
             }
 
         }

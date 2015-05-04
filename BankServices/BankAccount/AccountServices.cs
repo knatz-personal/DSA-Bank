@@ -100,6 +100,24 @@ namespace BankServices.BankAccount
             });
         }
 
+        public IQueryable<AccountView> ListUserUtilityAccounts(string username)
+        {
+            return new AccountsRepo().ListByUsername(username).Where(a => a.AccountType.Name == "Utility")
+                .Select(t => new AccountView
+            {
+                ID = t.ID,
+                TypeID = t.TypeID,
+                TypeName = t.AccountType.Name,
+                DateOpened = t.DateOpened,
+                Username = t.Username,
+                Name = t.Name,
+                ExpiryDate = t.ExpiryDate,
+                Currency = t.Currency,
+                Balance = t.Balance,
+                Remarks = t.Remarks
+            });
+        }
+
         public void Update(AccountView item)
         {
             new AccountsRepo().Update(new Account

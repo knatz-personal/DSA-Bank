@@ -27,7 +27,7 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="287587ae-26c0-495a-a31c-5c3373217ca9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="64907fef-33ad-4138-b331-1450114f490c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ad0d8267-fb8b-426b-988b-f7a15afc50fb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
-    <MetadataFile FileName="BankServices.xsd" MetadataType="Schema" ID="ee140af2-4cdb-49d9-92b1-0d0f235a76e1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
+    <MetadataFile FileName="BankServices.BankTransaction.xsd" MetadataType="Schema" ID="8c39b3e7-74cc-45a4-ac8c-b35e512caf5a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

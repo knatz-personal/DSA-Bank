@@ -15,7 +15,7 @@ namespace BankManager.BankTransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/BankServices")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction")]
     [System.SerializableAttribute()]
     public partial class TransactionView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -45,6 +45,9 @@ namespace BankManager.BankTransactionServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -160,6 +163,80 @@ namespace BankManager.BankTransactionServices {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction")]
+    [System.SerializableAttribute()]
+    public partial class TransactionTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -179,6 +256,24 @@ namespace BankManager.BankTransactionServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListTransactionsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
+        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListUserTransactions(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
+        BankManager.BankTransactionServices.TransactionView GetTransactionDetails(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
+        System.Threading.Tasks.Task<BankManager.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
+        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView> GetTransactionTypes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView>> GetTransactionTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/Create", ReplyAction="http://tempuri.org/ITransactionServices/CreateResponse")]
         void Create(BankManager.BankTransactionServices.TransactionView item);
@@ -232,6 +327,30 @@ namespace BankManager.BankTransactionServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListTransactionsAsync() {
             return base.Channel.ListTransactionsAsync();
+        }
+        
+        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListUserTransactions(string username) {
+            return base.Channel.ListUserTransactions(username);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username) {
+            return base.Channel.ListUserTransactionsAsync(username);
+        }
+        
+        public BankManager.BankTransactionServices.TransactionView GetTransactionDetails(int id) {
+            return base.Channel.GetTransactionDetails(id);
+        }
+        
+        public System.Threading.Tasks.Task<BankManager.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id) {
+            return base.Channel.GetTransactionDetailsAsync(id);
+        }
+        
+        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView> GetTransactionTypes() {
+            return base.Channel.GetTransactionTypes();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView>> GetTransactionTypesAsync() {
+            return base.Channel.GetTransactionTypesAsync();
         }
         
         public void Create(BankManager.BankTransactionServices.TransactionView item) {

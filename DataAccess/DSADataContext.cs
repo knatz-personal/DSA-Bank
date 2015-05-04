@@ -6,27 +6,30 @@ namespace DataAccess
 {
     public class DsaDataContext : DbContext
     {
-
-        public DsaDataContext()
-            : base("name=DefaultConnection")
+        public DsaDataContext(): base("name=DefaultConnection")
         {
             //connection with highest database permissions
         }
 
-        public DsaDataContext(String connectionString)
-            : base("name=" + connectionString)
+        public DsaDataContext(String connectionString): base("name=" + connectionString)
         {
         }
 
         public DbSet<Account> Accounts { get; set; }
 
+        public DbSet<AccountType> AccountTypes { get; set; }
+
         public DbSet<Appointment> Appointments { get; set; }
 
-        public DbSet<ErrorLog> Errors { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
 
-        public DbSet<EventLog> Events { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
+
+        public DbSet<EventLog> EventLogs { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
+
+        public DbSet<InterestRate> InterestRates { get; set; }
 
         public DbSet<Menu> Menus { get; set; }
 
@@ -36,12 +39,11 @@ namespace DataAccess
 
         public DbSet<Transaction> Transactions { get; set; }
 
+        public DbSet<TransactionType> TransactionTypes { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserType> UserTypes { get; set; }
-        public DbSet<TransactionType> TransactionTypes { get; set; }
-        public DbSet<AccountType> AccountTypes { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
-        public DbSet<ErrorLog> ErrorLogs { get; set; }
+
     }
 }

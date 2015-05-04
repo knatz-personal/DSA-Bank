@@ -25,13 +25,15 @@ namespace DataAccess.EntityModel
         public Nullable<int> TypeID { get; set; }
         public string Username { get; set; }
         public System.DateTime DateOpened { get; set; }
-        public Nullable<System.DateTime> ExpiryDate { get; set; }
         public decimal Balance { get; set; }
         public string Currency { get; set; }
         public string Remarks { get; set; }
+        public Nullable<int> RateID { get; set; }
+        public Nullable<System.DateTime> ExpiryDate { get; set; }
     
         public virtual Currency Currency1 { get; set; }
         public virtual AccountType AccountType { get; set; }
+        public virtual InterestRate InterestRate { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
         public virtual ICollection<Transaction> Transactions1 { get; set; }

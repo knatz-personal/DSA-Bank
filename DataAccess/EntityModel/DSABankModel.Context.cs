@@ -13,10 +13,10 @@ namespace DataAccess.EntityModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DSABankEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public DSABankEntities()
-            : base("name=DSABankEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -32,6 +32,7 @@ namespace DataAccess.EntityModel
         public DbSet<ErrorLog> ErrorLogs { get; set; }
         public DbSet<EventLog> EventLogs { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<InterestRate> InterestRates { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Town> Towns { get; set; }

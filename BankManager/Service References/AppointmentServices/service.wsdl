@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AppointmentServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/BankServices.Appointment" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAppointmentServices_ListAppointments_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAppointments" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_ListAppointments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAppointmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_FilterAppointmentList_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterAppointmentList" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_FilterAppointmentList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterAppointmentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Schedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:Schedule" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Schedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Response_InputMessage">
+    <wsdl:part name="parameters" element="tns:Response" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Response_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IAppointmentServices_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAppointmentServices">
+    <wsdl:operation name="ListAppointments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentServices/ListAppointments" message="tns:IAppointmentServices_ListAppointments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentServices/ListAppointmentsResponse" message="tns:IAppointmentServices_ListAppointments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterAppointmentList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentServices/FilterAppointmentList" message="tns:IAppointmentServices_FilterAppointmentList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentServices/FilterAppointmentListResponse" message="tns:IAppointmentServices_FilterAppointmentList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentServices/Schedule" message="tns:IAppointmentServices_Schedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentServices/ScheduleResponse" message="tns:IAppointmentServices_Schedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Response">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentServices/Response" message="tns:IAppointmentServices_Response_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentServices/ResponseResponse" message="tns:IAppointmentServices_Response_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAppointmentServices/Delete" message="tns:IAppointmentServices_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAppointmentServices/DeleteResponse" message="tns:IAppointmentServices_Delete_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAppointmentServices" type="tns:IAppointmentServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListAppointments">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentServices/ListAppointments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterAppointmentList">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentServices/FilterAppointmentList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentServices/Schedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Response">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentServices/Response" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IAppointmentServices/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AppointmentServices">
+    <wsdl:port name="BasicHttpBinding_IAppointmentServices" binding="tns:BasicHttpBinding_IAppointmentServices">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

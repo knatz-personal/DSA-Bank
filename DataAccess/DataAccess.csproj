@@ -38,11 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
@@ -54,7 +55,6 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -69,6 +69,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <EntityDeploy Include="EntityModel\DSABankModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DSABankModel.Designer.cs</LastGenOutput>
@@ -86,7 +87,6 @@
       <DependentUpon>DSABankModel.edmx</DependentUpon>
       <LastGenOutput>DSABankModel.cs</LastGenOutput>
     </Content>
-    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,6 +135,9 @@
     <Compile Include="EntityModel\Gender.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\InterestRate.cs">
+      <DependentUpon>DSABankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Menu.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
@@ -173,9 +176,7 @@
     <Compile Include="Reposiitories\Users\UsersRepo.cs" />
     <Compile Include="Reposiitories\Users\UserTypesRepo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories.Transactions;
 
@@ -53,6 +54,15 @@ namespace BankServices.BankTransaction
                 Currency = t.Currency,
                 Remarks = t.Remarks
             };
+        }
+
+        public IEnumerable<TransactionTypeView> GetTransactionTypes()
+        {
+            return new TransactionTypesRepo().ListAll().Select(g => new TransactionTypeView
+            {
+                ID = g.ID,
+                Name = g.Name
+            });
         }
 
         public void Create(TransactionView item)

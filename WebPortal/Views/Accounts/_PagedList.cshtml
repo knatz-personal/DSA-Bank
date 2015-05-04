@@ -1,0 +1,89 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using WebPortal.Models
+@model IPagedList<AccountListItemModel>
+<table id="tblAccounts" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().TypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Remarks)
+            </th>
+            <th>
+                <a class="bttnNew btn btn-sm btn-default btn-block" href="@Url.Action("Create", "Accounts")" title="Create">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>New</span>
+                </a>
+            </th>
+        </tr>
+    </thead>
+    @if (!Model.Any())
+    {
+        <tbody>
+            <tr>
+                <td colspan="9" style="text-align: center;">
+                    <b>No records found matching your query.</b>
+                </td>
+            </tr>
+        </tbody>
+    }
+    else
+    {
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeName)
+                    </td>
+                    <td>
+                        @Html.Label(string.Format("{0} ", item.Currency))
+                        @Html.DisplayFor(modelItem => item.Balance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks, "TruncatedMultilineText")
+                    </td>
+                    <td style="width: 118px;">
+                        <a class="bttnEditThis btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Accounts", new {id = item.ID})" title="Edit">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">Edit</span>
+                        </a>
+                        <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.ID" href="@Url.Action("Details", "Accounts", new {id = item.ID})" title="Details">
+                            <i class="glyphicon glyphicon-list"></i>
+                            <span class="sr-only">Detail</span>
+                        </a>
+                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Accounts", new {id = item.ID})" title="Delete">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span class="sr-only">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="0">
+                    @Html.PagedListPager(Model, p => Url.Action("Index", "Accounts",
+                             new { p, q = Request.QueryString["q"] }),
+                             PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                                 PagedListRenderOptions.TwitterBootstrapPagerAligned,
+                                 new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "pagedList" }
+                                 ))
+
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>

@@ -1,0 +1,41 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav pull-right">
+        @if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+        {
+            <li>
+                <a href="@Url.Action("Manage", "Users" )" title="user name">
+                    <span>
+                        @User.Identity.Name
+                    </span>
+                    <i class="glyphicon glyphicon-user"></i>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="#" title="user name">
+                    <span>
+                        @User.Identity.Name
+                    </span>
+                    <i class="glyphicon glyphicon-user"></i>
+                </a>
+            </li>
+        }
+        <li>
+            @Html.ActionLink("Log Out", "Logout", "Users")
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav pull-right">
+        <li>
+            @Html.ActionLink("Register", "Register", "Users")
+        </li>
+        <li>
+            @Html.ActionLink("Log In", "Login", "Users")
+        </li>
+    </ul>
+}
