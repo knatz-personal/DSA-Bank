@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DSABankDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DSABankDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="ID" />
@@ -149,7 +149,7 @@
           </Key>
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Salt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="MiddleInitial" Type="nvarchar" MaxLength="10" />
           <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
@@ -461,70 +461,146 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DSABankDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="DSABankDbModel.Account" />
+          <EntitySet Name="AccountTypes" EntityType="DSABankDbModel.AccountType" />
+          <EntitySet Name="Appointments" EntityType="DSABankDbModel.Appointment" />
+          <EntitySet Name="Currencies" EntityType="DSABankDbModel.Currency" />
+          <EntitySet Name="ErrorLogs" EntityType="DSABankDbModel.ErrorLog" />
+          <EntitySet Name="EventLogs" EntityType="DSABankDbModel.EventLog" />
+          <EntitySet Name="Genders" EntityType="DSABankDbModel.Gender" />
+          <EntitySet Name="InterestRates" EntityType="DSABankDbModel.InterestRate" />
+          <EntitySet Name="Menus" EntityType="DSABankDbModel.Menu" />
+          <EntitySet Name="Roles" EntityType="DSABankDbModel.Role" />
+          <EntitySet Name="Towns" EntityType="DSABankDbModel.Town" />
+          <EntitySet Name="Transactions" EntityType="DSABankDbModel.Transaction" />
+          <EntitySet Name="TransactionTypes" EntityType="DSABankDbModel.TransactionType" />
+          <EntitySet Name="Users" EntityType="DSABankDbModel.User" />
+          <EntitySet Name="UserTypes" EntityType="DSABankDbModel.UserType" />
+          <AssociationSet Name="FK_Account_Currency" Association="DSABankDbModel.FK_Account_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_AccountTypes" Association="DSABankDbModel.FK_Accounts_AccountTypes">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_InterestRates" Association="DSABankDbModel.FK_Accounts_InterestRates">
+            <End Role="InterestRate" EntitySet="InterestRates" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Users" Association="DSABankDbModel.FK_Accounts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_FAccounts" Association="DSABankDbModel.FK_Transactions_FAccounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_TAccounts" Association="DSABankDbModel.FK_Transactions_TAccounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Users" Association="DSABankDbModel.FK_Appointments_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Currency" Association="DSABankDbModel.FK_Transaction_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Genders" Association="DSABankDbModel.FK_Users_Genders">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menus_Menus" Association="DSABankDbModel.FK_Menus_Menus">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Towns" Association="DSABankDbModel.FK_Users_Towns">
+            <End Role="Town" EntitySet="Towns" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_TransactionTypes" Association="DSABankDbModel.FK_Transactions_TransactionTypes">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserTypes" Association="DSABankDbModel.FK_Users_UserTypes">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="MenuRoles" Association="DSABankDbModel.MenuRoles">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="UserRoles" Association="DSABankDbModel.UserRoles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeID" Type="Int32" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateOpened" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="RateID" Type="Int32" />
           <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Currency1" Relationship="Self.FK_Account_Currency" FromRole="Accounts" ToRole="Currency" />
-          <NavigationProperty Name="AccountType" Relationship="Self.FK_Accounts_AccountTypes" FromRole="Accounts" ToRole="AccountTypes" />
-          <NavigationProperty Name="InterestRate" Relationship="Self.FK_Accounts_InterestRates" FromRole="Accounts" ToRole="InterestRates" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Accounts_Users" FromRole="Accounts" ToRole="Users" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_FAccounts" FromRole="Accounts" ToRole="Transactions" />
-          <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transactions_TAccounts" FromRole="Accounts" ToRole="Transactions" />
+          <NavigationProperty Name="Currency1" Relationship="DSABankDbModel.FK_Account_Currency" FromRole="Account" ToRole="Currency" />
+          <NavigationProperty Name="AccountType" Relationship="DSABankDbModel.FK_Accounts_AccountTypes" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="InterestRate" Relationship="DSABankDbModel.FK_Accounts_InterestRates" FromRole="Account" ToRole="InterestRate" />
+          <NavigationProperty Name="User" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
+          <NavigationProperty Name="Transactions" Relationship="DSABankDbModel.FK_Transactions_FAccounts" FromRole="Account" ToRole="Transaction" />
+          <NavigationProperty Name="Transactions1" Relationship="DSABankDbModel.FK_Transactions_TAccounts" FromRole="Account" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="AccountType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Accounts_AccountTypes" FromRole="AccountTypes" ToRole="Accounts" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Accounts_AccountTypes" FromRole="AccountType" ToRole="Account" />
         </EntityType>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="SuggestedDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SuggestedTime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsAccepted" Type="Boolean" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Appointments_Users" FromRole="Appointments" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="DSABankDbModel.FK_Appointments_Users" FromRole="Appointment" ToRole="User" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Name" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Currency" FromRole="Currency" ToRole="Accounts" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Currency" FromRole="Currency" ToRole="Transactions" />
+          <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Account_Currency" FromRole="Currency" ToRole="Account" />
+          <NavigationProperty Name="Transactions" Relationship="DSABankDbModel.FK_Transaction_Currency" FromRole="Currency" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="ErrorLog">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InnerException" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateTriggered" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EventLog">
@@ -533,8 +609,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SourceTable" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SourceTable" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Gender">
@@ -542,49 +618,49 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Genders" FromRole="Genders" ToRole="Users" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DSABankDbModel.FK_Users_Genders" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="InterestRate">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Rate" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Accounts_InterestRates" FromRole="InterestRates" ToRole="Accounts" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Accounts_InterestRates" FromRole="InterestRate" ToRole="Account" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SortOrder" Type="Int32" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Menus1" Relationship="Self.FK_Menus_Menus" FromRole="Menus" ToRole="Menus1" />
-          <NavigationProperty Name="Menu1" Relationship="Self.FK_Menus_Menus" FromRole="Menus1" ToRole="Menus" />
-          <NavigationProperty Name="Roles" Relationship="Self.MenuRoles" FromRole="Menus" ToRole="Roles" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menus1" Relationship="DSABankDbModel.FK_Menus_Menus" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Menu1" Relationship="DSABankDbModel.FK_Menus_Menus" FromRole="Menu1" ToRole="Menu" />
+          <NavigationProperty Name="Roles" Relationship="DSABankDbModel.MenuRoles" FromRole="Menu" ToRole="Role" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Menus" Relationship="Self.MenuRoles" FromRole="Roles" ToRole="Menus" />
-          <NavigationProperty Name="Users" Relationship="Self.UserRoles" FromRole="Roles" ToRole="Users" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menus" Relationship="DSABankDbModel.MenuRoles" FromRole="Role" ToRole="Menu" />
+          <NavigationProperty Name="Users" Relationship="DSABankDbModel.UserRoles" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Town">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Towns" FromRole="Towns" ToRole="Users" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DSABankDbModel.FK_Users_Towns" FromRole="Town" ToRole="User" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -595,298 +671,221 @@
           <Property Name="AccountToID" Type="Int32" />
           <Property Name="TypeID" Type="Int32" />
           <Property Name="DateIssued" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_Transactions_FAccounts" FromRole="Transactions" ToRole="Accounts" />
-          <NavigationProperty Name="Account1" Relationship="Self.FK_Transactions_TAccounts" FromRole="Transactions" ToRole="Accounts" />
-          <NavigationProperty Name="Currency1" Relationship="Self.FK_Transaction_Currency" FromRole="Transactions" ToRole="Currency" />
-          <NavigationProperty Name="TransactionType" Relationship="Self.FK_Transactions_TransactionTypes" FromRole="Transactions" ToRole="TransactionTypes" />
+          <NavigationProperty Name="Account" Relationship="DSABankDbModel.FK_Transactions_FAccounts" FromRole="Transaction" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="DSABankDbModel.FK_Transactions_TAccounts" FromRole="Transaction" ToRole="Account" />
+          <NavigationProperty Name="Currency1" Relationship="DSABankDbModel.FK_Transaction_Currency" FromRole="Transaction" ToRole="Currency" />
+          <NavigationProperty Name="TransactionType" Relationship="DSABankDbModel.FK_Transactions_TransactionTypes" FromRole="Transaction" ToRole="TransactionType" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_TransactionTypes" FromRole="TransactionTypes" ToRole="Transactions" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transactions" Relationship="DSABankDbModel.FK_Transactions_TransactionTypes" FromRole="TransactionType" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="MiddleInitial" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="GenderID" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="TownID" Type="Int32" />
           <Property Name="TypeID" Type="Int32" />
           <Property Name="Blocked" Type="Boolean" Nullable="false" />
           <Property Name="NoOfAttempts" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Accounts_Users" FromRole="Users" ToRole="Accounts" />
-          <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointments_Users" FromRole="Users" ToRole="Appointments" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_Users_Genders" FromRole="Users" ToRole="Genders" />
-          <NavigationProperty Name="Town" Relationship="Self.FK_Users_Towns" FromRole="Users" ToRole="Towns" />
-          <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserTypes" FromRole="Users" ToRole="UserTypes" />
-          <NavigationProperty Name="Roles" Relationship="Self.UserRoles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="User" ToRole="Account" />
+          <NavigationProperty Name="Appointments" Relationship="DSABankDbModel.FK_Appointments_Users" FromRole="User" ToRole="Appointment" />
+          <NavigationProperty Name="Gender" Relationship="DSABankDbModel.FK_Users_Genders" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="Town" Relationship="DSABankDbModel.FK_Users_Towns" FromRole="User" ToRole="Town" />
+          <NavigationProperty Name="UserType" Relationship="DSABankDbModel.FK_Users_UserTypes" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="Roles" Relationship="DSABankDbModel.UserRoles" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserTypes" FromRole="UserTypes" ToRole="Users" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DSABankDbModel.FK_Users_UserTypes" FromRole="UserType" ToRole="User" />
         </EntityType>
         <Association Name="FK_Account_Currency">
-          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
-          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Type="DSABankDbModel.Currency" Role="Currency" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currency">
               <PropertyRef Name="Name" />
             </Principal>
-            <Dependent Role="Accounts">
+            <Dependent Role="Account">
               <PropertyRef Name="Currency" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Accounts_AccountTypes">
-          <End Role="AccountTypes" Type="Self.AccountType" Multiplicity="0..1" />
-          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Type="DSABankDbModel.AccountType" Role="AccountType" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AccountTypes">
+            <Principal Role="AccountType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Accounts">
+            <Dependent Role="Account">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Accounts_InterestRates">
-          <End Role="InterestRates" Type="Self.InterestRate" Multiplicity="0..1" />
-          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Type="DSABankDbModel.InterestRate" Role="InterestRate" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InterestRates">
+            <Principal Role="InterestRate">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Accounts">
+            <Dependent Role="Account">
               <PropertyRef Name="RateID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Accounts_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="User">
               <PropertyRef Name="Username" />
             </Principal>
-            <Dependent Role="Accounts">
+            <Dependent Role="Account">
               <PropertyRef Name="Username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transactions_FAccounts">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Accounts">
+            <Principal Role="Account">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Transactions">
+            <Dependent Role="Transaction">
               <PropertyRef Name="AccountFromID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transactions_TAccounts">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Accounts">
+            <Principal Role="Account">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Transactions">
+            <Dependent Role="Transaction">
               <PropertyRef Name="AccountToID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Appointments_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="DSABankDbModel.Appointment" Role="Appointment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="User">
               <PropertyRef Name="Username" />
             </Principal>
-            <Dependent Role="Appointments">
+            <Dependent Role="Appointment">
               <PropertyRef Name="Username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transaction_Currency">
-          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
-          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <End Type="DSABankDbModel.Currency" Role="Currency" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currency">
               <PropertyRef Name="Name" />
             </Principal>
-            <Dependent Role="Transactions">
+            <Dependent Role="Transaction">
               <PropertyRef Name="Currency" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Genders">
-          <End Role="Genders" Type="Self.Gender" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Type="DSABankDbModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genders">
+            <Principal Role="Gender">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Users">
+            <Dependent Role="User">
               <PropertyRef Name="GenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Menus_Menus">
-          <End Role="Menus" Type="Self.Menu" Multiplicity="0..1" />
-          <End Role="Menus1" Type="Self.Menu" Multiplicity="*" />
+          <End Type="DSABankDbModel.Menu" Role="Menu" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Menu" Role="Menu1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Menus">
+            <Principal Role="Menu">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Menus1">
+            <Dependent Role="Menu1">
               <PropertyRef Name="ParentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Towns">
-          <End Role="Towns" Type="Self.Town" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Type="DSABankDbModel.Town" Role="Town" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Towns">
+            <Principal Role="Town">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Users">
+            <Dependent Role="User">
               <PropertyRef Name="TownID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transactions_TransactionTypes">
-          <End Role="TransactionTypes" Type="Self.TransactionType" Multiplicity="0..1" />
-          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <End Type="DSABankDbModel.TransactionType" Role="TransactionType" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TransactionTypes">
+            <Principal Role="TransactionType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Transactions">
+            <Dependent Role="Transaction">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_UserTypes">
-          <End Role="UserTypes" Type="Self.UserType" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Type="DSABankDbModel.UserType" Role="UserType" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserTypes">
+            <Principal Role="UserType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Users">
+            <Dependent Role="User">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="MenuRoles">
-          <End Role="Menus" Type="Self.Menu" Multiplicity="*" />
-          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+          <End Type="DSABankDbModel.Menu" Role="Menu" Multiplicity="*" />
+          <End Type="DSABankDbModel.Role" Role="Role" Multiplicity="*" />
         </Association>
         <Association Name="UserRoles">
-          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Type="DSABankDbModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="DSABankDbModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
-          <EntitySet Name="AccountTypes" EntityType="Self.AccountType" />
-          <EntitySet Name="Appointments" EntityType="Self.Appointment" />
-          <EntitySet Name="Currencies" EntityType="Self.Currency" />
-          <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLog" />
-          <EntitySet Name="EventLogs" EntityType="Self.EventLog" />
-          <EntitySet Name="Genders" EntityType="Self.Gender" />
-          <EntitySet Name="InterestRates" EntityType="Self.InterestRate" />
-          <EntitySet Name="Menus" EntityType="Self.Menu" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Towns" EntityType="Self.Town" />
-          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
-          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
-          <AssociationSet Name="FK_Account_Currency" Association="Self.FK_Account_Currency">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="Accounts" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Accounts_AccountTypes" Association="Self.FK_Accounts_AccountTypes">
-            <End Role="AccountTypes" EntitySet="AccountTypes" />
-            <End Role="Accounts" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Accounts_InterestRates" Association="Self.FK_Accounts_InterestRates">
-            <End Role="InterestRates" EntitySet="InterestRates" />
-            <End Role="Accounts" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Accounts_Users" Association="Self.FK_Accounts_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Accounts" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_FAccounts" Association="Self.FK_Transactions_FAccounts">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_TAccounts" Association="Self.FK_Transactions_TAccounts">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Appointments_Users" Association="Self.FK_Appointments_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Appointments" EntitySet="Appointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transaction_Currency" Association="Self.FK_Transaction_Currency">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Genders" Association="Self.FK_Users_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menus_Menus" Association="Self.FK_Menus_Menus">
-            <End Role="Menus" EntitySet="Menus" />
-            <End Role="Menus1" EntitySet="Menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Towns" Association="Self.FK_Users_Towns">
-            <End Role="Towns" EntitySet="Towns" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Transactions_TransactionTypes" Association="Self.FK_Transactions_TransactionTypes">
-            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
-            <End Role="UserTypes" EntitySet="UserTypes" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="MenuRoles" Association="Self.MenuRoles">
-            <End Role="Menus" EntitySet="Menus" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="UserRoles" Association="Self.UserRoles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -895,181 +894,181 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DSABankDbModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="Currency" ColumnName="Currency" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="RateID" ColumnName="RateID" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="DateOpened" ColumnName="DateOpened" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AccountTypes">
             <EntityTypeMapping TypeName="DSABankDbModel.AccountType">
               <MappingFragment StoreEntitySet="AccountTypes">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="DSABankDbModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="SuggestedDate" ColumnName="SuggestedDate" />
-                <ScalarProperty Name="SuggestedTime" ColumnName="SuggestedTime" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SuggestedTime" ColumnName="SuggestedTime" />
+                <ScalarProperty Name="SuggestedDate" ColumnName="SuggestedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Currencies">
             <EntityTypeMapping TypeName="DSABankDbModel.Currency">
               <MappingFragment StoreEntitySet="Currency">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ErrorLogs">
             <EntityTypeMapping TypeName="DSABankDbModel.ErrorLog">
               <MappingFragment StoreEntitySet="ErrorLog">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
                 <ScalarProperty Name="DateTriggered" ColumnName="DateTriggered" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EventLogs">
             <EntityTypeMapping TypeName="DSABankDbModel.EventLog">
               <MappingFragment StoreEntitySet="EventLog">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="SourceTable" ColumnName="SourceTable" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="SourceTable" ColumnName="SourceTable" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genders">
             <EntityTypeMapping TypeName="DSABankDbModel.Gender">
               <MappingFragment StoreEntitySet="Genders">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InterestRates">
             <EntityTypeMapping TypeName="DSABankDbModel.InterestRate">
               <MappingFragment StoreEntitySet="InterestRates">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="DSABankDbModel.Menu">
               <MappingFragment StoreEntitySet="Menus">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
                 <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="DSABankDbModel.Role">
               <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Towns">
             <EntityTypeMapping TypeName="DSABankDbModel.Town">
               <MappingFragment StoreEntitySet="Towns">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="DSABankDbModel.Transaction">
               <MappingFragment StoreEntitySet="Transactions">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="AccountFromID" ColumnName="AccountFromID" />
-                <ScalarProperty Name="AccountToID" ColumnName="AccountToID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Currency" ColumnName="Currency" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="AccountToID" ColumnName="AccountToID" />
+                <ScalarProperty Name="AccountFromID" ColumnName="AccountFromID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TransactionTypes">
             <EntityTypeMapping TypeName="DSABankDbModel.TransactionType">
               <MappingFragment StoreEntitySet="TransactionTypes">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DSABankDbModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="TownID" ColumnName="TownID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
                 <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TownID" ColumnName="TownID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleInitial" ColumnName="MiddleInitial" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserTypes">
             <EntityTypeMapping TypeName="DSABankDbModel.UserType">
               <MappingFragment StoreEntitySet="UserTypes">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="MenuRoles" TypeName="DSABankDbModel.MenuRoles" StoreEntitySet="MenuRoles">
-            <EndProperty Name="Menus">
-              <ScalarProperty Name="ID" ColumnName="MenuID" />
-            </EndProperty>
-            <EndProperty Name="Roles">
+            <EndProperty Name="Role">
               <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Menu">
+              <ScalarProperty Name="ID" ColumnName="MenuID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UserRoles" TypeName="DSABankDbModel.UserRoles" StoreEntitySet="UserRoles">
-            <EndProperty Name="Roles">
-              <ScalarProperty Name="ID" ColumnName="RoleID" />
-            </EndProperty>
-            <EndProperty Name="Users">
+            <EndProperty Name="User">
               <ScalarProperty Name="Username" ColumnName="Username" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

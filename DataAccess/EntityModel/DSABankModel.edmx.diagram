@@ -5,36 +5,36 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4f933fd0ef874205b1d8d7d71decfdde" Name="Diagram1">
-        <EntityTypeShape EntityType="DSABankDbModel.Account" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.AccountType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Appointment" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Currency" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.ErrorLog" Width="1.5" PointX="7.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.EventLog" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Gender" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.InterestRate" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Menu" Width="1.5" PointX="1.5" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Role" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Town" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.Transaction" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.TransactionType" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.User" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DSABankDbModel.UserType" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
-        <AssociationConnector Association="DSABankDbModel.FK_Account_Currency" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Accounts_AccountTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Accounts_InterestRates" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Accounts_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Transactions_FAccounts" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Transactions_TAccounts" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Appointments_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Transaction_Currency" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Users_Genders" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Menus_Menus" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Users_Towns" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Transactions_TransactionTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.FK_Users_UserTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.MenuRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="DSABankDbModel.UserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DSABankDbModel.Account" Width="1.5" PointX="8.25" PointY="3.5" />
+        <EntityTypeShape EntityType="DSABankDbModel.AccountType" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="DSABankDbModel.Appointment" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="DSABankDbModel.Currency" Width="1.5" PointX="6" PointY="8.5" />
+        <EntityTypeShape EntityType="DSABankDbModel.ErrorLog" Width="1.5" PointX="2.75" PointY="9.375" />
+        <EntityTypeShape EntityType="DSABankDbModel.EventLog" Width="1.5" PointX="8.75" PointY="8.375" />
+        <EntityTypeShape EntityType="DSABankDbModel.Gender" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="DSABankDbModel.InterestRate" Width="1.5" PointX="6" PointY="11.125" />
+        <EntityTypeShape EntityType="DSABankDbModel.Menu" Width="1.5" PointX="1.5" PointY="14.375" />
+        <EntityTypeShape EntityType="DSABankDbModel.Role" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="DSABankDbModel.Town" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DSABankDbModel.Transaction" Width="1.5" PointX="10.5" PointY="3.875" />
+        <EntityTypeShape EntityType="DSABankDbModel.TransactionType" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DSABankDbModel.User" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="DSABankDbModel.UserType" Width="1.5" PointX="0.75" PointY="1.75" />
+        <AssociationConnector Association="DSABankDbModel.FK_Account_Currency" />
+        <AssociationConnector Association="DSABankDbModel.FK_Accounts_AccountTypes" />
+        <AssociationConnector Association="DSABankDbModel.FK_Accounts_InterestRates" />
+        <AssociationConnector Association="DSABankDbModel.FK_Accounts_Users" />
+        <AssociationConnector Association="DSABankDbModel.FK_Transactions_FAccounts" />
+        <AssociationConnector Association="DSABankDbModel.FK_Transactions_TAccounts" />
+        <AssociationConnector Association="DSABankDbModel.FK_Appointments_Users" />
+        <AssociationConnector Association="DSABankDbModel.FK_Transaction_Currency" />
+        <AssociationConnector Association="DSABankDbModel.FK_Users_Genders" />
+        <AssociationConnector Association="DSABankDbModel.FK_Menus_Menus" />
+        <AssociationConnector Association="DSABankDbModel.FK_Users_Towns" />
+        <AssociationConnector Association="DSABankDbModel.FK_Transactions_TransactionTypes" />
+        <AssociationConnector Association="DSABankDbModel.FK_Users_UserTypes" />
+        <AssociationConnector Association="DSABankDbModel.MenuRoles" />
+        <AssociationConnector Association="DSABankDbModel.UserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
