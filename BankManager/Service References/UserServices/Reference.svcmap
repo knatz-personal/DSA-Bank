@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ed838b10-ec2b-443f-8298-05b6491ee05a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="af919016-1155-4599-93f6-284dd27ff432" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3a0e31ad-3f59-4830-8439-9ae903208fc1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
-    <MetadataFile FileName="BankServices.UserAccount.xsd" MetadataType="Schema" ID="421fabf5-3605-475e-9ebb-cff4c26df130" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
-    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="5825e691-473e-4ebe-a581-0e93871b7789" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/UserServices/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="98b683a0-f7ea-4ae9-a298-14fe80f4d044" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="4c91dbe5-e5bc-4e4c-8132-b0cf9eadb5f9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="f128deb6-b41d-4e88-997e-2e4f9678ac74" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.UserAccount.xsd" MetadataType="Schema" ID="7e8e6352-6508-4e2f-b759-4a2a02236eaf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="System.Collections.Generic1.xsd" MetadataType="Schema" ID="d4a4e059-3987-478a-a6f9-a6b688bc2be4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

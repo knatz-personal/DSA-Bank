@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="287587ae-26c0-495a-a31c-5c3373217ca9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="64907fef-33ad-4138-b331-1450114f490c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ad0d8267-fb8b-426b-988b-f7a15afc50fb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
-    <MetadataFile FileName="BankServices.BankTransaction.xsd" MetadataType="Schema" ID="8c39b3e7-74cc-45a4-ac8c-b35e512caf5a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices/TransactionServices/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="986994b4-e914-43ea-810c-cd5d109abde2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="9dc168cb-dc73-4b77-8843-7da2eccf4c19" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="17c1b49d-0ac9-4c4d-b40b-02ebce51356f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.BankTransaction.xsd" MetadataType="Schema" ID="9c953556-40dc-43de-a1fe-525651f70104" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="KhWnt9KBtDIxS+WVWYkwqrfDorU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="muEdIR+k0+oITPl2P3A1d/8f6A0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAccountServices">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAccountServices" contract="BankAccountServices.IAccountServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/" bindingConfiguration="BasicHttpBinding_IAccountServices">
+    <endpoint name="BasicHttpBinding_IAccountServices" contract="BankAccountServices.IAccountServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/" bindingConfiguration="BasicHttpBinding_IAccountServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

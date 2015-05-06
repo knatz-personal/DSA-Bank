@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace BankManager
 
         private void TransactionHistoryForm_Load(object sender, EventArgs e)
         {
-            DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
-            dateTimePickerStart.Value = result;
-            dateTimePickerEnd.Value = result;
+            try
+            {
+                DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
+                dateTimePickerStart.Value = result;
+                dateTimePickerEnd.Value = result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

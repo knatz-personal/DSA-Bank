@@ -75,6 +75,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtAcoountNo = new System.Windows.Forms.TextBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -88,7 +89,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.txtAcoountNo = new System.Windows.Forms.TextBox();
             accountFromIDLabel = new System.Windows.Forms.Label();
             accountToIDLabel = new System.Windows.Forms.Label();
             amountLabel = new System.Windows.Forms.Label();
@@ -582,6 +582,15 @@
             this.label1.Text = "From Date:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtAcoountNo
+            // 
+            this.txtAcoountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAcoountNo.Location = new System.Drawing.Point(135, 5);
+            this.txtAcoountNo.Name = "txtAcoountNo";
+            this.txtAcoountNo.Size = new System.Drawing.Size(117, 20);
+            this.txtAcoountNo.TabIndex = 6;
+            this.txtAcoountNo.Text = "Account No";
+            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
@@ -709,15 +718,6 @@
             this.saveToolStripButton.Name = "saveToolStripButton";
             this.saveToolStripButton.Size = new System.Drawing.Size(23, 20);
             this.saveToolStripButton.Text = "&Save";
-            // 
-            // txtAcoountNo
-            // 
-            this.txtAcoountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAcoountNo.Location = new System.Drawing.Point(135, 5);
-            this.txtAcoountNo.Name = "txtAcoountNo";
-            this.txtAcoountNo.Size = new System.Drawing.Size(117, 20);
-            this.txtAcoountNo.TabIndex = 6;
-            this.txtAcoountNo.Text = "Account No";
             // 
             // TransactionHistoryForm
             // 

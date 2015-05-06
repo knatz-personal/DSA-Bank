@@ -15,7 +15,7 @@ namespace WebPortal.AppointmentServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AppointmentView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.Appointment")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AppointmentView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.Appointment")]
     [System.SerializableAttribute()]
     public partial class AppointmentView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -158,6 +158,18 @@ namespace WebPortal.AppointmentServices {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AppointmentServices.IAppointmentServices")]
     public interface IAppointmentServices {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/ListAppointments", ReplyAction="http://tempuri.org/IAppointmentServices/ListAppointmentsResponse")]
+        System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView> ListAppointments();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/ListAppointments", ReplyAction="http://tempuri.org/IAppointmentServices/ListAppointmentsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView>> ListAppointmentsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/FilterAppointmentList", ReplyAction="http://tempuri.org/IAppointmentServices/FilterAppointmentListResponse")]
+        System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView> FilterAppointmentList(System.Nullable<bool> isAccepted, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/FilterAppointmentList", ReplyAction="http://tempuri.org/IAppointmentServices/FilterAppointmentListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView>> FilterAppointmentListAsync(System.Nullable<bool> isAccepted, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/Schedule", ReplyAction="http://tempuri.org/IAppointmentServices/ScheduleResponse")]
         void Schedule(WebPortal.AppointmentServices.AppointmentView appointment);
         
@@ -169,6 +181,12 @@ namespace WebPortal.AppointmentServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/Response", ReplyAction="http://tempuri.org/IAppointmentServices/ResponseResponse")]
         System.Threading.Tasks.Task ResponseAsync(WebPortal.AppointmentServices.AppointmentView appointment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/Delete", ReplyAction="http://tempuri.org/IAppointmentServices/DeleteResponse")]
+        void Delete(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAppointmentServices/Delete", ReplyAction="http://tempuri.org/IAppointmentServices/DeleteResponse")]
+        System.Threading.Tasks.Task DeleteAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -198,6 +216,22 @@ namespace WebPortal.AppointmentServices {
                 base(binding, remoteAddress) {
         }
         
+        public System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView> ListAppointments() {
+            return base.Channel.ListAppointments();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView>> ListAppointmentsAsync() {
+            return base.Channel.ListAppointmentsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView> FilterAppointmentList(System.Nullable<bool> isAccepted, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterAppointmentList(isAccepted, start, end);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.AppointmentServices.AppointmentView>> FilterAppointmentListAsync(System.Nullable<bool> isAccepted, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterAppointmentListAsync(isAccepted, start, end);
+        }
+        
         public void Schedule(WebPortal.AppointmentServices.AppointmentView appointment) {
             base.Channel.Schedule(appointment);
         }
@@ -212,6 +246,14 @@ namespace WebPortal.AppointmentServices {
         
         public System.Threading.Tasks.Task ResponseAsync(WebPortal.AppointmentServices.AppointmentView appointment) {
             return base.Channel.ResponseAsync(appointment);
+        }
+        
+        public void Delete(int id) {
+            base.Channel.Delete(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteAsync(int id) {
+            return base.Channel.DeleteAsync(id);
         }
     }
 }

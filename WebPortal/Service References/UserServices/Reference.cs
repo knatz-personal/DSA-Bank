@@ -15,7 +15,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GenderView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GenderView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class GenderView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -76,7 +76,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RoleView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class RoleView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -137,7 +137,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class UserView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -454,7 +454,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TownView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TownView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class TownView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -515,7 +515,7 @@ namespace WebPortal.UserServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.UserAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class UserTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

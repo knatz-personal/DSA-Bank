@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="6aec64fc-2c7c-4851-a4fe-1f492d551594" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c963596a-2689-404c-b6ed-f7a0c99c734f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="dc00dd12-c4b4-4f8f-a2bf-affc354936ca" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="BankServices.Appointment.xsd" MetadataType="Schema" ID="fe31839c-e742-48e5-9e65-c4b45785bab7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="cc670633-398d-47f6-9455-fca252bae465" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="62b8480c-db04-4769-adf2-3b6258d5f957" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="c7810b3d-cfcb-422d-af6c-583a70664e20" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.Appointment.xsd" MetadataType="Schema" ID="ad2aa626-396c-4a5a-8c14-de34f8efb0c5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -32,11 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\DataAccess\bin\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
@@ -129,14 +132,14 @@
     <None Include="Service References\AppointmentServices\BankManager.AppointmentServices.AppointmentView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AppointmentServices\BankServices.Appointment.xsd">
+    <None Include="Service References\AppointmentServices\DSABusinessServices.Appointment.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service.wsdl" />
-    <None Include="Service References\AppointmentServices\service.xsd">
+    <None Include="Service References\AppointmentServices\service1.wsdl" />
+    <None Include="Service References\AppointmentServices\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service1.xsd">
+    <None Include="Service References\AppointmentServices\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\BankTransactionServices\BankManager.BankTransactionServices.TransactionTypeView.datasource">
@@ -145,14 +148,14 @@
     <None Include="Service References\BankTransactionServices\BankManager.BankTransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BankTransactionServices\BankServices.BankTransaction.xsd">
+    <None Include="Service References\BankTransactionServices\DSABusinessServices.BankTransaction.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankTransactionServices\service.wsdl" />
-    <None Include="Service References\BankTransactionServices\service.xsd">
+    <None Include="Service References\BankTransactionServices\service1.wsdl" />
+    <None Include="Service References\BankTransactionServices\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankTransactionServices\service1.xsd">
+    <None Include="Service References\BankTransactionServices\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\BankManager.UserServices.GenderView.datasource">
@@ -170,17 +173,17 @@
     <None Include="Service References\UserServices\BankManager.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserServices\BankServices.UserAccount.xsd">
+    <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service.wsdl" />
-    <None Include="Service References\UserServices\service.xsd">
+    <None Include="Service References\UserServices\service1.wsdl" />
+    <None Include="Service References\UserServices\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service1.xsd">
+    <None Include="Service References\UserServices\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\System.Collections.Generic.xsd">
+    <None Include="Service References\UserServices\System.Collections.Generic1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

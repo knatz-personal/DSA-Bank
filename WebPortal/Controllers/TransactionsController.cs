@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web.Mvc;
 using PagedList;
 using WebPortal.BankAccountServices;
-using WebPortal.BankTransactionServices;
 using WebPortal.Models;
+using WebPortal.TransactionServices;
 
 namespace WebPortal.Controllers
 {

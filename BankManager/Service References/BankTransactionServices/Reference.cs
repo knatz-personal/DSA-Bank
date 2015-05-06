@@ -15,7 +15,7 @@ namespace BankManager.BankTransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
     [System.SerializableAttribute()]
     public partial class TransactionView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -188,7 +188,7 @@ namespace BankManager.BankTransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/BankServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
     [System.SerializableAttribute()]
     public partial class TransactionTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

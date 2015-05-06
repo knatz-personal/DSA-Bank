@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="QIde5Mi8cOrorrJQd3GltJZ+BTE=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="q+aCUAI2CiwIAvotI5CzN4+pILw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_INavigationServices">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_INavigationServices" contract="NavigationServices.INavigationServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/" bindingConfiguration="BasicHttpBinding_INavigationServices">
+    <endpoint name="BasicHttpBinding_INavigationServices" contract="NavigationServices.INavigationServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/" bindingConfiguration="BasicHttpBinding_INavigationServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/BankServices/NavigationServices/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

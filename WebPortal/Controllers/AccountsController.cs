@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.Mvc;
 using PagedList;
 using WebPortal.BankAccountServices;
-using WebPortal.CurrencyConverterService;
 using WebPortal.Models;
 
 namespace WebPortal.Controllers

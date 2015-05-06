@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="8xuuSheOwRqRU5aBpNz8R2nwu54=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Y42wLGfs+atQg6zCh6evRT8ayRI=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAppointmentServices">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAppointmentServices" contract="AppointmentServices.IAppointmentServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/" bindingConfiguration="BasicHttpBinding_IAppointmentServices">
+    <endpoint name="BasicHttpBinding_IAppointmentServices" contract="AppointmentServices.IAppointmentServices" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/" bindingConfiguration="BasicHttpBinding_IAppointmentServices">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/BankServices.Appointment/AppointmentServices/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

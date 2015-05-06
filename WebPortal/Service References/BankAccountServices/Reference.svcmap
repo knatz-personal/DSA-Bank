@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="71e20f57-bc17-436d-ac52-0ecc8ce25c9c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9764bbad-558d-413e-855f-82a168ff222d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0f8872d1-f1b4-41be-b930-8a3d618bb029" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3ffbc408-b3f9-423c-949c-9f45ce40ac48" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2c066aea-095d-4804-9956-29d314a7fefb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="BankServices.BankAccount.xsd" MetadataType="Schema" ID="c1ed8902-fd15-4712-b00b-edfc917cf6a0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="7290abc2-f83d-41f8-81b2-9aa2a92a6ec0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BankServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="83fa8380-07aa-455b-918b-f57e0e3505e8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="57560be6-918b-4819-9444-d228f65fb9ee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="69b646ce-293f-4a88-86ef-33b88f5d9a15" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.BankAccount.xsd" MetadataType="Schema" ID="6e6f7b71-7da2-4c5d-b1de-a029bc28c357" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="37776df8-39ab-472f-a383-b4671b46a479" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

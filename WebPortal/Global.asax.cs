@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebPortal.ErrorLogService;
 using WebPortal.UserServices;
 
 namespace WebPortal
 {
-    public class MvcApplication : HttpApplication
+    public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
@@ -39,16 +37,17 @@ namespace WebPortal
                 Context.User = gp;
             }
         }
-
+/*
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception objErr = Server.GetLastError().GetBaseException();
-            string err ="Location: " + Request.Url +
-                         " Message: " + objErr.Message ;
+            string err = "Location: " + Request.Url +
+                         " Message: " + objErr.Message;
             using (var client = new ErrorLogServicesClient())
             {
-                client.Log(User.Identity.Name, err, ""+objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
+                client.Log(User.Identity.Name, err, "" + objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
             }
         }
+ */
     }
 }
