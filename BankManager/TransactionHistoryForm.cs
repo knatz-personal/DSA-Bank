@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankManager.BankTransactionServices;
+using SortOrder = BankManager.BankTransactionServices.SortOrder;
 
 namespace BankManager
 {
@@ -21,16 +15,9 @@ namespace BankManager
 
         private void TransactionHistoryForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
-                dateTimePickerStart.Value = result;
-                dateTimePickerEnd.Value = result;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+            DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
+            dateTimePickerStart.Value = result;
+            dateTimePickerEnd.Value = result;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,27 +62,42 @@ namespace BankManager
             DateTime start = dateTimePickerStart.Value;
             DateTime end = dateTimePickerEnd.Value;
 
+            if (txtAcoountNo.Text == string.Empty)
+            {
+                txtAcoountNo.Text = @"0";
+            }
+
             //filtered by client’s id, account id, date from- date to
             //sorted by date.
-
-            if (!string.IsNullOrEmpty(txtUsername.Text))
+            try
             {
-                using (var client = new TransactionServicesClient())
+                if (start.Date != end.Date)
                 {
-                    transactionBindingSource.DataSource = client.ListTransactions();
-                    transactionDataGrid.DataSource = transactionBindingSource;
-                } 
+                    using (var client = new TransactionServicesClient())
+                    {
+                        transactionBindingSource.DataSource = client.FilterTransactions(txtUsername.Text.Trim(),
+                            Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, start, end
+                            );
+                        transactionDataGrid.DataSource = transactionBindingSource;
+                    } 
+                }
+                else
+                {
+                    using (var client = new TransactionServicesClient())
+                    {
+                        transactionBindingSource.DataSource = client.FilterTransactions(txtUsername.Text.Trim(),
+                            Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, null, null
+                            );
+                        transactionDataGrid.DataSource = transactionBindingSource;
+                    } 
+                }
+                
             }
-            else
+            catch
             {
-                using (var client = new TransactionServicesClient())
-                {
-                    transactionBindingSource.DataSource = client.ListTransactions();
-                    transactionDataGrid.DataSource = transactionBindingSource;
-                } 
+                MessageBox.Show(@"Error loading records", @"Loading Records", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Asterisk);
             }
-
-            
         }
 
         private void transactionViewDataGrid_KeyDown(object sender, KeyEventArgs e)
@@ -131,8 +133,10 @@ namespace BankManager
             }
             else
             {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Asterisk);
             }
         }
+
     }
 }

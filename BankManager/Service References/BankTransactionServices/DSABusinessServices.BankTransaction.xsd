@@ -20,6 +20,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TransactionView" nillable="true" type="tns:TransactionView" />
+  <xs:simpleType name="SortOrder">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ascending" />
+      <xs:enumeration value="Descending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SortOrder" nillable="true" type="tns:SortOrder" />
   <xs:complexType name="ArrayOfTransactionTypeView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionTypeView" nillable="true" type="tns:TransactionTypeView" />

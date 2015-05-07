@@ -27,6 +27,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="FilterTransactions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="accountNo" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="order" type="q3:SortOrder" />
+        <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="end" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FilterTransactionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="FilterTransactionsResult" nillable="true" type="q4:ArrayOfTransactionView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetTransactionDetails">
     <xs:complexType>
       <xs:sequence>
@@ -37,7 +55,7 @@
   <xs:element name="GetTransactionDetailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="GetTransactionDetailsResult" nillable="true" type="q3:TransactionView" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="GetTransactionDetailsResult" nillable="true" type="q5:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -49,32 +67,8 @@
   <xs:element name="GetTransactionTypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="GetTransactionTypesResult" nillable="true" type="q4:ArrayOfTransactionTypeView" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="GetTransactionTypesResult" nillable="true" type="q6:ArrayOfTransactionTypeView" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Create">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q5:TransactionView" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Update">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q6:TransactionView" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="Delete">
