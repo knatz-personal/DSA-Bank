@@ -58,5 +58,10 @@ namespace DataAccess.Reposiitories.Transactions
         {
             return _db.Transactions.Where(t => t.Account.Username == username || t.Account1.Username == username);
         }
+
+        public IQueryable<Transaction> ListByAccountNumber(int accountNo)
+        {
+            return _db.Transactions.Where(t => t.Account.ID == accountNo || t.Account1.ID == accountNo);
+        }
     }
 }

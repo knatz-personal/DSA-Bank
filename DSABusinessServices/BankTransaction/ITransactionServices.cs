@@ -12,8 +12,13 @@ namespace DSABusinessServices.BankTransaction
         [OperationContract]
         IQueryable<TransactionView> ListTransactions();
 
-        [OperationContract]
+         [OperationContract]
         IQueryable<TransactionView> ListUserTransactions(string username);
+
+        [OperationContract]
+        IQueryable<TransactionView> FilterTransactions(string username, int accountNo,
+            SortOrder order, DateTime? start, DateTime? end);
+        
 
         [OperationContract]
         TransactionView GetTransactionDetails(int id);
@@ -29,12 +34,6 @@ namespace DSABusinessServices.BankTransaction
 
         //[OperationContract]
         //void PayBill(TransactionView item);
-
-        [OperationContract]
-        void Create(TransactionView item);
-
-        [OperationContract]
-        void Update(TransactionView item);
 
         [OperationContract]
         void Delete(int id);
