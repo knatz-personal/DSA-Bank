@@ -27,6 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPortal", "WebPortal\WebP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSABusinessServices", "DSABusinessServices\DSABusinessServices.csproj", "{2BC4E919-DABC-4276-B03D-D0FED61B75CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenGenerator", "TokenGenerator\TokenGenerator.csproj", "{D5CD46A7-65E4-44A2-B555-2079251E17E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2BC4E919-DABC-4276-B03D-D0FED61B75CC} = {2BC4E919-DABC-4276-B03D-D0FED61B75CC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +58,10 @@ Global
 		{2BC4E919-DABC-4276-B03D-D0FED61B75CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BC4E919-DABC-4276-B03D-D0FED61B75CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BC4E919-DABC-4276-B03D-D0FED61B75CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CD46A7-65E4-44A2-B555-2079251E17E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CD46A7-65E4-44A2-B555-2079251E17E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CD46A7-65E4-44A2-B555-2079251E17E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CD46A7-65E4-44A2-B555-2079251E17E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +72,6 @@ Global
 		{ECFFF1CC-A8C9-4FCE-9BF3-E934354659B8} = {91C6ACF2-0048-4CF8-9421-B61B12D500B8}
 		{20F1F405-F74B-4678-B346-57A1C0414CD6} = {91C6ACF2-0048-4CF8-9421-B61B12D500B8}
 		{2BC4E919-DABC-4276-B03D-D0FED61B75CC} = {D36DC2C1-FF02-4D8E-B0EC-7679E3FAF9AE}
+		{D5CD46A7-65E4-44A2-B555-2079251E17E5} = {91C6ACF2-0048-4CF8-9421-B61B12D500B8}
 	EndGlobalSection
 EndGlobal

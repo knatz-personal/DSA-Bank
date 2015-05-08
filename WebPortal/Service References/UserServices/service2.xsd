@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:element name="AllocateRole">
     <xs:complexType>
       <xs:sequence>
@@ -89,7 +88,7 @@
   <xs:element name="GenerateTokenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="GenerateTokenResult" type="q2:KeyValuePairOfstringstring" />
+        <xs:element minOccurs="0" name="GenerateTokenResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -103,7 +102,7 @@
   <xs:element name="GetRoleByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="GetRoleByIdResult" nillable="true" type="q3:RoleView" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="GetRoleByIdResult" nillable="true" type="q2:RoleView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -131,7 +130,7 @@
   <xs:element name="GetRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="GetRolesResult" nillable="true" type="q4:ArrayOfRoleView" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="GetRolesResult" nillable="true" type="q3:ArrayOfRoleView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -158,7 +157,7 @@
   <xs:element name="ListRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ListRolesResult" nillable="true" type="q5:ArrayOfRoleView" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ListRolesResult" nillable="true" type="q4:ArrayOfRoleView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -170,7 +169,7 @@
   <xs:element name="ListUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ListUsersResult" nillable="true" type="q6:ArrayOfUserView" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ListUsersResult" nillable="true" type="q5:ArrayOfUserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -184,14 +183,14 @@
   <xs:element name="ReadByUsernameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ReadByUsernameResult" nillable="true" type="q7:UserView" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="ReadByUsernameResult" nillable="true" type="q6:UserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q8:UserView" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q7:UserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -212,7 +211,7 @@
   <xs:element name="SearchResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="SearchResult" nillable="true" type="q9:ArrayOfUserView" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="SearchResult" nillable="true" type="q8:ArrayOfUserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -224,7 +223,7 @@
   <xs:element name="TownsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="TownsResult" nillable="true" type="q10:ArrayOfTownView" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="TownsResult" nillable="true" type="q9:ArrayOfTownView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -236,14 +235,14 @@
   <xs:element name="TypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="TypesResult" nillable="true" type="q11:ArrayOfUserTypeView" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="TypesResult" nillable="true" type="q10:ArrayOfUserTypeView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Update">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q12:UserView" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" minOccurs="0" name="user" nillable="true" type="q11:UserView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -255,7 +254,7 @@
   <xs:element name="ValidateToken">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="securityToken" type="q13:KeyValuePairOfstringstring" />
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

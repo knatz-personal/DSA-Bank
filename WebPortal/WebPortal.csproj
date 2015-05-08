@@ -157,6 +157,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ErrorLogServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\NavigationServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +236,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ErrorLogServices\configuration91.svcinfo" />
+    <None Include="Service References\ErrorLogServices\configuration.svcinfo" />
+    <None Include="Service References\ErrorLogServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -254,6 +265,13 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\CurrencyConvertorServices\CurrencyConvertor.wsdl" />
+    <None Include="Service References\ErrorLogServices\service.wsdl" />
+    <None Include="Service References\ErrorLogServices\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ErrorLogServices\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\NavigationServices\DSABusinessServices.Navigation.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -351,9 +369,6 @@
     <None Include="Service References\UserServices\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\System.Collections.Generic1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -388,6 +403,7 @@
     <WCFMetadataStorage Include="Service References\AppointmentServices\" />
     <WCFMetadataStorage Include="Service References\BankAccountServices\" />
     <WCFMetadataStorage Include="Service References\CurrencyConvertorServices\" />
+    <WCFMetadataStorage Include="Service References\ErrorLogServices\" />
     <WCFMetadataStorage Include="Service References\NavigationServices\" />
     <WCFMetadataStorage Include="Service References\TransactionServices\" />
     <WCFMetadataStorage Include="Service References\UserServices\" />

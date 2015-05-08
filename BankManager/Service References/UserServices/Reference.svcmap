@@ -28,7 +28,6 @@
     <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="4c91dbe5-e5bc-4e4c-8132-b0cf9eadb5f9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
     <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="f128deb6-b41d-4e88-997e-2e4f9678ac74" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
     <MetadataFile FileName="DSABusinessServices.UserAccount.xsd" MetadataType="Schema" ID="7e8e6352-6508-4e2f-b759-4a2a02236eaf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
-    <MetadataFile FileName="System.Collections.Generic1.xsd" MetadataType="Schema" ID="d4a4e059-3987-478a-a6f9-a6b688bc2be4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

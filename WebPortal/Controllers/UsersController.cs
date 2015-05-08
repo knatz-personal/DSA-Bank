@@ -53,7 +53,7 @@ namespace WebPortal.Controllers
             }
             catch (Exception e)
             {
-                return Json(new {Result = "OK", e.Message});
+                return Json(new { Result = "OK", e.Message });
             }
         }
 
@@ -187,7 +187,7 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("</tr>");
 
-                    return Json(new {result = "OK", html = htmlBuilder.ToString()});
+                    return Json(new { result = "OK", html = htmlBuilder.ToString() });
                 }
             }
             catch
@@ -197,33 +197,11 @@ namespace WebPortal.Controllers
             return Edit(id);
         }
 
-        [HttpGet]
-        public ActionResult GenerateToken()
-        {
-            try
-            {
-                using (var client = new UserServicesClient())
-                {
-                    Session["SecurityToken"] = client.GenerateToken();
-                    return
-                        Json(new {Result = "OK", Token = ((KeyValuePair<string, string>) Session["SecurityToken"]).Key});
-                }
-            }
-            catch
-            {
-                return Json(new {Result = "Fail", Message = "Could not generate a new token."});
-            }
-        }
-
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
-            using (var client = new UserServicesClient())
-            {
-                Session["SecurityToken"] = client.GenerateToken();
-                return View();
-            }
+            return View();
         }
 
         [ValidateAntiForgeryToken]
@@ -237,9 +215,9 @@ namespace WebPortal.Controllers
                 {
                     using (var client = new UserServicesClient())
                     {
-                        if (Session["SecurityToken"] != null)
+                        if (!string.IsNullOrEmpty(model.SecurityToken))
                         {
-                            if (client.ValidateToken((KeyValuePair<string, string>) Session["SecurityToken"]))
+                            if (client.ValidateToken(model.SecurityToken))
                             {
                                 if (client.Authenticate(model.Username, model.Password))
                                 {
@@ -401,8 +379,11 @@ namespace WebPortal.Controllers
 
                         if (isRegistered)
                         {
-                            FormsAuthentication.SetAuthCookie(model.Username, false);
-                            return RedirectToAction("Index", "Home");
+                            if (client.Authenticate(model.Username, model.Password))
+                            {
+                                FormsAuthentication.SetAuthCookie(model.Username, false);
+                                return RedirectToAction("Index", "Home");
+                            }
                         }
                     }
                 }
@@ -445,7 +426,7 @@ namespace WebPortal.Controllers
         private void OutputModelStateErrors()
         {
             var errors =
-                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new {x.Key, x.Value.Errors}).ToArray();
+                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
             foreach (var error in errors)
             {
                 Debug.WriteLine("Key: " + error.Key + " Errors: \t" + error.Errors[0].ErrorMessage);

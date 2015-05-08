@@ -146,9 +146,11 @@ namespace DataAccess.Reposiitories.Users
         /// <returns></returns>
         public bool Authenticate(string username, string password)
         {
+            bool isGenuine = false;
             User u = _db.Users.Find(username);
             string hpass = HashingUtil.GenerateSaltedHash(password, u.Salt);
-            return hpass == u.Password;
+            isGenuine = hpass == u.Password;
+            return isGenuine;
         }
 
 
@@ -158,10 +160,9 @@ namespace DataAccess.Reposiitories.Users
         /// <param name="username">The string user-name.</param>
         public void Block(string username)
         {
-            Read(new User
-            {
-                Username = username
-            }).Blocked = true;
+            var u = Read(new User { Username = username });
+            u.Blocked = true;
+            Update(u);
         }
 
         /// <summary>
@@ -169,7 +170,7 @@ namespace DataAccess.Reposiitories.Users
         /// </summary>
         /// <param name="username">username</param>
         /// <returns></returns>
-        public bool DoeUserNameExist(string username)
+        public bool DoesUserNameExist(string username)
         {
             bool ans;
             ans = _db.Users.Count(u => u.Username == username &&
@@ -183,7 +184,9 @@ namespace DataAccess.Reposiitories.Users
         /// <param name="username">The user-name.</param>
         public void IncrementNoOfAttempts(string username)
         {
-            Read(new User { Username = username }).NoOfAttempts++;
+            var u = Read(new User { Username = username });
+            u.NoOfAttempts++;
+            Update(u);
         }
 
         /// <summary>
@@ -192,7 +195,9 @@ namespace DataAccess.Reposiitories.Users
         /// <param name="username">The string user-name.</param>
         public void ResetNoOfAttempts(string username)
         {
-            Read(new User { Username = username }).NoOfAttempts = 0;
+            var u = Read(new User { Username = username});
+            u.NoOfAttempts = 0;
+            Update(u);
         }
 
         /// <summary>
@@ -201,7 +206,9 @@ namespace DataAccess.Reposiitories.Users
         /// <param name="username">The string user-name.</param>
         public void UnBlockUser(string username)
         {
-            Read(new User { Username = username }).Blocked = false;
+            var u = Read(new User { Username = username });
+            u.Blocked = false;
+            Update(u);
         }
 
         /// <summary>

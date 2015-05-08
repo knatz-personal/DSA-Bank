@@ -615,10 +615,10 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.UserServices.GenderView>> GendersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GenerateToken", ReplyAction="http://tempuri.org/IUserServices/GenerateTokenResponse")]
-        System.Collections.Generic.KeyValuePair<string, string> GenerateToken();
+        string GenerateToken();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GenerateToken", ReplyAction="http://tempuri.org/IUserServices/GenerateTokenResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<string, string>> GenerateTokenAsync();
+        System.Threading.Tasks.Task<string> GenerateTokenAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoleById", ReplyAction="http://tempuri.org/IUserServices/GetRoleByIdResponse")]
         WebPortal.UserServices.RoleView GetRoleById(int id);
@@ -693,10 +693,10 @@ namespace WebPortal.UserServices {
         System.Threading.Tasks.Task UpdateAsync(WebPortal.UserServices.UserView user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ValidateToken", ReplyAction="http://tempuri.org/IUserServices/ValidateTokenResponse")]
-        bool ValidateToken(System.Collections.Generic.KeyValuePair<string, string> securityToken);
+        bool ValidateToken(string securityToken);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ValidateToken", ReplyAction="http://tempuri.org/IUserServices/ValidateTokenResponse")]
-        System.Threading.Tasks.Task<bool> ValidateTokenAsync(System.Collections.Generic.KeyValuePair<string, string> securityToken);
+        System.Threading.Tasks.Task<bool> ValidateTokenAsync(string securityToken);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -774,11 +774,11 @@ namespace WebPortal.UserServices {
             return base.Channel.GendersAsync();
         }
         
-        public System.Collections.Generic.KeyValuePair<string, string> GenerateToken() {
+        public string GenerateToken() {
             return base.Channel.GenerateToken();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<string, string>> GenerateTokenAsync() {
+        public System.Threading.Tasks.Task<string> GenerateTokenAsync() {
             return base.Channel.GenerateTokenAsync();
         }
         
@@ -878,11 +878,11 @@ namespace WebPortal.UserServices {
             return base.Channel.UpdateAsync(user);
         }
         
-        public bool ValidateToken(System.Collections.Generic.KeyValuePair<string, string> securityToken) {
+        public bool ValidateToken(string securityToken) {
             return base.Channel.ValidateToken(securityToken);
         }
         
-        public System.Threading.Tasks.Task<bool> ValidateTokenAsync(System.Collections.Generic.KeyValuePair<string, string> securityToken) {
+        public System.Threading.Tasks.Task<bool> ValidateTokenAsync(string securityToken) {
             return base.Channel.ValidateTokenAsync(securityToken);
         }
     }

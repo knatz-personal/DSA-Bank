@@ -183,9 +183,6 @@
     <None Include="Service References\UserServices\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\System.Collections.Generic1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

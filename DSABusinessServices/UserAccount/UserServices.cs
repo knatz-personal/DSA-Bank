@@ -23,9 +23,9 @@ namespace DSABusinessServices.UserAccount
         {
             var user = new UsersRepo();
 
-            if (user.DoeUserNameExist(username))
+            if (user.DoesUserNameExist(username))
             {
-                User tmp = user.Read(new User {Username = username});
+                User tmp = user.Read(new User { Username = username });
                 if (tmp != null)
                 {
                     if (tmp.NoOfAttempts <= 3)
@@ -63,7 +63,7 @@ namespace DSABusinessServices.UserAccount
         {
             try
             {
-                User user = new UsersRepo().Read(new User {Username = username});
+                User user = new UsersRepo().Read(new User { Username = username });
                 new UsersRepo().Delete(user);
             }
             catch (Exception)
@@ -74,7 +74,7 @@ namespace DSABusinessServices.UserAccount
 
         public bool DoesUsernameExist(string username)
         {
-            return new UsersRepo().DoeUserNameExist(username);
+            return new UsersRepo().DoesUserNameExist(username);
         }
 
         public IEnumerable<GenderView> Genders()
@@ -86,20 +86,17 @@ namespace DSABusinessServices.UserAccount
             });
         }
 
-        public KeyValuePair<string, string> GenerateToken()
+        public string GenerateToken()
         {
-            DateTime current = DateTime.Now.AddMinutes(6);
-            string temp = Guid.NewGuid().ToString("N") + HashingUtil.GenerateSaltValue();
-            string token = EncryptionUtil.EncryptTripleDES(temp);
-            string dateTime =
-                EncryptionUtil.EncryptTripleDES(current.ToString(_dateFormat,
-                CultureInfo.InvariantCulture));
-            return new KeyValuePair<string, string>(token, dateTime);
+            DateTime current = DateTime.Now.AddMinutes(10);
+            string token = (current.ToFileTime() / 93939109) * 151 + "";
+            return token;
         }
+
 
         public RoleView GetRoleById(int id)
         {
-            Role r = new RolesRepo().Read(new Role {ID = id});
+            Role r = new RolesRepo().Read(new Role { ID = id });
             return new RoleView
             {
                 ID = r.ID,
@@ -114,11 +111,13 @@ namespace DSABusinessServices.UserAccount
 
         public IQueryable<RoleView> GetRoles(string username)
         {
-            return new RolesRepo().GetRolesOfUser(username).Select(r => new RoleView
+            var list = new RolesRepo().GetRolesOfUser(username).Select(r => new RoleView()
             {
                 ID = r.ID,
                 Name = r.Name
             });
+
+            return list;
         }
 
         public bool IsUserInRole(string username, int roleId)
@@ -164,7 +163,7 @@ namespace DSABusinessServices.UserAccount
 
         public UserView ReadByUsername(string username)
         {
-            User u = new UsersRepo().Read(new User {Username = username});
+            User u = new UsersRepo().Read(new User { Username = username });
             return new UserView
             {
                 Username = u.Username,
@@ -188,7 +187,7 @@ namespace DSABusinessServices.UserAccount
         {
             var usersRepo = new UsersRepo();
 
-            if (usersRepo.DoeUserNameExist(user.Username) == false)
+            if (usersRepo.DoesUserNameExist(user.Username) == false)
             {
                 try
                 {
@@ -300,28 +299,21 @@ namespace DSABusinessServices.UserAccount
             }
         }
 
-        public bool ValidateToken(KeyValuePair<string, string> securityToken)
+        public bool ValidateToken(string securityToken)
         {
-            //Check token expiry
             bool isValidToken = false;
-            int guidLength = 32;
-            string token = EncryptionUtil.DecryptTripleDES(securityToken.Key);
-            string dateTime = EncryptionUtil.DecryptTripleDES(securityToken.Value);
-            var temp = new Guid();
-            if (Guid.TryParse(token.Substring(0, guidLength), out temp))
+            try
             {
-                //is a valid GUID
-                DateTime date;
-                bool isValidTime = DateTime.TryParseExact(dateTime, _dateFormat, CultureInfo.InvariantCulture,
-                    DateTimeStyles.None, out date);
-                if (isValidTime)
+                long fileTime = (long)((Convert.ToDouble(securityToken) / 151) * 93939109);
+                DateTime date = DateTime.FromFileTime(fileTime);
+                //is valid date time value 
+                if (DateTime.Now < date)
                 {
-                    //is valid date time value 
-                    if (DateTime.Now < date)
-                    {
-                        isValidToken = true;
-                    }
+                    isValidToken = true;
                 }
+            }
+            catch
+            {
             }
             return isValidToken;
         }

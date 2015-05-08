@@ -28,7 +28,7 @@ namespace DSABusinessServices.UserAccount
         IEnumerable<GenderView> Genders();
 
         [OperationContract]
-        KeyValuePair<string, string> GenerateToken();
+        string GenerateToken();
 
         [OperationContract]
         RoleView GetRoleById(int id);
@@ -67,7 +67,7 @@ namespace DSABusinessServices.UserAccount
         void Update(UserView user);
 
         [OperationContract]
-        bool ValidateToken(KeyValuePair<string, string> securityToken);
+        bool ValidateToken(string securityToken);
     }
 
     [DataContract]
