@@ -37,8 +37,8 @@
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label remarksLabel;
             System.Windows.Forms.Label typeNameLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionHistoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionHistoryForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +50,18 @@
             this.errorsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.transactionDataGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.typeNameTextBox = new System.Windows.Forms.TextBox();
             this.iDTextBox = new System.Windows.Forms.TextBox();
             this.accountToIDTextBox = new System.Windows.Forms.TextBox();
             this.accountFromIDTextBox = new System.Windows.Forms.TextBox();
@@ -69,7 +79,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.bttnLoadRecords = new System.Windows.Forms.Button();
-            this.typeNameTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -83,15 +92,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             accountFromIDLabel = new System.Windows.Forms.Label();
             accountToIDLabel = new System.Windows.Forms.Label();
             amountLabel = new System.Windows.Forms.Label();
@@ -186,6 +186,17 @@
             remarksLabel.Size = new System.Drawing.Size(74, 231);
             remarksLabel.TabIndex = 12;
             remarksLabel.Text = "Remarks:";
+            // 
+            // typeNameLabel
+            // 
+            typeNameLabel.AutoSize = true;
+            typeNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            typeNameLabel.Location = new System.Drawing.Point(3, 188);
+            typeNameLabel.Name = "typeNameLabel";
+            typeNameLabel.Size = new System.Drawing.Size(74, 32);
+            typeNameLabel.TabIndex = 14;
+            typeNameLabel.Text = "Type:";
+            typeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // menuStrip1
             // 
@@ -302,6 +313,76 @@
             this.transactionDataGrid.TabIndex = 1;
             this.transactionDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.transactionViewDataGrid_KeyDown);
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "DateIssued";
+            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Date";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "TypeID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "TypeID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "TypeName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "AccountFromID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Account From";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "AccountToID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Account To";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Currency";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Currency";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Amount";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Amount";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Remarks";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Remarks";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            // 
             // transactionBindingSource
             // 
             this.transactionBindingSource.DataSource = typeof(BankManager.BankTransactionServices.TransactionView);
@@ -343,6 +424,16 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 479);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // typeNameTextBox
+            // 
+            this.typeNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.transactionBindingSource, "TypeName", true));
+            this.typeNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.typeNameTextBox.Location = new System.Drawing.Point(83, 191);
+            this.typeNameTextBox.Name = "typeNameTextBox";
+            this.typeNameTextBox.ReadOnly = true;
+            this.typeNameTextBox.Size = new System.Drawing.Size(186, 20);
+            this.typeNameTextBox.TabIndex = 15;
             // 
             // iDTextBox
             // 
@@ -528,34 +619,14 @@
             // bttnLoadRecords
             // 
             this.bttnLoadRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttnLoadRecords.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bttnLoadRecords.Location = new System.Drawing.Point(571, 17);
             this.bttnLoadRecords.Name = "bttnLoadRecords";
             this.bttnLoadRecords.Size = new System.Drawing.Size(126, 26);
             this.bttnLoadRecords.TabIndex = 1;
             this.bttnLoadRecords.Text = "Load";
-            this.bttnLoadRecords.UseVisualStyleBackColor = true;
+            this.bttnLoadRecords.UseVisualStyleBackColor = false;
             this.bttnLoadRecords.Click += new System.EventHandler(this.bttnLoadRecords_Click);
-            // 
-            // typeNameLabel
-            // 
-            typeNameLabel.AutoSize = true;
-            typeNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            typeNameLabel.Location = new System.Drawing.Point(3, 188);
-            typeNameLabel.Name = "typeNameLabel";
-            typeNameLabel.Size = new System.Drawing.Size(74, 32);
-            typeNameLabel.TabIndex = 14;
-            typeNameLabel.Text = "Type:";
-            typeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // typeNameTextBox
-            // 
-            this.typeNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.transactionBindingSource, "TypeName", true));
-            this.typeNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.typeNameTextBox.Location = new System.Drawing.Point(83, 191);
-            this.typeNameTextBox.Name = "typeNameTextBox";
-            this.typeNameTextBox.ReadOnly = true;
-            this.typeNameTextBox.Size = new System.Drawing.Size(186, 20);
-            this.typeNameTextBox.TabIndex = 15;
             // 
             // tableLayoutPanel4
             // 
@@ -693,76 +764,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Navigator";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DateIssued";
-            dataGridViewCellStyle1.Format = "D";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Date";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "TypeID";
-            this.dataGridViewTextBoxColumn8.HeaderText = "TypeID";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "TypeName";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Type";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "AccountFromID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Account From";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "AccountToID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Account To";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Currency";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Currency";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Amount";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Amount";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Remarks";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Remarks";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Visible = false;
             // 
             // TransactionHistoryForm
             // 

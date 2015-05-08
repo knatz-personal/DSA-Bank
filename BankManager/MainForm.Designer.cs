@@ -501,12 +501,13 @@
             // bttnLoadRecords
             // 
             this.bttnLoadRecords.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.bttnLoadRecords.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bttnLoadRecords.Location = new System.Drawing.Point(543, 3);
             this.bttnLoadRecords.Name = "bttnLoadRecords";
             this.bttnLoadRecords.Size = new System.Drawing.Size(105, 25);
             this.bttnLoadRecords.TabIndex = 9;
             this.bttnLoadRecords.Text = "Load";
-            this.bttnLoadRecords.UseVisualStyleBackColor = true;
+            this.bttnLoadRecords.UseVisualStyleBackColor = false;
             this.bttnLoadRecords.Click += new System.EventHandler(this.bttnLoadRecords_Click);
             // 
             // dateTimePickerEnd

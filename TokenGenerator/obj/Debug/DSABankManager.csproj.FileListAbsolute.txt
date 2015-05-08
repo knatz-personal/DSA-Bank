@@ -1,0 +1,10 @@
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\bin\Debug\DSABankManager.exe.config
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\bin\Debug\DSABankManager.exe
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\bin\Debug\DSABankManager.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.csprojResolveAssemblyReference.cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.BankManagerForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.LoginForm.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.Properties.Resources.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.csproj.GenerateResource.Cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.exe
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSABankPLC\DSABankManager\obj\Debug\DSABankManager.pdb
