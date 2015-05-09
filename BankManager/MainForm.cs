@@ -125,9 +125,12 @@ namespace BankManager
                 formToShow.Show();
                 appointmentDataGrid.DataSource = null;
                 appointmentDataGrid.Rows.Clear();
-                Hide();
-
             }
+            else
+            {
+                new LoginForm().Show();
+            }
+            Hide();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -183,7 +186,49 @@ namespace BankManager
         }
         private void transactionHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            new TransactionHistoryForm().Show();
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is TransactionHistoryForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                appointmentDataGrid.DataSource = null;
+                appointmentDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new TransactionHistoryForm().Show();
+            }
+            Hide();
+        }
+
+        private void eventMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is EventLogForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                appointmentDataGrid.DataSource = null;
+                appointmentDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new EventLogForm().Show();
+            }
+            Hide();
+        }
+
+        private void errorMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is ErrorLogForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                appointmentDataGrid.DataSource = null;
+                appointmentDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new ErrorLogForm().Show();
+            }
             Hide();
         }
     }

@@ -30,11 +30,15 @@ namespace BankManager
             Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is LoginForm);
             if (formToShow != null)
             {
-                Hide();
                 formToShow.Show();
                 transactionDataGrid.DataSource = null;
                 transactionDataGrid.Rows.Clear();
             }
+            else
+            {
+                new LoginForm().Show();
+            }
+            Hide();
         }
 
         private void appoinmentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,16 +46,15 @@ namespace BankManager
             Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is MainForm);
             if (formToShow != null)
             {
-                Hide();
                 formToShow.Show();
                 transactionDataGrid.DataSource = null;
                 transactionDataGrid.Rows.Clear();
             }
             else
             {
-                Hide();
                 new MainForm().Show();
             }
+            Hide();
         }
 
         private void bttnLoadRecords_Click(object sender, EventArgs e)
@@ -79,7 +82,7 @@ namespace BankManager
                             Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, start, end
                             );
                         transactionDataGrid.DataSource = transactionBindingSource;
-                    } 
+                    }
                 }
                 else
                 {
@@ -89,9 +92,8 @@ namespace BankManager
                             Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, null, null
                             );
                         transactionDataGrid.DataSource = transactionBindingSource;
-                    } 
+                    }
                 }
-                
             }
             catch
             {
@@ -138,5 +140,37 @@ namespace BankManager
             }
         }
 
+        private void eventsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is EventLogForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                transactionDataGrid.DataSource = null;
+                transactionDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new EventLogForm().Show();
+            }
+            Hide();
+        }
+
+        private void errorsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is ErrorLogForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                transactionDataGrid.DataSource = null;
+                transactionDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new ErrorLogForm().Show();
+            }
+            Hide();
+        }
+    
     }
 }

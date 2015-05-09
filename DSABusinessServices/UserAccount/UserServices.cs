@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using CommonUtils;
-using DataAccess.EntityModel;
+﻿using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
 using DataAccess.Reposiitories.Users;
 using DSABusinessServices.CustomExceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DSABusinessServices.UserAccount
 {
@@ -92,7 +90,6 @@ namespace DSABusinessServices.UserAccount
             string token = (current.ToFileTime() / 93939109) * 151 + "";
             return token;
         }
-
 
         public RoleView GetRoleById(int id)
         {
@@ -306,7 +303,7 @@ namespace DSABusinessServices.UserAccount
             {
                 long fileTime = (long)((Convert.ToDouble(securityToken) / 151) * 93939109);
                 DateTime date = DateTime.FromFileTime(fileTime);
-                //is valid date time value 
+                //is valid date time value
                 if (DateTime.Now < date)
                 {
                     isValidToken = true;

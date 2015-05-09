@@ -25,7 +25,7 @@ namespace DSABusinessServices.Navigation
         [OperationContract]
         void Delete(MenuView itemToDelete);
 
-        #endregion
+        #endregion CRUD
 
         [OperationContract]
         IEnumerable<MenuView> GetMenuByRole(int roleId);

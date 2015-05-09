@@ -36,9 +36,9 @@
             System.Windows.Forms.Label durationLabel;
             System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label isAcceptedLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +111,7 @@
             iDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             iDLabel.Location = new System.Drawing.Point(3, 0);
             iDLabel.Name = "iDLabel";
-            iDLabel.Size = new System.Drawing.Size(71, 22);
+            iDLabel.Size = new System.Drawing.Size(93, 22);
             iDLabel.TabIndex = 14;
             iDLabel.Text = "ID:";
             iDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,7 +122,7 @@
             usernameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             usernameLabel.Location = new System.Drawing.Point(3, 22);
             usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new System.Drawing.Size(71, 27);
+            usernameLabel.Size = new System.Drawing.Size(93, 27);
             usernameLabel.TabIndex = 15;
             usernameLabel.Text = "Username:";
             usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +133,7 @@
             suggestedDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             suggestedDateLabel.Location = new System.Drawing.Point(3, 49);
             suggestedDateLabel.Name = "suggestedDateLabel";
-            suggestedDateLabel.Size = new System.Drawing.Size(71, 27);
+            suggestedDateLabel.Size = new System.Drawing.Size(93, 27);
             suggestedDateLabel.TabIndex = 16;
             suggestedDateLabel.Text = "Suggested Date:";
             suggestedDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -144,7 +144,7 @@
             suggestedTimeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             suggestedTimeLabel.Location = new System.Drawing.Point(3, 76);
             suggestedTimeLabel.Name = "suggestedTimeLabel";
-            suggestedTimeLabel.Size = new System.Drawing.Size(71, 27);
+            suggestedTimeLabel.Size = new System.Drawing.Size(93, 27);
             suggestedTimeLabel.TabIndex = 17;
             suggestedTimeLabel.Text = "Suggested Time:";
             suggestedTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,7 +155,7 @@
             durationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             durationLabel.Location = new System.Drawing.Point(3, 103);
             durationLabel.Name = "durationLabel";
-            durationLabel.Size = new System.Drawing.Size(71, 25);
+            durationLabel.Size = new System.Drawing.Size(93, 25);
             durationLabel.TabIndex = 18;
             durationLabel.Text = "Duration:";
             durationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,7 +166,7 @@
             descriptionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             descriptionLabel.Location = new System.Drawing.Point(3, 128);
             descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new System.Drawing.Size(71, 315);
+            descriptionLabel.Size = new System.Drawing.Size(93, 315);
             descriptionLabel.TabIndex = 19;
             descriptionLabel.Text = "Description:";
             descriptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,7 +177,7 @@
             isAcceptedLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             isAcceptedLabel.Location = new System.Drawing.Point(3, 443);
             isAcceptedLabel.Name = "isAcceptedLabel";
-            isAcceptedLabel.Size = new System.Drawing.Size(71, 27);
+            isAcceptedLabel.Size = new System.Drawing.Size(93, 27);
             isAcceptedLabel.TabIndex = 20;
             isAcceptedLabel.Text = "Accept:";
             isAcceptedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -246,18 +246,20 @@
             this.eventMenuItem.Name = "eventMenuItem";
             this.eventMenuItem.Size = new System.Drawing.Size(103, 22);
             this.eventMenuItem.Text = "Event";
+            this.eventMenuItem.Click += new System.EventHandler(this.eventMenuItem_Click);
             // 
             // errorMenuItem
             // 
             this.errorMenuItem.Name = "errorMenuItem";
             this.errorMenuItem.Size = new System.Drawing.Size(103, 22);
             this.errorMenuItem.Text = "Error";
+            this.errorMenuItem.Click += new System.EventHandler(this.errorMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 327F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 356F));
             this.tableLayoutPanel1.Controls.Add(this.appointmentDataGrid, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
@@ -291,7 +293,7 @@
             this.appointmentDataGrid.Name = "appointmentDataGrid";
             this.appointmentDataGrid.ReadOnly = true;
             this.appointmentDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.appointmentDataGrid.Size = new System.Drawing.Size(651, 494);
+            this.appointmentDataGrid.Size = new System.Drawing.Size(622, 494);
             this.appointmentDataGrid.TabIndex = 8;
             this.appointmentDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.appointmentDataGrid_KeyDown);
             // 
@@ -321,9 +323,9 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "SuggestedDate";
-            dataGridViewCellStyle1.Format = "D";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Format = "D";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn5.HeaderText = "Date";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
@@ -331,9 +333,9 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "SuggestedTime";
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "t";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn6.HeaderText = "Time";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -348,8 +350,8 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "IsAccepted";
-            dataGridViewCellStyle3.NullValue = "Pending";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.NullValue = "Pending";
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn4.HeaderText = "Accepted";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
@@ -362,8 +364,8 @@
             // 
             this.tableLayoutPanel2.AutoScroll = true;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.0099F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.9901F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.36257F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.63743F));
             this.tableLayoutPanel2.Controls.Add(isAcceptedLabel, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.isAcceptedCheckBox, 1, 6);
             this.tableLayoutPanel2.Controls.Add(descriptionLabel, 0, 5);
@@ -379,7 +381,7 @@
             this.tableLayoutPanel2.Controls.Add(iDLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.iDTextBox, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(660, 40);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(631, 40);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 8;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.077263F));
@@ -390,7 +392,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.64017F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 494);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(350, 494);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // isAcceptedCheckBox
@@ -398,41 +400,44 @@
             this.isAcceptedCheckBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.isAcceptedCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.appointmentViewBindingSource, "IsAccepted", true));
             this.isAcceptedCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.isAcceptedCheckBox.Location = new System.Drawing.Point(80, 446);
+            this.isAcceptedCheckBox.Location = new System.Drawing.Point(102, 446);
             this.isAcceptedCheckBox.Name = "isAcceptedCheckBox";
-            this.isAcceptedCheckBox.Size = new System.Drawing.Size(238, 21);
+            this.isAcceptedCheckBox.Size = new System.Drawing.Size(245, 21);
             this.isAcceptedCheckBox.TabIndex = 21;
             this.isAcceptedCheckBox.UseVisualStyleBackColor = true;
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.BackColor = System.Drawing.Color.White;
             this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appointmentViewBindingSource, "Description", true));
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.descriptionTextBox.Location = new System.Drawing.Point(80, 131);
+            this.descriptionTextBox.Location = new System.Drawing.Point(102, 131);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
-            this.descriptionTextBox.Size = new System.Drawing.Size(238, 309);
+            this.descriptionTextBox.Size = new System.Drawing.Size(245, 309);
             this.descriptionTextBox.TabIndex = 20;
             // 
             // durationTextBox
             // 
+            this.durationTextBox.BackColor = System.Drawing.Color.White;
             this.durationTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appointmentViewBindingSource, "Duration", true));
             this.durationTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.durationTextBox.Location = new System.Drawing.Point(80, 106);
+            this.durationTextBox.Location = new System.Drawing.Point(102, 106);
             this.durationTextBox.Name = "durationTextBox";
             this.durationTextBox.ReadOnly = true;
-            this.durationTextBox.Size = new System.Drawing.Size(238, 20);
+            this.durationTextBox.Size = new System.Drawing.Size(245, 20);
             this.durationTextBox.TabIndex = 19;
             // 
             // suggestedTimeTextBox
             // 
+            this.suggestedTimeTextBox.BackColor = System.Drawing.Color.White;
             this.suggestedTimeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appointmentViewBindingSource, "SuggestedTime", true));
             this.suggestedTimeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.suggestedTimeTextBox.Location = new System.Drawing.Point(80, 79);
+            this.suggestedTimeTextBox.Location = new System.Drawing.Point(102, 79);
             this.suggestedTimeTextBox.Name = "suggestedTimeTextBox";
             this.suggestedTimeTextBox.ReadOnly = true;
-            this.suggestedTimeTextBox.Size = new System.Drawing.Size(238, 20);
+            this.suggestedTimeTextBox.Size = new System.Drawing.Size(245, 20);
             this.suggestedTimeTextBox.TabIndex = 18;
             // 
             // suggestedDateDateTimePicker
@@ -440,29 +445,31 @@
             this.suggestedDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.appointmentViewBindingSource, "SuggestedDate", true));
             this.suggestedDateDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.suggestedDateDateTimePicker.Enabled = false;
-            this.suggestedDateDateTimePicker.Location = new System.Drawing.Point(80, 52);
+            this.suggestedDateDateTimePicker.Location = new System.Drawing.Point(102, 52);
             this.suggestedDateDateTimePicker.Name = "suggestedDateDateTimePicker";
-            this.suggestedDateDateTimePicker.Size = new System.Drawing.Size(238, 20);
+            this.suggestedDateDateTimePicker.Size = new System.Drawing.Size(245, 20);
             this.suggestedDateDateTimePicker.TabIndex = 17;
             // 
             // usernameTextBox
             // 
+            this.usernameTextBox.BackColor = System.Drawing.Color.White;
             this.usernameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appointmentViewBindingSource, "Username", true));
             this.usernameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usernameTextBox.Location = new System.Drawing.Point(80, 25);
+            this.usernameTextBox.Location = new System.Drawing.Point(102, 25);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.ReadOnly = true;
-            this.usernameTextBox.Size = new System.Drawing.Size(238, 20);
+            this.usernameTextBox.Size = new System.Drawing.Size(245, 20);
             this.usernameTextBox.TabIndex = 16;
             // 
             // iDTextBox
             // 
+            this.iDTextBox.BackColor = System.Drawing.Color.White;
             this.iDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appointmentViewBindingSource, "ID", true));
             this.iDTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iDTextBox.Location = new System.Drawing.Point(80, 3);
+            this.iDTextBox.Location = new System.Drawing.Point(102, 3);
             this.iDTextBox.Name = "iDTextBox";
             this.iDTextBox.ReadOnly = true;
-            this.iDTextBox.Size = new System.Drawing.Size(238, 20);
+            this.iDTextBox.Size = new System.Drawing.Size(245, 20);
             this.iDTextBox.TabIndex = 15;
             // 
             // tableLayoutPanel3
@@ -485,7 +492,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(651, 31);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(622, 31);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // drpAppointmentState
@@ -495,16 +502,16 @@
             this.drpAppointmentState.FormattingEnabled = true;
             this.drpAppointmentState.Location = new System.Drawing.Point(3, 5);
             this.drpAppointmentState.Name = "drpAppointmentState";
-            this.drpAppointmentState.Size = new System.Drawing.Size(151, 21);
+            this.drpAppointmentState.Size = new System.Drawing.Size(144, 21);
             this.drpAppointmentState.TabIndex = 8;
             // 
             // bttnLoadRecords
             // 
             this.bttnLoadRecords.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.bttnLoadRecords.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.bttnLoadRecords.Location = new System.Drawing.Point(543, 3);
+            this.bttnLoadRecords.Location = new System.Drawing.Point(519, 3);
             this.bttnLoadRecords.Name = "bttnLoadRecords";
-            this.bttnLoadRecords.Size = new System.Drawing.Size(105, 25);
+            this.bttnLoadRecords.Size = new System.Drawing.Size(100, 25);
             this.bttnLoadRecords.TabIndex = 9;
             this.bttnLoadRecords.Text = "Load";
             this.bttnLoadRecords.UseVisualStyleBackColor = false;
@@ -513,48 +520,48 @@
             // dateTimePickerEnd
             // 
             this.dateTimePickerEnd.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(417, 5);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(399, 5);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(120, 20);
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(114, 20);
             this.dateTimePickerEnd.TabIndex = 6;
             // 
             // dateTimePickerStart
             // 
             this.dateTimePickerStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dateTimePickerStart.Location = new System.Drawing.Point(227, 5);
+            this.dateTimePickerStart.Location = new System.Drawing.Point(217, 5);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(125, 20);
+            this.dateTimePickerStart.Size = new System.Drawing.Size(119, 20);
             this.dateTimePickerStart.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(358, 0);
+            this.label1.Location = new System.Drawing.Point(342, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 31);
+            this.label1.Size = new System.Drawing.Size(51, 31);
             this.label1.TabIndex = 10;
-            this.label1.Text = "To Date:";
+            this.label1.Text = "To";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(160, 0);
+            this.label2.Location = new System.Drawing.Point(153, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 31);
+            this.label2.Size = new System.Drawing.Size(58, 31);
             this.label2.TabIndex = 11;
-            this.label2.Text = "From Date: ";
+            this.label2.Text = "From";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.appointmentViewBindingNavigator);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(660, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(631, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(321, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(350, 31);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // appointmentViewBindingNavigator
@@ -682,6 +689,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);

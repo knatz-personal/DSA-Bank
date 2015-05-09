@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using DataAccess.EntityModel;
+﻿using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
 using DataAccess.Reposiitories.Accounts;
 using DSABusinessServices.CustomExceptions;
+using System.Linq;
 
 namespace DSABusinessServices.BankAccount
 {
@@ -41,12 +41,12 @@ namespace DSABusinessServices.BankAccount
 
         public void Delete(int id)
         {
-            new AccountsRepo().Delete(new Account {ID = id});
+            new AccountsRepo().Delete(new Account { ID = id });
         }
 
         public AccountView GetAccountDetail(int id)
         {
-            Account acc = new AccountsRepo().Read(new Account {ID = id});
+            Account acc = new AccountsRepo().Read(new Account { ID = id });
             return (new AccountView
             {
                 ID = acc.ID,

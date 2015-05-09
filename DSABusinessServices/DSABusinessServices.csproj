@@ -62,8 +62,8 @@
     <Compile Include="CustomExceptions\TransactionFailedException.cs" />
     <Compile Include="CustomExceptions\UserAccountBlockedException.cs" />
     <Compile Include="CustomExceptions\UserAlreadyExistsException.cs" />
-    <Compile Include="Log\ErrorLogServices.cs" />
-    <Compile Include="Log\IErrorLogServices.cs" />
+    <Compile Include="Log\LogServices.cs" />
+    <Compile Include="Log\ILogServices.cs" />
     <Compile Include="Navigation\INavigationServices.cs" />
     <Compile Include="Navigation\NavigationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

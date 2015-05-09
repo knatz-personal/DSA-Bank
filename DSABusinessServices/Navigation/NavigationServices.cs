@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataAccess.EntityModel;
+﻿using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DSABusinessServices.Navigation
 {
@@ -37,7 +37,7 @@ namespace DSABusinessServices.Navigation
 
         public MenuView Read(MenuView menu)
         {
-            Menu m = new MenusRepo().Read(new Menu {ID = menu.ID});
+            Menu m = new MenusRepo().Read(new Menu { ID = menu.ID });
             return new MenuView
             {
                 ID = m.ID,

@@ -10,7 +10,8 @@ namespace DSABusinessServices.CustomExceptions
         {
         }
 
-        public UserAlreadyExistsException(string message) : base(message)
+        public UserAlreadyExistsException(string message)
+            : base(message)
         {
         }
 

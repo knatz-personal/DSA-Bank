@@ -14,7 +14,8 @@ namespace DSABusinessServices.CustomExceptions
         {
         }
 
-        public UserAccountBlockedException(string message, Exception innException) : base(message, innException)
+        public UserAccountBlockedException(string message, Exception innException)
+            : base(message, innException)
         {
         }
     }

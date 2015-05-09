@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DSABusinessServices.CustomExceptions
 {
-        [Serializable]
+    [Serializable]
     public class DataListException : Exception
     {
         public DataListException()

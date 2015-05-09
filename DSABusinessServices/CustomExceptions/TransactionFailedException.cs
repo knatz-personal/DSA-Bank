@@ -10,7 +10,8 @@ namespace DSABusinessServices.CustomExceptions
         {
         }
 
-        public TransactionFailedException(string message) : base(message)
+        public TransactionFailedException(string message)
+            : base(message)
         {
         }
 

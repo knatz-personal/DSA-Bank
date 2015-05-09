@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DSABusinessServices.CustomExceptions
 {
-        [Serializable]
+    [Serializable]
     public class DataRelationException : Exception
     {
         public DataRelationException()
@@ -11,7 +11,8 @@ namespace DSABusinessServices.CustomExceptions
         {
         }
 
-        public DataRelationException(string message) : base(message)
+        public DataRelationException(string message)
+            : base(message)
         {
         }
 

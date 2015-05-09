@@ -13,7 +13,6 @@ namespace DataAccess.Reposiitories.Logs
 
         public void Create(ErrorLog newItem)
         {
-
             _db.ErrorLogs.Add(newItem);
             _db.SaveChanges();
         }

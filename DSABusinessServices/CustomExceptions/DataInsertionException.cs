@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DSABusinessServices.CustomExceptions
 {
-        [Serializable]
+    [Serializable]
     public class DataInsertionException : Exception
     {
         public DataInsertionException()

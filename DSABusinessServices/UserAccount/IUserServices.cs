@@ -151,6 +151,7 @@ namespace DSABusinessServices.UserAccount
 
         [DataMember]
         public string Salt { get; set; }
+
         [DataMember]
         public int? TownID { get; set; }
 

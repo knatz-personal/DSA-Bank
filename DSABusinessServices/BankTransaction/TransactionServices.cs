@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DataAccess.EntityModel;
+using DataAccess.Reposiitories.Transactions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataAccess.EntityModel;
-using DataAccess.Reposiitories.Transactions;
 
 namespace DSABusinessServices.BankTransaction
 {
@@ -16,7 +16,7 @@ namespace DSABusinessServices.BankTransaction
     {
         public void Delete(int id)
         {
-            new TransactionsRepo().Delete(new Transaction {ID = id});
+            new TransactionsRepo().Delete(new Transaction { ID = id });
         }
 
         public IQueryable<TransactionView> FilterTransactions(string username, int accountNo, SortOrder order,
@@ -97,7 +97,7 @@ namespace DSABusinessServices.BankTransaction
 
         public TransactionView GetTransactionDetails(int id)
         {
-            Transaction t = new TransactionsRepo().Read(new Transaction {ID = id});
+            Transaction t = new TransactionsRepo().Read(new Transaction { ID = id });
             return new TransactionView
             {
                 ID = t.ID,
