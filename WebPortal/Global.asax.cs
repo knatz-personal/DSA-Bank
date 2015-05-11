@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using WebPortal.ErrorLogServices;
+using WebPortal.LoggingServices;
 using WebPortal.UserServices;
 
 namespace WebPortal
@@ -44,9 +43,9 @@ namespace WebPortal
             catch (Exception ex)
             {
                  FormsAuthentication.SignOut();
-                 using (var client = new ErrorLogServicesClient())
+                 using (var client = new LogServicesClient())
                  {
-                     client.Log(User.Identity.Name, ex.Message, "" + ex.InnerException == string.Empty ? "null" : ex.InnerException.ToString());
+                     client.LogError(User.Identity.Name, ex.Message, "" + ex.InnerException == string.Empty ? "null" : ex.InnerException.ToString());
                  }
             }
         }
@@ -56,9 +55,9 @@ namespace WebPortal
             Exception objErr = Server.GetLastError().GetBaseException();
             string err = "Location: " + Request.Url +
                          " Message: " + objErr.Message;
-            using (var client = new ErrorLogServicesClient())
+            using (var client = new LogServicesClient())
             {
-                client.Log(User.Identity.Name, err, "" + objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
+                client.LogError(User.Identity.Name, err, "" + objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
             }
         }
 

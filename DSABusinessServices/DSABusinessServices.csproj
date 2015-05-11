@@ -62,8 +62,8 @@
     <Compile Include="CustomExceptions\TransactionFailedException.cs" />
     <Compile Include="CustomExceptions\UserAccountBlockedException.cs" />
     <Compile Include="CustomExceptions\UserAlreadyExistsException.cs" />
-    <Compile Include="Log\LogServices.cs" />
     <Compile Include="Log\ILogServices.cs" />
+    <Compile Include="Log\LogServices.cs" />
     <Compile Include="Navigation\INavigationServices.cs" />
     <Compile Include="Navigation\NavigationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +83,7 @@
       <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
