@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e56d8c92-4615-4855-80ba-a003dfa905f7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ea38ef10-3ba7-4513-b95f-3a9febbc3f87" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="06baea72-d1bb-461d-9dd2-edd471fe86ee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="aaa69613-b0a3-4525-81e1-364409c9196e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.Log.xsd" MetadataType="Schema" ID="ea86018d-7fce-45e5-9134-e8915cfdf8fe" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

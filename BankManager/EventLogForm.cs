@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using BankManager.LoggingServices;
 
 namespace BankManager
 {
@@ -39,21 +38,21 @@ namespace BankManager
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            eventViewBindingSource.EndEdit();
-            if (!string.IsNullOrEmpty(iDTextBox.Text))
-            {
-                int id = Convert.ToInt32(iDTextBox.Text);
-                using (var client = new LogServicesClient())
-                {
-                    client.DeleteEvent(id);
-                }
-                eventViewBindingSource.RemoveCurrent();
-            }
-            else
-            {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Asterisk);
-            }
+            //eventViewBindingSource.EndEdit();
+            //if (!string.IsNullOrEmpty(iDTextBox.Text))
+            //{
+            //    int id = Convert.ToInt32(iDTextBox.Text);
+            //    using (var client = new LogServicesClient())
+            //    {
+            //        client.DeleteEvent(id);
+            //    }
+            //    eventViewBindingSource.RemoveCurrent();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+            //        MessageBoxIcon.Asterisk);
+            //}
         }
 
         private void transactionHistoryToolStripMenuItem_Click(object sender, EventArgs e)
