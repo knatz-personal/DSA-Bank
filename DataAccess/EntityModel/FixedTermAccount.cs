@@ -12,16 +12,16 @@ namespace DataAccess.EntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class InterestRate
+    public partial class FixedTermAccount
     {
-        public InterestRate()
-        {
-            this.Accounts = new HashSet<Account>();
-        }
+        public int AccountID { get; set; }
+        public Nullable<decimal> MaturityAmount { get; set; }
+        public Nullable<decimal> IncomeTaxDeduction { get; set; }
+        public Nullable<decimal> AccumulatedInterest { get; set; }
+        public Nullable<int> TermID { get; set; }
+        public Nullable<bool> IsExpired { get; set; }
     
-        public int ID { get; set; }
-        public decimal Rate { get; set; }
-    
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual Account Account { get; set; }
+        public virtual FixedTerm FixedTerm { get; set; }
     }
 }

@@ -89,7 +89,6 @@ namespace BankManager
 
         private void eventDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-
         }
 
         private void errorLogToolStripMenuItem_Click(object sender, EventArgs e)

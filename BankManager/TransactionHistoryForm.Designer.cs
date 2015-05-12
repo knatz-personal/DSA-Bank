@@ -71,8 +71,6 @@
             this.remarksTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtAcoountNo = new System.Windows.Forms.TextBox();
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
@@ -92,6 +90,8 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxUsername = new System.Windows.Forms.ComboBox();
+            this.comboBoxAccountNo = new System.Windows.Forms.ComboBox();
             accountFromIDLabel = new System.Windows.Forms.Label();
             accountToIDLabel = new System.Windows.Forms.Label();
             amountLabel = new System.Windows.Forms.Label();
@@ -387,7 +387,7 @@
             // 
             // transactionBindingSource
             // 
-            this.transactionBindingSource.DataSource = typeof(BankManager.BankTransactionServices.TransactionView);
+            this.transactionBindingSource.DataSource = typeof(BankManager.TransactionServices.TransactionView);
             // 
             // tableLayoutPanel2
             // 
@@ -523,14 +523,14 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.0422F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.62519F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtUsername, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtAcoountNo, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.dateTimePickerStart, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.label2, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.dateTimePickerEnd, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.bttnLoadRecords, 4, 1);
+            this.tableLayoutPanel3.Controls.Add(this.comboBoxUsername, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.comboBoxAccountNo, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -551,23 +551,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "From Date";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsername.Location = new System.Drawing.Point(3, 20);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(142, 20);
-            this.txtUsername.TabIndex = 0;
-            // 
-            // txtAcoountNo
-            // 
-            this.txtAcoountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAcoountNo.Location = new System.Drawing.Point(151, 20);
-            this.txtAcoountNo.MaxLength = 6;
-            this.txtAcoountNo.Name = "txtAcoountNo";
-            this.txtAcoountNo.Size = new System.Drawing.Size(125, 20);
-            this.txtAcoountNo.TabIndex = 6;
             // 
             // dateTimePickerStart
             // 
@@ -768,6 +751,28 @@
             this.label5.Text = "Navigator";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // comboBoxUsername
+            // 
+            this.comboBoxUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxUsername.FormattingEnabled = true;
+            this.comboBoxUsername.Location = new System.Drawing.Point(3, 19);
+            this.comboBoxUsername.Name = "comboBoxUsername";
+            this.comboBoxUsername.Size = new System.Drawing.Size(142, 21);
+            this.comboBoxUsername.TabIndex = 9;
+            // 
+            // comboBoxAccountNo
+            // 
+            this.comboBoxAccountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAccountNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxAccountNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxAccountNo.FormattingEnabled = true;
+            this.comboBoxAccountNo.Location = new System.Drawing.Point(151, 19);
+            this.comboBoxAccountNo.Name = "comboBoxAccountNo";
+            this.comboBoxAccountNo.Size = new System.Drawing.Size(125, 21);
+            this.comboBoxAccountNo.TabIndex = 10;
+            // 
             // TransactionHistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,7 +824,6 @@
         private System.Windows.Forms.ComboBox currencyComboBox;
         private System.Windows.Forms.TextBox accountToIDTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Button bttnLoadRecords;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerStart;
@@ -830,7 +834,6 @@
         private System.Windows.Forms.ToolStripMenuItem logsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem eventsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem errorsToolStripMenuItem1;
-        private System.Windows.Forms.TextBox txtAcoountNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox typeNameTextBox;
@@ -856,5 +859,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.ComboBox comboBoxUsername;
+        private System.Windows.Forms.ComboBox comboBoxAccountNo;
     }
 }

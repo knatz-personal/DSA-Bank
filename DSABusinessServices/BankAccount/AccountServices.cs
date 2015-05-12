@@ -17,7 +17,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = item.DateOpened,
                 Username = item.Username,
                 Name = item.Name,
-                ExpiryDate = item.ExpiryDate,
                 Currency = item.Currency,
                 Balance = item.Balance,
                 Remarks = item.Remarks
@@ -32,7 +31,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = result.DateOpened,
                 Username = result.Username,
                 Name = result.Name,
-                ExpiryDate = result.ExpiryDate,
                 Currency = result.Currency,
                 Balance = result.Balance,
                 Remarks = result.Remarks
@@ -55,7 +53,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = acc.DateOpened,
                 Username = acc.Username,
                 Name = acc.Name,
-                ExpiryDate = acc.ExpiryDate,
                 Currency = acc.Currency,
                 Balance = acc.Balance,
                 Remarks = acc.Remarks
@@ -93,7 +90,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = t.DateOpened,
                 Username = t.Username,
                 Name = t.Name,
-                ExpiryDate = t.ExpiryDate,
                 Currency = t.Currency,
                 Balance = t.Balance,
                 Remarks = t.Remarks
@@ -111,7 +107,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = t.DateOpened,
                 Username = t.Username,
                 Name = t.Name,
-                ExpiryDate = t.ExpiryDate,
                 Currency = t.Currency,
                 Balance = t.Balance,
                 Remarks = t.Remarks
@@ -127,7 +122,6 @@ namespace DSABusinessServices.BankAccount
                 DateOpened = item.DateOpened,
                 Username = item.Username,
                 Name = item.Name,
-                ExpiryDate = item.ExpiryDate,
                 Currency = item.Currency,
                 Balance = item.Balance,
                 Remarks = item.Remarks

@@ -158,6 +158,11 @@ namespace DSABusinessServices.UserAccount
             return list;
         }
 
+        public IQueryable<string> ListUsernames()
+        {
+            return new UsersRepo().GetUsernames().AsQueryable();
+        }
+
         public UserView ReadByUsername(string username)
         {
             User u = new UsersRepo().Read(new User { Username = username });

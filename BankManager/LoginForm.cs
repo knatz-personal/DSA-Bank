@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BankManager.UserServices;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using BankManager.UserServices;
 
 namespace BankManager
 {

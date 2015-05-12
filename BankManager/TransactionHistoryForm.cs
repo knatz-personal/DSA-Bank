@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using BankManager.BankTransactionServices;
-using SortOrder = BankManager.BankTransactionServices.SortOrder;
+using BankManager.TransactionServices;
+using SortOrder = BankManager.TransactionServices.SortOrder;
 
 namespace BankManager
 {
@@ -18,6 +18,12 @@ namespace BankManager
             DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
             dateTimePickerStart.Value = result;
             dateTimePickerEnd.Value = result;
+
+            //using (var client = new UserServicesClient())
+            //{
+            //    comboBoxUsername.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            //    client.
+            //}
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,9 +71,19 @@ namespace BankManager
             DateTime start = dateTimePickerStart.Value;
             DateTime end = dateTimePickerEnd.Value;
 
-            if (txtAcoountNo.Text == string.Empty)
+            int accountNo = 0;
+            if (comboBoxAccountNo.SelectedText != string.Empty)
             {
-                txtAcoountNo.Text = @"0";
+                try
+                {
+                    accountNo = Convert.ToInt32(comboBoxAccountNo.SelectedText);
+                }
+                catch
+                {
+                    accountNo = 0;
+                    MessageBox.Show(@"Invalid account number", @"Account Number Format", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Error);
+                }
             }
 
             //filtered by client’s id, account id, date from- date to
@@ -78,8 +94,8 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(txtUsername.Text.Trim(),
-                            Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, start, end
+                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.SelectedText,
+                            accountNo, SortOrder.Descending, start, end
                             );
                         transactionDataGrid.DataSource = transactionBindingSource;
                     }
@@ -88,8 +104,8 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(txtUsername.Text.Trim(),
-                            Convert.ToInt32(txtAcoountNo.Text.Trim()), SortOrder.Descending, null, null
+                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.SelectedText,
+                           accountNo, SortOrder.Descending, null, null
                             );
                         transactionDataGrid.DataSource = transactionBindingSource;
                     }

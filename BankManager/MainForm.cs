@@ -1,4 +1,12 @@
-﻿using System;
+﻿using BankManager.AppointmentServices;
+using BankManager.UserServices;
+using CommonUtils;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,14 +15,6 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using BankManager.AppointmentServices;
-using BankManager.UserServices;
-using CommonUtils;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
 
 namespace BankManager
 {
@@ -513,12 +513,13 @@ namespace BankManager
                     @"Item Editing", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             }
         }
+
         private void SetUpStatusDropdown()
         {
-            drpAppointmentState.Items.Add(new {Text = "Show All", Value = -1});
-            drpAppointmentState.Items.Add(new {Text = "Accepted", Value = 0});
-            drpAppointmentState.Items.Add(new {Text = "Pending", Value = 1});
-            drpAppointmentState.Items.Add(new {Text = "Rejected", Value = 2});
+            drpAppointmentState.Items.Add(new { Text = "Show All", Value = -1 });
+            drpAppointmentState.Items.Add(new { Text = "Accepted", Value = 0 });
+            drpAppointmentState.Items.Add(new { Text = "Pending", Value = 1 });
+            drpAppointmentState.Items.Add(new { Text = "Rejected", Value = 2 });
 
             drpAppointmentState.DisplayMember = "Text";
             drpAppointmentState.ValueMember = "Value";

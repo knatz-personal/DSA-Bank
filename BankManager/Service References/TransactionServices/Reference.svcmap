@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b0f5a03e-08e0-48fd-bd26-cd6bffae0011" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="41719bed-ee60-4955-85d1-7d6094714a8c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -15,7 +15,7 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
@@ -24,10 +24,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="986994b4-e914-43ea-810c-cd5d109abde2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="9dc168cb-dc73-4b77-8843-7da2eccf4c19" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="17c1b49d-0ac9-4c4d-b40b-02ebce51356f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.BankTransaction.xsd" MetadataType="Schema" ID="9c953556-40dc-43de-a1fe-525651f70104" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8f69e84a-8493-4a99-8118-b3323becd161" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6161c40a-b130-4652-8f5c-90f8a2394739" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="304911b0-6849-45f2-801a-3542f83dcecb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.BankTransaction.xsd" MetadataType="Schema" ID="1ba9c0f7-b479-417e-af36-885ba8cfbfa2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

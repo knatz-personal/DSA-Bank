@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c57cd823-8805-4ba9-9e06-0b6177a5a2ea" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b163b244-a9e8-4293-a2ea-568b307d6b12" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -15,7 +15,7 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
@@ -24,10 +24,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="98b683a0-f7ea-4ae9-a298-14fe80f4d044" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="4c91dbe5-e5bc-4e4c-8132-b0cf9eadb5f9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="f128deb6-b41d-4e88-997e-2e4f9678ac74" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.UserAccount.xsd" MetadataType="Schema" ID="7e8e6352-6508-4e2f-b759-4a2a02236eaf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="10ecebfe-503a-4ee3-8c1e-7f9e86ce1a8b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b4c8624c-3d6b-42fe-834b-0cd9311c04ee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="613db70a-f060-4d0f-9d8b-24096c9d6a4c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.UserAccount.xsd" MetadataType="Schema" ID="650e65b5-aea5-4cbb-8047-d77d228cc196" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="952255cb-c20b-4338-a42d-acddf3ffc982" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

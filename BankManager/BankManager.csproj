@@ -157,7 +157,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\BankTransactionServices\Reference.cs">
+    <Compile Include="Service References\TransactionServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -209,7 +209,6 @@
     <None Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Email\img\logo.xcf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -226,27 +225,33 @@
     <None Include="Service References\AppointmentServices\DSABusinessServices.Appointment.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service1.wsdl" />
-    <None Include="Service References\AppointmentServices\service2.xsd">
+    <None Include="Service References\AppointmentServices\service.wsdl" />
+    <None Include="Service References\AppointmentServices\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service21.xsd">
+    <None Include="Service References\AppointmentServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankTransactionServices\BankManager.BankTransactionServices.TransactionTypeView.datasource">
+    <None Include="Service References\LogServices\BankManager.LogServices.ErrorView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BankTransactionServices\BankManager.BankTransactionServices.TransactionView.datasource">
+    <None Include="Service References\LogServices\BankManager.LogServices.EventView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BankTransactionServices\DSABusinessServices.BankTransaction.xsd">
+    <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TransactionServices\DSABusinessServices.BankTransaction.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankTransactionServices\service1.wsdl" />
-    <None Include="Service References\BankTransactionServices\service2.xsd">
+    <None Include="Service References\TransactionServices\service.wsdl" />
+    <None Include="Service References\TransactionServices\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankTransactionServices\service21.xsd">
+    <None Include="Service References\TransactionServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\LogServices\DSABusinessServices.Log.xsd">
@@ -257,6 +262,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\LogServices\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\BankManager.UserServices.GenderView.datasource">
@@ -277,11 +285,11 @@
     <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service1.wsdl" />
-    <None Include="Service References\UserServices\service2.xsd">
+    <None Include="Service References\UserServices\service.wsdl" />
+    <None Include="Service References\UserServices\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service21.xsd">
+    <None Include="Service References\UserServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -289,65 +297,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AppointmentServices\" />
-    <WCFMetadataStorage Include="Service References\BankTransactionServices\" />
-    <WCFMetadataStorage Include="Service References\LogServices\" />
-    <WCFMetadataStorage Include="Service References\UserServices\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UserServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UserServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UserServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BankTransactionServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BankTransactionServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BankTransactionServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Service References\AppointmentServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Email\img\logo.png" />
-    <Content Include="logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Email\index.htm" />
-    <Content Include="favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
+    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
+    <None Include="Service References\TransactionServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\TransactionServices\configuration.svcinfo" />
+    <None Include="Service References\TransactionServices\configuration91.svcinfo" />
     <None Include="Service References\LogServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\LogServices\configuration.svcinfo" />
     <None Include="Service References\LogServices\configuration91.svcinfo" />
+    <None Include="Service References\UserServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UserServices\configuration.svcinfo" />
+    <None Include="Service References\UserServices\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
@@ -371,6 +350,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AppointmentServices\" />
+    <WCFMetadataStorage Include="Service References\TransactionServices\" />
+    <WCFMetadataStorage Include="Service References\LogServices\" />
+    <WCFMetadataStorage Include="Service References\UserServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

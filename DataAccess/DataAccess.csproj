@@ -132,6 +132,12 @@
     <Compile Include="EntityModel\EventLog.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\FixedTerm.cs">
+      <DependentUpon>DSABankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\FixedTermAccount.cs">
+      <DependentUpon>DSABankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Gender.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
@@ -161,6 +167,8 @@
     </Compile>
     <Compile Include="Reposiitories\Accounts\AccountsRepo.cs" />
     <Compile Include="Reposiitories\Accounts\AccountTypesRepo.cs" />
+    <Compile Include="Reposiitories\Accounts\FixedTermsRepo.cs" />
+    <Compile Include="Reposiitories\Accounts\InterestRatesRepo.cs" />
     <Compile Include="Reposiitories\Appointments\AppointmentsRepo.cs" />
     <Compile Include="Reposiitories\CurrencyRepo.cs" />
     <Compile Include="Reposiitories\Logs\ErrorsRepo.cs" />

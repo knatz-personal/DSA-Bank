@@ -6,12 +6,13 @@ namespace DataAccess
 {
     public class DsaDataContext : DbContext
     {
-        public DsaDataContext(): base("name=DefaultConnection")
+        public DsaDataContext()
+            : base("name=DefaultConnection")
         {
             //connection with highest database permissions
         }
 
-        public DsaDataContext(String connectionString): base("name=" + connectionString)
+        public DsaDataContext(String connectionString) : base("name=" + connectionString)
         {
         }
 
@@ -26,6 +27,10 @@ namespace DataAccess
         public DbSet<ErrorLog> ErrorLogs { get; set; }
 
         public DbSet<EventLog> EventLogs { get; set; }
+
+        public DbSet<FixedTermAccount> FixedTermAccounts { get; set; }
+
+        public DbSet<FixedTerm> FixedTerms { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
 
@@ -44,6 +49,5 @@ namespace DataAccess
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserType> UserTypes { get; set; }
-
     }
 }

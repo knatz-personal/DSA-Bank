@@ -31,6 +31,8 @@ namespace DataAccess.EntityModel
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
         public DbSet<EventLog> EventLogs { get; set; }
+        public DbSet<FixedTermAccount> FixedTermAccounts { get; set; }
+        public DbSet<FixedTerm> FixedTerms { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<InterestRate> InterestRates { get; set; }
         public DbSet<Menu> Menus { get; set; }

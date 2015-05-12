@@ -49,6 +49,9 @@ namespace DSABusinessServices.UserAccount
         IQueryable<UserView> ListUsers();
 
         [OperationContract]
+        IQueryable<string> ListUsernames();
+
+        [OperationContract]
         UserView ReadByUsername(string username);
 
         [OperationContract]

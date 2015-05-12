@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BankManager.BankTransactionServices {
+namespace BankManager.TransactionServices {
     using System.Runtime.Serialization;
     using System;
     
@@ -259,38 +259,38 @@ namespace BankManager.BankTransactionServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BankTransactionServices.ITransactionServices")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TransactionServices.ITransactionServices")]
     public interface ITransactionServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
-        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListTransactions();
+        System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListTransactions();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListTransactionsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
-        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListUserTransactions(string username);
+        System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListUserTransactions(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListUserTransactionsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/FilterTransactions", ReplyAction="http://tempuri.org/ITransactionServices/FilterTransactionsResponse")]
-        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> FilterTransactions(string username, int accountNo, BankManager.BankTransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> FilterTransactions(string username, int accountNo, BankManager.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/FilterTransactions", ReplyAction="http://tempuri.org/ITransactionServices/FilterTransactionsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, BankManager.BankTransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, BankManager.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
-        BankManager.BankTransactionServices.TransactionView GetTransactionDetails(int id);
+        BankManager.TransactionServices.TransactionView GetTransactionDetails(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
-        System.Threading.Tasks.Task<BankManager.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id);
+        System.Threading.Tasks.Task<BankManager.TransactionServices.TransactionView> GetTransactionDetailsAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
-        System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView> GetTransactionTypes();
+        System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView> GetTransactionTypes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView>> GetTransactionTypesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/Delete", ReplyAction="http://tempuri.org/ITransactionServices/DeleteResponse")]
         void Delete(int id);
@@ -300,12 +300,12 @@ namespace BankManager.BankTransactionServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITransactionServicesChannel : BankManager.BankTransactionServices.ITransactionServices, System.ServiceModel.IClientChannel {
+    public interface ITransactionServicesChannel : BankManager.TransactionServices.ITransactionServices, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TransactionServicesClient : System.ServiceModel.ClientBase<BankManager.BankTransactionServices.ITransactionServices>, BankManager.BankTransactionServices.ITransactionServices {
+    public partial class TransactionServicesClient : System.ServiceModel.ClientBase<BankManager.TransactionServices.ITransactionServices>, BankManager.TransactionServices.ITransactionServices {
         
         public TransactionServicesClient() {
         }
@@ -326,43 +326,43 @@ namespace BankManager.BankTransactionServices {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListTransactions() {
+        public System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListTransactions() {
             return base.Channel.ListTransactions();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListTransactionsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync() {
             return base.Channel.ListTransactionsAsync();
         }
         
-        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> ListUserTransactions(string username) {
+        public System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListUserTransactions(string username) {
             return base.Channel.ListUserTransactions(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> ListUserTransactionsAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListUserTransactionsAsync(string username) {
             return base.Channel.ListUserTransactionsAsync(username);
         }
         
-        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView> FilterTransactions(string username, int accountNo, BankManager.BankTransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+        public System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> FilterTransactions(string username, int accountNo, BankManager.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
             return base.Channel.FilterTransactions(username, accountNo, order, start, end);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, BankManager.BankTransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, BankManager.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
             return base.Channel.FilterTransactionsAsync(username, accountNo, order, start, end);
         }
         
-        public BankManager.BankTransactionServices.TransactionView GetTransactionDetails(int id) {
+        public BankManager.TransactionServices.TransactionView GetTransactionDetails(int id) {
             return base.Channel.GetTransactionDetails(id);
         }
         
-        public System.Threading.Tasks.Task<BankManager.BankTransactionServices.TransactionView> GetTransactionDetailsAsync(int id) {
+        public System.Threading.Tasks.Task<BankManager.TransactionServices.TransactionView> GetTransactionDetailsAsync(int id) {
             return base.Channel.GetTransactionDetailsAsync(id);
         }
         
-        public System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView> GetTransactionTypes() {
+        public System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView> GetTransactionTypes() {
             return base.Channel.GetTransactionTypes();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.BankTransactionServices.TransactionTypeView>> GetTransactionTypesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync() {
             return base.Channel.GetTransactionTypesAsync();
         }
         

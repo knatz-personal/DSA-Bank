@@ -14,6 +14,25 @@ namespace DataAccess.Reposiitories.Accounts
             _db.SaveChanges();
         }
 
+        public void CreateFixedAccount(FixedTermAccount newItem)
+        {
+            _db.FixedTermAccounts.Add(newItem);
+            _db.SaveChanges();
+        }
+
+        public void Renew(FixedTermAccount updatedItem)
+        {
+            FixedTermAccount o = _db.FixedTermAccounts.Find(updatedItem.AccountID);
+
+            if (o != null)
+            {
+                o.IsExpired = updatedItem.IsExpired;
+                o.TermID = updatedItem.TermID;
+
+                _db.SaveChanges();
+            }
+        }
+
         public void Delete(Account itemToDelete)
         {
             Account o = _db.Accounts.Find(itemToDelete.ID);
@@ -47,7 +66,6 @@ namespace DataAccess.Reposiitories.Accounts
                 o.TypeID = updatedItem.TypeID;
                 o.Balance = updatedItem.Balance;
                 o.DateOpened = updatedItem.DateOpened;
-                o.ExpiryDate = updatedItem.ExpiryDate;
                 o.Currency = updatedItem.Currency;
                 o.Name = updatedItem.Name;
 
