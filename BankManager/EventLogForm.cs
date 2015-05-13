@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using BankManager.LogServices;
 
 namespace BankManager
 {
@@ -22,8 +23,8 @@ namespace BankManager
             if (formToShow != null)
             {
                 formToShow.Show();
-                eventDataGridView.DataSource = null;
-                eventDataGridView.Rows.Clear();
+                eventDataGrid.DataSource = null;
+                eventDataGrid.Rows.Clear();
             }
             else
             {
@@ -34,25 +35,30 @@ namespace BankManager
 
         private void bttnLoad_Click(object sender, EventArgs e)
         {
+            using (var client = new LogServicesClient())
+            {
+                eventViewBindingSource.DataSource = client.ListEvents();
+                eventDataGrid.DataSource = eventViewBindingSource;
+            }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            //eventViewBindingSource.EndEdit();
-            //if (!string.IsNullOrEmpty(iDTextBox.Text))
-            //{
-            //    int id = Convert.ToInt32(iDTextBox.Text);
-            //    using (var client = new LogServicesClient())
-            //    {
-            //        client.DeleteEvent(id);
-            //    }
-            //    eventViewBindingSource.RemoveCurrent();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-            //        MessageBoxIcon.Asterisk);
-            //}
+            eventViewBindingSource.EndEdit();
+            if (!string.IsNullOrEmpty(iDTextBox.Text))
+            {
+                int id = Convert.ToInt32(iDTextBox.Text);
+                using (var client = new LogServicesClient())
+                {
+                    client.DeleteEvent(id);
+                }
+                eventViewBindingSource.RemoveCurrent();
+            }
+            else
+            {
+                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Asterisk);
+            }
         }
 
         private void transactionHistoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,8 +67,8 @@ namespace BankManager
             if (formToShow != null)
             {
                 formToShow.Show();
-                eventDataGridView.DataSource = null;
-                eventDataGridView.Rows.Clear();
+                eventDataGrid.DataSource = null;
+                eventDataGrid.Rows.Clear();
             }
             else
             {
@@ -77,8 +83,8 @@ namespace BankManager
             if (formToShow != null)
             {
                 formToShow.Show();
-                eventDataGridView.DataSource = null;
-                eventDataGridView.Rows.Clear();
+                eventDataGrid.DataSource = null;
+                eventDataGrid.Rows.Clear();
             }
             else
             {
@@ -97,8 +103,8 @@ namespace BankManager
             if (formToShow != null)
             {
                 formToShow.Show();
-                eventDataGridView.DataSource = null;
-                eventDataGridView.Rows.Clear();
+                eventDataGrid.DataSource = null;
+                eventDataGrid.Rows.Clear();
             }
             else
             {

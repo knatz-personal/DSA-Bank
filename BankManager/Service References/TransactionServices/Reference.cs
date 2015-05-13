@@ -268,6 +268,12 @@ namespace BankManager.TransactionServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListAccountNumbers", ReplyAction="http://tempuri.org/ITransactionServices/ListAccountNumbersResponse")]
+        System.Collections.Generic.List<string> ListAccountNumbers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListAccountNumbers", ReplyAction="http://tempuri.org/ITransactionServices/ListAccountNumbersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListAccountNumbersAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
         System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListUserTransactions(string username);
         
@@ -332,6 +338,14 @@ namespace BankManager.TransactionServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync() {
             return base.Channel.ListTransactionsAsync();
+        }
+        
+        public System.Collections.Generic.List<string> ListAccountNumbers() {
+            return base.Channel.ListAccountNumbers();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListAccountNumbersAsync() {
+            return base.Channel.ListAccountNumbersAsync();
         }
         
         public System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListUserTransactions(string username) {

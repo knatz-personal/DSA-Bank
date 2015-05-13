@@ -77,6 +77,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.bttnLoadRecords = new System.Windows.Forms.Button();
+            this.comboBoxUsername = new System.Windows.Forms.ComboBox();
+            this.comboBoxAccountNo = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -90,8 +92,6 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxUsername = new System.Windows.Forms.ComboBox();
-            this.comboBoxAccountNo = new System.Windows.Forms.ComboBox();
             accountFromIDLabel = new System.Windows.Forms.Label();
             accountToIDLabel = new System.Windows.Forms.Label();
             amountLabel = new System.Windows.Forms.Label();
@@ -613,6 +613,29 @@
             this.bttnLoadRecords.UseVisualStyleBackColor = false;
             this.bttnLoadRecords.Click += new System.EventHandler(this.bttnLoadRecords_Click);
             // 
+            // comboBoxUsername
+            // 
+            this.comboBoxUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.comboBoxUsername.FormattingEnabled = true;
+            this.comboBoxUsername.Location = new System.Drawing.Point(3, 19);
+            this.comboBoxUsername.Name = "comboBoxUsername";
+            this.comboBoxUsername.Size = new System.Drawing.Size(142, 21);
+            this.comboBoxUsername.TabIndex = 9;
+            // 
+            // comboBoxAccountNo
+            // 
+            this.comboBoxAccountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAccountNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxAccountNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.comboBoxAccountNo.Location = new System.Drawing.Point(151, 19);
+            this.comboBoxAccountNo.MaxDropDownItems = 10;
+            this.comboBoxAccountNo.Name = "comboBoxAccountNo";
+            this.comboBoxAccountNo.Size = new System.Drawing.Size(125, 21);
+            this.comboBoxAccountNo.Sorted = true;
+            this.comboBoxAccountNo.TabIndex = 10;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -750,28 +773,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Navigator";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // comboBoxUsername
-            // 
-            this.comboBoxUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxUsername.FormattingEnabled = true;
-            this.comboBoxUsername.Location = new System.Drawing.Point(3, 19);
-            this.comboBoxUsername.Name = "comboBoxUsername";
-            this.comboBoxUsername.Size = new System.Drawing.Size(142, 21);
-            this.comboBoxUsername.TabIndex = 9;
-            // 
-            // comboBoxAccountNo
-            // 
-            this.comboBoxAccountNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxAccountNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxAccountNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxAccountNo.FormattingEnabled = true;
-            this.comboBoxAccountNo.Location = new System.Drawing.Point(151, 19);
-            this.comboBoxAccountNo.Name = "comboBoxAccountNo";
-            this.comboBoxAccountNo.Size = new System.Drawing.Size(125, 21);
-            this.comboBoxAccountNo.TabIndex = 10;
             // 
             // TransactionHistoryForm
             // 

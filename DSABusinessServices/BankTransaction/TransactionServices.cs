@@ -137,6 +137,12 @@ namespace DSABusinessServices.BankTransaction
             });
         }
 
+        public IQueryable<string> ListAccountNumbers()
+        {
+            var list = new TransactionsRepo().GetAccountNumbers();
+            return list;
+        }
+
         public IQueryable<TransactionView> ListUserTransactions(string username)
         {
             return new TransactionsRepo().ListByUsername(username).Select(t => new TransactionView

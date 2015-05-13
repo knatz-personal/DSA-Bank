@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Objects.SqlClient;
+using System.Globalization;
+using System.Linq;
 using DataAccess.EntityModel;
 
 namespace DataAccess.Reposiitories.Transactions
@@ -62,6 +64,11 @@ namespace DataAccess.Reposiitories.Transactions
         public IQueryable<Transaction> ListByAccountNumber(int accountNo)
         {
             return _db.Transactions.Where(t => t.Account.ID == accountNo || t.Account1.ID == accountNo);
+        }
+
+        public IQueryable<string> GetAccountNumbers()
+        {
+            return _db.Accounts.Select(u => SqlFunctions.StringConvert((double)u.ID).Trim()).AsQueryable();
         }
     }
 }

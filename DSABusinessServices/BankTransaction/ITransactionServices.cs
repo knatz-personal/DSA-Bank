@@ -13,6 +13,9 @@ namespace DSABusinessServices.BankTransaction
         IQueryable<TransactionView> ListTransactions();
 
         [OperationContract]
+        IQueryable<string> ListAccountNumbers();
+
+        [OperationContract]
         IQueryable<TransactionView> ListUserTransactions(string username);
 
         [OperationContract]

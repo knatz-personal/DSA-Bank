@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using BankManager.TransactionServices;
+using BankManager.UserServices;
 using SortOrder = BankManager.TransactionServices.SortOrder;
 
 namespace BankManager
@@ -19,11 +20,19 @@ namespace BankManager
             dateTimePickerStart.Value = result;
             dateTimePickerEnd.Value = result;
 
-            //using (var client = new UserServicesClient())
-            //{
-            //    comboBoxUsername.AutoCompleteCustomSource = new AutoCompleteStringCollection();
-            //    client.
-            //}
+            using (var userclient = new UserServicesClient())
+            {
+                var list = new AutoCompleteStringCollection();
+                list.AddRange(userclient.ListUsernames().ToArray());
+                comboBoxUsername.AutoCompleteCustomSource = list;
+            }
+
+            using (var accclient = new TransactionServicesClient())
+            {
+                var list = new AutoCompleteStringCollection();
+                list.AddRange(accclient.ListAccountNumbers().ToArray());
+                comboBoxAccountNo.AutoCompleteCustomSource = list;
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

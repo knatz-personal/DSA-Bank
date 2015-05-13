@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CommonUtils;
@@ -41,7 +43,7 @@ namespace WebPortal.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Delete(string id, FormCollection collection)
+        public ActionResult Delete(string id, UserAccountViewModel model)
         {
             try
             {
@@ -53,7 +55,7 @@ namespace WebPortal.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { Result = "OK", e.Message });
+                return Json(new {Result = "OK", e.Message});
             }
         }
 
@@ -187,7 +189,7 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("</tr>");
 
-                    return Json(new { result = "OK", html = htmlBuilder.ToString() });
+                    return Json(new {result = "OK", html = htmlBuilder.ToString()});
                 }
             }
             catch
@@ -221,7 +223,14 @@ namespace WebPortal.Controllers
                             {
                                 if (client.Authenticate(model.Username, model.Password))
                                 {
-                                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.Remember);
+                                    var identity = new ClaimsIdentity(new[]
+                                    {
+                                        new Claim(ClaimTypes.Name, model.Username),
+                                    }, "ApplicationCookie");
+
+                                    HttpContext.GetOwinContext().Authentication.SignIn(identity);
+
+                                    return RedirectToAction("Index", "Home");
                                 }
                                 ModelState.AddModelError(string.Empty,
                                     @"The user name or security details provided are incorrect.");
@@ -250,7 +259,7 @@ namespace WebPortal.Controllers
         [AllowAnonymous]
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            Request.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -426,7 +435,7 @@ namespace WebPortal.Controllers
         private void OutputModelStateErrors()
         {
             var errors =
-                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
+                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new {x.Key, x.Value.Errors}).ToArray();
             foreach (var error in errors)
             {
                 Debug.WriteLine("Key: " + error.Key + " Errors: \t" + error.Errors[0].ErrorMessage);
