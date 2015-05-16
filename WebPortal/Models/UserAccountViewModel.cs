@@ -1,10 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using PagedList;
 
 namespace WebPortal.Models
 {
     public class UserAccountViewModel
+    {
+        [Required]
+        [Display(Name = @"Full Name")]
+        public string NameQuery { get; set; }
+
+        [Display(Name = @"User Name", Order = 0)]
+        public string UsernameQuery { get; set; }
+
+        public IPagedList<UserListItemModel> UsersPagedList { get; set; }
+
+    }
+
+    public class RoleModel
+    {
+        public string Username { get; set; }
+        [Display(Name = @"User Roles")]
+        public IEnumerable<SelectListItem> UserRoles { get; set; }
+        public IEnumerable<SelectListItem> Roles { get; set; }
+    }
+
+    public class UserListItemModel
     {
         [Required]
         [Display(Name = @"First Name")]
@@ -47,9 +70,6 @@ namespace WebPortal.Models
         [Display(Name = @"Mobile Number")]
         public int Mobile { get; set; }
 
-        [Display(Name = @"User Type", Order = 13)]
-        public int? TypeID { get; set; }
-
         [Display(Name = @"User Name", Order = 0)]
         public string Username { get; set; }
 
@@ -64,7 +84,9 @@ namespace WebPortal.Models
         public SelectList Types { get; set; }
         public string GenderName { get; set; }
         public string TownName { get; set; }
-        public string TypeName { get; set; }
+
+        [Display(Name = @"User Roles")]
+        public IEnumerable<SelectListItem> UserRoles { get; set; }
     }
 
     public class RegisterModel

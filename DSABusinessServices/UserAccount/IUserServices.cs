@@ -40,9 +40,6 @@ namespace DSABusinessServices.UserAccount
         IQueryable<RoleView> GetRoles(string username);
 
         [OperationContract]
-        bool IsUserInRole(string username, int roleId);
-
-        [OperationContract]
         IEnumerable<RoleView> ListRoles();
 
         [OperationContract]
@@ -62,9 +59,6 @@ namespace DSABusinessServices.UserAccount
 
         [OperationContract]
         IEnumerable<TownView> Towns();
-
-        [OperationContract]
-        IEnumerable<UserTypeView> Types();
 
         [OperationContract]
         void Update(UserView user);
@@ -95,16 +89,6 @@ namespace DSABusinessServices.UserAccount
 
     [DataContract]
     public class TownView
-    {
-        [DataMember]
-        public int ID { get; set; }
-
-        [DataMember]
-        public string Name { get; set; }
-    }
-
-    [DataContract]
-    public class UserTypeView
     {
         [DataMember]
         public int ID { get; set; }
@@ -162,12 +146,9 @@ namespace DSABusinessServices.UserAccount
         public string TownName { get; set; }
 
         [DataMember]
-        public int? TypeID { get; set; }
-
-        [DataMember]
-        public string TypeName { get; set; }
-
-        [DataMember]
         public string Username { get; set; }
+
+        [DataMember]
+        public IEnumerable<RoleView> Roles { get; set; }
     }
 }

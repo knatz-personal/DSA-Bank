@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUserServices_AllocateRole_InputMessage">
@@ -67,12 +68,6 @@
   <wsdl:message name="IUserServices_GetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserServices_IsUserInRole_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserInRole" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_IsUserInRole_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserInRoleResponse" />
-  </wsdl:message>
   <wsdl:message name="IUserServices_ListRoles_InputMessage">
     <wsdl:part name="parameters" element="tns:ListRoles" />
   </wsdl:message>
@@ -84,6 +79,12 @@
   </wsdl:message>
   <wsdl:message name="IUserServices_ListUsers_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_ListUsernames_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListUsernames" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_ListUsernames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListUsernamesResponse" />
   </wsdl:message>
   <wsdl:message name="IUserServices_ReadByUsername_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadByUsername" />
@@ -108,12 +109,6 @@
   </wsdl:message>
   <wsdl:message name="IUserServices_Towns_OutputMessage">
     <wsdl:part name="parameters" element="tns:TownsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_Types_InputMessage">
-    <wsdl:part name="parameters" element="tns:Types" />
-  </wsdl:message>
-  <wsdl:message name="IUserServices_Types_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TypesResponse" />
   </wsdl:message>
   <wsdl:message name="IUserServices_Update_InputMessage">
     <wsdl:part name="parameters" element="tns:Update" />
@@ -168,10 +163,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/GetRoles" message="tns:IUserServices_GetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GetRolesResponse" message="tns:IUserServices_GetRoles_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="IsUserInRole">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/IsUserInRole" message="tns:IUserServices_IsUserInRole_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/IsUserInRoleResponse" message="tns:IUserServices_IsUserInRole_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ListRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ListRoles" message="tns:IUserServices_ListRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ListRolesResponse" message="tns:IUserServices_ListRoles_OutputMessage" />
@@ -179,6 +170,10 @@
     <wsdl:operation name="ListUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ListUsers" message="tns:IUserServices_ListUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ListUsersResponse" message="tns:IUserServices_ListUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUsernames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ListUsernames" message="tns:IUserServices_ListUsernames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ListUsernamesResponse" message="tns:IUserServices_ListUsernames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ReadByUsername" message="tns:IUserServices_ReadByUsername_InputMessage" />
@@ -195,10 +190,6 @@
     <wsdl:operation name="Towns">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Towns" message="tns:IUserServices_Towns_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/TownsResponse" message="tns:IUserServices_Towns_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Types">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Types" message="tns:IUserServices_Types_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/TypesResponse" message="tns:IUserServices_Types_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Update">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Update" message="tns:IUserServices_Update_InputMessage" />
@@ -301,15 +292,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="IsUserInRole">
-      <soap:operation soapAction="http://tempuri.org/IUserServices/IsUserInRole" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ListRoles">
       <soap:operation soapAction="http://tempuri.org/IUserServices/ListRoles" style="document" />
       <wsdl:input>
@@ -321,6 +303,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListUsers">
       <soap:operation soapAction="http://tempuri.org/IUserServices/ListUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUsernames">
+      <soap:operation soapAction="http://tempuri.org/IUserServices/ListUsernames" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -357,15 +348,6 @@
     </wsdl:operation>
     <wsdl:operation name="Towns">
       <soap:operation soapAction="http://tempuri.org/IUserServices/Towns" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Types">
-      <soap:operation soapAction="http://tempuri.org/IUserServices/Types" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

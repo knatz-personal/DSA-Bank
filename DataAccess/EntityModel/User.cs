@@ -33,7 +33,6 @@ namespace DataAccess.EntityModel
         public int Mobile { get; set; }
         public string Address { get; set; }
         public Nullable<int> TownID { get; set; }
-        public Nullable<int> TypeID { get; set; }
         public bool Blocked { get; set; }
         public int NoOfAttempts { get; set; }
     
@@ -41,7 +40,6 @@ namespace DataAccess.EntityModel
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Town Town { get; set; }
-        public virtual UserType UserType { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
     }
 }

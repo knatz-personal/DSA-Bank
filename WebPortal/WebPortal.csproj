@@ -165,6 +165,7 @@
     <Compile Include="Helpers\MenuHelperExtentions.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\ErrorInfoModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Models\UserAccountViewModel.cs" />
@@ -211,16 +212,29 @@
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\paper-bootstrap-theme.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -335,6 +349,9 @@
     <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\UserServices\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\UserServices\configuration91.svcinfo" />
     <None Include="Service References\UserServices\configuration.svcinfo" />
     <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
@@ -365,7 +382,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_FooterInfo.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -378,23 +394,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateFilterEnd.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateFilterStart.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.RoleView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.TownView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.UserTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\Manage.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\_Delete.cshtml" />
     <Content Include="Views\Users\_Details.cshtml" />
@@ -415,26 +416,32 @@
     <Content Include="Views\Accounts\_Details.cshtml" />
     <Content Include="Views\Accounts\_Edit.cshtml" />
     <Content Include="Views\Accounts\_PagedList.cshtml" />
-    <Content Include="Views\Appointment\Create.cshtml" />
-    <Content Include="Views\Appointment\Delete.cshtml" />
-    <Content Include="Views\Appointment\Details.cshtml" />
-    <Content Include="Views\Appointment\Edit.cshtml" />
-    <Content Include="Views\Appointment\Index.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\New.cshtml" />
     <Content Include="Views\Transactions\Report.cshtml" />
     <Content Include="Views\Transactions\_Details.cshtml" />
     <Content Include="Views\Transactions\_PagedList.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Error\BadRequest.cshtml" />
-    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Appointment\Schedule.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Users\_PagedList.cshtml" />
+    <Content Include="Views\Transactions\DetailReport.cshtml" />
+    <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.RoleView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.TownView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Users\_Role.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

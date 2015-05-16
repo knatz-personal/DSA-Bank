@@ -50,7 +50,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="InnerException" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateTriggered" Type="datetime" />
@@ -175,16 +175,8 @@
           <Property Name="Mobile" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="TownID" Type="int" />
-          <Property Name="TypeID" Type="int" />
           <Property Name="Blocked" Type="bit" Nullable="false" />
           <Property Name="NoOfAttempts" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserTypes">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <Association Name="FK_Account_Currency">
           <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
@@ -402,18 +394,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_UserTypes">
-          <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserTypes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DSABankDbModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
@@ -433,7 +413,6 @@
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_Currency" Association="Self.FK_Account_Currency">
             <End Role="Currency" EntitySet="Currency" />
             <End Role="Accounts" EntitySet="Accounts" />
@@ -506,10 +485,6 @@
             <End Role="Towns" EntitySet="Towns" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
-            <End Role="UserTypes" EntitySet="UserTypes" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -532,7 +507,6 @@
           <EntitySet Name="Transactions" EntityType="DSABankDbModel.Transaction" />
           <EntitySet Name="TransactionTypes" EntityType="DSABankDbModel.TransactionType" />
           <EntitySet Name="Users" EntityType="DSABankDbModel.User" />
-          <EntitySet Name="UserTypes" EntityType="DSABankDbModel.UserType" />
           <AssociationSet Name="FK_Account_Currency" Association="DSABankDbModel.FK_Account_Currency">
             <End Role="Currency" EntitySet="Currencies" />
             <End Role="Account" EntitySet="Accounts" />
@@ -588,10 +562,6 @@
           <AssociationSet Name="FK_Transactions_TransactionTypes" Association="DSABankDbModel.FK_Transactions_TransactionTypes">
             <End Role="TransactionType" EntitySet="TransactionTypes" />
             <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_UserTypes" Association="DSABankDbModel.FK_Users_UserTypes">
-            <End Role="UserType" EntitySet="UserTypes" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="MenuRoles" Association="DSABankDbModel.MenuRoles">
             <End Role="Menu" EntitySet="Menus" />
@@ -658,7 +628,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="InnerException" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateTriggered" Type="DateTime" Precision="3" />
@@ -783,23 +753,13 @@
           <Property Name="Mobile" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="TownID" Type="Int32" />
-          <Property Name="TypeID" Type="Int32" />
           <Property Name="Blocked" Type="Boolean" Nullable="false" />
           <Property Name="NoOfAttempts" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="User" ToRole="Account" />
           <NavigationProperty Name="Appointments" Relationship="DSABankDbModel.FK_Appointments_Users" FromRole="User" ToRole="Appointment" />
           <NavigationProperty Name="Gender" Relationship="DSABankDbModel.FK_Users_Genders" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Town" Relationship="DSABankDbModel.FK_Users_Towns" FromRole="User" ToRole="Town" />
-          <NavigationProperty Name="UserType" Relationship="DSABankDbModel.FK_Users_UserTypes" FromRole="User" ToRole="UserType" />
           <NavigationProperty Name="Roles" Relationship="DSABankDbModel.UserRoles" FromRole="User" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="UserType">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="DSABankDbModel.FK_Users_UserTypes" FromRole="UserType" ToRole="User" />
         </EntityType>
         <Association Name="FK_Account_Currency">
           <End Type="DSABankDbModel.Currency" Role="Currency" Multiplicity="0..1" />
@@ -965,18 +925,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Transaction">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_UserTypes">
-          <End Type="DSABankDbModel.UserType" Role="UserType" Multiplicity="0..1" />
-          <End Type="DSABankDbModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1153,7 +1101,6 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
                 <ScalarProperty Name="Blocked" ColumnName="Blocked" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="TownID" ColumnName="TownID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
@@ -1166,14 +1113,6 @@
                 <ScalarProperty Name="Salt" ColumnName="Salt" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserTypes">
-            <EntityTypeMapping TypeName="DSABankDbModel.UserType">
-              <MappingFragment StoreEntitySet="UserTypes">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

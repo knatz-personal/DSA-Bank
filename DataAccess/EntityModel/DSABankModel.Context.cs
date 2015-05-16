@@ -41,6 +41,5 @@ namespace DataAccess.EntityModel
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
     }
 }

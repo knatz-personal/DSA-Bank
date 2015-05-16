@@ -32,6 +32,7 @@ namespace TokenGenerator
             catch
             {
                 txtTokenOutput.Text = @"An error occurred while generating the token";
+                txtTokenOutput.Font = new Font(txtTokenOutput.Font.FontFamily, 10);
                 txtTokenOutput.ForeColor = Color.Red;
             }
           

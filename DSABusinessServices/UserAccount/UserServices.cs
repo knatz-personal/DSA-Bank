@@ -117,13 +117,6 @@ namespace DSABusinessServices.UserAccount
             return list;
         }
 
-        public bool IsUserInRole(string username, int roleId)
-        {
-            return
-                ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
-                    t => t.ID == roleId) != null);
-        }
-
         public IEnumerable<RoleView> ListRoles()
         {
             return new RolesRepo().ListAll().Select(r => new RoleView
@@ -150,8 +143,6 @@ namespace DSABusinessServices.UserAccount
                 GenderName = u.Gender.Name,
                 TownID = u.TownID,
                 TownName = u.Town.Name,
-                TypeID = u.TypeID,
-                TypeName = u.UserType.Name,
                 Blocked = u.Blocked,
                 NoOfAttempts = u.NoOfAttempts
             });
@@ -178,10 +169,12 @@ namespace DSABusinessServices.UserAccount
                 DateOfBirth = u.DateOfBirth,
                 Address = u.Address,
                 GenderID = u.GenderID,
+                GenderName = u.Gender.Name,
                 TownID = u.TownID,
-                TypeID = u.TypeID,
+                TownName = u.Town.Name,
                 Blocked = u.Blocked,
-                NoOfAttempts = u.NoOfAttempts
+                NoOfAttempts = u.NoOfAttempts,
+                Roles = u.Roles.Select(r => new RoleView() { ID = r.ID, Name = r.Name })
             };
         }
 
@@ -207,7 +200,6 @@ namespace DSABusinessServices.UserAccount
                         Address = user.Address,
                         GenderID = user.GenderID,
                         TownID = user.TownID,
-                        TypeID = user.TypeID,
                         Blocked = user.Blocked,
                         NoOfAttempts = user.NoOfAttempts
                     });
@@ -242,9 +234,9 @@ namespace DSABusinessServices.UserAccount
                 Address = u.Address,
                 GenderID = u.GenderID,
                 TownID = u.TownID,
-                TypeID = u.TypeID,
                 Blocked = u.Blocked,
-                NoOfAttempts = u.NoOfAttempts
+                NoOfAttempts = u.NoOfAttempts,
+                Roles = u.Roles.Select(r=> new RoleView(){ ID = r.ID, Name = r.Name})
             });
         }
 
@@ -255,22 +247,6 @@ namespace DSABusinessServices.UserAccount
                 ID = g.ID,
                 Name = g.Name
             });
-        }
-
-        public IEnumerable<UserTypeView> Types()
-        {
-            try
-            {
-                return new UserTypesRepo().ListAll().Select(u => new UserTypeView
-                {
-                    ID = u.ID,
-                    Name = u.Name
-                });
-            }
-            catch (Exception)
-            {
-                throw new DataListException();
-            }
         }
 
         public void Update(UserView u)
@@ -290,7 +266,6 @@ namespace DSABusinessServices.UserAccount
                     Address = u.Address,
                     GenderID = u.GenderID,
                     TownID = u.TownID,
-                    TypeID = u.TypeID,
                     Blocked = u.Blocked,
                     NoOfAttempts = u.NoOfAttempts
                 });

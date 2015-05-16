@@ -72,6 +72,9 @@ namespace WebPortal.Controllers
 
             var results = new TransactionViewModel
             {
+                AccountToListID = a,
+                StartDate = start,
+                EndDate = end,
                 TransactionsPagedList = list.ToPagedList(p ?? 1, ps),
                 MyAccounts = GetMyAccounts(User.Identity.Name)
             };
@@ -108,6 +111,25 @@ namespace WebPortal.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
             return View(model);
+        }
+
+        public ActionResult DetailReport(int id)
+        {
+            using (var client = new TransactionServicesClient())
+            {
+                TransactionView t = client.GetTransactionDetails(id);
+                return View("DetailReport", new TransactionDetailModel
+                {
+                    ID = t.ID,
+                    DateIssued = t.DateIssued,
+                    TypeName = t.TypeName,
+                    AccountFromID = t.AccountFromID,
+                    AccountToID = t.AccountToID,
+                    Amount = t.Amount,
+                    Currency = t.Currency,
+                    Remarks = t.Remarks
+                });
+            }
         }
 
         public ActionResult Report()

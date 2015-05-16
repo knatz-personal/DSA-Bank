@@ -162,9 +162,6 @@
     <Compile Include="EntityModel\User.cs">
       <DependentUpon>DSABankModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\UserType.cs">
-      <DependentUpon>DSABankModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Reposiitories\Accounts\AccountsRepo.cs" />
     <Compile Include="Reposiitories\Accounts\AccountTypesRepo.cs" />
     <Compile Include="Reposiitories\Accounts\FixedTermsRepo.cs" />
@@ -182,7 +179,6 @@
     <Compile Include="Reposiitories\Users\TownsRepo.cs" />
     <Compile Include="Reposiitories\Transactions\TransactionsRepo.cs" />
     <Compile Include="Reposiitories\Users\UsersRepo.cs" />
-    <Compile Include="Reposiitories\Users\UserTypesRepo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

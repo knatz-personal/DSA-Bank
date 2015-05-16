@@ -14,20 +14,36 @@ namespace WebPortal
 {
     public class MvcApplication : HttpApplication
     {
+        private UserServicesClient _client = new UserServicesClient();
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
+        }
+
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            if (Context.User.Identity.Name != string.Empty)
+            {
+                var item = _client.ReadByUsername(Context.User.Identity.Name);
+                Session["FullName"] = string.Format("{0} {1} {2}", item.FirstName, item.MiddleInitial, item.LastName);
+            }
+        }
+
+        protected void Session_End(Object sender, EventArgs e)
+        {
+
+            Session["FullName"] = null;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             if (Context.User != null)
             {
-                List<RoleView> roleList = new UserServicesClient().GetRoles(Context.User.Identity.Name);
+                List<RoleView> roleList = _client.GetRoles(Context.User.Identity.Name);
 
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, Context.User.Identity.Name));
@@ -38,6 +54,7 @@ namespace WebPortal
                 var identity = new ClaimsIdentity(claims, "ApplicationCookie");
                 var principal = new ClaimsPrincipal(identity);
                 Context.User = principal;
+
             }
         }
 
@@ -52,32 +69,36 @@ namespace WebPortal
                 client.LogError(User.Identity.Name, err,
                     "" + objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
             }
-
+           
             Server.ClearError();
+            Response.TrySkipIisCustomErrors = true;
+            int statusCode = 0;
 
-            var routeData = new RouteData();
-
-            routeData.Values.Add("controller", "Error");
-
-            routeData.Values.Add("action", "Index");
-
-            routeData.Values.Add("exception", exception);
-
-            if (exception.GetType() == typeof (HttpException))
+            if (exception.GetType() == typeof(HttpException))
             {
-                routeData.Values.Add("statusCode", ((HttpException) exception).GetHttpCode());
+                statusCode = ((HttpException)exception).GetHttpCode();
             }
             else
             {
-                routeData.Values.Add("statusCode", 500);
+                // Not an HTTP related error so this is a problem in our code, set status to
+                // 500 (internal server error)
+                statusCode = 500;
             }
 
-            Response.TrySkipIisCustomErrors = true;
+            HttpContextWrapper contextWrapper = new HttpContextWrapper(this.Context);
+
+            RouteData routeData = new RouteData();
+            routeData.Values.Add("controller", "Error");
+            routeData.Values.Add("action", "Index");
+            routeData.Values.Add("statusCode", statusCode);
+            routeData.Values.Add("exception", exception);
+            routeData.Values.Add("isAjaxRequest", contextWrapper.Request.IsAjaxRequest());
 
             IController controller = new ErrorController();
 
-            controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+            RequestContext requestContext = new RequestContext(contextWrapper, routeData);
 
+            controller.Execute(requestContext);
             Response.End();
         }
     }

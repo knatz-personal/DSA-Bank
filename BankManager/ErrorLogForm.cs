@@ -94,6 +94,21 @@ namespace BankManager
 
         private void errorDataGrid_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Delete)
+            {
+                foreach (DataGridViewRow row in errorDataGrid.SelectedRows)
+                {
+                    int id = Convert.ToInt32(row.Cells[0].Value);
+                    if (id != 0)
+                    {
+                        using (var client = new LogServicesClient())
+                        {
+                            client.DeleteError(id);
+                        }
+                    }
+                    errorDataGrid.Rows.Remove(row);
+                }
+            }
         }
 
         private void eventLogToolStripMenuItem_Click(object sender, EventArgs e)

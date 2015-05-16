@@ -1,89 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Globalization;
 using System.Web.Mvc;
+using WebPortal.AppointmentServices;
+using WebPortal.Models;
 
 namespace WebPortal.Controllers
 {
+    [Authorize]
     public class AppointmentController : Controller
     {
-        // GET: Appointment
-        public ActionResult Index()
+        // GET: Appointment/Schedule
+        public ActionResult Schedule()
         {
-            return View();
+            var model = new AppointmentModel();
+            model.DurationValues = GetDurationList();
+            return View(model);
         }
 
-        // GET: Appointment/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Appointment/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Appointment/Create
+        // POST: Appointment/Schedule
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Schedule(AppointmentModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                throw new Exception("Test exception.");
+                if (ModelState.IsValid)
+                {
+                    using (var client = new AppointmentServicesClient())
+                    {
+                        model.Username = User.Identity.Name;
+                        model.IsAccepted = null;
+                        DateTime dateTime;
+                        bool isValidTime = DateTime.TryParseExact(model.SuggestedTime, "h:mm tt", 
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None, out dateTime);
+                        if (isValidTime)
+                        {
+                            client.Schedule(new AppointmentView
+                            {
+                                Username = model.Username,
+                                SuggestedDate = model.SuggestedDate,
+                                SuggestedTime = dateTime.TimeOfDay,
+                                Duration = model.Duration,
+                                Description = model.Description,
+                                IsAccepted = model.IsAccepted
+                            });
+                            return RedirectToAction("Index", "Home");
+                        }
+                        ModelState.AddModelError("SuggestedTime", "Invalid time value.");
+                    }
+                }
             }
             catch
             {
-                return View();
+                ModelState.AddModelError(string.Empty, "Failed to schedule an appointment.");
             }
+            model.DurationValues = GetDurationList();
+            return View(model);
         }
 
-        // GET: Appointment/Edit/5
-        public ActionResult Edit(int id)
+        private SelectList GetDurationList()
         {
-            return View();
-        }
-
-        // POST: Appointment/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Appointment/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Appointment/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Text = "Select", Value = null });
+            list.Add(new SelectListItem { Text = "30 mins", Value = "30 mins" });
+            list.Add(new SelectListItem { Text = "1 hour", Value = "1 hour" });
+            list.Add(new SelectListItem { Text = "1 hour 30 mins", Value = "1 hour 30 mins" });
+            return new SelectList(list, "Value", "Text");
         }
     }
 }

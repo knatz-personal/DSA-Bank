@@ -45,6 +45,12 @@
             this.eventLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.errorDataGrid = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTriggeredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.innerExceptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.iDTextBox = new System.Windows.Forms.TextBox();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
@@ -70,12 +76,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.appointmentViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.errorViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTriggeredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.innerExceptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             dateTriggeredLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             innerExceptionLabel = new System.Windows.Forms.Label();
@@ -84,12 +84,12 @@
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorViewBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentViewBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTriggeredLabel
@@ -98,7 +98,7 @@
             dateTriggeredLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             dateTriggeredLabel.Location = new System.Drawing.Point(3, 58);
             dateTriggeredLabel.Name = "dateTriggeredLabel";
-            dateTriggeredLabel.Size = new System.Drawing.Size(87, 31);
+            dateTriggeredLabel.Size = new System.Drawing.Size(86, 31);
             dateTriggeredLabel.TabIndex = 0;
             dateTriggeredLabel.Text = "Date Triggered:";
             dateTriggeredLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,7 +109,7 @@
             iDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             iDLabel.Location = new System.Drawing.Point(3, 0);
             iDLabel.Name = "iDLabel";
-            iDLabel.Size = new System.Drawing.Size(87, 28);
+            iDLabel.Size = new System.Drawing.Size(86, 28);
             iDLabel.TabIndex = 2;
             iDLabel.Text = "ID:";
             iDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,7 +120,7 @@
             innerExceptionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             innerExceptionLabel.Location = new System.Drawing.Point(3, 89);
             innerExceptionLabel.Name = "innerExceptionLabel";
-            innerExceptionLabel.Size = new System.Drawing.Size(87, 120);
+            innerExceptionLabel.Size = new System.Drawing.Size(86, 120);
             innerExceptionLabel.TabIndex = 4;
             innerExceptionLabel.Text = "Inner Exception:";
             innerExceptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,7 +131,7 @@
             messageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             messageLabel.Location = new System.Drawing.Point(3, 209);
             messageLabel.Name = "messageLabel";
-            messageLabel.Size = new System.Drawing.Size(87, 261);
+            messageLabel.Size = new System.Drawing.Size(86, 261);
             messageLabel.TabIndex = 6;
             messageLabel.Text = "Message:";
             messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,7 +142,7 @@
             usernameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             usernameLabel.Location = new System.Drawing.Point(3, 28);
             usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new System.Drawing.Size(87, 30);
+            usernameLabel.Size = new System.Drawing.Size(86, 30);
             usernameLabel.TabIndex = 8;
             usernameLabel.Text = "Username:";
             usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -255,6 +255,49 @@
             this.errorDataGrid.TabIndex = 0;
             this.errorDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.errorDataGrid_KeyDown);
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateTriggeredDataGridViewTextBoxColumn
+            // 
+            this.dateTriggeredDataGridViewTextBoxColumn.DataPropertyName = "DateTriggered";
+            this.dateTriggeredDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateTriggeredDataGridViewTextBoxColumn.Name = "dateTriggeredDataGridViewTextBoxColumn";
+            this.dateTriggeredDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // innerExceptionDataGridViewTextBoxColumn
+            // 
+            this.innerExceptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.innerExceptionDataGridViewTextBoxColumn.DataPropertyName = "InnerException";
+            this.innerExceptionDataGridViewTextBoxColumn.HeaderText = "Inner Exception";
+            this.innerExceptionDataGridViewTextBoxColumn.Name = "innerExceptionDataGridViewTextBoxColumn";
+            this.innerExceptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // messageDataGridViewTextBoxColumn
+            // 
+            this.messageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
+            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
+            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
+            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.messageDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // errorViewBindingSource
+            // 
+            this.errorViewBindingSource.DataSource = typeof(BankManager.LogServices.ErrorView);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -288,10 +331,10 @@
             this.iDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.iDTextBox.BackColor = System.Drawing.Color.White;
             this.iDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.errorViewBindingSource, "ID", true));
-            this.iDTextBox.Location = new System.Drawing.Point(96, 4);
+            this.iDTextBox.Location = new System.Drawing.Point(95, 4);
             this.iDTextBox.Name = "iDTextBox";
             this.iDTextBox.ReadOnly = true;
-            this.iDTextBox.Size = new System.Drawing.Size(187, 20);
+            this.iDTextBox.Size = new System.Drawing.Size(188, 20);
             this.iDTextBox.TabIndex = 3;
             // 
             // usernameTextBox
@@ -299,10 +342,10 @@
             this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameTextBox.BackColor = System.Drawing.Color.White;
             this.usernameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.errorViewBindingSource, "Username", true));
-            this.usernameTextBox.Location = new System.Drawing.Point(96, 33);
+            this.usernameTextBox.Location = new System.Drawing.Point(95, 33);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.ReadOnly = true;
-            this.usernameTextBox.Size = new System.Drawing.Size(187, 20);
+            this.usernameTextBox.Size = new System.Drawing.Size(188, 20);
             this.usernameTextBox.TabIndex = 9;
             // 
             // dateTriggeredDateTimePicker
@@ -311,9 +354,9 @@
             this.dateTriggeredDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.errorViewBindingSource, "DateTriggered", true));
             this.dateTriggeredDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.errorViewBindingSource, "DateTriggered", true));
             this.dateTriggeredDateTimePicker.Enabled = false;
-            this.dateTriggeredDateTimePicker.Location = new System.Drawing.Point(96, 63);
+            this.dateTriggeredDateTimePicker.Location = new System.Drawing.Point(95, 63);
             this.dateTriggeredDateTimePicker.Name = "dateTriggeredDateTimePicker";
-            this.dateTriggeredDateTimePicker.Size = new System.Drawing.Size(187, 20);
+            this.dateTriggeredDateTimePicker.Size = new System.Drawing.Size(188, 20);
             this.dateTriggeredDateTimePicker.TabIndex = 1;
             // 
             // innerExceptionTextBox
@@ -321,11 +364,11 @@
             this.innerExceptionTextBox.BackColor = System.Drawing.Color.White;
             this.innerExceptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.errorViewBindingSource, "InnerException", true));
             this.innerExceptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.innerExceptionTextBox.Location = new System.Drawing.Point(96, 92);
+            this.innerExceptionTextBox.Location = new System.Drawing.Point(95, 92);
             this.innerExceptionTextBox.Multiline = true;
             this.innerExceptionTextBox.Name = "innerExceptionTextBox";
             this.innerExceptionTextBox.ReadOnly = true;
-            this.innerExceptionTextBox.Size = new System.Drawing.Size(187, 114);
+            this.innerExceptionTextBox.Size = new System.Drawing.Size(188, 114);
             this.innerExceptionTextBox.TabIndex = 5;
             // 
             // messageTextBox
@@ -333,18 +376,18 @@
             this.messageTextBox.BackColor = System.Drawing.Color.White;
             this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.errorViewBindingSource, "Message", true));
             this.messageTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageTextBox.Location = new System.Drawing.Point(96, 212);
+            this.messageTextBox.Location = new System.Drawing.Point(95, 212);
             this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.ReadOnly = true;
-            this.messageTextBox.Size = new System.Drawing.Size(187, 255);
+            this.messageTextBox.Size = new System.Drawing.Size(188, 255);
             this.messageTextBox.TabIndex = 7;
             // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -533,49 +576,6 @@
             // 
             this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
             // 
-            // errorViewBindingSource
-            // 
-            this.errorViewBindingSource.DataSource = typeof(BankManager.LogServices.ErrorView);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateTriggeredDataGridViewTextBoxColumn
-            // 
-            this.dateTriggeredDataGridViewTextBoxColumn.DataPropertyName = "DateTriggered";
-            this.dateTriggeredDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateTriggeredDataGridViewTextBoxColumn.Name = "dateTriggeredDataGridViewTextBoxColumn";
-            this.dateTriggeredDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // usernameDataGridViewTextBoxColumn
-            // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // innerExceptionDataGridViewTextBoxColumn
-            // 
-            this.innerExceptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.innerExceptionDataGridViewTextBoxColumn.DataPropertyName = "InnerException";
-            this.innerExceptionDataGridViewTextBoxColumn.HeaderText = "Inner Exception";
-            this.innerExceptionDataGridViewTextBoxColumn.Name = "innerExceptionDataGridViewTextBoxColumn";
-            this.innerExceptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // messageDataGridViewTextBoxColumn
-            // 
-            this.messageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
-            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
-            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
-            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
-            this.messageDataGridViewTextBoxColumn.Visible = false;
-            // 
             // ErrorLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -594,6 +594,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorViewBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -602,7 +603,6 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentViewBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorViewBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUserServices_AllocateRole_InputMessage">
@@ -84,6 +85,12 @@
   </wsdl:message>
   <wsdl:message name="IUserServices_ListUsers_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_ListUsernames_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListUsernames" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_ListUsernames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListUsernamesResponse" />
   </wsdl:message>
   <wsdl:message name="IUserServices_ReadByUsername_InputMessage">
     <wsdl:part name="parameters" element="tns:ReadByUsername" />
@@ -179,6 +186,10 @@
     <wsdl:operation name="ListUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ListUsers" message="tns:IUserServices_ListUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ListUsersResponse" message="tns:IUserServices_ListUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListUsernames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ListUsernames" message="tns:IUserServices_ListUsernames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/ListUsernamesResponse" message="tns:IUserServices_ListUsernames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReadByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/ReadByUsername" message="tns:IUserServices_ReadByUsername_InputMessage" />
@@ -321,6 +332,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListUsers">
       <soap:operation soapAction="http://tempuri.org/IUserServices/ListUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListUsernames">
+      <soap:operation soapAction="http://tempuri.org/IUserServices/ListUsernames" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,0 +1,78 @@
+﻿@model WebPortal.Models.TransactionDetailModel
+
+@{
+    ViewBag.Title = "Transaction Report";
+    Layout = "~/Views/Shared/_Print.cshtml";
+}
+
+<h2>Transaction Report</h2>
+
+<div>
+    <hr />
+    <dl class="col-md-offset-0 dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIssued)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.DateIssued)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.TypeName)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountFromID)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.AccountFromID)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountToID)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.AccountToID)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.Currency)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.Amount)
+			</div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+			<div class="well well-sm">
+				@Html.DisplayFor(model => model.Remarks)
+			</div>
+        </dd>
+    </dl>
+</div>
+

@@ -45,7 +45,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Message" Type="nvarchar(max)" />
     <Property Name="InnerException" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateTriggered" Type="datetime" />
@@ -170,16 +170,8 @@
     <Property Name="Mobile" Type="int" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
     <Property Name="TownID" Type="int" />
-    <Property Name="TypeID" Type="int" />
     <Property Name="Blocked" Type="bit" Nullable="false" />
     <Property Name="NoOfAttempts" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserTypes">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <Association Name="FK_Account_Currency">
     <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
@@ -397,18 +389,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Users_UserTypes">
-    <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserTypes">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="TypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="DSABankDbModelStoreContainer">
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" Schema="dbo" store:Type="Tables" />
@@ -428,7 +408,6 @@
     <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Account_Currency" Association="Self.FK_Account_Currency">
       <End Role="Currency" EntitySet="Currency" />
       <End Role="Accounts" EntitySet="Accounts" />
@@ -499,10 +478,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Users_Towns" Association="Self.FK_Users_Towns">
       <End Role="Towns" EntitySet="Towns" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
-      <End Role="UserTypes" EntitySet="UserTypes" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>

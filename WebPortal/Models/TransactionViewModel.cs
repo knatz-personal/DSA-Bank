@@ -60,16 +60,6 @@ namespace WebPortal.Models
         [Required]
         public decimal Amount { get; set; }
 
-  
-        [Display(Name = "Start Date")]
-        [DataType(DataType.DateTime)]
-        public DateTime StartDate { get; set; }
-
-  
-        [Display(Name = "End Date")]
-        [DataType(DataType.DateTime)]
-        public DateTime EndDate { get; set; }
-
         [Display(Name = "Type")]
         public string TypeName { get; set; }
     }

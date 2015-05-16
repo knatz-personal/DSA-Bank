@@ -62,7 +62,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -71,11 +70,11 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.appointmentViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sourceTableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             dateModifiedLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
@@ -100,7 +99,7 @@
             dateModifiedLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             dateModifiedLabel.Location = new System.Drawing.Point(3, 30);
             dateModifiedLabel.Name = "dateModifiedLabel";
-            dateModifiedLabel.Size = new System.Drawing.Size(99, 28);
+            dateModifiedLabel.Size = new System.Drawing.Size(79, 28);
             dateModifiedLabel.TabIndex = 0;
             dateModifiedLabel.Text = "Date Modified:";
             dateModifiedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,7 +110,7 @@
             iDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             iDLabel.Location = new System.Drawing.Point(3, 0);
             iDLabel.Name = "iDLabel";
-            iDLabel.Size = new System.Drawing.Size(99, 30);
+            iDLabel.Size = new System.Drawing.Size(79, 30);
             iDLabel.TabIndex = 2;
             iDLabel.Text = "ID:";
             iDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,7 +121,7 @@
             messageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             messageLabel.Location = new System.Drawing.Point(3, 113);
             messageLabel.Name = "messageLabel";
-            messageLabel.Size = new System.Drawing.Size(99, 259);
+            messageLabel.Size = new System.Drawing.Size(79, 363);
             messageLabel.TabIndex = 4;
             messageLabel.Text = "Message:";
             messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +132,7 @@
             modifiedByLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             modifiedByLabel.Location = new System.Drawing.Point(3, 58);
             modifiedByLabel.Name = "modifiedByLabel";
-            modifiedByLabel.Size = new System.Drawing.Size(99, 28);
+            modifiedByLabel.Size = new System.Drawing.Size(79, 28);
             modifiedByLabel.TabIndex = 6;
             modifiedByLabel.Text = "Modified By:";
             modifiedByLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -144,7 +143,7 @@
             sourceTableLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             sourceTableLabel.Location = new System.Drawing.Point(3, 86);
             sourceTableLabel.Name = "sourceTableLabel";
-            sourceTableLabel.Size = new System.Drawing.Size(99, 27);
+            sourceTableLabel.Size = new System.Drawing.Size(79, 27);
             sourceTableLabel.TabIndex = 8;
             sourceTableLabel.Text = "Source Table:";
             sourceTableLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -240,7 +239,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.03885F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.339468F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.47035F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateTimePicker2, 4, 0);
@@ -261,32 +260,32 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(3, 5);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(146, 21);
+            this.comboBox1.Size = new System.Drawing.Size(144, 21);
             this.comboBox1.TabIndex = 0;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(204, 6);
+            this.dateTimePicker1.Location = new System.Drawing.Point(201, 6);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(166, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(163, 20);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(413, 6);
+            this.dateTimePicker2.Location = new System.Drawing.Point(407, 6);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(174, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(171, 20);
             this.dateTimePicker2.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(155, 0);
+            this.label1.Location = new System.Drawing.Point(153, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 32);
+            this.label1.Size = new System.Drawing.Size(42, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "From";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -295,7 +294,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(376, 0);
+            this.label2.Location = new System.Drawing.Point(370, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 32);
             this.label2.TabIndex = 4;
@@ -306,9 +305,9 @@
             // 
             this.bttnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.bttnLoad.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.bttnLoad.Location = new System.Drawing.Point(593, 3);
+            this.bttnLoad.Location = new System.Drawing.Point(584, 3);
             this.bttnLoad.Name = "bttnLoad";
-            this.bttnLoad.Size = new System.Drawing.Size(90, 26);
+            this.bttnLoad.Size = new System.Drawing.Size(99, 26);
             this.bttnLoad.TabIndex = 5;
             this.bttnLoad.Text = "Load";
             this.bttnLoad.UseVisualStyleBackColor = false;
@@ -317,8 +316,8 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.00441F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.99559F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.06993F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.93007F));
             this.tableLayoutPanel3.Controls.Add(iDLabel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.iDTextBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(dateModifiedLabel, 0, 1);
@@ -337,7 +336,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 259F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 363F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(286, 493);
             this.tableLayoutPanel3.TabIndex = 1;
@@ -347,10 +346,10 @@
             this.iDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.iDTextBox.BackColor = System.Drawing.Color.White;
             this.iDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventViewBindingSource, "ID", true));
-            this.iDTextBox.Location = new System.Drawing.Point(108, 5);
+            this.iDTextBox.Location = new System.Drawing.Point(88, 5);
             this.iDTextBox.Name = "iDTextBox";
             this.iDTextBox.ReadOnly = true;
-            this.iDTextBox.Size = new System.Drawing.Size(175, 20);
+            this.iDTextBox.Size = new System.Drawing.Size(195, 20);
             this.iDTextBox.TabIndex = 3;
             // 
             // eventViewBindingSource
@@ -360,11 +359,12 @@
             // 
             // dateModifiedDateTimePicker
             // 
+            this.dateModifiedDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateModifiedDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.eventViewBindingSource, "DateModified", true));
             this.dateModifiedDateTimePicker.Enabled = false;
-            this.dateModifiedDateTimePicker.Location = new System.Drawing.Point(108, 33);
+            this.dateModifiedDateTimePicker.Location = new System.Drawing.Point(88, 34);
             this.dateModifiedDateTimePicker.Name = "dateModifiedDateTimePicker";
-            this.dateModifiedDateTimePicker.Size = new System.Drawing.Size(137, 20);
+            this.dateModifiedDateTimePicker.Size = new System.Drawing.Size(195, 20);
             this.dateModifiedDateTimePicker.TabIndex = 1;
             // 
             // modifiedByTextBox
@@ -372,10 +372,10 @@
             this.modifiedByTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.modifiedByTextBox.BackColor = System.Drawing.Color.White;
             this.modifiedByTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventViewBindingSource, "ModifiedBy", true));
-            this.modifiedByTextBox.Location = new System.Drawing.Point(108, 62);
+            this.modifiedByTextBox.Location = new System.Drawing.Point(88, 62);
             this.modifiedByTextBox.Name = "modifiedByTextBox";
             this.modifiedByTextBox.ReadOnly = true;
-            this.modifiedByTextBox.Size = new System.Drawing.Size(175, 20);
+            this.modifiedByTextBox.Size = new System.Drawing.Size(195, 20);
             this.modifiedByTextBox.TabIndex = 7;
             // 
             // sourceTableTextBox
@@ -383,10 +383,10 @@
             this.sourceTableTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sourceTableTextBox.BackColor = System.Drawing.Color.White;
             this.sourceTableTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventViewBindingSource, "SourceTable", true));
-            this.sourceTableTextBox.Location = new System.Drawing.Point(108, 89);
+            this.sourceTableTextBox.Location = new System.Drawing.Point(88, 89);
             this.sourceTableTextBox.Name = "sourceTableTextBox";
             this.sourceTableTextBox.ReadOnly = true;
-            this.sourceTableTextBox.Size = new System.Drawing.Size(175, 20);
+            this.sourceTableTextBox.Size = new System.Drawing.Size(195, 20);
             this.sourceTableTextBox.TabIndex = 9;
             // 
             // messageTextBox
@@ -394,11 +394,11 @@
             this.messageTextBox.BackColor = System.Drawing.Color.White;
             this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventViewBindingSource, "Message", true));
             this.messageTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageTextBox.Location = new System.Drawing.Point(108, 116);
+            this.messageTextBox.Location = new System.Drawing.Point(88, 116);
             this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.ReadOnly = true;
-            this.messageTextBox.Size = new System.Drawing.Size(175, 253);
+            this.messageTextBox.Size = new System.Drawing.Size(195, 357);
             this.messageTextBox.TabIndex = 5;
             // 
             // eventDataGrid
@@ -410,7 +410,6 @@
             this.iDDataGridViewTextBoxColumn,
             this.modifiedByDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn,
-            this.sourceTableDataGridViewTextBoxColumn,
             this.messageDataGridViewTextBoxColumn});
             this.eventDataGrid.DataSource = this.eventViewBindingSource;
             this.eventDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -440,7 +439,7 @@
             this.bindingNavigator1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.bindingNavigator1.BindingSource = this.eventViewBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -472,15 +471,6 @@
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -542,6 +532,16 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
+            // 
             // appointmentViewBindingSource
             // 
             this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
@@ -556,7 +556,7 @@
             // 
             // modifiedByDataGridViewTextBoxColumn
             // 
-            this.modifiedByDataGridViewTextBoxColumn.DataPropertyName = "ModifiedBy";
+            this.modifiedByDataGridViewTextBoxColumn.DataPropertyName = "Modified By";
             this.modifiedByDataGridViewTextBoxColumn.HeaderText = "ModifiedBy";
             this.modifiedByDataGridViewTextBoxColumn.Name = "modifiedByDataGridViewTextBoxColumn";
             this.modifiedByDataGridViewTextBoxColumn.ReadOnly = true;
@@ -567,13 +567,6 @@
             this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
             this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
             this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sourceTableDataGridViewTextBoxColumn
-            // 
-            this.sourceTableDataGridViewTextBoxColumn.DataPropertyName = "Source Table";
-            this.sourceTableDataGridViewTextBoxColumn.HeaderText = "SourceTable";
-            this.sourceTableDataGridViewTextBoxColumn.Name = "sourceTableDataGridViewTextBoxColumn";
-            this.sourceTableDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // messageDataGridViewTextBoxColumn
             // 
@@ -660,10 +653,10 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripMenuItem errorLogToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sourceTableDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sourceTableDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
     }
 }

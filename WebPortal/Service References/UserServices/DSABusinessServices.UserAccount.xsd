@@ -46,11 +46,10 @@
       <xs:element minOccurs="0" name="Mobile" type="xs:int" />
       <xs:element minOccurs="0" name="NoOfAttempts" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRoleView" />
       <xs:element minOccurs="0" name="Salt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TownID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="TownName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TypeID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -68,17 +67,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TownView" nillable="true" type="tns:TownView" />
-  <xs:complexType name="ArrayOfUserTypeView">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserTypeView" nillable="true" type="tns:UserTypeView" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUserTypeView" nillable="true" type="tns:ArrayOfUserTypeView" />
-  <xs:complexType name="UserTypeView">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UserTypeView" nillable="true" type="tns:UserTypeView" />
 </xs:schema>

@@ -1,3 +1,5 @@
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Content\img\logo.png
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\favicon.ico
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\WebPortal.dll.config
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\WebPortal.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\WebPortal.pdb

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CommonUtils;
+using Microsoft.Owin.Security;
 using PagedList;
 using WebPortal.Models;
 using WebPortal.UserServices;
@@ -17,12 +19,48 @@ namespace WebPortal.Controllers
     [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
-        public PartialViewResult Delete(string id)
+        public ActionResult Role(string id)
         {
             using (var client = new UserServicesClient())
             {
                 UserView u = client.ReadByUsername(id);
-                return PartialView("_Delete", new UserAccountViewModel
+                return PartialView("_Role", new RoleModel
+                {
+                    Username = u.Username,
+                    Roles = GetRoleList(),
+                    UserRoles = GetCurrentUserRoles(u.Username)
+                });
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Role(string id, RoleModel model)
+        {
+            // id is username
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //using (var client = new UserServicesClient())
+                    //{
+                    //    client
+                    //}
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError(string.Empty, @"An error occurred while attempting to save changes.");
+            }
+            return Role(id);
+        }
+        
+        public ActionResult Delete(string id)
+        {
+            using (var client = new UserServicesClient())
+            {
+                UserView u = client.ReadByUsername(id);
+                return PartialView("_Delete", new UserListItemModel()
                 {
                     Username = u.Username,
                     FirstName = u.FirstName,
@@ -34,7 +72,6 @@ namespace WebPortal.Controllers
                     Address = u.Address,
                     GenderID = u.GenderID,
                     TownID = u.TownID,
-                    TypeID = u.TypeID,
                     Blocked = u.Blocked,
                     NoOfAttempts = u.NoOfAttempts
                 });
@@ -59,14 +96,14 @@ namespace WebPortal.Controllers
             }
         }
 
-        public PartialViewResult Details(string id)
+        public ActionResult Details(string id)
         {
             using (var client = new UserServicesClient())
             {
                 UserView u = client.ReadByUsername(id);
-                if (u.TownID != null && u.TypeID != null && u.GenderID != null)
+                if (u.TownID != null && u.GenderID != null)
                 {
-                    return PartialView("_Details", new UserAccountViewModel
+                    return PartialView("_Details", new UserListItemModel
                     {
                         Username = u.Username,
                         FirstName = u.FirstName,
@@ -78,7 +115,7 @@ namespace WebPortal.Controllers
                         Address = u.Address,
                         GenderName = u.GenderName,
                         TownName = u.TownName,
-                        TypeName = u.TypeName,
+                        UserRoles = new SelectList(u.Roles, "ID", "Name"),
                         Blocked = u.Blocked,
                         NoOfAttempts = u.NoOfAttempts
                     });
@@ -87,12 +124,12 @@ namespace WebPortal.Controllers
             return null;
         }
 
-        public PartialViewResult Edit(string id)
+        public ActionResult Edit(string id)
         {
             using (var client = new UserServicesClient())
             {
                 UserView u = client.ReadByUsername(id);
-                return PartialView("_Edit", new UserAccountViewModel
+                return PartialView("_Edit", new UserListItemModel
                 {
                     FirstName = u.FirstName,
                     MiddleInitial = u.MiddleInitial,
@@ -103,20 +140,18 @@ namespace WebPortal.Controllers
                     Address = u.Address,
                     GenderID = u.GenderID,
                     TownID = u.TownID,
-                    TypeID = u.TypeID,
                     Username = u.Username,
                     Blocked = u.Blocked,
                     NoOfAttempts = u.NoOfAttempts,
                     Genders = GetGenderList(),
-                    Towns = GetTownList(),
-                    Types = GetTypeList()
+                    Towns = GetTownList()
                 });
             }
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Edit(string id, UserAccountViewModel model)
+        public ActionResult Edit(string id, UserListItemModel model)
         {
             try
             {
@@ -136,7 +171,6 @@ namespace WebPortal.Controllers
                             Address = model.Address,
                             GenderID = model.GenderID,
                             TownID = model.TownID,
-                            TypeID = model.TypeID,
                             Blocked = model.Blocked,
                             NoOfAttempts = model.NoOfAttempts
                         });
@@ -164,9 +198,6 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("<label for='Mobile'>" + model.Mobile + "</label>");
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("<td>");
-                    htmlBuilder.AppendLine("<label for='TypeID'>" + model.TypeID + "</label>");
-                    htmlBuilder.AppendLine("</td>");
-                    htmlBuilder.AppendLine("<td>");
                     htmlBuilder.AppendLine("<label for='NoOfAttempts'>" + model.NoOfAttempts + "</label>");
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("<td>");
@@ -189,7 +220,7 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("</td>");
                     htmlBuilder.AppendLine("</tr>");
 
-                    return Json(new {result = "OK", html = htmlBuilder.ToString()});
+                    return Json(new { result = "OK", html = htmlBuilder.ToString() });
                 }
             }
             catch
@@ -199,11 +230,91 @@ namespace WebPortal.Controllers
             return Edit(id);
         }
 
+        public ActionResult Index(string sb, string q, int? p, int ps = 10)
+        {
+            IEnumerable<UserListItemModel> list = null;
+
+            if (sb == "fname")
+            {
+                using (var client = new UserServicesClient())
+                {
+                    list = client.ListUsers()
+                        .Where(
+                            d =>
+                                d.FirstName.ToLower().Contains(q.ToLower()) ||
+                                d.MiddleInitial.ToLower().Contains(q.ToLower()) ||
+                                d.LastName.ToLower().Contains(q.ToLower()))
+                        .Select(u => new UserListItemModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                }
+            }
+            else if (sb == "username")
+            {
+                using (var client = new UserServicesClient())
+                {
+                    list = client.ListUsers().Where(d => d.Username.ToLower().Contains(q.ToLower()))
+                        .Select(u => new UserListItemModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                }
+            }
+            else
+            {
+                using (var client = new UserServicesClient())
+                {
+                    list = client.ListUsers().Select(u => new UserListItemModel
+                    {
+                        Username = u.Username,
+                        FirstName = u.FirstName,
+                        MiddleInitial = u.MiddleInitial,
+                        LastName = u.LastName,
+                        Email = u.Email,
+                        Mobile = u.Mobile,
+                        DateOfBirth = u.DateOfBirth,
+                        Address = u.Address,
+                        Blocked = u.Blocked,
+                        NoOfAttempts = u.NoOfAttempts
+                    });
+                }
+            }
+            var model = new UserAccountViewModel()
+            {
+                UsersPagedList = GetPagedUserList(list, p, ps)
+            };
+            return Request.IsAjaxRequest()
+                ? (ActionResult)PartialView("_PagedList", model.UsersPagedList) : View(model);
+        }
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            throw new HttpException(403, "Insufficient authorization");
         }
 
         [ValidateAntiForgeryToken]
@@ -225,10 +336,13 @@ namespace WebPortal.Controllers
                                 {
                                     var identity = new ClaimsIdentity(new[]
                                     {
-                                        new Claim(ClaimTypes.Name, model.Username),
+                                        new Claim(ClaimTypes.Name, model.Username)
                                     }, "ApplicationCookie");
 
-                                    HttpContext.GetOwinContext().Authentication.SignIn(identity);
+                                    HttpContext.GetOwinContext()
+                                        .Authentication.SignIn(
+                                            new AuthenticationProperties { IsPersistent = model.Remember },
+                                            identity);
 
                                     return RedirectToAction("Index", "Home");
                                 }
@@ -263,87 +377,6 @@ namespace WebPortal.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Manage(string sb, string q, int? p, int ps = 10)
-        {
-            IEnumerable<UserAccountViewModel> list = null;
-
-            if (sb == "fname")
-            {
-                using (var client = new UserServicesClient())
-                {
-                    list = client.ListUsers()
-                        .Where(
-                            d =>
-                                d.FirstName.ToLower().Contains(q.ToLower()) ||
-                                d.MiddleInitial.ToLower().Contains(q.ToLower()) ||
-                                d.LastName.ToLower().Contains(q.ToLower()))
-                        .Select(u => new UserAccountViewModel
-                        {
-                            Username = u.Username,
-                            FirstName = u.FirstName,
-                            MiddleInitial = u.MiddleInitial,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Mobile = u.Mobile,
-                            DateOfBirth = u.DateOfBirth,
-                            Address = u.Address,
-                            TypeName = u.TypeName,
-                            Blocked = u.Blocked,
-                            NoOfAttempts = u.NoOfAttempts
-                        });
-                }
-            }
-            else if (sb == "username")
-            {
-                using (var client = new UserServicesClient())
-                {
-                    list = client.ListUsers().Where(d => d.Username.ToLower().Contains(q.ToLower()))
-                        .Select(u => new UserAccountViewModel
-                        {
-                            Username = u.Username,
-                            FirstName = u.FirstName,
-                            MiddleInitial = u.MiddleInitial,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Mobile = u.Mobile,
-                            DateOfBirth = u.DateOfBirth,
-                            Address = u.Address,
-                            TypeName = u.TypeName,
-                            Blocked = u.Blocked,
-                            NoOfAttempts = u.NoOfAttempts
-                        });
-                }
-            }
-            else
-            {
-                using (var client = new UserServicesClient())
-                {
-                    list = client.ListUsers().Select(u => new UserAccountViewModel
-                    {
-                        Username = u.Username,
-                        FirstName = u.FirstName,
-                        MiddleInitial = u.MiddleInitial,
-                        LastName = u.LastName,
-                        Email = u.Email,
-                        Mobile = u.Mobile,
-                        DateOfBirth = u.DateOfBirth,
-                        Address = u.Address,
-                        TypeName = u.TypeName,
-                        Blocked = u.Blocked,
-                        NoOfAttempts = u.NoOfAttempts
-                    });
-                }
-            }
-            return View(GetPagedUserList(list, p, ps));
-        }
-
-        private static IPagedList<UserAccountViewModel> GetPagedUserList(IEnumerable<UserAccountViewModel> list,
-            int? page, int pageSize)
-        {
-            IPagedList<UserAccountViewModel> pagedList = list.ToPagedList(page ?? 1, pageSize);
-            return pagedList;
-        }
-
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
@@ -353,7 +386,7 @@ namespace WebPortal.Controllers
             model.Towns = GetTownList();
             return View(model);
         }
-
+        
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
         [HttpPost]
@@ -381,7 +414,6 @@ namespace WebPortal.Controllers
                             Address = model.Address,
                             GenderID = model.GenderID,
                             TownID = model.TownID,
-                            TypeID = 1,
                             Blocked = false,
                             NoOfAttempts = 0
                         });
@@ -404,15 +436,38 @@ namespace WebPortal.Controllers
             }
             model.Genders = GetGenderList();
             model.Towns = GetTownList();
-            OutputModelStateErrors();
+            //OutputModelStateErrors();
             return View(model);
         }
 
+        private static IPagedList<UserListItemModel> GetPagedUserList(IEnumerable<UserListItemModel> list,
+            int? page, int pageSize)
+        {
+            IPagedList<UserListItemModel> pagedList = list.ToPagedList(page ?? 1, pageSize);
+            return pagedList;
+        }
+
+        private IEnumerable<SelectListItem> GetCurrentUserRoles(string username)
+        {
+            using (var client = new UserServicesClient())
+            {
+                return new SelectList(client.GetRoles(username), "ID", "Name");
+            }
+        }
+        
         private SelectList GetGenderList()
         {
             using (var client = new UserServicesClient())
             {
                 return new SelectList(client.Genders(), "ID", "Name");
+            }
+        }
+
+        private SelectList GetRoleList()
+        {
+            using (var client = new UserServicesClient())
+            {
+                return new SelectList(client.ListRoles(), "ID", "Name");
             }
         }
 
@@ -423,15 +478,7 @@ namespace WebPortal.Controllers
                 return new SelectList(client.Towns(), "ID", "Name");
             }
         }
-
-        private SelectList GetTypeList()
-        {
-            using (var client = new UserServicesClient())
-            {
-                return new SelectList(client.Types(), "ID", "Name");
-            }
-        }
-
+        
         private void OutputModelStateErrors()
         {
             var errors =

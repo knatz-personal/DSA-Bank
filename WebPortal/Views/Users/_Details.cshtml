@@ -1,4 +1,5 @@
-﻿@model WebPortal.Models.UserAccountViewModel
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@model WebPortal.Models.UserListItemModel
 
 <dl class="col-md-offset-1 dl-horizontal">
     <dt>
@@ -102,12 +103,17 @@
     </dd>
 
     <dt>
-        @Html.DisplayNameFor(model => model.TypeID)
+        @Html.DisplayNameFor(model => model.UserRoles)
     </dt>
 
     <dd>
         <div class="well well-sm">
-            @Html.DisplayFor(model => model.TypeName)
+            <ul class="nav nav-stacked">
+                @foreach (var r in Model.UserRoles)
+                {
+                    <li>@r.Text</li>
+                }
+            </ul>
         </div>
     </dd>
 

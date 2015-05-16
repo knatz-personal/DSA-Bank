@@ -15,7 +15,7 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
@@ -28,6 +28,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="bea31285-0e8b-4556-b924-f11b8d356da7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5caeb823-9e8d-4bb1-bb49-4d4b94b81c2c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
     <MetadataFile FileName="DSABusinessServices.UserAccount.xsd" MetadataType="Schema" ID="1a69a77a-dbdf-48e6-9afc-91b5176d81ae" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ff356176-567b-4a47-b917-118f512e3067" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/UserServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

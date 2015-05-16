@@ -89,7 +89,6 @@ namespace DataAccess.Reposiitories.Users
                 o.Address = updatedItem.Address;
                 o.GenderID = updatedItem.GenderID;
                 o.TownID = updatedItem.TownID;
-                o.TypeID = updatedItem.TypeID;
                 o.Blocked = updatedItem.Blocked;
                 o.NoOfAttempts = updatedItem.NoOfAttempts;
                 _db.SaveChanges();

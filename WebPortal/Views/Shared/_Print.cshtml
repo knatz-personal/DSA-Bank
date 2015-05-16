@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,10 +8,40 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/Content/paper-bootstrap-theme.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        .navbar-default, header, .navbar, .navbar-static-top, .container {
+            border: 0;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        @RenderBody() 
+    <header class="container">
+        <div class="navbar-header">
+            <a href="/Transactions" class="navbar-brand">
+                <img style="max-width: 100px; margin-top: -18px;" src="/Content/img/logo.png" />
+                <span class="sr-only">DSA Bank Transaction Report</span>
+            </a>
+        </div>
+        <span class="nav navbar-nav pull-right" style="padding-top: 22px;">
+            @ViewBag.FullName 
+        </span>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
     </div>
+    <div class="container body-content">
+        <footer>
+            <p>
+                DSA Bank &copy; 2015 created by Nathan Zwelibanzi Khupe
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/global.js"></script>
 </body>
 </html>

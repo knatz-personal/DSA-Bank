@@ -159,7 +159,6 @@
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="NoOfAttempts" ColumnName="NoOfAttempts" />
           <ScalarProperty Name="Blocked" ColumnName="Blocked" />
-          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
           <ScalarProperty Name="TownID" ColumnName="TownID" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
@@ -172,14 +171,6 @@
           <ScalarProperty Name="Salt" ColumnName="Salt" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserTypes">
-      <EntityTypeMapping TypeName="DSABankDbModel.UserType">
-        <MappingFragment StoreEntitySet="UserTypes">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

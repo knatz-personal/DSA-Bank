@@ -656,6 +656,12 @@ namespace TokenGenerator.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsers", ReplyAction="http://tempuri.org/IUserServices/ListUsersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<TokenGenerator.UserServices.UserView>> ListUsersAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsernames", ReplyAction="http://tempuri.org/IUserServices/ListUsernamesResponse")]
+        System.Collections.Generic.List<string> ListUsernames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListUsernames", ReplyAction="http://tempuri.org/IUserServices/ListUsernamesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListUsernamesAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ReadByUsername", ReplyAction="http://tempuri.org/IUserServices/ReadByUsernameResponse")]
         TokenGenerator.UserServices.UserView ReadByUsername(string username);
         
@@ -828,6 +834,14 @@ namespace TokenGenerator.UserServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<TokenGenerator.UserServices.UserView>> ListUsersAsync() {
             return base.Channel.ListUsersAsync();
+        }
+        
+        public System.Collections.Generic.List<string> ListUsernames() {
+            return base.Channel.ListUsernames();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListUsernamesAsync() {
+            return base.Channel.ListUsernamesAsync();
         }
         
         public TokenGenerator.UserServices.UserView ReadByUsername(string username) {
