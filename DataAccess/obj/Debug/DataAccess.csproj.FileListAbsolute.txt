@@ -11,8 +11,11 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\CommonUtils.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\EntityFramework.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\System.Linq.Dynamic.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\itextsharp.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\itextsharp.xmlworker.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\CommonUtils.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\EntityFramework.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\bin\itextsharp.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DataAccess\obj\Debug\DataAccess.pdb

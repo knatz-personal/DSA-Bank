@@ -24,7 +24,6 @@ namespace WebPortal.Controllers
         {
             try
             {
-                throw new Exception("Test exception.");
                 if (ModelState.IsValid)
                 {
                     using (var client = new AppointmentServicesClient())
@@ -46,7 +45,7 @@ namespace WebPortal.Controllers
                                 Description = model.Description,
                                 IsAccepted = model.IsAccepted
                             });
-                            return RedirectToAction("Index", "Home");
+                            return Json(new { Result = "OK", Message = "Successfully sent your appointment request." });
                         }
                         ModelState.AddModelError("SuggestedTime", "Invalid time value.");
                     }

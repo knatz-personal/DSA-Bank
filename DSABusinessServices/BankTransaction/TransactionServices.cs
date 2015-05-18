@@ -14,6 +14,20 @@ namespace DSABusinessServices.BankTransaction
 
     public class TransactionServices : ITransactionServices
     {
+        public void Create(TransactionView item)
+        {
+            new TransactionsRepo().Create(new Transaction()
+            {
+                DateIssued = item.DateIssued,
+                TypeID = item.TypeID,
+                Remarks = item.Remarks,
+                AccountFromID = item.AccountFromID,
+                AccountToID = item.AccountToID,
+                Amount = item.Amount,
+                Currency = item.Currency
+            });
+        }
+
         public void Delete(int id)
         {
             new TransactionsRepo().Delete(new Transaction { ID = id });
@@ -27,7 +41,7 @@ namespace DSABusinessServices.BankTransaction
             IQueryable<Transaction> list = null;
             if (!string.IsNullOrEmpty(username) && accountNo > 0)
             {
-                FilterByUsernameAndAcoount(username, accountNo, repo);
+                list = FilterByUsernameAndAcoount(username, accountNo);
             }
             else if (!string.IsNullOrEmpty(username) && accountNo == 0)
             {
@@ -35,14 +49,14 @@ namespace DSABusinessServices.BankTransaction
             }
             else if (string.IsNullOrEmpty(username) && accountNo > 0)
             {
-                FilterByAccount(accountNo, repo);
+                list = FilterByAccount(accountNo);
             }
             else
             {
                 list = repo.ListAll();
             }
 
-            list = ReOrderList(order, list, repo);
+            list = ReOrderList(order, list);
 
             list = FilterByDateRange(start, end, list);
 
@@ -69,30 +83,22 @@ namespace DSABusinessServices.BankTransaction
             return list;
         }
 
-        private static IQueryable<Transaction> ReOrderList(SortOrder order, IQueryable<Transaction> list, TransactionsRepo repo)
+        private static IQueryable<Transaction> ReOrderList(SortOrder order, IQueryable<Transaction> list)
         {
-            if (order == SortOrder.Ascending)
-            {
-                list = repo.ListAll().OrderBy(a => a.DateIssued);
-            }
-            else
-            {
-                list = repo.ListAll().OrderByDescending(a => a.DateIssued);
-            }
+            list = order == SortOrder.Ascending ? list.OrderBy(a => a.DateIssued) : list.OrderByDescending(a => a.DateIssued);
             return list;
         }
 
-        private static void FilterByAccount(int accountNo, TransactionsRepo repo)
+        private static IQueryable<Transaction> FilterByAccount(int accountNo)
         {
-            IQueryable<Transaction> list;
-            list = repo.ListAll().Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            IQueryable<Transaction> list = new TransactionsRepo().ListAll().Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            return list;
         }
 
-        private static void FilterByUsernameAndAcoount(string username, int accountNo, TransactionsRepo repo)
+        private static IQueryable<Transaction> FilterByUsernameAndAcoount(string username, int accountNo)
         {
-            IQueryable<Transaction> list;
-            list =
-                repo.ListByUsername(username).Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            IQueryable<Transaction> list = new TransactionsRepo().ListByUsername(username).Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            return list;
         }
 
         public TransactionView GetTransactionDetails(int id)
@@ -118,22 +124,6 @@ namespace DSABusinessServices.BankTransaction
             {
                 ID = g.ID,
                 Name = g.Name
-            });
-        }
-
-        public IQueryable<TransactionView> ListTransactions()
-        {
-            return new TransactionsRepo().ListAll().Select(t => new TransactionView
-            {
-                ID = t.ID,
-                DateIssued = t.DateIssued,
-                TypeID = t.TypeID,
-                TypeName = t.TransactionType.Name,
-                AccountFromID = t.AccountFromID,
-                AccountToID = t.AccountToID,
-                Amount = t.Amount,
-                Currency = t.Currency,
-                Remarks = t.Remarks
             });
         }
 

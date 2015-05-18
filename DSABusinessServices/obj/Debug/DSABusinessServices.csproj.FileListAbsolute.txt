@@ -3,10 +3,12 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServ
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\DSABusinessServices.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\CommonUtils.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\DataAccess.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\itextsharp.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\EntityFramework.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\CommonUtils.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\DataAccess.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\itextsharp.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\bin\Debug\EntityFramework.xml
-C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\obj\Debug\DSABusinessServices.csprojResolveAssemblyReference.cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\obj\Debug\DSABusinessServices.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\DSABusinessServices\obj\Debug\DSABusinessServices.pdb

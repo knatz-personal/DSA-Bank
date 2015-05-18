@@ -25,6 +25,9 @@ namespace DSABusinessServices.UserAccount
         bool DoesUsernameExist(string username);
 
         [OperationContract]
+        bool IsUserInRole(string username, int roleId);
+
+        [OperationContract]
         IEnumerable<GenderView> Genders();
 
         [OperationContract]

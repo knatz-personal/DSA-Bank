@@ -81,11 +81,11 @@ namespace BankManager
             DateTime end = dateTimePickerEnd.Value;
 
             int accountNo = 0;
-            if (comboBoxAccountNo.SelectedText != string.Empty)
+            if (comboBoxAccountNo.Text != string.Empty)
             {
                 try
                 {
-                    accountNo = Convert.ToInt32(comboBoxAccountNo.SelectedText);
+                    accountNo = Convert.ToInt32(comboBoxAccountNo.Text);
                 }
                 catch
                 {
@@ -103,9 +103,8 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.SelectedText,
-                            accountNo, SortOrder.Descending, start, end
-                            );
+                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.Text,
+                            accountNo, SortOrder.Descending, start, end);
                         transactionDataGrid.DataSource = transactionBindingSource;
                     }
                 }
@@ -113,7 +112,7 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.SelectedText,
+                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.Text,
                            accountNo, SortOrder.Descending, null, null
                             );
                         transactionDataGrid.DataSource = transactionBindingSource;
@@ -195,6 +194,11 @@ namespace BankManager
                 new ErrorLogForm().Show();
             }
             Hide();
+        }
+
+        private void TransactionHistoryForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     
     }

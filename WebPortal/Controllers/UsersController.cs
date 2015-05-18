@@ -24,7 +24,7 @@ namespace WebPortal.Controllers
             using (var client = new UserServicesClient())
             {
                 UserView u = client.ReadByUsername(id);
-                return PartialView("_Role", new RoleModel
+                return PartialView("_Role", new RoleModel()
                 {
                     Username = u.Username,
                     Roles = GetRoleList(),
@@ -37,24 +37,74 @@ namespace WebPortal.Controllers
         [HttpPost]
         public ActionResult Role(string id, RoleModel model)
         {
-            // id is username
             try
             {
-                if (ModelState.IsValid)
+                if (id != string.Empty)
                 {
-                    //using (var client = new UserServicesClient())
-                    //{
-                    //    client
-                    //}
+                    if (model.Action == true)
+                    {
+                        using (var client = new UserServicesClient())
+                        {
+                            client.AllocateRole(id, model.RoleId);
+                        }
+                    }
+                    if (model.Action == false)
+                    {
+                        var temp = GetCurrentUserRoles(id);
+
+                        if (temp.SingleOrDefault(ir => ir.Value == model.RoleId + "") != null)
+                        {
+                            if (temp.Count() > 1)
+                            {
+                                using (var client = new UserServicesClient())
+                                {
+                                    client.DeallocateRole(id, model.RoleId);
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError(string.Empty, @"A user must have at least one role.");
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, @"The user does not have this role.");
+                        }
+
+                    }
+                    var m = new RoleModel
+                    {
+                        Action = null,
+                        Username = id,
+                        Roles = GetRoleList(),
+                        UserRoles = GetCurrentUserRoles(id)
+                    };
+
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("_Role", m);
+                    }
+                    return View("Role", m);
                 }
             }
             catch
             {
                 ModelState.AddModelError(string.Empty, @"An error occurred while attempting to save changes.");
             }
-            return Role(id);
+            var m2 = new RoleModel()
+            {
+                Action = null,
+                Username = id,
+                Roles = GetRoleList(),
+                UserRoles = GetCurrentUserRoles(id)
+            };
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Role", m2);
+            }
+            return View("Role", m2);
         }
-        
+
         public ActionResult Delete(string id)
         {
             using (var client = new UserServicesClient())
@@ -92,7 +142,7 @@ namespace WebPortal.Controllers
             }
             catch (Exception e)
             {
-                return Json(new {Result = "OK", e.Message});
+                return Json(new { Result = "OK", e.Message });
             }
         }
 
@@ -205,10 +255,12 @@ namespace WebPortal.Controllers
                     htmlBuilder.AppendLine("</td>");
 
                     htmlBuilder.AppendLine(" <td>");
+                    htmlBuilder.AppendLine(" <a class='bttnAssignThis  btn btn-sm btn-default pull-left' href='/Accounts/Role/" + id +
+                     "' title='Role'><i class='glyphicon glyphicon-lock'>" + "</i><span class='sr-only'>Role</span></a>");
                     htmlBuilder.AppendLine(
                         " <a class='bttnEditThis  btn btn-sm btn-default pull-left' href='/Accounts/Edit/" + id +
                         "' title='Edit'><i class='glyphicon glyphicon-pencil'>" +
-                        "</i><span class='sr-only'>Edit</span></a>");
+                        "</i><span class='sr-only'>Role</span></a>");
                     htmlBuilder.AppendLine(
                         " <a class='bttnDetail  btn btn-sm btn-default pull-left' href='/Accounts/Details/" + id +
                         "' title='Details'>" +
@@ -386,7 +438,7 @@ namespace WebPortal.Controllers
             model.Towns = GetTownList();
             return View(model);
         }
-        
+
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
         [HttpPost]
@@ -454,7 +506,7 @@ namespace WebPortal.Controllers
                 return new SelectList(client.GetRoles(username), "ID", "Name");
             }
         }
-        
+
         private SelectList GetGenderList()
         {
             using (var client = new UserServicesClient())
@@ -478,11 +530,11 @@ namespace WebPortal.Controllers
                 return new SelectList(client.Towns(), "ID", "Name");
             }
         }
-        
+
         private void OutputModelStateErrors()
         {
             var errors =
-                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new {x.Key, x.Value.Errors}).ToArray();
+                ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
             foreach (var error in errors)
             {
                 Debug.WriteLine("Key: " + error.Key + " Errors: \t" + error.Errors[0].ErrorMessage);

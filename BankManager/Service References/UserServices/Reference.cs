@@ -181,6 +181,9 @@ namespace BankManager.UserServices {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<BankManager.UserServices.RoleView> RolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SaltField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -188,12 +191,6 @@ namespace BankManager.UserServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TownNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> TypeIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -365,6 +362,19 @@ namespace BankManager.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<BankManager.UserServices.RoleView> Roles {
+            get {
+                return this.RolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                    this.RolesField = value;
+                    this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Salt {
             get {
                 return this.SaltField;
@@ -404,32 +414,6 @@ namespace BankManager.UserServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> TypeID {
-            get {
-                return this.TypeIDField;
-            }
-            set {
-                if ((this.TypeIDField.Equals(value) != true)) {
-                    this.TypeIDField = value;
-                    this.RaisePropertyChanged("TypeID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TypeName {
-            get {
-                return this.TypeNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
-                    this.TypeNameField = value;
-                    this.RaisePropertyChanged("TypeName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Username {
             get {
                 return this.UsernameField;
@@ -457,67 +441,6 @@ namespace BankManager.UserServices {
     [System.Runtime.Serialization.DataContractAttribute(Name="TownView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
     [System.SerializableAttribute()]
     public partial class TownView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.UserAccount")]
-    [System.SerializableAttribute()]
-    public partial class UserTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -608,6 +531,12 @@ namespace BankManager.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/DoesUsernameExist", ReplyAction="http://tempuri.org/IUserServices/DoesUsernameExistResponse")]
         System.Threading.Tasks.Task<bool> DoesUsernameExistAsync(string username);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
+        bool IsUserInRole(string username, int roleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
+        System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
         System.Collections.Generic.List<BankManager.UserServices.GenderView> Genders();
         
@@ -637,12 +566,6 @@ namespace BankManager.UserServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/GetRoles", ReplyAction="http://tempuri.org/IUserServices/GetRolesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> GetRolesAsync(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
-        bool IsUserInRole(string username, int roleId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
-        System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/ListRoles", ReplyAction="http://tempuri.org/IUserServices/ListRolesResponse")]
         System.Collections.Generic.List<BankManager.UserServices.RoleView> ListRoles();
@@ -685,12 +608,6 @@ namespace BankManager.UserServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Towns", ReplyAction="http://tempuri.org/IUserServices/TownsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.TownView>> TownsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Types", ReplyAction="http://tempuri.org/IUserServices/TypesResponse")]
-        System.Collections.Generic.List<BankManager.UserServices.UserTypeView> Types();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Types", ReplyAction="http://tempuri.org/IUserServices/TypesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserTypeView>> TypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Update", ReplyAction="http://tempuri.org/IUserServices/UpdateResponse")]
         void Update(BankManager.UserServices.UserView user);
@@ -772,6 +689,14 @@ namespace BankManager.UserServices {
             return base.Channel.DoesUsernameExistAsync(username);
         }
         
+        public bool IsUserInRole(string username, int roleId) {
+            return base.Channel.IsUserInRole(username, roleId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId) {
+            return base.Channel.IsUserInRoleAsync(username, roleId);
+        }
+        
         public System.Collections.Generic.List<BankManager.UserServices.GenderView> Genders() {
             return base.Channel.Genders();
         }
@@ -810,14 +735,6 @@ namespace BankManager.UserServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.RoleView>> GetRolesAsync(string username) {
             return base.Channel.GetRolesAsync(username);
-        }
-        
-        public bool IsUserInRole(string username, int roleId) {
-            return base.Channel.IsUserInRole(username, roleId);
-        }
-        
-        public System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId) {
-            return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
         public System.Collections.Generic.List<BankManager.UserServices.RoleView> ListRoles() {
@@ -874,14 +791,6 @@ namespace BankManager.UserServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.TownView>> TownsAsync() {
             return base.Channel.TownsAsync();
-        }
-        
-        public System.Collections.Generic.List<BankManager.UserServices.UserTypeView> Types() {
-            return base.Channel.Types();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.UserServices.UserTypeView>> TypesAsync() {
-            return base.Channel.TypesAsync();
         }
         
         public void Update(BankManager.UserServices.UserView user) {

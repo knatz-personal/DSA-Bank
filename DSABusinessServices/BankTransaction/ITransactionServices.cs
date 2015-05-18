@@ -9,8 +9,6 @@ namespace DSABusinessServices.BankTransaction
     [ServiceContract]
     public interface ITransactionServices
     {
-        [OperationContract]
-        IQueryable<TransactionView> ListTransactions();
 
         [OperationContract]
         IQueryable<string> ListAccountNumbers();
@@ -28,14 +26,8 @@ namespace DSABusinessServices.BankTransaction
         [OperationContract]
         IEnumerable<TransactionTypeView> GetTransactionTypes();
 
-        //[OperationContract]
-        //void Deposit(TransactionView item);
-
-        //[OperationContract]
-        //void Transfer(TransactionView item);
-
-        //[OperationContract]
-        //void PayBill(TransactionView item);
+        [OperationContract]
+        void Create(TransactionView item);
 
         [OperationContract]
         void Delete(int id);

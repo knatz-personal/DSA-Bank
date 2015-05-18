@@ -4,7 +4,22 @@
 @{
     ViewBag.Title = "Manage";
 }
-
+<div id="roleModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                <h4 class="modal-title">User Roles</h4>
+            </div>
+            <div id="roleBody" class="modal-body well"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="detailModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -101,6 +116,13 @@
             });
         },
         BindGridButtonEvents: function () {
+            $(".bttnAssignThis").on("click", function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $("#roleBody").load(url, function () {
+                    $("#roleModal").modal('show');
+                });
+            });
             $(".bttnDetail").on("click", function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
@@ -108,7 +130,6 @@
                     $("#detailModal").modal('show');
                 });
             });
-
             $(".bttnEditThis").on("click", function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
@@ -148,4 +169,3 @@
         USER_MANAGER.Init();
     });
 </script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

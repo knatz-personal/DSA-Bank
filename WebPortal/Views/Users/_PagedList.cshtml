@@ -26,7 +26,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.First().Blocked)
             </th>
-            <th style="text-align: center; width: 118px;">Actions</th>
+            <th style="text-align: center; width: 152px;">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -65,7 +65,7 @@
                         @Html.DisplayFor(modelItem => item.Blocked, "Boolean")
                     </td>
 
-                    <td style="width: 118px;">
+                    <td style="width: 152px;">
                         <a class="bttnAssignThis  btn btn-sm btn-default pull-left" href="@Url.Action("Role", "Users", new {id = item.Username})" title="Role">
                             <i class="glyphicon glyphicon-lock"></i>
                             <span class="sr-only">Role</span>
@@ -78,9 +78,9 @@
                             <i class="glyphicon glyphicon-list"></i>
                             <span class="sr-only">Edit</span>
                         </a>
-                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Users", new {id = item.Username})" title="Delete">
-                            <i class="glyphicon glyphicon-trash"></i>
-                            <span class="sr-only">Delete</span>
+                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Users", new {id = item.Username})" title="Block">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span class="sr-only">Block</span>
                         </a>
                     </td>
                 </tr>

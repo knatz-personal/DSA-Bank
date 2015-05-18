@@ -75,6 +75,13 @@ namespace DSABusinessServices.UserAccount
             return new UsersRepo().DoesUserNameExist(username);
         }
 
+        public bool IsUserInRole(string username, int roleId)
+        {
+            return
+               ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
+                   t => t.ID == roleId) != null);
+        }
+
         public IEnumerable<GenderView> Genders()
         {
             return new GendersRepo().ListAll().Select(g => new GenderView

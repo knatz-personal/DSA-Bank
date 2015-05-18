@@ -291,9 +291,6 @@
     <None Include="Service References\UserServices\BankManager.UserServices.TownView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserServices\BankManager.UserServices.UserTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\UserServices\BankManager.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

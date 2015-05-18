@@ -3,14 +3,20 @@
 @{
     ViewBag.Title = "Schedule Appointment";
 }
-<div class="well  col-md-offset-3 col-md-6">
-    @using (Html.BeginForm())
+<div id="scheduleformContainer" class="well  col-md-offset-3 col-md-6">
+    @using (Html.BeginForm("Schedule", "Appointment", FormMethod.Post, new { id = "scheduleform" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <fieldset >
+            <fieldset>
                 <legend>Schedule an appointment with the manager</legend>
+                <div id="infoAlert" class="alert alert-success collapse" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                    </button>
+                    <p id="successMessage"></p>
+                </div>
                 @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
                 {
                     <div class="alert alert-danger" role="alert">
@@ -54,7 +60,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-7">
-                        <input type="submit" value="Schedule" class="btn btn-lg btn-warning btn-block" />
+                        <input id="bttnSchedule" type="submit" value="Schedule" class="btn btn-lg btn-warning btn-block" />
                     </div>
                 </div>
             </fieldset>
@@ -63,6 +69,21 @@
 </div>
 <script>
     var SCHEDULER = {
+        Process: function() {
+            $("#scheduleform").on("submit", function (ev) {
+                ev.preventDefault();
+                var data = $(this).serialize();
+                $.post("@Url.Action("Schedule", "Appointment")", data).done(function (response) {
+                    if (response.result !== "undefined" && response.Result === "OK") {
+                        $("#successMessage").html(response.Message);
+                        $("#infoAlert").show();
+                        $('#scheduleform')[0].reset();
+                    } else {
+                        $.validator.unobtrusive.parse("#scheduleform");
+                    }
+                });
+            });
+        },
         Date: function() {
             $(".date").datetimepicker({
                 format: 'DD/MM/YYYY',
@@ -79,6 +100,7 @@
         Init: function() {
             this.Date();
             this.Time();
+            this.Process();
         }
     };
     $(function() {

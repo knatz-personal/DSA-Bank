@@ -26,6 +26,8 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\S
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.WebPages.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.WebPages.Razor.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\WebGrease.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\itextsharp.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\itextsharp.xmlworker.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\CommonUtils.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\EntityFramework.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Microsoft.AspNet.Identity.Core.xml
@@ -46,6 +48,9 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\S
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\System.Web.WebPages.Razor.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Antlr3.Runtime.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\Newtonsoft.Json.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\bin\itextsharp.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.csprojResolveAssemblyReference.cache
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.Properties.Resources.resources
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.csproj.GenerateResource.Cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\WebPortal\obj\Debug\WebPortal.pdb

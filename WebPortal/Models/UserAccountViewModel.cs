@@ -22,6 +22,8 @@ namespace WebPortal.Models
     public class RoleModel
     {
         public string Username { get; set; }
+        public int RoleId { get; set; }
+        public bool? Action { get; set; }
         [Display(Name = @"User Roles")]
         public IEnumerable<SelectListItem> UserRoles { get; set; }
         public IEnumerable<SelectListItem> Roles { get; set; }
