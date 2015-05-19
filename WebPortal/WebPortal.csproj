@@ -160,6 +160,8 @@
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CustomValidators\ModelClientValidationNotEqualToRule.cs" />
+    <Compile Include="CustomValidators\NotEqualToAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,14 +252,20 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -428,14 +436,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
-    <Content Include="Views\Accounts\_Create.cshtml" />
     <Content Include="Views\Accounts\_Details.cshtml" />
     <Content Include="Views\Accounts\_Edit.cshtml" />
     <Content Include="Views\Accounts\_PagedList.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
-    <Content Include="Views\Transactions\New.cshtml" />
     <Content Include="Views\Transactions\_Details.cshtml" />
     <Content Include="Views\Transactions\_PagedList.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
@@ -457,9 +462,13 @@
     </Content>
     <Content Include="Views\Users\_Role.cshtml" />
     <Content Include="Views\Users\Role.cshtml" />
-    <Content Include="Views\Transactions\_TransferOwn.cshtml" />
-    <Content Include="Views\Transactions\_TransferOther.cshtml" />
     <Content Include="Views\Transactions\Report.cshtml" />
+    <Content Include="Views\Transactions\TransferOwn.cshtml" />
+    <Content Include="Views\Transactions\TransferOther.cshtml" />
+    <Content Include="Views\Transactions\Deposit.cshtml" />
+    <Content Include="Views\Accounts\_Delete.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\CreateFixed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

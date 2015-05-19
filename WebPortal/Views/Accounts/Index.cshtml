@@ -2,7 +2,7 @@
 @model  AccountViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Account Balances";
 }
 
 <div id="detailModal" class="modal fade">
@@ -28,7 +28,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
                 </button>
-                <h4 class="modal-title">Edit User Details</h4>
+                <h4 class="modal-title">Edit Account Details</h4>
             </div>
             <div id="editBody" class="modal-body well">
                 @*load Edit Partial View Here*@
@@ -40,37 +40,40 @@
         </div>
     </div>
 </div>
-<div id="createModal" class="modal fade">
+<div id="deleteModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
                 </button>
-                <h4 class="modal-title">Add Bank Account</h4>
+                <h4 class="modal-title">Removing Account</h4>
             </div>
-            <div id="createBody" class="modal-body well">
-                @*load Create Partial View Here*@
+            <div id="delBody" class="modal-body well">
+                <p>Are you sure you want to delete?</p>
             </div>
             <div class="modal-footer">
-                <button id="create-button" type="button" class="btn btn-warning">Create</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button id="yes-button" type="button" class="btn btn-danger">Yes</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h2>My Balances</h2></div>
+    <div class="panel-heading"><h2>My Account Balances</h2></div>
     <div class="panel-body">
-        <div class="input-group col-md-3">
-            <input type="text" placeholder="Search" class="form-control input-sm">
-            <span class="input-group-btn">
-                <button class="btn btn-default btn-sm" type="submit">
-                    <i class="glyphicon glyphicon-search"></i>
-                    Search
-                </button>
-            </span>
-        </div>
+        @using (Html.BeginForm("Index", "Accounts", FormMethod.Get, new { id = "listform" }))
+        {
+            <div class="input-group col-md-3">
+                <input id="query" type="text" placeholder="Search" name="q" class="form-control input-sm">
+                <span class="input-group-btn">
+                    <button id="Search" class="btn btn-warning btn-sm" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search
+                    </button>
+                </span>
+            </div>
+        }
         <div id="pagedList">
             @Html.Partial("_PagedList", Model.AccountsPagedList)
         </div>
@@ -78,6 +81,14 @@
 </div>
 <script>
     var ACCOUNT_MANAGER = {
+        Search: function () {
+            $('#Search').on('click', function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("Index","Accounts")?" + $('#listform').serialize()).done(function (response) {
+                    $("#pagedList").html(response);
+                });
+            });
+        },
         BindGridButtonEvents: function () {
             $(".bttnDetail").on("click", function (e) {
                 e.preventDefault();
@@ -95,30 +106,34 @@
                 $("#editBody").load(url, function () {
                     $("#editModal").modal('show');
                 });
+
+
             });
 
-            $(".bttnNew").on("click", function (e) {
+            $(".bttnDeleteThis").on("click", function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
-                $("#createBody").load(url, function () {
-                    $("#createModal").modal('show');
+                $row = $(this).closest("tr");
+                $("#delBody").load(url, function () {
+                    $("#deleteModal").modal('show');
                 });
             });
         },
         Init: function () {
             this.BindGridButtonEvents();
-            $('#createModal').on('click', '#create-button', function () {
-                $('#createform').submit();
-            });
+
+            this.Search();
 
             $('#editModal').on('click', '#save-button', function () {
                 $('#editform').submit();
             });
-            console.log("ACCOUNT_PROCESSING Initiated");
+
+            $('#deleteModal').on('click', '#yes-button', function (e) {
+                $('#deleteform').submit();
+            });
         }
     };
     $(function () {
         ACCOUNT_MANAGER.Init();
     });
 </script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

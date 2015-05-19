@@ -87,6 +87,7 @@
       <DependentUpon>DSABankModel.edmx</DependentUpon>
       <LastGenOutput>DSABankModel.cs</LastGenOutput>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

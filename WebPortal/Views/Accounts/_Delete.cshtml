@@ -1,0 +1,65 @@
+﻿@model WebPortal.Models.AccountListItemModel
+@using (Html.BeginForm("Delete", "Accounts", FormMethod.Post, new { id = "deleteform" }))
+{
+    @Html.AntiForgeryToken()
+    <h3>Are you sure you want to remove this?</h3>
+    <dl class="col-md-offset-1 dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            <div class="well well-sm">
+                @Html.DisplayFor(model => model.ID)
+            </div>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            <div class="well well-sm">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+
+        <dd>
+            <div class="well well-sm">
+                @Html.DisplayFor(model => model.TypeName)
+            </div>
+        </dd>
+
+        <dt>
+            <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;"></i>
+        </dt>
+        <dd>
+            <div class="well">
+                <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;padding: 0;margin: 0;"></i>
+            </div>
+        </dd>
+
+    </dl>
+}
+<script>
+    $(function () {
+        $("#deleteform").on('submit', function (ev) {
+            ev.preventDefault();
+            var data = {
+                "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val()
+            };
+            $.post("@Url.Action("Delete", "Users")", data).done(function (response) {
+                if (response !== "undefined" && response === "OK") {
+                    $("#deleteModal").modal('hide');
+                    $row.remove();
+                } else {
+                    $("#delBody").html(response);
+                }
+            });
+        });
+    });
+</script>

@@ -16,7 +16,7 @@ namespace WebPortal.Controllers
         {
             using (var client = new AccountServicesClient())
             {
-                return PartialView("_Create", new AccountCreateModel()
+                return View(new AccountCreateModel()
                 {
                     Types = GetTypes(),
                     Currencies = GetCurrencies(),
@@ -70,13 +70,28 @@ namespace WebPortal.Controllers
             model.Types = GetTypes();
             model.Currencies = GetCurrencies();
             model.MyAccounts = GetMyAccounts(User.Identity.Name);
-            return PartialView("_Create", model);
+            return View( model);
         }
 
         // GET: Balances/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (var client = new AccountServicesClient())
+            {
+                var temp = client.GetAccountDetail(id);
+                return PartialView("_Delete", new AccountListItemModel()
+                {
+                    ID = temp.ID,
+                    Username = temp.Username,
+                    Name = temp.Name,
+                    TypeName = temp.TypeName,
+                    Remarks = temp.Remarks,
+                    Currency = temp.Currency,
+                    Balance = temp.Balance,
+                    TypeID = temp.TypeID,
+                    DateOpened = temp.DateOpened
+                });
+            }
         }
 
         // POST: Balances/Delete/5
@@ -85,13 +100,17 @@ namespace WebPortal.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                using (var client = new AccountServicesClient())
+                {
+                    client.Delete(id);
+                    return Json(new { Result = "OK", 
+                      Message = "Successfully removed account."
+                    });
+                }
             }
             catch
             {
-                return View();
+                return Delete(id);
             }
         }
 
@@ -109,7 +128,6 @@ namespace WebPortal.Controllers
                     DateOpened = model.DateOpened,
                     Username = model.Username,
                     Name = model.Name,
-                    ExpiryDate = model.ExpiryDate,
                     Currency = model.Currency,
                     Balance = model.Balance,
                     Remarks = model.Remarks
@@ -171,7 +189,6 @@ namespace WebPortal.Controllers
                         DateOpened = t.DateOpened,
                         Username = t.Username,
                         Name = t.Name,
-                        ExpiryDate = t.ExpiryDate,
                         Currency = t.Currency,
                         Balance = t.Balance,
                         Remarks = t.Remarks

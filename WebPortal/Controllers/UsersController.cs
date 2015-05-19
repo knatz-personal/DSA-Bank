@@ -19,92 +19,6 @@ namespace WebPortal.Controllers
     [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
-        public ActionResult Role(string id)
-        {
-            using (var client = new UserServicesClient())
-            {
-                UserView u = client.ReadByUsername(id);
-                return PartialView("_Role", new RoleModel()
-                {
-                    Username = u.Username,
-                    Roles = GetRoleList(),
-                    UserRoles = GetCurrentUserRoles(u.Username)
-                });
-            }
-        }
-
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public ActionResult Role(string id, RoleModel model)
-        {
-            try
-            {
-                if (id != string.Empty)
-                {
-                    if (model.Action == true)
-                    {
-                        using (var client = new UserServicesClient())
-                        {
-                            client.AllocateRole(id, model.RoleId);
-                        }
-                    }
-                    if (model.Action == false)
-                    {
-                        var temp = GetCurrentUserRoles(id);
-
-                        if (temp.SingleOrDefault(ir => ir.Value == model.RoleId + "") != null)
-                        {
-                            if (temp.Count() > 1)
-                            {
-                                using (var client = new UserServicesClient())
-                                {
-                                    client.DeallocateRole(id, model.RoleId);
-                                }
-                            }
-                            else
-                            {
-                                ModelState.AddModelError(string.Empty, @"A user must have at least one role.");
-                            }
-                        }
-                        else
-                        {
-                            ModelState.AddModelError(string.Empty, @"The user does not have this role.");
-                        }
-
-                    }
-                    var m = new RoleModel
-                    {
-                        Action = null,
-                        Username = id,
-                        Roles = GetRoleList(),
-                        UserRoles = GetCurrentUserRoles(id)
-                    };
-
-                    if (Request.IsAjaxRequest())
-                    {
-                        return PartialView("_Role", m);
-                    }
-                    return View("Role", m);
-                }
-            }
-            catch
-            {
-                ModelState.AddModelError(string.Empty, @"An error occurred while attempting to save changes.");
-            }
-            var m2 = new RoleModel()
-            {
-                Action = null,
-                Username = id,
-                Roles = GetRoleList(),
-                UserRoles = GetCurrentUserRoles(id)
-            };
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_Role", m2);
-            }
-            return View("Role", m2);
-        }
-
         public ActionResult Delete(string id)
         {
             using (var client = new UserServicesClient())
@@ -492,6 +406,91 @@ namespace WebPortal.Controllers
             return View(model);
         }
 
+        public ActionResult Role(string id)
+        {
+            using (var client = new UserServicesClient())
+            {
+                UserView u = client.ReadByUsername(id);
+                return PartialView("_Role", new RoleModel()
+                {
+                    Username = u.Username,
+                    Roles = GetRoleList(),
+                    UserRoles = GetCurrentUserRoles(u.Username)
+                });
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Role(string id, RoleModel model)
+        {
+            try
+            {
+                if (id != string.Empty)
+                {
+                    if (model.Action == true)
+                    {
+                        using (var client = new UserServicesClient())
+                        {
+                            client.AllocateRole(id, model.RoleId);
+                        }
+                    }
+                    if (model.Action == false)
+                    {
+                        var temp = GetCurrentUserRoles(id);
+
+                        if (temp.SingleOrDefault(ir => ir.Value == model.RoleId + "") != null)
+                        {
+                            if (temp.Count() > 1)
+                            {
+                                using (var client = new UserServicesClient())
+                                {
+                                    client.DeallocateRole(id, model.RoleId);
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError(string.Empty, @"A user must have at least one role.");
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, @"The user does not have this role.");
+                        }
+
+                    }
+                    var m = new RoleModel
+                    {
+                        Action = null,
+                        Username = id,
+                        Roles = GetRoleList(),
+                        UserRoles = GetCurrentUserRoles(id)
+                    };
+
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("_Role", m);
+                    }
+                    return View("Role", m);
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError(string.Empty, @"An error occurred while attempting to save changes.");
+            }
+            var m2 = new RoleModel()
+            {
+                Action = null,
+                Username = id,
+                Roles = GetRoleList(),
+                UserRoles = GetCurrentUserRoles(id)
+            };
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Role", m2);
+            }
+            return View("Role", m2);
+        }
         private static IPagedList<UserListItemModel> GetPagedUserList(IEnumerable<UserListItemModel> list,
             int? page, int pageSize)
         {
