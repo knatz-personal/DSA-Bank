@@ -34,6 +34,7 @@
             System.Windows.Forms.Label messageLabel;
             System.Windows.Forms.Label modifiedByLabel;
             System.Windows.Forms.Label sourceTableLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventLogForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,9 +46,9 @@
             this.errorLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxSource = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bttnLoad = new System.Windows.Forms.Button();
@@ -59,6 +60,10 @@
             this.sourceTableTextBox = new System.Windows.Forms.TextBox();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.eventDataGrid = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourceTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -72,10 +77,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.appointmentViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             dateModifiedLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             messageLabel = new System.Windows.Forms.Label();
@@ -233,19 +235,21 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.76687F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.384459F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.03885F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.339468F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.47035F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker2, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.bttnLoad, 5, 0);
+            this.tableLayoutPanel2.ColumnCount = 7;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.64368F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.71264F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.72414F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.88506F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.03448F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel2.Controls.Add(this.bttnLoad, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerEnd, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dateTimePickerStart, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comboBoxSource, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -254,38 +258,38 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(686, 32);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // comboBox1
+            // comboBoxSource
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(144, 21);
-            this.comboBox1.TabIndex = 0;
+            this.comboBoxSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSource.FormattingEnabled = true;
+            this.comboBoxSource.Location = new System.Drawing.Point(58, 5);
+            this.comboBoxSource.Name = "comboBoxSource";
+            this.comboBoxSource.Size = new System.Drawing.Size(145, 21);
+            this.comboBoxSource.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // dateTimePickerStart
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(201, 6);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(163, 20);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePickerStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerStart.Location = new System.Drawing.Point(260, 6);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(124, 20);
+            this.dateTimePickerStart.TabIndex = 1;
             // 
-            // dateTimePicker2
+            // dateTimePickerEnd
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(407, 6);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(171, 20);
-            this.dateTimePicker2.TabIndex = 2;
+            this.dateTimePickerEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(438, 6);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(123, 20);
+            this.dateTimePickerEnd.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(153, 0);
+            this.label1.Location = new System.Drawing.Point(209, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 32);
+            this.label1.Size = new System.Drawing.Size(45, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "From";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -294,9 +298,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(370, 0);
+            this.label2.Location = new System.Drawing.Point(390, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 32);
+            this.label2.Size = new System.Drawing.Size(42, 32);
             this.label2.TabIndex = 4;
             this.label2.Text = "To";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -305,9 +309,9 @@
             // 
             this.bttnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.bttnLoad.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.bttnLoad.Location = new System.Drawing.Point(584, 3);
+            this.bttnLoad.Location = new System.Drawing.Point(567, 3);
             this.bttnLoad.Name = "bttnLoad";
-            this.bttnLoad.Size = new System.Drawing.Size(99, 26);
+            this.bttnLoad.Size = new System.Drawing.Size(116, 26);
             this.bttnLoad.TabIndex = 5;
             this.bttnLoad.Text = "Load";
             this.bttnLoad.UseVisualStyleBackColor = false;
@@ -408,8 +412,8 @@
             this.eventDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eventDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
-            this.modifiedByDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn,
+            this.SourceTable,
             this.messageDataGridViewTextBoxColumn});
             this.eventDataGrid.DataSource = this.eventViewBindingSource;
             this.eventDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -418,7 +422,46 @@
             this.eventDataGrid.ReadOnly = true;
             this.eventDataGrid.Size = new System.Drawing.Size(686, 493);
             this.eventDataGrid.TabIndex = 2;
+            this.eventDataGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.eventDataGrid_ColumnHeaderMouseClick);
             this.eventDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.eventDataGridView_KeyDown);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateModifiedDataGridViewTextBoxColumn
+            // 
+            this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
+            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
+            this.dateModifiedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
+            this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
+            this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateModifiedDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // SourceTable
+            // 
+            this.SourceTable.DataPropertyName = "SourceTable";
+            this.SourceTable.HeaderText = "Source";
+            this.SourceTable.Name = "SourceTable";
+            this.SourceTable.ReadOnly = true;
+            this.SourceTable.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // messageDataGridViewTextBoxColumn
+            // 
+            this.messageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
+            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
+            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
+            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.messageDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // tableLayoutPanel4
             // 
@@ -546,35 +589,16 @@
             // 
             this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
             // 
-            // iDDataGridViewTextBoxColumn
+            // label3
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // modifiedByDataGridViewTextBoxColumn
-            // 
-            this.modifiedByDataGridViewTextBoxColumn.DataPropertyName = "Modified By";
-            this.modifiedByDataGridViewTextBoxColumn.HeaderText = "ModifiedBy";
-            this.modifiedByDataGridViewTextBoxColumn.Name = "modifiedByDataGridViewTextBoxColumn";
-            this.modifiedByDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateModifiedDataGridViewTextBoxColumn
-            // 
-            this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
-            this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
-            this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // messageDataGridViewTextBoxColumn
-            // 
-            this.messageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
-            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
-            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
-            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 32);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Table";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // EventLogForm
             // 
@@ -589,6 +613,7 @@
             this.Name = "EventLogForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Event Logs";
+            this.Load += new System.EventHandler(this.EventLogForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -629,9 +654,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.ComboBox comboBoxSource;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStart;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bttnLoad;
@@ -654,9 +679,11 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripMenuItem errorLogToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceTableDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedByDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SourceTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label3;
     }
 }

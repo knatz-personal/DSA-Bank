@@ -2,6 +2,7 @@
 using System.Linq;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories.Logs;
+using DSABusinessServices.BankTransaction;
 
 namespace DSABusinessServices.Log
 {
@@ -23,9 +24,16 @@ namespace DSABusinessServices.Log
             });
         }
 
-        public IQueryable<ErrorView> ListErrors()
+        public IQueryable<ErrorView> FilterErrorsList(string query, DateTime? start, DateTime? end)
         {
-            return new ErrorsRepo().ListAll().Select(er => new ErrorView
+             var repo = new ErrorsRepo();
+             IQueryable<ErrorLog> list = null;
+
+             list = repo.ListAll().Where(f => f.Username.Contains(query) || f.InnerException.Contains(query) || f.Message.Contains(query)).OrderByDescending(a => a.DateTriggered);
+
+             list = FilterByDateRange(start, end, list);
+
+             return list.Select(er => new ErrorView
             {
                 ID = er.ID,
                 Username = er.Username,
@@ -35,16 +43,41 @@ namespace DSABusinessServices.Log
             });
         }
 
-        public IQueryable<EventView> ListEvents()
+        public IQueryable<EventView> FilterEventsList(string source, DateTime? start, DateTime? end)
         {
-            return new EventsRepo().ListAll().Select(er => new EventView
+             var repo = new EventsRepo();
+             IQueryable<EventLog> list = null;
+
+             list = repo.ListAll().Where(f => f.SourceTable.Contains(source)).OrderByDescending(a => a.DateModified);
+
+             list = FilterByDateRange(start, end, list);
+
+             return list.Select(er =>new EventView
             {
                 ID = er.ID,
                 ModifiedBy = er.ModifiedBy,
                 DateModified = er.DateModified,
                 SourceTable = er.SourceTable,
                 Message = er.Message
-            });
+            } );
+           
+        }
+        private static IQueryable<ErrorLog> FilterByDateRange(DateTime? start, DateTime? end, IQueryable<ErrorLog> list)
+        {
+            if (start != null && end != null)
+            {
+                list = list.Where(apt => apt.DateTriggered >= start && apt.DateTriggered <= end);
+            }
+            return list;
+        }
+
+        private static IQueryable<EventLog> FilterByDateRange(DateTime? start, DateTime? end, IQueryable<EventLog> list)
+        {
+            if (start != null && end != null)
+            {
+                list = list.Where(apt => apt.DateModified >= start && apt.DateModified <= end);
+            }
+            return list;
         }
 
         public void LogError(string username, string message, string innerException)

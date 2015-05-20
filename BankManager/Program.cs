@@ -16,11 +16,7 @@ namespace BankManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginForm());
-            //Application.Run(new MainForm());
-            Application.Run(new TransactionHistoryForm());
-            //Application.Run(new ErrorLogForm());
-            //Application.Run(new EventLogForm());
+            Application.Run(new LoginForm());
         }
     }
 }

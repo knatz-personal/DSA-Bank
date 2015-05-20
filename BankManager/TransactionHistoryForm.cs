@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Data.Entity;
 using System.Windows.Forms;
 using BankManager.TransactionServices;
 using BankManager.UserServices;
@@ -9,6 +13,9 @@ namespace BankManager
 {
     public partial class TransactionHistoryForm : Form
     {
+        private ObservableCollection<TransactionView> _list;
+        private SortOrder _currentSortOrder;
+
         public TransactionHistoryForm()
         {
             InitializeComponent();
@@ -91,7 +98,7 @@ namespace BankManager
                 {
                     accountNo = 0;
                     MessageBox.Show(@"Invalid account number", @"Account Number Format", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Error);
+                        MessageBoxIcon.Error);
                 }
             }
 
@@ -103,8 +110,12 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.Text,
-                            accountNo, SortOrder.Descending, start, end);
+                        var list = new ObservableCollection<TransactionView>(client.FilterTransactions(comboBoxUsername.Text,
+                            accountNo, SortOrder.Descending, start, end));
+                        _list = list;
+                        transactionBindingSource.DataSource = list.ToBindingList();
+                        _currentSortOrder = SortOrder.Descending;
+                        transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Descending);
                         transactionDataGrid.DataSource = transactionBindingSource;
                     }
                 }
@@ -112,9 +123,13 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        transactionBindingSource.DataSource = client.FilterTransactions(comboBoxUsername.Text,
-                           accountNo, SortOrder.Descending, null, null
-                            );
+                        var list = new ObservableCollection<TransactionView>(client.FilterTransactions(comboBoxUsername.Text,
+                            accountNo, SortOrder.Descending, null, null
+                            ));
+                        _list = list;
+                        transactionBindingSource.DataSource = list.ToBindingList();
+                        _currentSortOrder = SortOrder.Descending;
+                        transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Descending);
                         transactionDataGrid.DataSource = transactionBindingSource;
                     }
                 }
@@ -200,6 +215,23 @@ namespace BankManager
         {
             Application.Exit();
         }
-    
+
+        private void transactionDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                if (_currentSortOrder == SortOrder.Descending)
+                {
+                    _currentSortOrder = SortOrder.Ascending;
+                    transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Ascending);
+                }
+                else
+                {
+                    _currentSortOrder = SortOrder.Descending;
+                    transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Descending);
+                }
+            }
+
+        }
     }
 }

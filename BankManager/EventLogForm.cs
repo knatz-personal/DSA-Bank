@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using BankManager.LogServices;
+using BankManager.TransactionServices;
+using SortOrder = BankManager.TransactionServices.SortOrder;
 
 namespace BankManager
 {
     public partial class EventLogForm : Form
     {
+        private ObservableCollection<EventView> _list;
+        private SortOrder _currentSortOrder;
+
         public EventLogForm()
         {
             InitializeComponent();
@@ -35,10 +43,35 @@ namespace BankManager
 
         private void bttnLoad_Click(object sender, EventArgs e)
         {
-            using (var client = new LogServicesClient())
+            eventDataGrid.DataSource = null;
+            eventDataGrid.Rows.Clear();
+
+            DateTime start = dateTimePickerStart.Value;
+            DateTime end = dateTimePickerEnd.Value;
+            if (start.Date != end.Date)
             {
-                eventViewBindingSource.DataSource = client.ListEvents();
-                eventDataGrid.DataSource = eventViewBindingSource;
+                using (var client = new LogServicesClient())
+                {
+                    var list = new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text,start, end));
+                    _list = list;
+                    eventViewBindingSource.DataSource = list.ToBindingList();
+                    _currentSortOrder = SortOrder.Descending;
+                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
+                    eventDataGrid.DataSource = eventViewBindingSource;
+                }
+
+            }
+            else
+            {
+                using (var client = new LogServicesClient())
+                {
+                    var list = new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, null, null));
+                    _list = list;
+                    eventViewBindingSource.DataSource = list.ToBindingList();
+                    _currentSortOrder = SortOrder.Descending;
+                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
+                    eventDataGrid.DataSource = eventViewBindingSource;
+                }
             }
         }
 
@@ -128,6 +161,37 @@ namespace BankManager
             Hide();
         }
 
-        
+        private void eventDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                if (_currentSortOrder == SortOrder.Descending)
+                {
+                    _currentSortOrder = SortOrder.Ascending;
+                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Ascending);
+                }
+                else
+                {
+                    _currentSortOrder = SortOrder.Descending;
+                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
+                }
+            }
+        }
+
+        private void EventLogForm_Load(object sender, EventArgs e)
+        {
+            DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
+            dateTimePickerStart.Value = result;
+            dateTimePickerEnd.Value = result;
+            /*
+            using (var client = new LogServicesClient())
+            {
+                var list = new AutoCompleteStringCollection();
+                list.AddRange(client.ListUsernames().ToArray());
+                comboBoxUsername.AutoCompleteCustomSource = list;
+            }*/
+        }
+
+
     }
 }

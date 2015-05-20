@@ -34,6 +34,7 @@
             System.Windows.Forms.Label innerExceptionLabel;
             System.Windows.Forms.Label messageLabel;
             System.Windows.Forms.Label usernameLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorLogForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,6 @@
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -68,13 +68,15 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.bttnLoad = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxQuery = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.appointmentViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             dateTriggeredLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
@@ -253,6 +255,7 @@
             this.errorDataGrid.ReadOnly = true;
             this.errorDataGrid.Size = new System.Drawing.Size(686, 491);
             this.errorDataGrid.TabIndex = 0;
+            this.errorDataGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.errorDataGrid_ColumnHeaderMouseClick);
             this.errorDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.errorDataGrid_KeyDown);
             // 
             // iDDataGridViewTextBoxColumn
@@ -266,9 +269,14 @@
             // dateTriggeredDataGridViewTextBoxColumn
             // 
             this.dateTriggeredDataGridViewTextBoxColumn.DataPropertyName = "DateTriggered";
+            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
+            this.dateTriggeredDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.dateTriggeredDataGridViewTextBoxColumn.HeaderText = "Date";
             this.dateTriggeredDataGridViewTextBoxColumn.Name = "dateTriggeredDataGridViewTextBoxColumn";
             this.dateTriggeredDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateTriggeredDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // usernameDataGridViewTextBoxColumn
             // 
@@ -276,6 +284,7 @@
             this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
             this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
             this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.usernameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // innerExceptionDataGridViewTextBoxColumn
             // 
@@ -284,6 +293,7 @@
             this.innerExceptionDataGridViewTextBoxColumn.HeaderText = "Inner Exception";
             this.innerExceptionDataGridViewTextBoxColumn.Name = "innerExceptionDataGridViewTextBoxColumn";
             this.innerExceptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.innerExceptionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // messageDataGridViewTextBoxColumn
             // 
@@ -292,6 +302,7 @@
             this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
             this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
             this.messageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.messageDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.messageDataGridViewTextBoxColumn.Visible = false;
             // 
             // errorViewBindingSource
@@ -420,16 +431,6 @@
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 37);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -490,21 +491,33 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 40);
             // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 37);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
+            // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.84768F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.960265F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.50993F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.463576F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.51656F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.53642F));
-            this.tableLayoutPanel3.Controls.Add(this.comboBox1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.bttnLoad, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel3.ColumnCount = 7;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.86441F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.04708F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.474576F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.48211F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.649717F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.48211F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel3.Controls.Add(this.bttnLoad, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePickerEnd, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label1, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePickerStart, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.comboBoxQuery, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -513,64 +526,77 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(686, 34);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 0;
-            // 
             // bttnLoad
             // 
             this.bttnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.bttnLoad.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.bttnLoad.Location = new System.Drawing.Point(551, 3);
+            this.bttnLoad.Location = new System.Drawing.Point(529, 3);
             this.bttnLoad.Name = "bttnLoad";
-            this.bttnLoad.Size = new System.Drawing.Size(132, 28);
+            this.bttnLoad.Size = new System.Drawing.Size(154, 28);
             this.bttnLoad.TabIndex = 3;
             this.bttnLoad.Text = "Load";
             this.bttnLoad.UseVisualStyleBackColor = false;
             this.bttnLoad.Click += new System.EventHandler(this.bttnLoad_Click);
             // 
-            // dateTimePicker2
+            // dateTimePickerEnd
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(397, 7);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(148, 20);
-            this.dateTimePicker2.TabIndex = 2;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(199, 7);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(155, 20);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePickerEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(400, 7);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(123, 20);
+            this.dateTimePickerEnd.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(360, 0);
+            this.label1.Location = new System.Drawing.Point(371, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 34);
+            this.label1.Size = new System.Drawing.Size(23, 34);
             this.label1.TabIndex = 4;
             this.label1.Text = "To";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dateTimePickerStart
+            // 
+            this.dateTimePickerStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerStart.Location = new System.Drawing.Point(242, 7);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(123, 20);
+            this.dateTimePickerStart.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(159, 0);
+            this.label2.Location = new System.Drawing.Point(198, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 34);
+            this.label2.Size = new System.Drawing.Size(38, 34);
             this.label2.TabIndex = 5;
             this.label2.Text = "From";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBoxQuery
+            // 
+            this.comboBoxQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxQuery.FormattingEnabled = true;
+            this.comboBoxQuery.Items.AddRange(new object[] {
+            "Search"});
+            this.comboBoxQuery.Location = new System.Drawing.Point(66, 6);
+            this.comboBoxQuery.Name = "comboBoxQuery";
+            this.comboBoxQuery.Size = new System.Drawing.Size(126, 21);
+            this.comboBoxQuery.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 34);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Search";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // appointmentViewBindingSource
             // 
@@ -643,18 +669,19 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStart;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Button bttnLoad;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem eventLogToolStripMenuItem;
+        private System.Windows.Forms.BindingSource errorViewBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateTriggeredDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn innerExceptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource errorViewBindingSource;
+        private System.Windows.Forms.ComboBox comboBoxQuery;
+        private System.Windows.Forms.Label label3;
     }
 }

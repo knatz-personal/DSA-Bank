@@ -247,17 +247,17 @@ namespace BankManager.LogServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/DeleteEvent", ReplyAction="http://tempuri.org/ILogServices/DeleteEventResponse")]
         System.Threading.Tasks.Task DeleteEventAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListErrors", ReplyAction="http://tempuri.org/ILogServices/ListErrorsResponse")]
-        System.Collections.Generic.List<BankManager.LogServices.ErrorView> ListErrors();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterErrorsList", ReplyAction="http://tempuri.org/ILogServices/FilterErrorsListResponse")]
+        System.Collections.Generic.List<BankManager.LogServices.ErrorView> FilterErrorsList(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListErrors", ReplyAction="http://tempuri.org/ILogServices/ListErrorsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.ErrorView>> ListErrorsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterErrorsList", ReplyAction="http://tempuri.org/ILogServices/FilterErrorsListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.ErrorView>> FilterErrorsListAsync(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListEvents", ReplyAction="http://tempuri.org/ILogServices/ListEventsResponse")]
-        System.Collections.Generic.List<BankManager.LogServices.EventView> ListEvents();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterEventsList", ReplyAction="http://tempuri.org/ILogServices/FilterEventsListResponse")]
+        System.Collections.Generic.List<BankManager.LogServices.EventView> FilterEventsList(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListEvents", ReplyAction="http://tempuri.org/ILogServices/ListEventsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.EventView>> ListEventsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterEventsList", ReplyAction="http://tempuri.org/ILogServices/FilterEventsListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.EventView>> FilterEventsListAsync(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogError", ReplyAction="http://tempuri.org/ILogServices/LogErrorResponse")]
         void LogError(string username, string message, string innerException);
@@ -315,20 +315,20 @@ namespace BankManager.LogServices {
             return base.Channel.DeleteEventAsync(id);
         }
         
-        public System.Collections.Generic.List<BankManager.LogServices.ErrorView> ListErrors() {
-            return base.Channel.ListErrors();
+        public System.Collections.Generic.List<BankManager.LogServices.ErrorView> FilterErrorsList(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterErrorsList(query, start, end);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.ErrorView>> ListErrorsAsync() {
-            return base.Channel.ListErrorsAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.ErrorView>> FilterErrorsListAsync(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterErrorsListAsync(query, start, end);
         }
         
-        public System.Collections.Generic.List<BankManager.LogServices.EventView> ListEvents() {
-            return base.Channel.ListEvents();
+        public System.Collections.Generic.List<BankManager.LogServices.EventView> FilterEventsList(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterEventsList(source, start, end);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.EventView>> ListEventsAsync() {
-            return base.Channel.ListEventsAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.LogServices.EventView>> FilterEventsListAsync(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterEventsListAsync(source, start, end);
         }
         
         public void LogError(string username, string message, string innerException) {

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using BankManager.LogServices;
@@ -7,6 +10,9 @@ namespace BankManager
 {
     public partial class ErrorLogForm : Form
     {
+        private SortOrder _currentSortOrder;
+        private ObservableCollection<ErrorView> _list;
+
         public ErrorLogForm()
         {
             InitializeComponent();
@@ -35,10 +41,36 @@ namespace BankManager
 
         private void bttnLoad_Click(object sender, EventArgs e)
         {
-            using (var client = new LogServicesClient())
+            errorDataGrid.DataSource = null;
+            errorDataGrid.Rows.Clear();
+
+            DateTime start = dateTimePickerStart.Value;
+            DateTime end = dateTimePickerEnd.Value;
+            if (start.Date != end.Date)
             {
-                errorViewBindingSource.DataSource = client.ListErrors();
-                errorDataGrid.DataSource = errorViewBindingSource;
+                using (var client = new LogServicesClient())
+                {
+                    var list =
+                        new ObservableCollection<ErrorView>(client.FilterErrorsList(comboBoxQuery.Text, start, end));
+                    _list = list;
+                    errorViewBindingSource.DataSource = list.ToBindingList();
+                    _currentSortOrder = SortOrder.Descending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Descending);
+                    errorDataGrid.DataSource = errorViewBindingSource;
+                }
+            }
+            else
+            {
+                using (var client = new LogServicesClient())
+                {
+                    var list =
+                        new ObservableCollection<ErrorView>(client.FilterErrorsList(comboBoxQuery.Text, null, null));
+                    _list = list;
+                    errorViewBindingSource.DataSource = list.ToBindingList();
+                    _currentSortOrder = SortOrder.Descending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Descending);
+                    errorDataGrid.DataSource = errorViewBindingSource;
+                }
             }
         }
 
@@ -56,7 +88,8 @@ namespace BankManager
             }
             else
             {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Asterisk);
             }
         }
 
@@ -125,6 +158,23 @@ namespace BankManager
                 new EventLogForm().Show();
             }
             Hide();
+        }
+
+        private void errorDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                if (_currentSortOrder == SortOrder.Descending)
+                {
+                    _currentSortOrder = SortOrder.Ascending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Ascending);
+                }
+                else
+                {
+                    _currentSortOrder = SortOrder.Descending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Descending);
+                }
+            }
         }
     }
 }

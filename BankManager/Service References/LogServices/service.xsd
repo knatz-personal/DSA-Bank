@@ -25,27 +25,35 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListErrors">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListErrorsResponse">
+  <xs:element name="FilterErrorsList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log" minOccurs="0" name="ListErrorsResult" nillable="true" type="q1:ArrayOfErrorView" />
+        <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="end" nillable="true" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListEvents">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListEventsResponse">
+  <xs:element name="FilterErrorsListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log" minOccurs="0" name="ListEventsResult" nillable="true" type="q2:ArrayOfEventView" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log" minOccurs="0" name="FilterErrorsListResult" nillable="true" type="q1:ArrayOfErrorView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FilterEventsList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="source" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="end" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FilterEventsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log" minOccurs="0" name="FilterEventsListResult" nillable="true" type="q2:ArrayOfEventView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

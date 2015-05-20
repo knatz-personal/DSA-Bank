@@ -15,10 +15,10 @@ namespace DSABusinessServices.Log
         void DeleteEvent(int id);
 
         [OperationContract]
-        IQueryable<ErrorView> ListErrors();
+        IQueryable<ErrorView> FilterErrorsList(string query, DateTime? start, DateTime? end);
 
         [OperationContract]
-        IQueryable<EventView> ListEvents();
+        IQueryable<EventView> FilterEventsList(string source, DateTime? start, DateTime? end);
 
         [OperationContract]
         void LogError(string username, string message, string innerException);
