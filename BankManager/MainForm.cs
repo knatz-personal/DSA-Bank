@@ -86,9 +86,6 @@ namespace BankManager
             }
             catch
             {
-                //using (var client = new LogServicesClient())
-                //{
-                //}
                 throw new Exception("Failed to set google calender reminder");
             }
         }
@@ -517,10 +514,10 @@ namespace BankManager
 
         private void SetUpStatusDropdown()
         {
-            drpAppointmentState.Items.Add(new {Text = "Show All", Value = -1});
-            drpAppointmentState.Items.Add(new {Text = "Accepted", Value = 0});
-            drpAppointmentState.Items.Add(new {Text = "Pending", Value = 1});
-            drpAppointmentState.Items.Add(new {Text = "Rejected", Value = 2});
+            drpAppointmentState.Items.Add(new { Text = "Show All", Value = -1 });
+            drpAppointmentState.Items.Add(new { Text = "Accepted", Value = 0 });
+            drpAppointmentState.Items.Add(new { Text = "Pending", Value = 1 });
+            drpAppointmentState.Items.Add(new { Text = "Rejected", Value = 2 });
 
             drpAppointmentState.DisplayMember = "Text";
             drpAppointmentState.ValueMember = "Value";
@@ -542,5 +539,6 @@ namespace BankManager
             }
             Hide();
         }
+
     }
 }

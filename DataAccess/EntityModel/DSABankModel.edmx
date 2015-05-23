@@ -17,7 +17,6 @@
           <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Currency" Type="varchar" MaxLength="3" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
-          <Property Name="RateID" Type="int" />
         </EntityType>
         <EntityType Name="AccountTypes">
           <Key>
@@ -73,7 +72,7 @@
           <Property Name="MaturityAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IncomeTaxDeduction" Type="decimal" Precision="18" Scale="2" />
           <Property Name="AccumulatedInterest" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TermID" Type="int" />
+          <Property Name="RateID" Type="int" />
           <Property Name="IsExpired" Type="bit" />
         </EntityType>
         <EntityType Name="FixedTerms">
@@ -95,7 +94,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Rate" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="TermID" Type="int" />
+          <Property Name="Rate" Type="decimal" Precision="6" Scale="3" Nullable="false" />
         </EntityType>
         <EntityType Name="MenuRoles">
           <Key>
@@ -202,18 +202,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Accounts_InterestRates">
-          <End Role="InterestRates" Type="Self.InterestRates" Multiplicity="0..1" />
-          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InterestRates">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Accounts">
-              <PropertyRef Name="RateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Accounts_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
@@ -250,14 +238,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FixedTermAccounts_FixedTerms">
-          <End Role="FixedTerms" Type="Self.FixedTerms" Multiplicity="0..1" />
+        <Association Name="FK_FixedTermAccounts_InterestRates">
+          <End Role="InterestRates" Type="Self.InterestRates" Multiplicity="0..1" />
           <End Role="FixedTermAccounts" Type="Self.FixedTermAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InterestRates">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FixedTermAccounts">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterestRates_FixedTerms">
+          <End Role="FixedTerms" Type="Self.FixedTerms" Multiplicity="0..1" />
+          <End Role="InterestRates" Type="Self.InterestRates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FixedTerms">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="FixedTermAccounts">
+            <Dependent Role="InterestRates">
               <PropertyRef Name="TermID" />
             </Dependent>
           </ReferentialConstraint>
@@ -421,10 +421,6 @@
             <End Role="AccountTypes" EntitySet="AccountTypes" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Accounts_InterestRates" Association="Self.FK_Accounts_InterestRates">
-            <End Role="InterestRates" EntitySet="InterestRates" />
-            <End Role="Accounts" EntitySet="Accounts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Accounts_Users" Association="Self.FK_Accounts_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Accounts" EntitySet="Accounts" />
@@ -437,9 +433,13 @@
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="FixedTermAccounts" EntitySet="FixedTermAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_FixedTermAccounts_FixedTerms" Association="Self.FK_FixedTermAccounts_FixedTerms">
-            <End Role="FixedTerms" EntitySet="FixedTerms" />
+          <AssociationSet Name="FK_FixedTermAccounts_InterestRates" Association="Self.FK_FixedTermAccounts_InterestRates">
+            <End Role="InterestRates" EntitySet="InterestRates" />
             <End Role="FixedTermAccounts" EntitySet="FixedTermAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterestRates_FixedTerms" Association="Self.FK_InterestRates_FixedTerms">
+            <End Role="FixedTerms" EntitySet="FixedTerms" />
+            <End Role="InterestRates" EntitySet="InterestRates" />
           </AssociationSet>
           <AssociationSet Name="FK_MenuRoles_Menus" Association="Self.FK_MenuRoles_Menus">
             <End Role="Menus" EntitySet="Menus" />
@@ -515,10 +515,6 @@
             <End Role="AccountType" EntitySet="AccountTypes" />
             <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Accounts_InterestRates" Association="DSABankDbModel.FK_Accounts_InterestRates">
-            <End Role="InterestRate" EntitySet="InterestRates" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Accounts_Users" Association="DSABankDbModel.FK_Accounts_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="Account" EntitySet="Accounts" />
@@ -543,9 +539,13 @@
             <End Role="Currency" EntitySet="Currencies" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK_FixedTermAccounts_FixedTerms" Association="DSABankDbModel.FK_FixedTermAccounts_FixedTerms">
-            <End Role="FixedTerm" EntitySet="FixedTerms" />
+          <AssociationSet Name="FK_FixedTermAccounts_InterestRates" Association="DSABankDbModel.FK_FixedTermAccounts_InterestRates">
+            <End Role="InterestRate" EntitySet="InterestRates" />
             <End Role="FixedTermAccount" EntitySet="FixedTermAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InterestRates_FixedTerms" Association="DSABankDbModel.FK_InterestRates_FixedTerms">
+            <End Role="FixedTerm" EntitySet="FixedTerms" />
+            <End Role="InterestRate" EntitySet="InterestRates" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Genders" Association="DSABankDbModel.FK_Users_Genders">
             <End Role="Gender" EntitySet="Genders" />
@@ -584,10 +584,8 @@
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="RateID" Type="Int32" />
           <NavigationProperty Name="Currency1" Relationship="DSABankDbModel.FK_Account_Currency" FromRole="Account" ToRole="Currency" />
           <NavigationProperty Name="AccountType" Relationship="DSABankDbModel.FK_Accounts_AccountTypes" FromRole="Account" ToRole="AccountType" />
-          <NavigationProperty Name="InterestRate" Relationship="DSABankDbModel.FK_Accounts_InterestRates" FromRole="Account" ToRole="InterestRate" />
           <NavigationProperty Name="User" Relationship="DSABankDbModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
           <NavigationProperty Name="FixedTermAccount" Relationship="DSABankDbModel.FK_FixedTermAccounts_Accounts" FromRole="Account" ToRole="FixedTermAccount" />
           <NavigationProperty Name="Transactions" Relationship="DSABankDbModel.FK_Transactions_FAccounts" FromRole="Account" ToRole="Transaction" />
@@ -651,10 +649,10 @@
           <Property Name="MaturityAmount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IncomeTaxDeduction" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="AccumulatedInterest" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TermID" Type="Int32" />
+          <Property Name="RateID" Type="Int32" />
           <Property Name="IsExpired" Type="Boolean" />
           <NavigationProperty Name="Account" Relationship="DSABankDbModel.FK_FixedTermAccounts_Accounts" FromRole="FixedTermAccount" ToRole="Account" />
-          <NavigationProperty Name="FixedTerm" Relationship="DSABankDbModel.FK_FixedTermAccounts_FixedTerms" FromRole="FixedTermAccount" ToRole="FixedTerm" />
+          <NavigationProperty Name="InterestRate" Relationship="DSABankDbModel.FK_FixedTermAccounts_InterestRates" FromRole="FixedTermAccount" ToRole="InterestRate" />
         </EntityType>
         <EntityType Name="FixedTerm">
           <Key>
@@ -662,7 +660,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Duration" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FixedTermAccounts" Relationship="DSABankDbModel.FK_FixedTermAccounts_FixedTerms" FromRole="FixedTerm" ToRole="FixedTermAccount" />
+          <NavigationProperty Name="InterestRates" Relationship="DSABankDbModel.FK_InterestRates_FixedTerms" FromRole="FixedTerm" ToRole="InterestRate" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -677,8 +675,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
-          <NavigationProperty Name="Accounts" Relationship="DSABankDbModel.FK_Accounts_InterestRates" FromRole="InterestRate" ToRole="Account" />
+          <Property Name="TermID" Type="Int32" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="6" Scale="3" />
+          <NavigationProperty Name="FixedTermAccounts" Relationship="DSABankDbModel.FK_FixedTermAccounts_InterestRates" FromRole="InterestRate" ToRole="FixedTermAccount" />
+          <NavigationProperty Name="FixedTerm" Relationship="DSABankDbModel.FK_InterestRates_FixedTerms" FromRole="InterestRate" ToRole="FixedTerm" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -785,18 +785,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Accounts_InterestRates">
-          <End Type="DSABankDbModel.InterestRate" Role="InterestRate" Multiplicity="0..1" />
-          <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InterestRate">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="RateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Accounts_Users">
           <End Type="DSABankDbModel.User" Role="User" Multiplicity="0..1" />
           <End Type="DSABankDbModel.Account" Role="Account" Multiplicity="*" />
@@ -869,14 +857,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FixedTermAccounts_FixedTerms">
-          <End Type="DSABankDbModel.FixedTerm" Role="FixedTerm" Multiplicity="0..1" />
+        <Association Name="FK_FixedTermAccounts_InterestRates">
+          <End Type="DSABankDbModel.InterestRate" Role="InterestRate" Multiplicity="0..1" />
           <End Type="DSABankDbModel.FixedTermAccount" Role="FixedTermAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InterestRate">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FixedTermAccount">
+              <PropertyRef Name="RateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InterestRates_FixedTerms">
+          <End Type="DSABankDbModel.FixedTerm" Role="FixedTerm" Multiplicity="0..1" />
+          <End Type="DSABankDbModel.InterestRate" Role="InterestRate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FixedTerm">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="FixedTermAccount">
+            <Dependent Role="InterestRate">
               <PropertyRef Name="TermID" />
             </Dependent>
           </ReferentialConstraint>
@@ -946,7 +946,6 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DSABankDbModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
-                <ScalarProperty Name="RateID" ColumnName="RateID" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Currency" ColumnName="Currency" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
@@ -1013,7 +1012,7 @@
             <EntityTypeMapping TypeName="DSABankDbModel.FixedTermAccount">
               <MappingFragment StoreEntitySet="FixedTermAccounts">
                 <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
-                <ScalarProperty Name="TermID" ColumnName="TermID" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
                 <ScalarProperty Name="AccumulatedInterest" ColumnName="AccumulatedInterest" />
                 <ScalarProperty Name="IncomeTaxDeduction" ColumnName="IncomeTaxDeduction" />
                 <ScalarProperty Name="MaturityAmount" ColumnName="MaturityAmount" />
@@ -1041,6 +1040,7 @@
             <EntityTypeMapping TypeName="DSABankDbModel.InterestRate">
               <MappingFragment StoreEntitySet="InterestRates">
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="TermID" ColumnName="TermID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -16,12 +16,12 @@ namespace DataAccess.EntityModel
     {
         public FixedTerm()
         {
-            this.FixedTermAccounts = new HashSet<FixedTermAccount>();
+            this.InterestRates = new HashSet<InterestRate>();
         }
     
         public int ID { get; set; }
         public string Duration { get; set; }
     
-        public virtual ICollection<FixedTermAccount> FixedTermAccounts { get; set; }
+        public virtual ICollection<InterestRate> InterestRates { get; set; }
     }
 }

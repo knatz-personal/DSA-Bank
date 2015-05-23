@@ -1,8 +1,19 @@
-﻿using DataAccess.EntityModel;
+﻿using System.Data;
+using System.Transactions;
+using CommonUtils;
+using DataAccess;
+using DataAccess.EntityModel;
+using DataAccess.Reposiitories.Accounts;
 using DataAccess.Reposiitories.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DSABusinessServices.BankAccount;
+using DSABusinessServices.CurrencyConverterServices;
+using DSABusinessServices.CustomExceptions;
+using DSABusinessServices.Log;
+using Currency = DSABusinessServices.CurrencyConverterServices.Currency;
+using Transaction = DataAccess.EntityModel.Transaction;
 
 namespace DSABusinessServices.BankTransaction
 {
@@ -14,7 +25,26 @@ namespace DSABusinessServices.BankTransaction
 
     public class TransactionServices : ITransactionServices
     {
-        public void Create(TransactionView item)
+        private const string DefaultCurrency = "EUR";
+        private const decimal MinimumBalance = (decimal)10.0;
+        private AccountView From { get; set; }
+        private AccountView To { get; set; }
+
+        private decimal GetRealAmount(string currencyFrom, string currencyTo, decimal amount)
+        {
+            decimal result = 0;
+
+            using (var client = new CurrencyConvertorSoapClient())
+            {
+                var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
+                var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
+                result = (decimal)client.ConversionRate(from, to) * amount;
+            }
+
+            return result;
+        }
+
+        private void Log(TransactionView item)
         {
             new TransactionsRepo().Create(new Transaction()
             {
@@ -26,6 +56,90 @@ namespace DSABusinessServices.BankTransaction
                 Amount = item.Amount,
                 Currency = item.Currency
             });
+        }
+
+        public void TermDeposit(TransactionView item)
+        {
+            //Deduct from source account
+            //Add to destination account
+            Log(item);
+
+            throw new NotImplementedException();
+        }
+
+        public void PersonalTransafer(TransactionView item)
+        {
+            if (item.AccountFromID != null && item.AccountToID != null)
+            {
+                From = GetAccount((int)item.AccountFromID);
+                To = GetAccount((int)item.AccountToID);
+
+                using (var ts = new TransactionScope())
+                {
+                    try
+                    {
+                        //deduct amount from source account
+                        var balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                        var balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                        var amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
+
+                        decimal newFromBalance = balanceFromInEuro - amountInEuro;
+                        if (newFromBalance > MinimumBalance)
+                        {
+                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                            Update(new Account
+                            {
+                                ID = From.ID,
+                                TypeID = From.TypeID,
+                                DateOpened = From.DateOpened,
+                                Username = From.Username,
+                                Name = From.Name,
+                                Currency = item.Currency,
+                                Balance = newFromBalance,
+                                Remarks = item.Remarks
+                            });
+                        }
+                        else
+                        {
+                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                        }
+
+                        //Add amount to destination account
+                        decimal newToBalance = balanceToInEuro + amountInEuro;
+                        To.Balance = newToBalance;
+                        Update(new Account
+                        {
+                            ID = From.ID,
+                            TypeID = From.TypeID,
+                            DateOpened = From.DateOpened,
+                            Username = From.Username,
+                            Name = From.Name,
+                            Currency = item.Currency,
+                            Balance = newFromBalance,
+                            Remarks = item.Remarks
+                        });
+
+                        ts.Complete();
+                    }
+                    catch
+                    {
+                        ts.Dispose();
+                        item.Remarks = "Failed transaction";
+                    }
+                    finally
+                    {
+                        Log(item);
+                    }
+                }
+            }
+        }
+
+        public void LocalTransfer(TransactionView item)
+        {
+            //Deduct from source account
+            //Add to destination account
+            Log(item);
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
@@ -118,6 +232,25 @@ namespace DSABusinessServices.BankTransaction
             };
         }
 
+        private AccountView GetAccount(int id)
+        {
+            AccountView result = null;
+            var acc = new AccountsRepo().Read(new Account() { ID = id });
+            result = new AccountView
+            {
+                ID = acc.ID,
+                TypeID = acc.TypeID,
+                TypeName = acc.AccountType.Name,
+                DateOpened = acc.DateOpened,
+                Username = acc.Username,
+                Name = acc.Name,
+                Currency = acc.Currency,
+                Balance = acc.Balance,
+                Remarks = acc.Remarks
+            };
+            return result;
+        }
+
         public IEnumerable<TransactionTypeView> GetTransactionTypes()
         {
             return new TransactionTypesRepo().ListAll().Select(g => new TransactionTypeView
@@ -147,6 +280,11 @@ namespace DSABusinessServices.BankTransaction
                 Currency = t.Currency,
                 Remarks = t.Remarks
             });
+        }
+
+        private void Update(Account account)
+        {
+            new AccountsRepo().Update(account);
         }
     }
 }

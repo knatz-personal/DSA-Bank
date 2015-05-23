@@ -27,7 +27,15 @@ namespace DSABusinessServices.BankTransaction
         IEnumerable<TransactionTypeView> GetTransactionTypes();
 
         [OperationContract]
-        void Create(TransactionView item);
+        void TermDeposit(TransactionView item);
+
+
+        [OperationContract]
+        void PersonalTransafer(TransactionView item);
+
+
+        [OperationContract]
+        void LocalTransfer(TransactionView item);
 
         [OperationContract]
         void Delete(int id);

@@ -18,15 +18,12 @@ namespace WebPortal.Controllers
                 const string clientRole = "Customer";
                 const string manRole = "Manager";
                 const string adminRole = "Administrator";
-                const string testerRole = "Tester";
 
+                //Show the menu with the highest privileges
                 int roleId = userServicesClient.GetRoleIdByName(anonRole);
                 if (User.Identity.IsAuthenticated)
                 {
-                    if (User.IsInRole(testerRole))
-                    {
-                        roleId = userServicesClient.GetRoleIdByName(testerRole);
-                    }else if (User.IsInRole(adminRole))
+                    if (User.IsInRole(adminRole))
                     {
                         roleId = userServicesClient.GetRoleIdByName(adminRole);
                     }

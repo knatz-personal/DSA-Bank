@@ -38,11 +38,23 @@
   <wsdl:message name="ITransactionServices_GetTransactionTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTransactionTypesResponse" />
   </wsdl:message>
-  <wsdl:message name="ITransactionServices_Create_InputMessage">
-    <wsdl:part name="parameters" element="tns:Create" />
+  <wsdl:message name="ITransactionServices_TermDeposit_InputMessage">
+    <wsdl:part name="parameters" element="tns:TermDeposit" />
   </wsdl:message>
-  <wsdl:message name="ITransactionServices_Create_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  <wsdl:message name="ITransactionServices_TermDeposit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TermDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionServices_PersonalTransafer_InputMessage">
+    <wsdl:part name="parameters" element="tns:PersonalTransafer" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionServices_PersonalTransafer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PersonalTransaferResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionServices_LocalTransfer_InputMessage">
+    <wsdl:part name="parameters" element="tns:LocalTransfer" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionServices_LocalTransfer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LocalTransferResponse" />
   </wsdl:message>
   <wsdl:message name="ITransactionServices_Delete_InputMessage">
     <wsdl:part name="parameters" element="tns:Delete" />
@@ -71,9 +83,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/GetTransactionTypes" message="tns:ITransactionServices_GetTransactionTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse" message="tns:ITransactionServices_GetTransactionTypes_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Create">
-      <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/Create" message="tns:ITransactionServices_Create_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ITransactionServices/CreateResponse" message="tns:ITransactionServices_Create_OutputMessage" />
+    <wsdl:operation name="TermDeposit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/TermDeposit" message="tns:ITransactionServices_TermDeposit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITransactionServices/TermDepositResponse" message="tns:ITransactionServices_TermDeposit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalTransafer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/PersonalTransafer" message="tns:ITransactionServices_PersonalTransafer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITransactionServices/PersonalTransaferResponse" message="tns:ITransactionServices_PersonalTransafer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LocalTransfer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/LocalTransfer" message="tns:ITransactionServices_LocalTransfer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITransactionServices/LocalTransferResponse" message="tns:ITransactionServices_LocalTransfer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Delete">
       <wsdl:input wsaw:Action="http://tempuri.org/ITransactionServices/Delete" message="tns:ITransactionServices_Delete_InputMessage" />
@@ -127,8 +147,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Create">
-      <soap:operation soapAction="http://tempuri.org/ITransactionServices/Create" style="document" />
+    <wsdl:operation name="TermDeposit">
+      <soap:operation soapAction="http://tempuri.org/ITransactionServices/TermDeposit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalTransafer">
+      <soap:operation soapAction="http://tempuri.org/ITransactionServices/PersonalTransafer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LocalTransfer">
+      <soap:operation soapAction="http://tempuri.org/ITransactionServices/LocalTransfer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

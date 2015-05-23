@@ -1,4 +1,5 @@
-﻿using DataAccess.EntityModel;
+﻿using System;
+using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
 using DataAccess.Reposiitories.Accounts;
 using DSABusinessServices.CustomExceptions;
@@ -83,23 +84,6 @@ namespace DSABusinessServices.BankAccount
         public IQueryable<AccountView> ListUserAccounts(string username)
         {
             return new AccountsRepo().ListByUsername(username).Select(t => new AccountView
-            {
-                ID = t.ID,
-                TypeID = t.TypeID,
-                TypeName = t.AccountType.Name,
-                DateOpened = t.DateOpened,
-                Username = t.Username,
-                Name = t.Name,
-                Currency = t.Currency,
-                Balance = t.Balance,
-                Remarks = t.Remarks
-            });
-        }
-
-        public IQueryable<AccountView> ListUserUtilityAccounts(string username)
-        {
-            return new AccountsRepo().ListByUsername(username).Where(a => a.AccountType.Name == "Utility")
-                .Select(t => new AccountView
             {
                 ID = t.ID,
                 TypeID = t.TypeID,

@@ -28,11 +28,9 @@ namespace DataAccess.EntityModel
         public decimal Balance { get; set; }
         public string Currency { get; set; }
         public string Remarks { get; set; }
-        public Nullable<int> RateID { get; set; }
     
         public virtual Currency Currency1 { get; set; }
         public virtual AccountType AccountType { get; set; }
-        public virtual InterestRate InterestRate { get; set; }
         public virtual User User { get; set; }
         public virtual FixedTermAccount FixedTermAccount { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }

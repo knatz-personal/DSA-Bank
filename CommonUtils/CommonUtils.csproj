@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommunicationUtil.cs" />
+    <Compile Include="ConverterUtil.cs" />
     <Compile Include="EncryptionUtil.cs" />
     <Compile Include="HashingUtil.cs" />
     <Compile Include="PrintUtil.cs" />

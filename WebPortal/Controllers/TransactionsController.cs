@@ -16,18 +16,6 @@ namespace WebPortal.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        [Authorize(Roles = "Tester")]
-        [HttpGet]
-        public ActionResult Deposit()
-        {
-            return View(new DepositModel
-            {
-                Currencies = GetCurrencies(),
-                MyAccounts = GetMyAccounts(User.Identity.Name),
-                TypeID = 1
-            });
-        }
-
         public FileResult DetailReport(int id)
         {
             string html;
@@ -48,7 +36,7 @@ namespace WebPortal.Controllers
             }
             string css;
             using (var streamReader =
-                new StreamReader(Server.MapPath("~/Content/paper-bootstrap-theme.css"),
+                new StreamReader(Server.MapPath("~/Content/paper.bootstrap.min.css"),
                     Encoding.UTF8))
             {
                 css = streamReader.ReadToEnd();
@@ -89,7 +77,7 @@ namespace WebPortal.Controllers
                 IEnumerable<TransactionView> temp = null;
                 if (a != null && (isValidStartDate && isValidEndDate))
                 {
-                    temp = client.FilterTransactions(User.Identity.Name, (int)a, SortOrder.Descending, start, end);
+                    temp = client.FilterTransactions(User.Identity.Name, (int) a, SortOrder.Descending, start, end);
                 }
                 else
                 {
@@ -123,15 +111,61 @@ namespace WebPortal.Controllers
             };
             Session["TransactionsCurrentResults"] = results;
             return Request.IsAjaxRequest()
-                ? (ActionResult)PartialView("_PagedList", results.TransactionsPagedList)
+                ? (ActionResult) PartialView("_PagedList", results.TransactionsPagedList)
                 : View(results);
         }
 
         public ActionResult Report()
         {
-            var model = (TransactionViewModel)Session["TransactionsCurrentResults"];
+            var model = (TransactionViewModel) Session["TransactionsCurrentResults"];
             model.TransactionsList = model.TransactionsPagedList.AsEnumerable();
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Deposit()
+        {
+            return View(new DepositModel
+            {
+                Currencies = GetCurrencies(),
+                MyAccounts = GetMyAccounts(User.Identity.Name),
+                TypeID = 1
+            });
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Deposit(DepositModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (var client = new TransactionServicesClient())
+                    {
+                        //Create method to effect a term deposit
+                        client.TermDeposit(new TransactionView
+                        {
+                            DateIssued = DateTime.Now,
+                            TypeID = 1,
+                            Remarks = model.Remarks,
+                            AccountFromID = model.AccountFromID,
+                            AccountToID = model.AccountToID,
+                            Amount = model.Amount,
+                            Currency = model.Currency
+                        });
+
+                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty,
+                    @"There was an error completing the transaction, contact the administrator for help.");
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            return Deposit();
         }
 
         [HttpGet]
@@ -140,44 +174,34 @@ namespace WebPortal.Controllers
             return View(new TransferOtherModel
             {
                 Currencies = GetCurrencies(),
-                MyAccounts = GetMyAccounts(User.Identity.Name)
+                MyAccounts = GetMyAccounts(User.Identity.Name),
+                TypeID = 3
             });
         }
-        
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult TransferOther(TransferOtherModel model)
         {
             try
             {
-                model.DateIssued = DateTime.Now;
                 if (ModelState.IsValid)
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        client.Create(new TransactionView()
-                        {
-                            DateIssued = model.DateIssued,
-                            TypeID = model.TypeID,
-                            Remarks = model.Remarks,
-                            AccountFromID = model.AccountFromID,
-                            AccountToID = model.AccountToID,
-                            Amount = model.Amount,
-                            Currency = model.Currency
-                        });
-                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
                     }
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty,
-                    "There was an error completing the transaction, contact the administrator for help.");
+                    @"There was an error completing the transaction, contact the administrator for help.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return RedirectToAction("Index", "Transactions");
+            return View("TransferOther");
         }
-        
+
         [HttpGet]
         public ActionResult TransferOwn()
         {
@@ -198,20 +222,21 @@ namespace WebPortal.Controllers
                 model.TypeID = 2;
                 if (ModelState.IsValid)
                 {
-                   
                     using (var client = new TransactionServicesClient())
                     {
-                        client.Create(new TransactionView()
+
+                        client.PersonalTransafer(new TransactionView()
                         {
                             DateIssued = model.DateIssued,
-                            TypeID = model.TypeID,
-                            Remarks = model.Remarks,
                             AccountFromID = model.AccountFromID,
                             AccountToID = model.AccountToID,
                             Amount = model.Amount,
-                            Currency = model.Currency
+                            Currency = model.Currency,
+                            Remarks = model.Remarks,
+                            TypeID = model.TypeID
                         });
-                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+
+                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
                     }
                 }
             }
@@ -221,9 +246,11 @@ namespace WebPortal.Controllers
                     "There was an error completing the transaction, contact the administrator for help.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return TransferOwn();
+            model.Currencies = GetCurrencies();
+            model.MyAccounts = GetMyAccounts(User.Identity.Name);
+            return View(model);
         }
-        
+
         private SelectList GetCurrencies()
         {
             using (var client = new AccountServicesClient())
@@ -240,6 +267,5 @@ namespace WebPortal.Controllers
                 return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
             }
         }
-
     }
 }

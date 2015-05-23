@@ -5,8 +5,9 @@
     ViewBag.FullName = Session["FullName"];
 }
 <br />
+<br />
 
-<div class="container body-content panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h4>Transaction Report for Account @Model.AccountToListID <span class="pull-right">From Date: @( Model.StartDate == DateTime.MinValue ? "Not Set" : Model.StartDate.ToShortDateString()) &nbsp; &nbsp; &nbsp; To Date: @( Model.EndDate == DateTime.MinValue ? "Not Set" : Model.EndDate.ToShortDateString()) </span></h4>
     </div>

@@ -18,5 +18,6 @@ namespace BankManager
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
+
     }
 }

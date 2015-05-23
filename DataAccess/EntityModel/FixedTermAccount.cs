@@ -18,10 +18,10 @@ namespace DataAccess.EntityModel
         public Nullable<decimal> MaturityAmount { get; set; }
         public Nullable<decimal> IncomeTaxDeduction { get; set; }
         public Nullable<decimal> AccumulatedInterest { get; set; }
-        public Nullable<int> TermID { get; set; }
+        public Nullable<int> RateID { get; set; }
         public Nullable<bool> IsExpired { get; set; }
     
         public virtual Account Account { get; set; }
-        public virtual FixedTerm FixedTerm { get; set; }
+        public virtual InterestRate InterestRate { get; set; }
     }
 }

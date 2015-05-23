@@ -27,7 +27,7 @@ namespace DataAccess.Reposiitories.Accounts
             if (o != null)
             {
                 o.IsExpired = updatedItem.IsExpired;
-                o.TermID = updatedItem.TermID;
+                o.RateID = updatedItem.RateID;
 
                 _db.SaveChanges();
             }

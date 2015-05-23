@@ -5,115 +5,104 @@
     ViewBag.Title = "DSA Bank Transaction Report";
     ViewBag.FullName = Session["FullName"];
 }
-
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
-        <link href="@contentPath/paper-bootstrap-theme.css" rel="stylesheet" />
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
-    </head>
-    <body>
-        <header class="container body-content">
-            <div class="pull-left">
-                <a href="#" class="navbar-brand">
-                    <img id="logo" width="100" src="@contentPath/img/logo.png" />
-                </a>
-            </div>
-            <div class="pull-right">
-                <h5> @ViewBag.FullName</h5>
-            </div>
-        </header>
-        <div class="container body-content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div>
-                        <h5>DSA Bank Transaction Report</h5>
-                    </div>
-                    <br />
-                    <div class="pull-left"> Transaction id: @Model.ID </div><div class="pull-right">Type: @Model.TypeName</div>
-                </div>
-                <div class="panel-body">
-                    <dl class="col-md-offset-0 dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.DateIssued)
-                        </dt>
-                        <div class="well well-lg">
-                            <p>
-                                @Html.DisplayFor(model => model.DateIssued)
-                            </p>
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.TypeName)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.TypeName)
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.AccountFromID)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.AccountFromID)
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.AccountToID)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.AccountToID)
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Currency)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.Currency)
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Amount)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.Amount)
-                        </div>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Remarks)
-                        </dt>
-
-
-                        <div class="well well-lg">
-                            @Html.DisplayFor(model => model.Remarks)
-                        </div>
-
-                    </dl>
-                </div>
-            </div>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header class="container body-content">
+        <div class="pull-left">
+            <a href="#" class="navbar-brand">
+                <img id="logo" width="100" src="@contentPath/img/logo.png" />
+            </a>
         </div>
-        <div class="container body-content">
-            <footer>
-                <p>
-                    DSA Bank &copy; 2015 created by Nathan Zwelibanzi Khupe
-                </p>
-            </footer>
+        <div class="pull-right">
+            <h5> @ViewBag.FullName</h5>
         </div>
-        @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/bootstrap")
-        <script src="~/Scripts/global.js"></script>
-    </body>
+    </header>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div>
+                <h5>DSA Bank Transaction Report</h5>
+            </div>
+            <br />
+            <div class="pull-left"> Transaction id: @Model.ID </div><div class="pull-right">Type: @Model.TypeName</div>
+        </div>
+        <div class="panel-body">
+            <dl class="col-md-offset-0 dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateIssued)
+                </dt>
+                <div class="well well-lg">
+                    <p>
+                        @Html.DisplayFor(model => model.DateIssued)
+                    </p>
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TypeName)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.TypeName)
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AccountFromID)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.AccountFromID)
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AccountToID)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.AccountToID)
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Currency)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.Currency)
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.Amount)
+                </div>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </dt>
+
+
+                <div class="well well-lg">
+                    @Html.DisplayFor(model => model.Remarks)
+                </div>
+
+            </dl>
+        </div>
+    </div>
+    <footer>
+        <p>
+            DSA Bank &copy; 2015
+        </p>
+    </footer>
+</body>
 </html>

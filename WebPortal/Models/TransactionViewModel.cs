@@ -7,16 +7,22 @@ using WebPortal.CustomValidators;
 
 namespace WebPortal.Models
 {
+
     public class DepositModel
     {
+        [Display(Name = @"Account From")]
+        public int? AccountFromID { get; set; }
+
         [Required]
         [Display(Name = @"Account To")]
         [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
-        public int? AccountToID { get; set; }
+        public int AccountToID { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
         public decimal Amount { get; set; }
+
+        public SelectList Currencies { get; set; }
 
         [Required]
         public string Currency { get; set; }
@@ -25,15 +31,14 @@ namespace WebPortal.Models
         [DataType(DataType.DateTime)]
         public DateTime DateIssued { get; set; }
 
+        public SelectList MyAccounts { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
         [Display(Name = @"Type")]
         public int? TypeID { get; set; }
-
-        public SelectList MyAccounts { get; set; }
-        public SelectList Currencies { get; set; }
     }
 
     public class TransactionDetailModel
@@ -122,16 +127,18 @@ namespace WebPortal.Models
         [Required]
         [Display(Name = @"Account From")]
         [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
-        public int? AccountFromID { get; set; }
+        public int AccountFromID { get; set; }
 
         [Required]
         [Display(Name = @"Account To")]
         [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
-        public int? AccountToID { get; set; }
+        public int AccountToID { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
         public decimal Amount { get; set; }
+
+        public SelectList Currencies { get; set; }
 
         [Required]
         public string Currency { get; set; }
@@ -140,6 +147,8 @@ namespace WebPortal.Models
         [DataType(DataType.DateTime)]
         public DateTime DateIssued { get; set; }
 
+        public SelectList MyAccounts { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
@@ -147,9 +156,6 @@ namespace WebPortal.Models
         [ScaffoldColumn(false)]
         [Display(Name = @"Type")]
         public int? TypeID { get; set; }
-
-        public SelectList MyAccounts { get; set; }
-        public SelectList Currencies { get; set; }
     }
 
     public class TransferOwnModel
@@ -169,6 +175,8 @@ namespace WebPortal.Models
         public decimal Amount { get; set; }
 
 
+        public SelectList Currencies { get; set; }
+
         [Required]
         public string Currency { get; set; }
 
@@ -179,6 +187,8 @@ namespace WebPortal.Models
         [Key]
         public int ID { get; set; }
 
+        public SelectList MyAccounts { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
@@ -186,8 +196,5 @@ namespace WebPortal.Models
         [ScaffoldColumn(false)]
         [Display(Name = @"Type")]
         public int? TypeID { get; set; }
-
-        public SelectList MyAccounts { get; set; }
-        public SelectList Currencies { get; set; }
     }
 }
