@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Deposit";
+    Model.Currencies = (SelectList)Session["Currencies"];
+    Model.MyAccounts = (SelectList)Session["MyAccounts"];
 }
 
 <div class="container body-content">
@@ -41,7 +43,7 @@
                                 @Html.ValidationSummary(true, "Error: ")
                             </div>
                         }
-                        @Html.HiddenFor(d=>d.TypeID)
+                      
                         <div class="form-group">
                             @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">

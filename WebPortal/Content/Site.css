@@ -30,3 +30,35 @@ textarea {
     -moz-text-overflow: ellipsis;
     text-overflow: ellipsis;
 }
+
+#loading_dialog {
+    position: absolute;
+    margin-left: -75px;
+    margin-top: -75px;
+    left: 50%;
+    top: 50%;
+    z-index: 2010;
+    display: none;
+    background: #000;
+    display: none;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    padding: 2px;
+    background-color: whitesmoke;
+    background-image: url('/Content/img/ajax-loader.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+    #loading_dialog h3 {
+        position: absolute;
+        bottom: 0;
+    }
+
+#screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+    z-index: 2000;
+}

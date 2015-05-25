@@ -1,19 +1,14 @@
-﻿using System.Data;
-using System.Transactions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CommonUtils;
-using DataAccess;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories.Accounts;
 using DataAccess.Reposiitories.Transactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using DSABusinessServices.BankAccount;
 using DSABusinessServices.CurrencyConverterServices;
 using DSABusinessServices.CustomExceptions;
-using DSABusinessServices.Log;
 using Currency = DSABusinessServices.CurrencyConverterServices.Currency;
-using Transaction = DataAccess.EntityModel.Transaction;
 
 namespace DSABusinessServices.BankTransaction
 {
@@ -25,16 +20,165 @@ namespace DSABusinessServices.BankTransaction
 
     public class TransactionServices : ITransactionServices
     {
+        #region Constants
+
         private const string DefaultCurrency = "EUR";
         private const decimal MinimumBalance = (decimal)10.0;
-        private AccountView From { get; set; }
-        private AccountView To { get; set; }
 
+        #endregion
+
+        #region Properties
+
+        private Account From { get; set; }
+        private Account To { get; set; }
+
+        #endregion
+
+        #region Transfer Funds
+        public void TermDeposit(TransactionView item)
+        {
+            //Deduct from source account
+            //Add to destination account
+            Log(item);
+
+            throw new NotImplementedException();
+        }
+
+        public void PersonalTransfer(TransactionView item)
+        {
+            if (item.AccountFromID != null && item.AccountToID != null)
+            {
+                if (item.AccountFromID != item.AccountToID)
+                {
+                    From = GetAccount((int)item.AccountFromID);
+                    To = GetAccount((int)item.AccountToID);
+                    if (From.Username == To.Username)
+                    {
+                        decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                        decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                        decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
+                        //deduct amount from source account
+                        decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
+                        //Add amount to destination account
+                        decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
+                        To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
+                        if (newFromBalance > MinimumBalance)
+                        {
+                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                            bool isTransfered = new AccountsRepo().Transfer(From, To);
+                            if (isTransfered)
+                            {
+                                Log(item);
+                            }
+                            else
+                            {
+                                throw new TransactionFailedException("Failed to transfer funds.");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Use local transfer to transfer funds to other peoples accounts");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Cannot transfer funds between the same account.");
+                }
+            }
+        }
+
+        public void LocalTransfer(TransactionView item)
+        {
+            //check that destination account and source account do not belong to the same user
+            if (item.AccountFromID != null && item.AccountToID != null)
+            {
+                if (item.AccountFromID != item.AccountToID)
+                {
+                    From = GetAccount((int)item.AccountFromID);
+                    To = GetAccount((int)item.AccountToID);
+
+                    if (From.Username != To.Username)
+                    {
+                        decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                        decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                        decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
+                        //deduct amount from source account
+                        decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
+                        //Add amount to destination account
+                        decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
+                        To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
+                        if (newFromBalance > MinimumBalance)
+                        {
+                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                            bool isTransfered = new AccountsRepo().Transfer(From, To);
+                            if (isTransfered)
+                            {
+                                Log(item);
+                            }
+                            else
+                            {
+                                throw new TransactionFailedException("Failed to transfer funds.");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Use personal transfer to transfer between your own accounts");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Cannot transfer funds between the same account.");
+                }
+            }
+        }
+        #endregion
+
+        public void Delete(int id)
+        {
+            new TransactionsRepo().Delete(new Transaction { ID = id });
+        }
+
+
+        #region Lists
+        public IQueryable<string> ListAccountNumbers()
+        {
+            IQueryable<string> list = new TransactionsRepo().GetAccountNumbers();
+            return list;
+        }
+
+        public IQueryable<TransactionView> ListUserTransactions(string username)
+        {
+            return new TransactionsRepo().ListByUsername(username).Select(t => new TransactionView
+            {
+                ID = t.ID,
+                DateIssued = t.DateIssued,
+                TypeID = t.TypeID,
+                TypeName = t.TransactionType.Name,
+                AccountFromID = t.AccountFromID,
+                AccountToID = t.AccountToID,
+                Amount = t.Amount,
+                Currency = t.Currency,
+                Remarks = t.Remarks
+            });
+        }
+        #endregion
+
+        #region Getters
         private decimal GetRealAmount(string currencyFrom, string currencyTo, decimal amount)
         {
             decimal result = 0;
 
-            using (var client = new CurrencyConvertorSoapClient())
+            using (var client = new CurrencyConvertorSoapClient("CurrencyConvertorSoap"))
             {
                 var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
                 var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
@@ -44,9 +188,43 @@ namespace DSABusinessServices.BankTransaction
             return result;
         }
 
+        public TransactionView GetTransactionDetails(int id)
+        {
+            Transaction t = new TransactionsRepo().Read(new Transaction { ID = id });
+            return new TransactionView
+            {
+                ID = t.ID,
+                DateIssued = t.DateIssued,
+                TypeID = t.TypeID,
+                TypeName = t.TransactionType.Name,
+                AccountFromID = t.AccountFromID,
+                AccountToID = t.AccountToID,
+                Amount = t.Amount,
+                Currency = t.Currency,
+                Remarks = t.Remarks
+            };
+        }
+
+        public IEnumerable<TransactionTypeView> GetTransactionTypes()
+        {
+            return new TransactionTypesRepo().ListAll().Select(g => new TransactionTypeView
+            {
+                ID = g.ID,
+                Name = g.Name
+            });
+        }
+
+        private Account GetAccount(int id)
+        {
+            Account result = new AccountsRepo().Read(new Account { ID = id });
+
+            return result;
+        }
+        #endregion
+
         private void Log(TransactionView item)
         {
-            new TransactionsRepo().Create(new Transaction()
+            new TransactionsRepo().Create(new Transaction
             {
                 DateIssued = item.DateIssued,
                 TypeID = item.TypeID,
@@ -58,94 +236,8 @@ namespace DSABusinessServices.BankTransaction
             });
         }
 
-        public void TermDeposit(TransactionView item)
-        {
-            //Deduct from source account
-            //Add to destination account
-            Log(item);
+        #region Filters
 
-            throw new NotImplementedException();
-        }
-
-        public void PersonalTransafer(TransactionView item)
-        {
-            if (item.AccountFromID != null && item.AccountToID != null)
-            {
-                From = GetAccount((int)item.AccountFromID);
-                To = GetAccount((int)item.AccountToID);
-
-                using (var ts = new TransactionScope())
-                {
-                    try
-                    {
-                        //deduct amount from source account
-                        var balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
-                        var balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
-                        var amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
-
-                        decimal newFromBalance = balanceFromInEuro - amountInEuro;
-                        if (newFromBalance > MinimumBalance)
-                        {
-                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
-                            Update(new Account
-                            {
-                                ID = From.ID,
-                                TypeID = From.TypeID,
-                                DateOpened = From.DateOpened,
-                                Username = From.Username,
-                                Name = From.Name,
-                                Currency = item.Currency,
-                                Balance = newFromBalance,
-                                Remarks = item.Remarks
-                            });
-                        }
-                        else
-                        {
-                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
-                        }
-
-                        //Add amount to destination account
-                        decimal newToBalance = balanceToInEuro + amountInEuro;
-                        To.Balance = newToBalance;
-                        Update(new Account
-                        {
-                            ID = From.ID,
-                            TypeID = From.TypeID,
-                            DateOpened = From.DateOpened,
-                            Username = From.Username,
-                            Name = From.Name,
-                            Currency = item.Currency,
-                            Balance = newFromBalance,
-                            Remarks = item.Remarks
-                        });
-
-                        ts.Complete();
-                    }
-                    catch
-                    {
-                        ts.Dispose();
-                        item.Remarks = "Failed transaction";
-                    }
-                    finally
-                    {
-                        Log(item);
-                    }
-                }
-            }
-        }
-
-        public void LocalTransfer(TransactionView item)
-        {
-            //Deduct from source account
-            //Add to destination account
-            Log(item);
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            new TransactionsRepo().Delete(new Transaction { ID = id });
-        }
 
         public IQueryable<TransactionView> FilterTransactions(string username, int accountNo, SortOrder order,
             DateTime? start, DateTime? end)
@@ -188,7 +280,9 @@ namespace DSABusinessServices.BankTransaction
             });
         }
 
-        private static IQueryable<Transaction> FilterByDateRange(DateTime? start, DateTime? end, IQueryable<Transaction> list)
+
+        private static IQueryable<Transaction> FilterByDateRange(DateTime? start, DateTime? end,
+    IQueryable<Transaction> list)
         {
             if (start != null && end != null)
             {
@@ -199,92 +293,28 @@ namespace DSABusinessServices.BankTransaction
 
         private static IQueryable<Transaction> ReOrderList(SortOrder order, IQueryable<Transaction> list)
         {
-            list = order == SortOrder.Ascending ? list.OrderBy(a => a.DateIssued) : list.OrderByDescending(a => a.DateIssued);
+            list = order == SortOrder.Ascending
+                ? list.OrderBy(a => a.DateIssued)
+                : list.OrderByDescending(a => a.DateIssued);
             return list;
         }
 
         private static IQueryable<Transaction> FilterByAccount(int accountNo)
         {
-            IQueryable<Transaction> list = new TransactionsRepo().ListAll().Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            IQueryable<Transaction> list =
+                new TransactionsRepo().ListAll().Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
             return list;
         }
 
         private static IQueryable<Transaction> FilterByUsernameAndAcoount(string username, int accountNo)
         {
-            IQueryable<Transaction> list = new TransactionsRepo().ListByUsername(username).Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
+            IQueryable<Transaction> list =
+                new TransactionsRepo().ListByUsername(username)
+                    .Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
             return list;
         }
+        #endregion
 
-        public TransactionView GetTransactionDetails(int id)
-        {
-            Transaction t = new TransactionsRepo().Read(new Transaction { ID = id });
-            return new TransactionView
-            {
-                ID = t.ID,
-                DateIssued = t.DateIssued,
-                TypeID = t.TypeID,
-                TypeName = t.TransactionType.Name,
-                AccountFromID = t.AccountFromID,
-                AccountToID = t.AccountToID,
-                Amount = t.Amount,
-                Currency = t.Currency,
-                Remarks = t.Remarks
-            };
-        }
 
-        private AccountView GetAccount(int id)
-        {
-            AccountView result = null;
-            var acc = new AccountsRepo().Read(new Account() { ID = id });
-            result = new AccountView
-            {
-                ID = acc.ID,
-                TypeID = acc.TypeID,
-                TypeName = acc.AccountType.Name,
-                DateOpened = acc.DateOpened,
-                Username = acc.Username,
-                Name = acc.Name,
-                Currency = acc.Currency,
-                Balance = acc.Balance,
-                Remarks = acc.Remarks
-            };
-            return result;
-        }
-
-        public IEnumerable<TransactionTypeView> GetTransactionTypes()
-        {
-            return new TransactionTypesRepo().ListAll().Select(g => new TransactionTypeView
-            {
-                ID = g.ID,
-                Name = g.Name
-            });
-        }
-
-        public IQueryable<string> ListAccountNumbers()
-        {
-            var list = new TransactionsRepo().GetAccountNumbers();
-            return list;
-        }
-
-        public IQueryable<TransactionView> ListUserTransactions(string username)
-        {
-            return new TransactionsRepo().ListByUsername(username).Select(t => new TransactionView
-            {
-                ID = t.ID,
-                DateIssued = t.DateIssued,
-                TypeID = t.TypeID,
-                TypeName = t.TransactionType.Name,
-                AccountFromID = t.AccountFromID,
-                AccountToID = t.AccountToID,
-                Amount = t.Amount,
-                Currency = t.Currency,
-                Remarks = t.Remarks
-            });
-        }
-
-        private void Update(Account account)
-        {
-            new AccountsRepo().Update(account);
-        }
     }
 }

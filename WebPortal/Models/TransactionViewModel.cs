@@ -10,13 +10,19 @@ namespace WebPortal.Models
 
     public class DepositModel
     {
+        [Required]
         [Display(Name = @"Account From")]
+        [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
         public int? AccountFromID { get; set; }
 
         [Required]
         [Display(Name = @"Account To")]
-        [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
+        [NotEqualTo("AccountFromID", ErrorMessage = "Cannot transafer funds to or from the same account")]
         public int AccountToID { get; set; }
+
+        [Required]
+        [Display(Name = @"Expiry Date")]
+        public DateTime ExpiryDate { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
@@ -27,18 +33,12 @@ namespace WebPortal.Models
         [Required]
         public string Currency { get; set; }
 
-        [ScaffoldColumn(false)]
-        [DataType(DataType.DateTime)]
-        public DateTime DateIssued { get; set; }
-
         public SelectList MyAccounts { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
-        [Display(Name = @"Type")]
-        public int? TypeID { get; set; }
     }
 
     public class TransactionDetailModel
@@ -131,7 +131,7 @@ namespace WebPortal.Models
 
         [Required]
         [Display(Name = @"Account To")]
-        [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
+        [NotEqualTo("AccountFromID", ErrorMessage = "Cannot transafer funds to or from the same account")]
         public int AccountToID { get; set; }
 
         [Required]
@@ -143,19 +143,11 @@ namespace WebPortal.Models
         [Required]
         public string Currency { get; set; }
 
-        [ScaffoldColumn(false)]
-        [DataType(DataType.DateTime)]
-        public DateTime DateIssued { get; set; }
-
         public SelectList MyAccounts { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
-
-        [ScaffoldColumn(false)]
-        [Display(Name = @"Type")]
-        public int? TypeID { get; set; }
     }
 
     public class TransferOwnModel
@@ -171,30 +163,18 @@ namespace WebPortal.Models
         public int? AccountToID { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
-        public decimal Amount { get; set; }
-
-
-        public SelectList Currencies { get; set; }
-
-        [Required]
         public string Currency { get; set; }
 
-        [ScaffoldColumn(false)]
-        [DataType(DataType.DateTime)]
-        public DateTime DateIssued { get; set; }
-
-        [Key]
-        public int ID { get; set; }
-
-        public SelectList MyAccounts { get; set; }
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
+        public decimal Amount { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
-        [ScaffoldColumn(false)]
-        [Display(Name = @"Type")]
-        public int? TypeID { get; set; }
+        public SelectList Currencies { get; set; }
+        public SelectList MyAccounts { get; set; }
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web.Mvc;
 using CommonUtils;
@@ -16,6 +17,7 @@ namespace WebPortal.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
+       
         public FileResult DetailReport(int id)
         {
             string html;
@@ -106,8 +108,7 @@ namespace WebPortal.Controllers
                 AccountToListID = a,
                 StartDate = start,
                 EndDate = end,
-                TransactionsPagedList = list.ToPagedList(p ?? 1, ps),
-                MyAccounts = GetMyAccounts(User.Identity.Name)
+                TransactionsPagedList = list.ToPagedList(p ?? 1, ps)
             };
             Session["TransactionsCurrentResults"] = results;
             return Request.IsAjaxRequest()
@@ -125,12 +126,11 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Deposit()
         {
-            return View(new DepositModel
+            using (var client = new AccountServicesClient())
             {
-                Currencies = GetCurrencies(),
-                MyAccounts = GetMyAccounts(User.Identity.Name),
-                TypeID = 1
-            });
+                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+            }
+            return View(new DepositModel());
         }
 
         [ValidateAntiForgeryToken]
@@ -169,17 +169,19 @@ namespace WebPortal.Controllers
         }
 
         [HttpGet]
+        [ActionName("Local Transfer")]
         public ActionResult TransferOther()
         {
-            return View(new TransferOtherModel
+            using (var client = new AccountServicesClient())
             {
-                Currencies = GetCurrencies(),
-                MyAccounts = GetMyAccounts(User.Identity.Name),
-                TypeID = 3
-            });
+                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+            }
+
+            return View("TransferOther", new TransferOtherModel());
         }
 
         [ValidateAntiForgeryToken]
+        [ActionName("Local Transfer")]
         [HttpPost]
         public ActionResult TransferOther(TransferOtherModel model)
         {
@@ -189,6 +191,17 @@ namespace WebPortal.Controllers
                 {
                     using (var client = new TransactionServicesClient())
                     {
+                        client.LocalTransfer(new TransactionView()
+                        {
+                            DateIssued = DateTime.Now,
+                            AccountFromID = model.AccountFromID,
+                            AccountToID = model.AccountToID,
+                            Amount = model.Amount,
+                            Currency = model.Currency,
+                            Remarks = model.Remarks,
+                            TypeID = 3
+                        });
+
                         return Json(new {Result = "OK", Message = "Successfully transfered funds"});
                     }
                 }
@@ -199,41 +212,41 @@ namespace WebPortal.Controllers
                     @"There was an error completing the transaction, contact the administrator for help.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View("TransferOther");
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("_TOther", model) : View("TransferOther", model);
         }
 
         [HttpGet]
+        [ActionName("Personal Transfer")]
         public ActionResult TransferOwn()
         {
-            return View(new TransferOwnModel
+            using (var client = new AccountServicesClient())
             {
-                Currencies = GetCurrencies(),
-                MyAccounts = GetMyAccounts(User.Identity.Name)
-            });
+                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+            }
+            return View("TransferOwn", new TransferOwnModel());
         }
 
         [ValidateAntiForgeryToken]
+        [ActionName("Personal Transfer")]
         [HttpPost]
         public ActionResult TransferOwn(TransferOwnModel model)
         {
             try
             {
-                model.DateIssued = DateTime.Now;
-                model.TypeID = 2;
                 if (ModelState.IsValid)
                 {
                     using (var client = new TransactionServicesClient())
                     {
 
-                        client.PersonalTransafer(new TransactionView()
+                        client.PersonalTransfer(new TransactionView()
                         {
-                            DateIssued = model.DateIssued,
+                            DateIssued = DateTime.Now,
                             AccountFromID = model.AccountFromID,
                             AccountToID = model.AccountToID,
                             Amount = model.Amount,
                             Currency = model.Currency,
                             Remarks = model.Remarks,
-                            TypeID = model.TypeID
+                            TypeID = 2
                         });
 
                         return Json(new {Result = "OK", Message = "Successfully transfered funds"});
@@ -243,29 +256,13 @@ namespace WebPortal.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty,
-                    "There was an error completing the transaction, contact the administrator for help.");
+                    @"There was an error completing the transaction, contact the administrator for help.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            model.Currencies = GetCurrencies();
-            model.MyAccounts = GetMyAccounts(User.Identity.Name);
-            return View(model);
+
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("_TOwn", model) : View("TransferOwn", model);
+
         }
 
-        private SelectList GetCurrencies()
-        {
-            using (var client = new AccountServicesClient())
-            {
-                List<string> list = client.GetCurrencyList();
-                return new SelectList(list, list.Find(e => e.Equals("EUR")));
-            }
-        }
-
-        private SelectList GetMyAccounts(string username)
-        {
-            using (var client = new AccountServicesClient())
-            {
-                return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
-            }
-        }
     }
 }

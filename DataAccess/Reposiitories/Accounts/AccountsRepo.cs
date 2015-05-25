@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
+using System.Transactions;
 using DataAccess.EntityModel;
 
 namespace DataAccess.Reposiitories.Accounts
@@ -71,6 +73,48 @@ namespace DataAccess.Reposiitories.Accounts
 
                 _db.SaveChanges();
             }
+        }
+
+
+        public bool Transfer(Account accountFrom, Account accountTo)
+        {
+            bool result = false;
+
+            using (var ts = new TransactionScope())
+            {
+                using (var context = new DsaDataContext())
+                {
+                    context.Database.Connection.Open();
+                    try
+                    {
+                        if (accountFrom != null && accountTo != null)
+                        {
+                            var from = context.Accounts.Find(accountFrom.ID);
+                            from.Balance = accountFrom.Balance;
+
+                            var to = context.Accounts.Find(accountTo.ID);
+                            to.Balance = accountTo.Balance;
+
+                            context.SaveChanges();
+                            ts.Complete();
+                            result = true;
+                        }
+                    }
+                    catch
+                    {
+                        ts.Dispose();
+                    }
+                    finally
+                    {
+                        if (context.Database.Connection.State == ConnectionState.Open)
+                        {
+                            context.Database.Connection.Close();
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
 
         public IQueryable<Account> ListByUsername(string username)

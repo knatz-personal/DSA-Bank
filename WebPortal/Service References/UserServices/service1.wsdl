@@ -38,6 +38,12 @@
   <wsdl:message name="IUserServices_DoesUsernameExist_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoesUsernameExistResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserServices_IsUserInRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInRole" />
+  </wsdl:message>
+  <wsdl:message name="IUserServices_IsUserInRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUserInRoleResponse" />
+  </wsdl:message>
   <wsdl:message name="IUserServices_Genders_InputMessage">
     <wsdl:part name="parameters" element="tns:Genders" />
   </wsdl:message>
@@ -143,6 +149,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/DoesUsernameExist" message="tns:IUserServices_DoesUsernameExist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/DoesUsernameExistResponse" message="tns:IUserServices_DoesUsernameExist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="IsUserInRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/IsUserInRole" message="tns:IUserServices_IsUserInRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/IsUserInRoleResponse" message="tns:IUserServices_IsUserInRole_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Genders">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserServices/Genders" message="tns:IUserServices_Genders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserServices/GendersResponse" message="tns:IUserServices_Genders_OutputMessage" />
@@ -240,6 +250,15 @@
     </wsdl:operation>
     <wsdl:operation name="DoesUsernameExist">
       <soap:operation soapAction="http://tempuri.org/IUserServices/DoesUsernameExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInRole">
+      <soap:operation soapAction="http://tempuri.org/IUserServices/IsUserInRole" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -235,41 +235,41 @@ namespace WebPortal.LoggingServices {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LoggingServices.ILogServices")]
     public interface ILogServices {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogError", ReplyAction="http://tempuri.org/ILogServices/LogErrorResponse")]
-        void LogError(string username, string message, string innerException);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogError", ReplyAction="http://tempuri.org/ILogServices/LogErrorResponse")]
-        System.Threading.Tasks.Task LogErrorAsync(string username, string message, string innerException);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListErrors", ReplyAction="http://tempuri.org/ILogServices/ListErrorsResponse")]
-        System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView> ListErrors();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListErrors", ReplyAction="http://tempuri.org/ILogServices/ListErrorsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView>> ListErrorsAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/DeleteError", ReplyAction="http://tempuri.org/ILogServices/DeleteErrorResponse")]
         void DeleteError(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/DeleteError", ReplyAction="http://tempuri.org/ILogServices/DeleteErrorResponse")]
         System.Threading.Tasks.Task DeleteErrorAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogEvent", ReplyAction="http://tempuri.org/ILogServices/LogEventResponse")]
-        void LogEvent(string username, string message, string source);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogEvent", ReplyAction="http://tempuri.org/ILogServices/LogEventResponse")]
-        System.Threading.Tasks.Task LogEventAsync(string username, string message, string source);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListEvents", ReplyAction="http://tempuri.org/ILogServices/ListEventsResponse")]
-        System.Collections.Generic.List<WebPortal.LoggingServices.EventView> ListEvents();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/ListEvents", ReplyAction="http://tempuri.org/ILogServices/ListEventsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.EventView>> ListEventsAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/DeleteEvent", ReplyAction="http://tempuri.org/ILogServices/DeleteEventResponse")]
         void DeleteEvent(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/DeleteEvent", ReplyAction="http://tempuri.org/ILogServices/DeleteEventResponse")]
         System.Threading.Tasks.Task DeleteEventAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterErrorsList", ReplyAction="http://tempuri.org/ILogServices/FilterErrorsListResponse")]
+        System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView> FilterErrorsList(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterErrorsList", ReplyAction="http://tempuri.org/ILogServices/FilterErrorsListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView>> FilterErrorsListAsync(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterEventsList", ReplyAction="http://tempuri.org/ILogServices/FilterEventsListResponse")]
+        System.Collections.Generic.List<WebPortal.LoggingServices.EventView> FilterEventsList(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/FilterEventsList", ReplyAction="http://tempuri.org/ILogServices/FilterEventsListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.EventView>> FilterEventsListAsync(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogError", ReplyAction="http://tempuri.org/ILogServices/LogErrorResponse")]
+        void LogError(string username, string message, string innerException);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogError", ReplyAction="http://tempuri.org/ILogServices/LogErrorResponse")]
+        System.Threading.Tasks.Task LogErrorAsync(string username, string message, string innerException);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogEvent", ReplyAction="http://tempuri.org/ILogServices/LogEventResponse")]
+        void LogEvent(string username, string message, string source);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILogServices/LogEvent", ReplyAction="http://tempuri.org/ILogServices/LogEventResponse")]
+        System.Threading.Tasks.Task LogEventAsync(string username, string message, string source);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -299,22 +299,6 @@ namespace WebPortal.LoggingServices {
                 base(binding, remoteAddress) {
         }
         
-        public void LogError(string username, string message, string innerException) {
-            base.Channel.LogError(username, message, innerException);
-        }
-        
-        public System.Threading.Tasks.Task LogErrorAsync(string username, string message, string innerException) {
-            return base.Channel.LogErrorAsync(username, message, innerException);
-        }
-        
-        public System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView> ListErrors() {
-            return base.Channel.ListErrors();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView>> ListErrorsAsync() {
-            return base.Channel.ListErrorsAsync();
-        }
-        
         public void DeleteError(int id) {
             base.Channel.DeleteError(id);
         }
@@ -323,28 +307,44 @@ namespace WebPortal.LoggingServices {
             return base.Channel.DeleteErrorAsync(id);
         }
         
-        public void LogEvent(string username, string message, string source) {
-            base.Channel.LogEvent(username, message, source);
-        }
-        
-        public System.Threading.Tasks.Task LogEventAsync(string username, string message, string source) {
-            return base.Channel.LogEventAsync(username, message, source);
-        }
-        
-        public System.Collections.Generic.List<WebPortal.LoggingServices.EventView> ListEvents() {
-            return base.Channel.ListEvents();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.EventView>> ListEventsAsync() {
-            return base.Channel.ListEventsAsync();
-        }
-        
         public void DeleteEvent(int id) {
             base.Channel.DeleteEvent(id);
         }
         
         public System.Threading.Tasks.Task DeleteEventAsync(int id) {
             return base.Channel.DeleteEventAsync(id);
+        }
+        
+        public System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView> FilterErrorsList(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterErrorsList(query, start, end);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.ErrorView>> FilterErrorsListAsync(string query, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterErrorsListAsync(query, start, end);
+        }
+        
+        public System.Collections.Generic.List<WebPortal.LoggingServices.EventView> FilterEventsList(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterEventsList(source, start, end);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.LoggingServices.EventView>> FilterEventsListAsync(string source, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+            return base.Channel.FilterEventsListAsync(source, start, end);
+        }
+        
+        public void LogError(string username, string message, string innerException) {
+            base.Channel.LogError(username, message, innerException);
+        }
+        
+        public System.Threading.Tasks.Task LogErrorAsync(string username, string message, string innerException) {
+            return base.Channel.LogErrorAsync(username, message, innerException);
+        }
+        
+        public void LogEvent(string username, string message, string source) {
+            base.Channel.LogEvent(username, message, source);
+        }
+        
+        public System.Threading.Tasks.Task LogEventAsync(string username, string message, string source) {
+            return base.Channel.LogEventAsync(username, message, source);
         }
     }
 }

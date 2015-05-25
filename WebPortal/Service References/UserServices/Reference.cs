@@ -531,6 +531,12 @@ namespace WebPortal.UserServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/DoesUsernameExist", ReplyAction="http://tempuri.org/IUserServices/DoesUsernameExistResponse")]
         System.Threading.Tasks.Task<bool> DoesUsernameExistAsync(string username);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
+        bool IsUserInRole(string username, int roleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/IsUserInRole", ReplyAction="http://tempuri.org/IUserServices/IsUserInRoleResponse")]
+        System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserServices/Genders", ReplyAction="http://tempuri.org/IUserServices/GendersResponse")]
         System.Collections.Generic.List<WebPortal.UserServices.GenderView> Genders();
         
@@ -681,6 +687,14 @@ namespace WebPortal.UserServices {
         
         public System.Threading.Tasks.Task<bool> DoesUsernameExistAsync(string username) {
             return base.Channel.DoesUsernameExistAsync(username);
+        }
+        
+        public bool IsUserInRole(string username, int roleId) {
+            return base.Channel.IsUserInRole(username, roleId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsUserInRoleAsync(string username, int roleId) {
+            return base.Channel.IsUserInRoleAsync(username, roleId);
         }
         
         public System.Collections.Generic.List<WebPortal.UserServices.GenderView> Genders() {

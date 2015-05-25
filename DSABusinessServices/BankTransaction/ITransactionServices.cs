@@ -31,9 +31,8 @@ namespace DSABusinessServices.BankTransaction
 
 
         [OperationContract]
-        void PersonalTransafer(TransactionView item);
-
-
+        void PersonalTransfer(TransactionView item);
+        
         [OperationContract]
         void LocalTransfer(TransactionView item);
 

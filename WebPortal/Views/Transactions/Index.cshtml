@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Model.MyAccounts = (SelectList)Session["MyAccounts"];
 }
 
 <div id="detailModal" class="modal fade">

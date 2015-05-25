@@ -6,6 +6,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebPortal.BankAccountServices;
 using WebPortal.Controllers;
 using WebPortal.LoggingServices;
 using WebPortal.UserServices;
@@ -26,10 +27,16 @@ namespace WebPortal
 
         protected void Session_Start(Object sender, EventArgs e)
         {
-            if (Context.User.Identity.Name != string.Empty)
+            if (!string.IsNullOrEmpty(Context.User.Identity.Name))
             {
                 var item = _client.ReadByUsername(Context.User.Identity.Name);
                 Session["FullName"] = string.Format("{0} {1} {2}", item.FirstName, item.MiddleInitial, item.LastName);
+                using (var client = new AccountServicesClient())
+                {
+                    List<string> list = client.GetCurrencyList();
+                    Session["Currencies"] = new SelectList(list, list.Find(a => a.Equals("EUR")));
+                    Session["MyAccounts"] =  new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                }
             }
         }
 
@@ -37,6 +44,7 @@ namespace WebPortal
         {
 
             Session["FullName"] = null;
+            Session["Currencies"] = null;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -69,7 +77,7 @@ namespace WebPortal
                 client.LogError(User.Identity.Name, err,
                     "" + objErr.InnerException == string.Empty ? "null" : objErr.InnerException.ToString());
             }
-           
+
             Server.ClearError();
             Response.TrySkipIisCustomErrors = true;
             int statusCode = 0;

@@ -84,14 +84,14 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="PersonalTransafer">
+  <xs:element name="PersonalTransfer">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q8:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="PersonalTransaferResponse">
+  <xs:element name="PersonalTransferResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

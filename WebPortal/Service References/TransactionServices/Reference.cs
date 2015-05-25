@@ -263,22 +263,22 @@ namespace WebPortal.TransactionServices {
     public interface ITransactionServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListAccountNumbers", ReplyAction="http://tempuri.org/ITransactionServices/ListAccountNumbersResponse")]
-        string[] ListAccountNumbers();
+        System.Collections.Generic.List<string> ListAccountNumbers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListAccountNumbers", ReplyAction="http://tempuri.org/ITransactionServices/ListAccountNumbersResponse")]
-        System.Threading.Tasks.Task<string[]> ListAccountNumbersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListAccountNumbersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
-        WebPortal.TransactionServices.TransactionView[] ListUserTransactions(string username);
+        System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView> ListUserTransactions(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListUserTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListUserTransactionsResponse")]
-        System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionView[]> ListUserTransactionsAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView>> ListUserTransactionsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/FilterTransactions", ReplyAction="http://tempuri.org/ITransactionServices/FilterTransactionsResponse")]
-        WebPortal.TransactionServices.TransactionView[] FilterTransactions(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView> FilterTransactions(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/FilterTransactions", ReplyAction="http://tempuri.org/ITransactionServices/FilterTransactionsResponse")]
-        System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionView[]> FilterTransactionsAsync(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionDetails", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionDetailsResponse")]
         WebPortal.TransactionServices.TransactionView GetTransactionDetails(int id);
@@ -287,10 +287,10 @@ namespace WebPortal.TransactionServices {
         System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionView> GetTransactionDetailsAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
-        WebPortal.TransactionServices.TransactionTypeView[] GetTransactionTypes();
+        System.Collections.Generic.List<WebPortal.TransactionServices.TransactionTypeView> GetTransactionTypes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
-        System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionTypeView[]> GetTransactionTypesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/TermDeposit", ReplyAction="http://tempuri.org/ITransactionServices/TermDepositResponse")]
         void TermDeposit(WebPortal.TransactionServices.TransactionView item);
@@ -298,11 +298,11 @@ namespace WebPortal.TransactionServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/TermDeposit", ReplyAction="http://tempuri.org/ITransactionServices/TermDepositResponse")]
         System.Threading.Tasks.Task TermDepositAsync(WebPortal.TransactionServices.TransactionView item);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransafer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransaferResponse")]
-        void PersonalTransafer(WebPortal.TransactionServices.TransactionView item);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransferResponse")]
+        void PersonalTransfer(WebPortal.TransactionServices.TransactionView item);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransafer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransaferResponse")]
-        System.Threading.Tasks.Task PersonalTransaferAsync(WebPortal.TransactionServices.TransactionView item);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransferResponse")]
+        System.Threading.Tasks.Task PersonalTransferAsync(WebPortal.TransactionServices.TransactionView item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/LocalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/LocalTransferResponse")]
         void LocalTransfer(WebPortal.TransactionServices.TransactionView item);
@@ -344,27 +344,27 @@ namespace WebPortal.TransactionServices {
                 base(binding, remoteAddress) {
         }
         
-        public string[] ListAccountNumbers() {
+        public System.Collections.Generic.List<string> ListAccountNumbers() {
             return base.Channel.ListAccountNumbers();
         }
         
-        public System.Threading.Tasks.Task<string[]> ListAccountNumbersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> ListAccountNumbersAsync() {
             return base.Channel.ListAccountNumbersAsync();
         }
         
-        public WebPortal.TransactionServices.TransactionView[] ListUserTransactions(string username) {
+        public System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView> ListUserTransactions(string username) {
             return base.Channel.ListUserTransactions(username);
         }
         
-        public System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionView[]> ListUserTransactionsAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView>> ListUserTransactionsAsync(string username) {
             return base.Channel.ListUserTransactionsAsync(username);
         }
         
-        public WebPortal.TransactionServices.TransactionView[] FilterTransactions(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+        public System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView> FilterTransactions(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
             return base.Channel.FilterTransactions(username, accountNo, order, start, end);
         }
         
-        public System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionView[]> FilterTransactionsAsync(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionView>> FilterTransactionsAsync(string username, int accountNo, WebPortal.TransactionServices.SortOrder order, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> end) {
             return base.Channel.FilterTransactionsAsync(username, accountNo, order, start, end);
         }
         
@@ -376,11 +376,11 @@ namespace WebPortal.TransactionServices {
             return base.Channel.GetTransactionDetailsAsync(id);
         }
         
-        public WebPortal.TransactionServices.TransactionTypeView[] GetTransactionTypes() {
+        public System.Collections.Generic.List<WebPortal.TransactionServices.TransactionTypeView> GetTransactionTypes() {
             return base.Channel.GetTransactionTypes();
         }
         
-        public System.Threading.Tasks.Task<WebPortal.TransactionServices.TransactionTypeView[]> GetTransactionTypesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync() {
             return base.Channel.GetTransactionTypesAsync();
         }
         
@@ -392,12 +392,12 @@ namespace WebPortal.TransactionServices {
             return base.Channel.TermDepositAsync(item);
         }
         
-        public void PersonalTransafer(WebPortal.TransactionServices.TransactionView item) {
-            base.Channel.PersonalTransafer(item);
+        public void PersonalTransfer(WebPortal.TransactionServices.TransactionView item) {
+            base.Channel.PersonalTransfer(item);
         }
         
-        public System.Threading.Tasks.Task PersonalTransaferAsync(WebPortal.TransactionServices.TransactionView item) {
-            return base.Channel.PersonalTransaferAsync(item);
+        public System.Threading.Tasks.Task PersonalTransferAsync(WebPortal.TransactionServices.TransactionView item) {
+            return base.Channel.PersonalTransferAsync(item);
         }
         
         public void LocalTransfer(WebPortal.TransactionServices.TransactionView item) {
