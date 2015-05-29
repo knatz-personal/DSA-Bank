@@ -32,6 +32,18 @@
   <wsdl:message name="IAccountServices_GetTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTypesResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountServices_GetFixedAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetFixedAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetFixedTerms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedTerms" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_GetFixedTerms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedTermsResponse" />
+  </wsdl:message>
   <wsdl:message name="IAccountServices_GetCurrencyList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrencyList" />
   </wsdl:message>
@@ -43,12 +55,6 @@
   </wsdl:message>
   <wsdl:message name="IAccountServices_ListUserAccounts_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListUserAccountsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IAccountServices_ListUserUtilityAccounts_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListUserUtilityAccounts" />
-  </wsdl:message>
-  <wsdl:message name="IAccountServices_ListUserUtilityAccounts_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListUserUtilityAccountsResponse" />
   </wsdl:message>
   <wsdl:message name="IAccountServices_Update_InputMessage">
     <wsdl:part name="parameters" element="tns:Update" />
@@ -73,6 +79,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetTypes" message="tns:IAccountServices_GetTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetTypesResponse" message="tns:IAccountServices_GetTypes_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetFixedAccounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetFixedAccounts" message="tns:IAccountServices_GetFixedAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetFixedAccountsResponse" message="tns:IAccountServices_GetFixedAccounts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedTerms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetFixedTerms" message="tns:IAccountServices_GetFixedTerms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetFixedTermsResponse" message="tns:IAccountServices_GetFixedTerms_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetCurrencyList">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/GetCurrencyList" message="tns:IAccountServices_GetCurrencyList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/GetCurrencyListResponse" message="tns:IAccountServices_GetCurrencyList_OutputMessage" />
@@ -80,10 +94,6 @@
     <wsdl:operation name="ListUserAccounts">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/ListUserAccounts" message="tns:IAccountServices_ListUserAccounts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/ListUserAccountsResponse" message="tns:IAccountServices_ListUserAccounts_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ListUserUtilityAccounts">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/ListUserUtilityAccounts" message="tns:IAccountServices_ListUserUtilityAccounts_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/ListUserUtilityAccountsResponse" message="tns:IAccountServices_ListUserUtilityAccounts_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Update">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Update" message="tns:IAccountServices_Update_InputMessage" />
@@ -128,6 +138,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFixedAccounts">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/GetFixedAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedTerms">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/GetFixedTerms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCurrencyList">
       <soap:operation soapAction="http://tempuri.org/IAccountServices/GetCurrencyList" style="document" />
       <wsdl:input>
@@ -139,15 +167,6 @@
     </wsdl:operation>
     <wsdl:operation name="ListUserAccounts">
       <soap:operation soapAction="http://tempuri.org/IAccountServices/ListUserAccounts" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListUserUtilityAccounts">
-      <soap:operation soapAction="http://tempuri.org/IAccountServices/ListUserUtilityAccounts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

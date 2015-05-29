@@ -5,7 +5,6 @@ using CommonUtils;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories.Accounts;
 using DataAccess.Reposiitories.Transactions;
-using DSABusinessServices.BankAccount;
 using DSABusinessServices.CurrencyConverterServices;
 using DSABusinessServices.CustomExceptions;
 using Currency = DSABusinessServices.CurrencyConverterServices.Currency;
@@ -23,7 +22,7 @@ namespace DSABusinessServices.BankTransaction
         #region Constants
 
         private const string DefaultCurrency = "EUR";
-        private const decimal MinimumBalance = (decimal)10.0;
+        private const decimal MinimumBalance = (decimal) 10.0;
 
         #endregion
 
@@ -35,6 +34,7 @@ namespace DSABusinessServices.BankTransaction
         #endregion
 
         #region Transfer Funds
+
         public void TermDeposit(TransactionView item)
         {
             //Deduct from source account
@@ -50,8 +50,8 @@ namespace DSABusinessServices.BankTransaction
             {
                 if (item.AccountFromID != item.AccountToID)
                 {
-                    From = GetAccount((int)item.AccountFromID);
-                    To = GetAccount((int)item.AccountToID);
+                    From = GetAccount((int) item.AccountFromID);
+                    To = GetAccount((int) item.AccountToID);
                     if (From.Username == To.Username)
                     {
                         decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
@@ -99,8 +99,8 @@ namespace DSABusinessServices.BankTransaction
             {
                 if (item.AccountFromID != item.AccountToID)
                 {
-                    From = GetAccount((int)item.AccountFromID);
-                    To = GetAccount((int)item.AccountToID);
+                    From = GetAccount((int) item.AccountFromID);
+                    To = GetAccount((int) item.AccountToID);
 
                     if (From.Username != To.Username)
                     {
@@ -141,15 +141,16 @@ namespace DSABusinessServices.BankTransaction
                 }
             }
         }
+
         #endregion
 
         public void Delete(int id)
         {
-            new TransactionsRepo().Delete(new Transaction { ID = id });
+            new TransactionsRepo().Delete(new Transaction {ID = id});
         }
 
-
         #region Lists
+
         public IQueryable<string> ListAccountNumbers()
         {
             IQueryable<string> list = new TransactionsRepo().GetAccountNumbers();
@@ -171,26 +172,14 @@ namespace DSABusinessServices.BankTransaction
                 Remarks = t.Remarks
             });
         }
+
         #endregion
 
         #region Getters
-        private decimal GetRealAmount(string currencyFrom, string currencyTo, decimal amount)
-        {
-            decimal result = 0;
-
-            using (var client = new CurrencyConvertorSoapClient("CurrencyConvertorSoap"))
-            {
-                var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
-                var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
-                result = (decimal)client.ConversionRate(from, to) * amount;
-            }
-
-            return result;
-        }
 
         public TransactionView GetTransactionDetails(int id)
         {
-            Transaction t = new TransactionsRepo().Read(new Transaction { ID = id });
+            Transaction t = new TransactionsRepo().Read(new Transaction {ID = id});
             return new TransactionView
             {
                 ID = t.ID,
@@ -214,12 +203,27 @@ namespace DSABusinessServices.BankTransaction
             });
         }
 
-        private Account GetAccount(int id)
+        private decimal GetRealAmount(string currencyFrom, string currencyTo, decimal amount)
         {
-            Account result = new AccountsRepo().Read(new Account { ID = id });
+            decimal result = 0;
+
+            using (var client = new CurrencyConvertorSoapClient("CurrencyConvertorSoap"))
+            {
+                var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
+                var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
+                result = (decimal) client.ConversionRate(from, to)*amount;
+            }
 
             return result;
         }
+
+        private Account GetAccount(int id)
+        {
+            Account result = new AccountsRepo().Read(new Account {ID = id});
+
+            return result;
+        }
+
         #endregion
 
         private void Log(TransactionView item)
@@ -237,7 +241,6 @@ namespace DSABusinessServices.BankTransaction
         }
 
         #region Filters
-
 
         public IQueryable<TransactionView> FilterTransactions(string username, int accountNo, SortOrder order,
             DateTime? start, DateTime? end)
@@ -282,7 +285,7 @@ namespace DSABusinessServices.BankTransaction
 
 
         private static IQueryable<Transaction> FilterByDateRange(DateTime? start, DateTime? end,
-    IQueryable<Transaction> list)
+            IQueryable<Transaction> list)
         {
             if (start != null && end != null)
             {
@@ -313,8 +316,7 @@ namespace DSABusinessServices.BankTransaction
                     .Where(a => a.AccountFromID == accountNo || a.AccountToID == accountNo);
             return list;
         }
+
         #endregion
-
-
     }
 }

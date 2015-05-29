@@ -189,6 +189,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\CurrencyConvertorServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\LoggingServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,9 +295,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.TermView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\CurrencyConvertorServices\CurrencyConvertor.wsdl" />
     <None Include="Service References\LoggingServices\configuration91.svcinfo" />
     <None Include="Service References\LoggingServices\configuration.svcinfo" />
     <None Include="Service References\LoggingServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CurrencyConvertorServices\configuration91.svcinfo" />
+    <None Include="Service References\CurrencyConvertorServices\configuration.svcinfo" />
+    <None Include="Service References\CurrencyConvertorServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -312,12 +333,6 @@
     <None Include="Service References\BankAccountServices\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\LoggingServices\DSABusinessServices.Log.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -456,10 +471,10 @@
     <Content Include="Views\Transactions\Deposit.cshtml" />
     <Content Include="Views\Accounts\_Delete.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
-    <Content Include="Views\Accounts\CreateFixed.cshtml" />
     <Content Include="Views\Transactions\_TOwn.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Transactions\_TOther.cshtml" />
+    <Content Include="Views\Accounts\_CAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -476,6 +491,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AppointmentServices\" />
     <WCFMetadataStorage Include="Service References\BankAccountServices\" />
+    <WCFMetadataStorage Include="Service References\CurrencyConvertorServices\" />
     <WCFMetadataStorage Include="Service References\LoggingServices\" />
     <WCFMetadataStorage Include="Service References\NavigationServices\" />
     <WCFMetadataStorage Include="Service References\TransactionServices\" />

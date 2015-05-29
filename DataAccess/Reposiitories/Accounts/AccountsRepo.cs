@@ -16,6 +16,41 @@ namespace DataAccess.Reposiitories.Accounts
             _db.SaveChanges();
         }
 
+        public bool CreateWithSource(int accountFromId, decimal newAccountFromBalance, Account accountTo)
+        {
+            bool result = false;
+            using (var ts = new TransactionScope())
+            {
+                using (var context = new DsaDataContext())
+                {
+                    context.Database.Connection.Open();
+                    try
+                    {
+                        var from = context.Accounts.Find(accountFromId);
+                        from.Balance = newAccountFromBalance;
+
+                        context.Accounts.Add(accountTo);
+                        context.SaveChanges();
+
+                        ts.Complete();
+                        result = true;
+                    }
+                    catch
+                    {
+                        ts.Dispose();
+                    }
+                    finally
+                    {
+                        if (context.Database.Connection.State == ConnectionState.Open)
+                        {
+                            context.Database.Connection.Close();
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
         public void CreateFixedAccount(FixedTermAccount newItem)
         {
             _db.FixedTermAccounts.Add(newItem);
@@ -64,13 +99,7 @@ namespace DataAccess.Reposiitories.Accounts
             if (o != null)
             {
                 o.Remarks = updatedItem.Remarks;
-                o.AccountType = updatedItem.AccountType;
-                o.TypeID = updatedItem.TypeID;
-                o.Balance = updatedItem.Balance;
-                o.DateOpened = updatedItem.DateOpened;
-                o.Currency = updatedItem.Currency;
                 o.Name = updatedItem.Name;
-
                 _db.SaveChanges();
             }
         }

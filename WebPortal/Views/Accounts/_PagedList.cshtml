@@ -18,7 +18,7 @@
                 @Html.DisplayNameFor(model => model.First().Remarks)
             </th>
             <th>
-                <a class="bttnNew btn btn-sm btn-default btn-block" href="@Url.Action("Create", "Accounts")" title="Create">
+                <a id="bttnNew" class="btn btn-sm btn-default btn-block" href="@Url.Action("Create", "Accounts")" title="Create Account">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>New</span>
                 </a>
@@ -54,7 +54,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Remarks, "TruncatedMultilineText")
                     </td>
-                    <td style="width: 118px;">
+                    <td style="width: 85px;">
                         <a class="bttnEditThis btn btn-sm btn-default pull-left" href="@Url.Action("Edit", "Accounts", new {id = item.ID})" title="Edit">
                             <i class="glyphicon glyphicon-pencil"></i>
                             <span class="sr-only">Edit</span>
@@ -63,10 +63,7 @@
                             <i class="glyphicon glyphicon-list"></i>
                             <span class="sr-only">Detail</span>
                         </a>
-                        <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Accounts", new {id = item.ID})" title="Remove">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            <span class="sr-only">Remove</span>
-                        </a>
+                       
                     </td>
                 </tr>
             }

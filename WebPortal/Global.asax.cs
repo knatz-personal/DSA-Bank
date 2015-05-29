@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Helpers;
@@ -27,15 +28,19 @@ namespace WebPortal
 
         protected void Session_Start(Object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Context.User.Identity.Name))
+            if (User.Identity.IsAuthenticated)
             {
                 var item = _client.ReadByUsername(Context.User.Identity.Name);
                 Session["FullName"] = string.Format("{0} {1} {2}", item.FirstName, item.MiddleInitial, item.LastName);
-                using (var client = new AccountServicesClient())
+                if (Session["Currencies"] == null && Session["MyAccounts"] == null && Session["AccountTypes"] == null)
                 {
-                    List<string> list = client.GetCurrencyList();
-                    Session["Currencies"] = new SelectList(list, list.Find(a => a.Equals("EUR")));
-                    Session["MyAccounts"] =  new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                    using (var client = new AccountServicesClient())
+                    {
+                        List<string> list = client.GetCurrencyList();
+                        Session["Currencies"] = new SelectList(list, list.Find(a => a.Equals("EUR")));
+                        Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                        Session["AccountTypes"] = new SelectList(client.GetTypes(), "ID", "Name");
+                    }
                 }
             }
         }
@@ -45,6 +50,7 @@ namespace WebPortal
 
             Session["FullName"] = null;
             Session["Currencies"] = null;
+            Session["AccountTypes"] = null;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -55,14 +61,10 @@ namespace WebPortal
 
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, Context.User.Identity.Name));
-                foreach (RoleView r in roleList)
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, r.Name));
-                }
+                claims.AddRange(roleList.Select(r => new Claim(ClaimTypes.Role, r.Name)));
                 var identity = new ClaimsIdentity(claims, "ApplicationCookie");
                 var principal = new ClaimsPrincipal(identity);
                 Context.User = principal;
-
             }
         }
 
@@ -88,8 +90,6 @@ namespace WebPortal
             }
             else
             {
-                // Not an HTTP related error so this is a problem in our code, set status to
-                // 500 (internal server error)
                 statusCode = 500;
             }
 

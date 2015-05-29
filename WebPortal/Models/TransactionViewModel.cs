@@ -11,18 +11,17 @@ namespace WebPortal.Models
     public class DepositModel
     {
         [Required]
-        [Display(Name = @"Account From")]
-        [NotEqualTo("AccountToID", ErrorMessage = "Cannot transafer funds to or from the same account")]
+        [Display(Name = @"Source Account")]
+        [NotEqualTo("AccountToID", ErrorMessage = @"Cannot transfer funds to or from the same account")]
         public int? AccountFromID { get; set; }
 
         [Required]
-        [Display(Name = @"Account To")]
-        [NotEqualTo("AccountFromID", ErrorMessage = "Cannot transafer funds to or from the same account")]
+        [Display(Name = @"Fixed Term Account")]
+        [NotEqualTo("AccountFromID", ErrorMessage = @"Cannot transfer funds to or from the same account")]
         public int AccountToID { get; set; }
 
         [Required]
-        [Display(Name = @"Expiry Date")]
-        public DateTime ExpiryDate { get; set; }
+        public int Duration { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "The minimum transaction amount is EUR 0.01")]
@@ -33,12 +32,13 @@ namespace WebPortal.Models
         [Required]
         public string Currency { get; set; }
 
-        public SelectList MyAccounts { get; set; }
-
         [Required]
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
+        public SelectList MyTermAccounts { get; set; }
+        public SelectList MyAccounts { get; set; }
+        public SelectList TermsList { get; set; }
     }
 
     public class TransactionDetailModel

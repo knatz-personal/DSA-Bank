@@ -3,8 +3,28 @@
 
 @{
     ViewBag.Title = "Account Balances";
+    
 }
 
+<div id="createModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                <h4 class="modal-title">Create Account</h4>
+            </div>
+            <div id="createBody" class="modal-body well">
+
+            </div>
+            <div class="modal-footer">
+                <button id="create-button" type="button" class="btn btn-warning">Create</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="detailModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -98,6 +118,17 @@
                 });
             });
 
+            $("#bttnNew").on("click", function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $row = $(this).closest("tr");
+
+                $("#createBody").load(url, function () {
+                    $("#createModal").modal('show');
+                });
+            });
+
+
             $(".bttnEditThis").on("click", function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
@@ -106,8 +137,6 @@
                 $("#editBody").load(url, function () {
                     $("#editModal").modal('show');
                 });
-
-
             });
 
             $(".bttnDeleteThis").on("click", function (e) {
@@ -123,6 +152,10 @@
             this.BindGridButtonEvents();
 
             this.Search();
+
+            $('#createModal').on('click', '#create-button', function () {
+                $('#createform').submit();
+            });
 
             $('#editModal').on('click', '#save-button', function () {
                 $('#editform').submit();

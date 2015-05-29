@@ -11,6 +11,7 @@ using System.Web.Security;
 using CommonUtils;
 using Microsoft.Owin.Security;
 using PagedList;
+using WebPortal.BankAccountServices;
 using WebPortal.Models;
 using WebPortal.UserServices;
 
@@ -309,7 +310,7 @@ namespace WebPortal.Controllers
                                         .Authentication.SignIn(
                                             new AuthenticationProperties { IsPersistent = model.Remember },
                                             identity);
-
+                                    
                                     return RedirectToAction("Index", "Home");
                                 }
                                 ModelState.AddModelError(string.Empty,

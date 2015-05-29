@@ -9,7 +9,7 @@ namespace DSABusinessServices.BankAccount
     public interface IAccountServices
     {
         [OperationContract]
-        AccountView Create(AccountView item);
+        void Create(int accountFromId, AccountView item);
 
         [OperationContract]
         void Delete(int id);
@@ -19,6 +19,12 @@ namespace DSABusinessServices.BankAccount
 
         [OperationContract]
         IQueryable<AccountTypeView> GetTypes();
+
+        [OperationContract]
+        IQueryable<AccountView> GetFixedAccounts(string username);
+
+        [OperationContract]
+        IQueryable<TermView> GetFixedTerms();
 
         [OperationContract]
         IQueryable<string> GetCurrencyList();
@@ -32,6 +38,16 @@ namespace DSABusinessServices.BankAccount
 
     [DataContract]
     public class AccountTypeView
+    {
+        [DataMember]
+        public int ID { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+    }
+
+    [DataContract]
+    public class TermView
     {
         [DataMember]
         public int ID { get; set; }

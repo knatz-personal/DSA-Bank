@@ -1,65 +1,79 @@
-﻿@model WebPortal.Models.AccountListItemModel
-@using (Html.BeginForm("Delete", "Accounts", FormMethod.Post, new { id = "deleteform" }))
-{
-    @Html.AntiForgeryToken()
-    <h3>Are you sure you want to remove this?</h3>
-    <dl class="col-md-offset-1 dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ID)
-        </dt>
-
-        <dd>
-            <div class="well well-sm">
-                @Html.DisplayFor(model => model.ID)
+﻿@*
+    @model WebPortal.Models.AccountListItemModel
+    @using (Html.BeginForm("Delete", "Accounts", FormMethod.Post, new { id = "deleteform" }))
+    {
+        @Html.AntiForgeryToken()
+        <h3>Are you sure you want to remove this?</h3>
+        if (ViewData.ModelState[string.Empty] != null && ViewData.ModelState[string.Empty].Errors.Any())
+        {
+            <div id="editAlert" class="alert alert-danger" data-dismiss="alert" role="alert">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                @Html.ValidationSummary(true, "Error: ")
             </div>
-        </dd>
+        }
+        <dl class="col-md-offset-1 dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                <div class="well well-sm">
+                    @Html.DisplayFor(model => model.ID)
+                </div>
+            </dd>
 
-        <dd>
-            <div class="well well-sm">
-                @Html.DisplayFor(model => model.Name)
-            </div>
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeName)
-        </dt>
+            <dd>
+                <div class="well well-sm">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </dd>
 
-        <dd>
-            <div class="well well-sm">
-                @Html.DisplayFor(model => model.TypeName)
-            </div>
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </dt>
 
-        <dt>
-            <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;"></i>
-        </dt>
-        <dd>
-            <div class="well">
-                <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;padding: 0;margin: 0;"></i>
-            </div>
-        </dd>
+            <dd>
+                <div class="well well-sm">
+                    @Html.DisplayFor(model => model.TypeName)
+                </div>
+            </dd>
 
-    </dl>
-}
-<script>
-    $(function () {
-        $("#deleteform").on('submit', function (ev) {
-            ev.preventDefault();
-            var data = {
-                "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val()
-            };
-            $.post("@Url.Action("Delete", "Users")", data).done(function (response) {
-                if (response !== "undefined" && response === "OK") {
-                    $("#deleteModal").modal('hide');
-                    $row.remove();
-                } else {
-                    $("#delBody").html(response);
-                }
+            <dt>
+                <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;"></i>
+            </dt>
+            <dd>
+                <div class="well">
+                    <i class="glyphicon glyphicon-option-horizontal" style="font-size: 40px;padding: 0;margin: 0;"></i>
+                </div>
+            </dd>
+
+        </dl>
+    }
+    <script>
+        $(function () {
+            $("#deleteform").on('submit', function (ev) {
+                ev.preventDefault();
+                var data = {
+                    "__RequestVerificationToken": $("input[name='__RequestVerificationToken']").val()
+                };
+                $.post("@Url.Action("Delete", "Accounts")", data).done(function (response) {
+                    if (response !== "undefined" && response.Result === "OK") {
+                        $("#deleteModal").modal('hide');
+                        $row.remove();
+                    } else {
+                        $("#delBody").html(response);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+    <a class="bttnDeleteThis btn btn-sm btn-default pull-right" href="@Url.Action("Delete", "Accounts", new {id = item.ID})" title="Remove">
+            <i class="glyphicon glyphicon-remove"></i>
+            <span class="sr-only">Remove</span>
+        </a>*@

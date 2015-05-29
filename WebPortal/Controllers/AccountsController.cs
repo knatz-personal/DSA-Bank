@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using CommonUtils;
 using PagedList;
 using WebPortal.BankAccountServices;
+using WebPortal.CurrencyConvertorServices;
 using WebPortal.Models;
 
 namespace WebPortal.Controllers
@@ -11,21 +13,26 @@ namespace WebPortal.Controllers
     [Authorize]
     public class AccountsController : Controller
     {
-        // GET: Balances/Create
-        public ActionResult Create()
+        public void InitialiseAccountInfo()
         {
             using (var client = new AccountServicesClient())
             {
-                return View(new AccountCreateModel()
-                {
-                    Types = GetTypes(),
-                    Currencies = GetCurrencies(),
-                    MyAccounts = GetMyAccounts(User.Identity.Name)
-                });
+                List<string> list = client.GetCurrencyList();
+                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                Session["Currencies"] = new SelectList(list, list.Find(a => a.Equals("EUR")));
+                Session["AccountTypes"] = new SelectList(client.GetTypes(), "ID", "Name");
             }
         }
 
-        // POST: Balances/Create
+        public ActionResult Create()
+        {
+            InitialiseAccountInfo();
+            var model = new AccountCreateModel();
+            return Request.IsAjaxRequest()
+                ? (ActionResult) PartialView("_CAccount", model)
+                : View(model);
+        }
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Create(AccountCreateModel model)
@@ -36,44 +43,65 @@ namespace WebPortal.Controllers
                 {
                     using (var client = new AccountServicesClient())
                     {
-                        var a =client.Create(new AccountView()
-                        {
-                            Name = model.Name,
-                            Remarks = model.Remarks,
-                            Username = User.Identity.Name,
-                            Balance = model.Balance,
-                            Currency = model.Currency,
-                            TypeID = model.TypeID,
-                            DateOpened = DateTime.Now,
-                            ExpiryDate = model.ExpiryDate
-                        });
+                        double balanceAfterDeduction = 11;
 
-                        return Json(new { Result = "OK" , Record = new AccountViewModel()
+                        if (model.AccFromID > 0)
                         {
-                            ID = a.ID,
-                            Name = a.Name,
-                            Remarks = a.Remarks,
-                            Balance = a.Balance,
-                            Currency = a.Currency,
-                            TypeID = a.TypeID,
-                            DateOpened = a.DateOpened,
-                            ExpiryDate = a.ExpiryDate
-                        }});
+                            balanceAfterDeduction = GetBalanceAfterDeduction(model, client);
+                        }
+
+                        if (balanceAfterDeduction > 10)
+                        {
+                            client.Create(model.AccFromID, new AccountView
+                            {
+                                Name = model.Name,
+                                Remarks = model.Remarks,
+                                Username = User.Identity.Name,
+                                Balance = model.Balance,
+                                Currency = model.Currency,
+                                TypeID = model.TypeID,
+                                DateOpened = DateTime.Now
+                            });
+
+                            return Json(new
+                            {
+                                Result = "OK",
+                                Message = "Successfully created a new account."
+                            });
+                        }
+                        ModelState.AddModelError(string.Empty, @"Insufficient account balance");
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, @"Failed to add bank account check validation errors for issues.");
+                ModelState.AddModelError(string.Empty, @"Failed to add bank account.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            model.Types = GetTypes();
-            model.Currencies = GetCurrencies();
-            model.MyAccounts = GetMyAccounts(User.Identity.Name);
-            return View( model);
+
+            return Request.IsAjaxRequest()
+                ? (ActionResult) PartialView("_CAccount", model)
+                : View(model);
         }
 
-        // GET: Balances/Delete/5
+        private static double GetBalanceAfterDeduction(AccountCreateModel model, AccountServicesClient client)
+        {
+            double balanceAfterDeduction = 0;
+
+            var converter = new CurrencyConvertorSoapClient("CurrencyConvertorSoap");
+            AccountView source = client.GetAccountDetail(model.AccFromID);
+            double balanceInEuro =
+                converter.ConversionRate(ConverterUtil.StringToEnum<Currency>(source.Currency), Currency.EUR)*
+                (double) source.Balance;
+            double deductionInEuro =
+                converter.ConversionRate(ConverterUtil.StringToEnum<Currency>(model.Currency), Currency.EUR)*
+                (double) model.Balance;
+            balanceAfterDeduction = Math.Abs(balanceInEuro) - Math.Abs(deductionInEuro);
+
+            return balanceAfterDeduction;
+        }
+
+        /*
         public ActionResult Delete(int id)
         {
             using (var client = new AccountServicesClient())
@@ -94,7 +122,7 @@ namespace WebPortal.Controllers
             }
         }
 
-        // POST: Balances/Delete/5
+
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -103,23 +131,42 @@ namespace WebPortal.Controllers
                 using (var client = new AccountServicesClient())
                 {
                     client.Delete(id);
-                    return Json(new { Result = "OK", 
-                      Message = "Successfully removed account."
-                    });
                 }
+
+                return Json(new
+                {
+                    Result = "OK"
+                });
             }
-            catch
+            catch (Exception ex)
             {
-                return Delete(id);
+                ModelState.AddModelError(string.Empty, @"Failed to remove bank account.");
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+            using (var client = new AccountServicesClient())
+            {
+                var temp = client.GetAccountDetail(id);
+                return PartialView("_Delete", new AccountListItemModel()
+                {
+                    ID = temp.ID,
+                    Username = temp.Username,
+                    Name = temp.Name,
+                    TypeName = temp.TypeName,
+                    Remarks = temp.Remarks,
+                    Currency = temp.Currency,
+                    Balance = temp.Balance,
+                    TypeID = temp.TypeID,
+                    DateOpened = temp.DateOpened
+                });
             }
         }
+        */
 
-        // GET: Balances/Details/5
         public ActionResult Details(int id)
         {
             using (var client = new AccountServicesClient())
             {
-                var model = client.GetAccountDetail(id);
+                AccountView model = client.GetAccountDetail(id);
                 return PartialView("_Details", new AccountListItemModel
                 {
                     ID = model.ID,
@@ -134,26 +181,21 @@ namespace WebPortal.Controllers
                 });
             }
         }
-
-        // GET: Balances/Edit/5
+        
         public ActionResult Edit(int id)
         {
             using (var client = new AccountServicesClient())
             {
-                var a = client.GetAccountDetail(id);
-                return PartialView("_Edit", new AccountEditModel()
+                AccountView a = client.GetAccountDetail(id);
+                return PartialView("_Edit", new AccountEditModel
                 {
                     ID = a.ID,
-                    ExpiryDate = a.ExpiryDate,
                     Name = a.Name,
-                    Remarks = a.Remarks,
-                    Types = GetTypes(),
-                    Currencies = GetCurrencies()
+                    Remarks = a.Remarks
                 });
             }
         }
-
-        // POST: Balances/Edit/5
+        
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Edit(int id, AccountEditModel model)
@@ -162,26 +204,34 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //new { result = "OK", record = model }
-                    return Json("OK");
+                    using (var client = new AccountServicesClient())
+                    {
+                        client.Update(new AccountView
+                        {
+                            ID = model.ID,
+                            Name = model.Name,
+                            Remarks = model.Remarks
+                        });
+                        return Json(new {Result = "OK"});
+                    }
                 }
             }
             catch
             {
                 ModelState.AddModelError(string.Empty, @"An error occurred while attempting to save changes.");
             }
-            return Edit(id);
+            return PartialView("_Edit", model);
         }
-
-        // GET: Balances
+        
         public ActionResult Index(string q, int? p, int ps = 10)
         {
+            InitialiseAccountInfo();
             IEnumerable<AccountListItemModel> list = null;
             using (var client = new AccountServicesClient())
             {
-                  list =  client.ListUserAccounts(User.Identity.Name)
-                      .Where(s => s.Name.Contains(q ?? string.Empty) )
-                      .Select(t => new AccountListItemModel()
+                list = client.ListUserAccounts(User.Identity.Name)
+                    .Where(s => s.Name.ToLower().Contains((q ?? string.Empty).ToLower()))
+                    .Select(t => new AccountListItemModel
                     {
                         ID = t.ID,
                         TypeID = t.TypeID,
@@ -193,7 +243,6 @@ namespace WebPortal.Controllers
                         Balance = t.Balance,
                         Remarks = t.Remarks
                     });
-           
             }
 
             var results = new AccountViewModel
@@ -202,33 +251,8 @@ namespace WebPortal.Controllers
             };
             Session["AccountsCurrentResults"] = results;
             return Request.IsAjaxRequest()
-            ? (ActionResult)PartialView("_PagedList", results.AccountsPagedList)
-            : View(results);
-        }
-        private SelectList GetCurrencies()
-        {
-            using (var client = new AccountServicesClient())
-            {
-                var list = client.GetCurrencyList();
-                return new SelectList(list, list.Find(e=>e.Equals("EUR")));
-            }
-        }
-
-        private SelectList GetTypes()
-        {
-            using (var client = new AccountServicesClient())
-            {
-                return new SelectList(client.GetTypes(), "ID", "Name");
-            }
-        }
-
-        private SelectList GetMyAccounts(string username)
-        {
-            using (var client = new AccountServicesClient())
-            {
-                return new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name","EUR");
-            }
-
+                ? (ActionResult) PartialView("_PagedList", results.AccountsPagedList)
+                : View(results);
         }
     }
 }

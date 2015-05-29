@@ -17,7 +17,6 @@ namespace WebPortal.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-       
         public FileResult DetailReport(int id)
         {
             string html;
@@ -79,7 +78,7 @@ namespace WebPortal.Controllers
                 IEnumerable<TransactionView> temp = null;
                 if (a != null && (isValidStartDate && isValidEndDate))
                 {
-                    temp = client.FilterTransactions(User.Identity.Name, (int) a, SortOrder.Descending, start, end);
+                    temp = client.FilterTransactions(User.Identity.Name, (int)a, SortOrder.Descending, start, end);
                 }
                 else
                 {
@@ -112,13 +111,13 @@ namespace WebPortal.Controllers
             };
             Session["TransactionsCurrentResults"] = results;
             return Request.IsAjaxRequest()
-                ? (ActionResult) PartialView("_PagedList", results.TransactionsPagedList)
+                ? (ActionResult)PartialView("_PagedList", results.TransactionsPagedList)
                 : View(results);
         }
 
         public ActionResult Report()
         {
-            var model = (TransactionViewModel) Session["TransactionsCurrentResults"];
+            var model = (TransactionViewModel)Session["TransactionsCurrentResults"];
             model.TransactionsList = model.TransactionsPagedList.AsEnumerable();
             return View(model);
         }
@@ -126,11 +125,14 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Deposit()
         {
+            var model = new DepositModel();
             using (var client = new AccountServicesClient())
             {
-                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
+                model.MyTermAccounts = new SelectList(client.GetFixedAccounts(User.Identity.Name), "ID", "Name");
+                model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
+                model.MyAccounts = new SelectList(client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3), "ID", "Name");
             }
-            return View(new DepositModel());
+            return View(model);
         }
 
         [ValidateAntiForgeryToken]
@@ -155,7 +157,7 @@ namespace WebPortal.Controllers
                             Currency = model.Currency
                         });
 
-                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
+                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
                     }
                 }
             }
@@ -172,11 +174,6 @@ namespace WebPortal.Controllers
         [ActionName("Local Transfer")]
         public ActionResult TransferOther()
         {
-            using (var client = new AccountServicesClient())
-            {
-                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
-            }
-
             return View("TransferOther", new TransferOtherModel());
         }
 
@@ -202,7 +199,7 @@ namespace WebPortal.Controllers
                             TypeID = 3
                         });
 
-                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
+                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
                     }
                 }
             }
@@ -219,10 +216,6 @@ namespace WebPortal.Controllers
         [ActionName("Personal Transfer")]
         public ActionResult TransferOwn()
         {
-            using (var client = new AccountServicesClient())
-            {
-                Session["MyAccounts"] = new SelectList(client.ListUserAccounts(User.Identity.Name), "ID", "Name");
-            }
             return View("TransferOwn", new TransferOwnModel());
         }
 
@@ -249,7 +242,7 @@ namespace WebPortal.Controllers
                             TypeID = 2
                         });
 
-                        return Json(new {Result = "OK", Message = "Successfully transfered funds"});
+                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
                     }
                 }
             }

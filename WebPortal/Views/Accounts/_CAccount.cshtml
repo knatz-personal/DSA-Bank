@@ -1,0 +1,128 @@
+﻿@model WebPortal.Models.AccountCreateModel
+
+@{
+    Model.Currencies = (SelectList)Session["Currencies"];
+    Model.MyAccounts = (SelectList)Session["MyAccounts"];
+    Model.Types = (SelectList)Session["AccountTypes"];
+}
+
+@using (Html.BeginForm("Create", "Accounts", FormMethod.Post, new { id = "createform" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <fieldset>
+            <div id="infoAlert" class="alert alert-success collapse" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                <p id="successMessage"></p>
+            </div>
+            @if (ViewData.ModelState[string.Empty] != null && ViewData.ModelState[string.Empty].Errors.Any())
+            {
+                <div id="editAlert" class="alert alert-danger" data-dismiss="alert" role="alert">
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                    </button>
+                    @Html.ValidationSummary(true, "Error: ")
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeID, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.TypeID, Model.Types, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @if (Model.MyAccounts.Any())
+            {
+                <div id="existingAccount" class="form-group">
+                    @Html.LabelFor(model => model.AccFromID, htmlAttributes: new { @Value = "1234", @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.AccFromID, Model.MyAccounts, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccFromID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Currency, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Currency, Model.Currencies, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Balance, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Remarks, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { rows = 10, @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                    <input type="submit" value="Create" class="btn btn-warning btn-block" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+}
+<script>
+    var ACCOUNTCREATOR = {
+        Process: function () {
+            $("#createform").on("submit", function (ev) {
+                ev.preventDefault();
+                $.validator.unobtrusive.parse("#createform");
+                var data = $(this).serialize();
+                $.post("@Url.Action("Create", "Accounts")", data).done(function (response) {
+                    if (response.Result !== "undefined" && response.Result === "OK") {
+                        $("#successMessage").html(response.Message);
+                        $("#infoAlert").show();
+                        $('#createform')[0].reset();
+                        var pagedListContainer = $("#pagedList");
+                        if (pagedListContainer != "undefined") {
+                            $.get("@Url.Action("Index","Accounts")").done(function (pagedList) {
+                                $("#pagedList").html(pagedList);
+                            });
+                        }
+                    } else {
+                        $("#createBody").html(response);
+                        $("#CreateViewContainer").html(response);
+                        $.validator.unobtrusive.parse("#createform");
+                    }
+                });
+            });
+        },
+        Date: function () {
+            $(".date").datetimepicker({
+                format: 'DD/MM/YYYY',
+                daysOfWeekDisabled: [0, 6]
+            });
+        },
+        Init: function () {
+            this.Date();
+            this.Process();
+        }
+    };
+    $(function () {
+        ACCOUNTCREATOR.Init();
+    });
+</script>

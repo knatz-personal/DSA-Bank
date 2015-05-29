@@ -1,47 +1,138 @@
 ﻿using System;
+using System.Linq;
+using CommonUtils;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories;
 using DataAccess.Reposiitories.Accounts;
+using DSABusinessServices.CurrencyConverterServices;
 using DSABusinessServices.CustomExceptions;
-using System.Linq;
+using Currency = DSABusinessServices.CurrencyConverterServices.Currency;
 
 namespace DSABusinessServices.BankAccount
 {
     public class AccountServices : IAccountServices
     {
-        public AccountView Create(AccountView item)
+        #region Constants
+
+        private const string DefaultCurrency = "EUR";
+        private const decimal MinimumBalance = (decimal)10.0;
+
+        #endregion
+
+        #region Properties
+
+        private AccountView From { get; set; }
+        private AccountView To { get; set; }
+
+        #endregion
+
+        public void Create(int accountFromId, AccountView item)
         {
             var repo = new AccountsRepo();
-            var acc = new Account()
-            {
-                TypeID = item.TypeID,
-                DateOpened = item.DateOpened,
-                Username = item.Username,
-                Name = item.Name,
-                Currency = item.Currency,
-                Balance = item.Balance,
-                Remarks = item.Remarks
-            };
-            repo.Create(acc);
-            var result = repo.GetNewAccount(acc);
 
-            return new AccountView()
+
+            if (accountFromId > 0)
             {
-                ID = result.ID,
-                TypeID = result.TypeID,
-                DateOpened = result.DateOpened,
-                Username = result.Username,
-                Name = result.Name,
-                Currency = result.Currency,
-                Balance = result.Balance,
-                Remarks = result.Remarks
-            };
+                From = GetAccountDetail(accountFromId);
+                To = item;
+
+                if (From.Username == To.Username)
+                {
+                    decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                    decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                    //deduct amount from source account
+                    decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(balanceToInEuro);
+                    To.Balance = GetRealAmount(DefaultCurrency, To.Currency, balanceToInEuro);
+                    if (newFromBalance > MinimumBalance)
+                    {
+                        From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                        bool result = repo.CreateWithSource(From.ID, From.Balance, new Account()
+                        {
+                            Name = To.Name,
+                            Remarks = To.Remarks,
+                            Currency = To.Currency,
+                            Balance = To.Balance,
+                            TypeID = To.TypeID,
+                            DateOpened = To.DateOpened,
+                            Username = To.Username
+                        });
+
+                        if (!result)
+                        {
+                            throw new Exception("Failed to transfer funds");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("The source account must belong to you.");
+                }
+            }
+            else
+            {
+                var acc = new Account
+                {
+                    TypeID = item.TypeID,
+                    DateOpened = item.DateOpened,
+                    Username = item.Username,
+                    Name = item.Name,
+                    Currency = item.Currency,
+                    Balance = item.Balance,
+                    Remarks = item.Remarks
+                };
+                repo.Create(acc);
+            }
         }
 
         public void Delete(int id)
         {
-            new AccountsRepo().Delete(new Account { ID = id });
+            try
+            {
+                new AccountsRepo().Delete(new Account { ID = id });
+            }
+            catch (Exception ex)
+            {
+                throw new DataDeletionException();
+            }
         }
+
+        public IQueryable<AccountView> ListUserAccounts(string username)
+        {
+            return new AccountsRepo().ListByUsername(username).Select(t => new AccountView
+            {
+                ID = t.ID,
+                TypeID = t.TypeID,
+                TypeName = t.AccountType.Name,
+                DateOpened = t.DateOpened,
+                Username = t.Username,
+                Name = t.Name,
+                Currency = t.Currency,
+                Balance = t.Balance,
+                Remarks = t.Remarks
+            });
+        }
+
+        public void Update(AccountView model)
+        {
+            AccountView item = GetAccountDetail(model.ID);
+            new AccountsRepo().Update(new Account
+            {
+                ID = item.ID,
+                TypeID = item.TypeID,
+                DateOpened = item.DateOpened,
+                Username = item.Username,
+                Name = model.Name,
+                Currency = item.Currency,
+                Balance = item.Balance,
+                Remarks = model.Remarks
+            });
+        }
+
+        #region Getters
 
         public AccountView GetAccountDetail(int id)
         {
@@ -76,40 +167,65 @@ namespace DSABusinessServices.BankAccount
             }
         }
 
+        public IQueryable<AccountView> GetFixedAccounts(string username)
+        {
+            try
+            {
+                //3 is id of Term Deposit account type
+                return new AccountsRepo().ListByUsername(username).Where(u => u.TypeID == 3).Select(t => new AccountView
+                {
+                    ID = t.ID,
+                    TypeID = t.TypeID,
+                    TypeName = t.AccountType.Name,
+                    DateOpened = t.DateOpened,
+                    Username = t.Username,
+                    Name = t.Name,
+                    Currency = t.Currency,
+                    Balance = t.Balance,
+                    Remarks = t.Remarks
+                });
+            }
+            catch
+            {
+                throw new DataListException();
+            }
+        }
+
+        public IQueryable<TermView> GetFixedTerms()
+        {
+            try
+            {
+                return new FixedTermsRepo().ListAll().OrderBy(e=>e.ID).Select(u => new TermView
+                {
+                    ID = u.ID,
+                    Name = u.Duration
+                });
+            }
+            catch
+            {
+                throw new DataListException();
+            }
+        }
+
         public IQueryable<string> GetCurrencyList()
         {
             return new CurrencyRepo().ListAll().Select(c => c.Name).AsQueryable();
         }
 
-        public IQueryable<AccountView> ListUserAccounts(string username)
+        private decimal GetRealAmount(string currencyFrom, string currencyTo, decimal amount)
         {
-            return new AccountsRepo().ListByUsername(username).Select(t => new AccountView
+            decimal result = 0;
+
+            using (var client = new CurrencyConvertorSoapClient("CurrencyConvertorSoap"))
             {
-                ID = t.ID,
-                TypeID = t.TypeID,
-                TypeName = t.AccountType.Name,
-                DateOpened = t.DateOpened,
-                Username = t.Username,
-                Name = t.Name,
-                Currency = t.Currency,
-                Balance = t.Balance,
-                Remarks = t.Remarks
-            });
+                var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
+                var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
+                result = (decimal)client.ConversionRate(from, to) * amount;
+            }
+
+            return result;
         }
 
-        public void Update(AccountView item)
-        {
-            new AccountsRepo().Update(new Account
-            {
-                ID = item.ID,
-                TypeID = item.TypeID,
-                DateOpened = item.DateOpened,
-                Username = item.Username,
-                Name = item.Name,
-                Currency = item.Currency,
-                Balance = item.Balance,
-                Remarks = item.Remarks
-            });
-        }
+        #endregion
     }
 }

@@ -1,14 +1,13 @@
 ﻿@model WebPortal.Models.DepositModel
 
 @{
-    ViewBag.Title = "Deposit";
+    ViewBag.Title = "Fixed Term Deposit";
     Model.Currencies = (SelectList)Session["Currencies"];
-    Model.MyAccounts = (SelectList)Session["MyAccounts"];
 }
 
 <div class="container body-content">
     @Html.ActionLink("View Transaction History", "Index", "Transactions", new { @class = "text-info col-md-offset-7 col-md-2 text-right" })
-    @if (!Model.MyAccounts.Any())
+    @if (!Model.MyTermAccounts.Any())
     {
         <div class="well col-md-offset-3 col-md-6">
             <div id="editAlert" class="alert alert-danger" role="alert">
@@ -22,7 +21,7 @@
     }
     else
     {
-        using (Html.BeginForm("TransferOther", "Transactions", FormMethod.Post, new { id = "transferform" }))
+        using (Html.BeginForm("Deposit", "Transactions", FormMethod.Post, new { id = "transferform" }))
         {
             @Html.AntiForgeryToken()
             <div class="well col-md-offset-3 col-md-6">
@@ -43,17 +42,33 @@
                                 @Html.ValidationSummary(true, "Error: ")
                             </div>
                         }
-                      
+                        
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.AccountFromID, new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { rows = 15, @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model => model.AccountFromID, Model.MyAccounts, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AccountFromID, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.AccountToID, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.AccountToID, Model.MyTermAccounts, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AccountToID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Duration, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.Duration, Model.TermsList,  new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Currency, new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
                                 @Html.DropDownListFor(model => model.Currency, Model.Currencies, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
@@ -61,7 +76,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
                                 @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
@@ -69,10 +84,10 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.AccountToID, htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.LabelFor(model => model.Remarks, new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.AccountToID, Model.MyAccounts, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.AccountToID, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { rows = 10, @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -93,7 +108,7 @@
             $("#transferform").on("submit", function (ev) {
                 ev.preventDefault();
                 var data = $(this).serialize();
-                $.post("@Url.Action("TransferOther", "Transactions")", data).done(function (response) {
+                $.post("@Url.Action("Deposit", "Transactions")", data).done(function (response) {
                     if (response.result !== "undefined" && response.Result === "OK") {
                         $("#successMessage").html(response.Message);
                         $("#infoAlert").show();
