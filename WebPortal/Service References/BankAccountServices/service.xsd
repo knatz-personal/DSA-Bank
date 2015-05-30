@@ -63,7 +63,7 @@
   <xs:element name="GetFixedAccountsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount" minOccurs="0" name="GetFixedAccountsResult" nillable="true" type="q4:ArrayOfAccountView" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount" minOccurs="0" name="GetFixedAccountsResult" nillable="true" type="q4:ArrayOfFixedAccountView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -113,6 +113,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFixedAccount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount" minOccurs="0" name="item" nillable="true" type="q9:FixedAccountView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFixedAccountResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

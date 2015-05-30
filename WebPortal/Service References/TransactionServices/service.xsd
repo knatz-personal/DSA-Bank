@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount" />
   <xs:element name="ListAccountNumbers">
     <xs:complexType>
       <xs:sequence />
@@ -75,7 +76,8 @@
   <xs:element name="TermDeposit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q7:TransactionView" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount" minOccurs="0" name="accountInfo" nillable="true" type="q7:FixedAccountView" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="transactionInfo" nillable="true" type="q8:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -87,7 +89,7 @@
   <xs:element name="PersonalTransfer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q8:TransactionView" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q9:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -99,7 +101,7 @@
   <xs:element name="LocalTransfer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q9:TransactionView" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction" minOccurs="0" name="item" nillable="true" type="q10:TransactionView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

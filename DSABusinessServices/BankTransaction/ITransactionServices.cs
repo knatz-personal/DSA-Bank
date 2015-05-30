@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using DSABusinessServices.BankAccount;
 
 namespace DSABusinessServices.BankTransaction
 {
@@ -27,7 +28,7 @@ namespace DSABusinessServices.BankTransaction
         IEnumerable<TransactionTypeView> GetTransactionTypes();
 
         [OperationContract]
-        void TermDeposit(TransactionView item);
+        void TermDeposit(FixedAccountView accountInfo, TransactionView transactionInfo);
 
 
         [OperationContract]

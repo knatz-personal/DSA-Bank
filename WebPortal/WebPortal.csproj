@@ -304,6 +304,9 @@
     <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.TermView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.FixedAccountView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CurrencyConvertorServices\CurrencyConvertor.wsdl" />
     <None Include="Service References\LoggingServices\configuration91.svcinfo" />
     <None Include="Service References\LoggingServices\configuration.svcinfo" />
@@ -360,6 +363,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TransactionServices\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\DSABusinessServices.BankAccount.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TransactionServices\DSABusinessServices.BankTransaction.xsd">
@@ -475,6 +481,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Transactions\_TOther.cshtml" />
     <Content Include="Views\Accounts\_CAccount.cshtml" />
+    <Content Include="Views\Transactions\_Deposit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

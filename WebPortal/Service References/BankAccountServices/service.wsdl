@@ -62,6 +62,12 @@
   <wsdl:message name="IAccountServices_Update_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountServices_UpdateFixedAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFixedAccount" />
+  </wsdl:message>
+  <wsdl:message name="IAccountServices_UpdateFixedAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFixedAccountResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAccountServices">
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Create" message="tns:IAccountServices_Create_InputMessage" />
@@ -98,6 +104,10 @@
     <wsdl:operation name="Update">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/Update" message="tns:IAccountServices_Update_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/UpdateResponse" message="tns:IAccountServices_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFixedAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountServices/UpdateFixedAccount" message="tns:IAccountServices_UpdateFixedAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountServices/UpdateFixedAccountResponse" message="tns:IAccountServices_UpdateFixedAccount_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAccountServices" type="tns:IAccountServices">
@@ -176,6 +186,15 @@
     </wsdl:operation>
     <wsdl:operation name="Update">
       <soap:operation soapAction="http://tempuri.org/IAccountServices/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFixedAccount">
+      <soap:operation soapAction="http://tempuri.org/IAccountServices/UpdateFixedAccount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

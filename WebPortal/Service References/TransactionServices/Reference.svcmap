@@ -29,6 +29,7 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="b568bb05-d452-407b-9742-3129925b57a3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="faab2531-4c38-4679-b234-2576c84644ed" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
     <MetadataFile FileName="DSABusinessServices.BankTransaction.xsd" MetadataType="Schema" ID="65ecae56-26b2-4288-ba7c-0bc5ed44a944" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="DSABusinessServices.BankAccount.xsd" MetadataType="Schema" ID="865af4dc-b69e-4aff-a97a-bff1aca104ab" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

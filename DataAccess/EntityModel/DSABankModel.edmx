@@ -72,6 +72,7 @@
           <Property Name="MaturityAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IncomeTaxDeduction" Type="decimal" Precision="18" Scale="2" />
           <Property Name="AccumulatedInterest" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
           <Property Name="RateID" Type="int" />
           <Property Name="IsExpired" Type="bit" />
         </EntityType>
@@ -649,6 +650,7 @@
           <Property Name="MaturityAmount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IncomeTaxDeduction" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="AccumulatedInterest" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RateID" Type="Int32" />
           <Property Name="IsExpired" Type="Boolean" />
           <NavigationProperty Name="Account" Relationship="DSABankDbModel.FK_FixedTermAccounts_Accounts" FromRole="FixedTermAccount" ToRole="Account" />
@@ -1013,6 +1015,7 @@
               <MappingFragment StoreEntitySet="FixedTermAccounts">
                 <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
                 <ScalarProperty Name="RateID" ColumnName="RateID" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
                 <ScalarProperty Name="AccumulatedInterest" ColumnName="AccumulatedInterest" />
                 <ScalarProperty Name="IncomeTaxDeduction" ColumnName="IncomeTaxDeduction" />
                 <ScalarProperty Name="MaturityAmount" ColumnName="MaturityAmount" />

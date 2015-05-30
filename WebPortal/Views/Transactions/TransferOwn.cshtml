@@ -43,7 +43,6 @@
                         $('#transferform')[0].reset();
                     } else {
                         $("#transactionContainer").html(response);
-                        var alert = $('#editAlert');
                         $.validator.unobtrusive.parse("#transferform");
                     }
                 });
@@ -54,6 +53,7 @@
         }
     };
     $(function () {
+        $("#infoAlert").hide();
         TRANSFER.Init();
     });
 </script>

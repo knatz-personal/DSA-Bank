@@ -5,7 +5,6 @@
       <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
       <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DateOpened" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ExpiryDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Remarks" nillable="true" type="xs:string" />
@@ -28,12 +27,34 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AccountTypeView" nillable="true" type="tns:AccountTypeView" />
-  <xs:complexType name="ArrayOfAccountView">
+  <xs:complexType name="ArrayOfFixedAccountView">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountView" nillable="true" type="tns:AccountView" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FixedAccountView" nillable="true" type="tns:FixedAccountView" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAccountView" nillable="true" type="tns:ArrayOfAccountView" />
+  <xs:element name="ArrayOfFixedAccountView" nillable="true" type="tns:ArrayOfFixedAccountView" />
+  <xs:complexType name="FixedAccountView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccumulatedInterest" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateOpened" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DurationID" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IncomeTaxDeduction" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="InterestRate" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IsExpired" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaturityAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RateID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Remarks" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedAccountView" nillable="true" type="tns:FixedAccountView" />
   <xs:complexType name="ArrayOfTermView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TermView" nillable="true" type="tns:TermView" />
@@ -47,4 +68,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TermView" nillable="true" type="tns:TermView" />
+  <xs:complexType name="ArrayOfAccountView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountView" nillable="true" type="tns:AccountView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccountView" nillable="true" type="tns:ArrayOfAccountView" />
 </xs:schema>

@@ -132,6 +132,21 @@ namespace DSABusinessServices.BankAccount
             });
         }
 
+        public void UpdateFixedAccount(FixedAccountView item)
+        {
+            new AccountsRepo().Update(new FixedTermAccount()
+            {
+                AccountID = item.ID,
+                ExpiryDate = item.ExpiryDate,
+                AccumulatedInterest = item.AccumulatedInterest,
+                IncomeTaxDeduction = item.IncomeTaxDeduction,
+                MaturityAmount = item.MaturityAmount,
+                RateID = item.RateID,
+                IsExpired = item.IsExpired
+
+            });
+        }
+
         #region Getters
 
         public AccountView GetAccountDetail(int id)
@@ -167,12 +182,12 @@ namespace DSABusinessServices.BankAccount
             }
         }
 
-        public IQueryable<AccountView> GetFixedAccounts(string username)
+        public IQueryable<FixedAccountView> GetFixedAccounts(string username)
         {
             try
             {
                 //3 is id of Term Deposit account type
-                return new AccountsRepo().ListByUsername(username).Where(u => u.TypeID == 3).Select(t => new AccountView
+                return new AccountsRepo().ListByUsername(username).Where(u => u.TypeID == 3).Select(t => new FixedAccountView
                 {
                     ID = t.ID,
                     TypeID = t.TypeID,
@@ -182,7 +197,15 @@ namespace DSABusinessServices.BankAccount
                     Name = t.Name,
                     Currency = t.Currency,
                     Balance = t.Balance,
-                    Remarks = t.Remarks
+                    Remarks = t.Remarks,
+                    ExpiryDate = t.FixedTermAccount.ExpiryDate,
+                    RateID = t.FixedTermAccount.RateID,
+                    InterestRate = t.FixedTermAccount.InterestRate.Rate,
+                    IncomeTaxDeduction = t.FixedTermAccount.IncomeTaxDeduction,
+                    AccumulatedInterest = t.FixedTermAccount.AccumulatedInterest,
+                    MaturityAmount = t.FixedTermAccount.MaturityAmount,
+                    IsExpired = t.FixedTermAccount.IsExpired,
+                    DurationID = (int) t.FixedTermAccount.InterestRate.TermID
                 });
             }
             catch

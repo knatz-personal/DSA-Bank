@@ -5,6 +5,7 @@ using CommonUtils;
 using DataAccess.EntityModel;
 using DataAccess.Reposiitories.Accounts;
 using DataAccess.Reposiitories.Transactions;
+using DSABusinessServices.BankAccount;
 using DSABusinessServices.CurrencyConverterServices;
 using DSABusinessServices.CustomExceptions;
 using Currency = DSABusinessServices.CurrencyConverterServices.Currency;
@@ -22,7 +23,7 @@ namespace DSABusinessServices.BankTransaction
         #region Constants
 
         private const string DefaultCurrency = "EUR";
-        private const decimal MinimumBalance = (decimal) 10.0;
+        private const decimal MinimumBalance = (decimal)10.0;
 
         #endregion
 
@@ -30,18 +31,76 @@ namespace DSABusinessServices.BankTransaction
 
         private Account From { get; set; }
         private Account To { get; set; }
+        private FixedTermAccount FixedTo { get; set; }
 
         #endregion
 
         #region Transfer Funds
 
-        public void TermDeposit(TransactionView item)
+        public void TermDeposit(FixedAccountView accountInfo, TransactionView transactionInfo)
         {
-            //Deduct from source account
-            //Add to destination account
-            Log(item);
+            if (transactionInfo.AccountFromID != null && transactionInfo.AccountToID != null)
+            {
+                if (transactionInfo.AccountFromID != transactionInfo.AccountToID)
+                {
+                    var repo = new AccountsRepo();
+                    int rateId = repo.GetInterestRateId(accountInfo.DurationID);
 
-            throw new NotImplementedException();
+                    From = GetAccount((int)transactionInfo.AccountFromID);
+                    var temp = GetAccount(accountInfo.ID);
+
+                    if (temp.FixedTermAccount != null && temp.FixedTermAccount.IsExpired != true)
+                    {
+                        accountInfo.ExpiryDate = temp.FixedTermAccount.ExpiryDate;
+                    }
+         
+                    FixedTo = repo.CreateFixedAccount(new FixedTermAccount()
+                              {
+                                  AccountID = accountInfo.ID,
+                                  AccumulatedInterest = accountInfo.AccumulatedInterest,
+                                  IncomeTaxDeduction = accountInfo.IncomeTaxDeduction,
+                                  MaturityAmount = accountInfo.MaturityAmount,
+                                  ExpiryDate = accountInfo.ExpiryDate,
+                                  IsExpired = accountInfo.IsExpired,
+                                  RateID = rateId
+                              });
+
+                    FixedTo.Account = temp;
+
+                    decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                    decimal balanceToInEuro = GetRealAmount(FixedTo.Account.Currency, DefaultCurrency,
+                        FixedTo.Account.Balance);
+                    decimal amountInEuro = GetRealAmount(transactionInfo.Currency, DefaultCurrency,
+                        transactionInfo.Amount);
+                    //deduct amount from source account
+                    decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
+                    //Add amount to destination account
+                    decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
+                    FixedTo.Account.Balance = GetRealAmount(DefaultCurrency, FixedTo.Account.Currency, newToBalance);
+                    if (newFromBalance > MinimumBalance)
+                    {
+                        From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                        bool isTransfered = new AccountsRepo().Transfer(From, FixedTo.Account);
+                        if (isTransfered)
+                        {
+                            Log(transactionInfo);
+                        }
+                        else
+                        {
+                            throw new TransactionFailedException("Failed to transfer funds.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                    }
+
+                }
+                else
+                {
+                    throw new Exception("Cannot transfer funds between the same account.");
+                }
+            }
         }
 
         public void PersonalTransfer(TransactionView item)
@@ -50,39 +109,46 @@ namespace DSABusinessServices.BankTransaction
             {
                 if (item.AccountFromID != item.AccountToID)
                 {
-                    From = GetAccount((int) item.AccountFromID);
-                    To = GetAccount((int) item.AccountToID);
-                    if (From.Username == To.Username)
+                    From = GetAccount((int)item.AccountFromID);
+                    To = GetAccount((int)item.AccountToID);
+                    if (From.TypeID != 1 && To.TypeID != 1)
                     {
-                        decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
-                        decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
-                        decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
-                        //deduct amount from source account
-                        decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
-                        //Add amount to destination account
-                        decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
-                        To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
-                        if (newFromBalance > MinimumBalance)
+                        if (From.Username == To.Username)
                         {
-                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
-                            bool isTransfered = new AccountsRepo().Transfer(From, To);
-                            if (isTransfered)
+                            decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                            decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                            decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
+                            //deduct amount from source account
+                            decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
+                            //Add amount to destination account
+                            decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
+                            To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
+                            if (newFromBalance > MinimumBalance)
                             {
-                                Log(item);
+                                From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                                bool isTransfered = new AccountsRepo().Transfer(From, To);
+                                if (isTransfered)
+                                {
+                                    Log(item);
+                                }
+                                else
+                                {
+                                    throw new TransactionFailedException("Failed to transfer funds.");
+                                }
                             }
                             else
                             {
-                                throw new TransactionFailedException("Failed to transfer funds.");
+                                throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
                             }
                         }
                         else
                         {
-                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                            throw new Exception("Use local transfer to transfer funds to other peoples accounts");
                         }
                     }
                     else
                     {
-                        throw new Exception("Use local transfer to transfer funds to other peoples accounts");
+                        throw new Exception("Use term deposit to transfer funds to fixed term accounts");
                     }
                 }
                 else
@@ -99,35 +165,42 @@ namespace DSABusinessServices.BankTransaction
             {
                 if (item.AccountFromID != item.AccountToID)
                 {
-                    From = GetAccount((int) item.AccountFromID);
-                    To = GetAccount((int) item.AccountToID);
+                    From = GetAccount((int)item.AccountFromID);
+                    To = GetAccount((int)item.AccountToID);
 
                     if (From.Username != To.Username)
                     {
-                        decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
-                        decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
-                        decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
-                        //deduct amount from source account
-                        decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
-                        //Add amount to destination account
-                        decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
-                        To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
-                        if (newFromBalance > MinimumBalance)
+                        if (From.TypeID != 1 && To.TypeID != 1)
                         {
-                            From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
-                            bool isTransfered = new AccountsRepo().Transfer(From, To);
-                            if (isTransfered)
+                            decimal balanceFromInEuro = GetRealAmount(From.Currency, DefaultCurrency, From.Balance);
+                            decimal balanceToInEuro = GetRealAmount(To.Currency, DefaultCurrency, To.Balance);
+                            decimal amountInEuro = GetRealAmount(item.Currency, DefaultCurrency, item.Amount);
+                            //deduct amount from source account
+                            decimal newFromBalance = Math.Abs(balanceFromInEuro) - Math.Abs(amountInEuro);
+                            //Add amount to destination account
+                            decimal newToBalance = Math.Abs(balanceToInEuro) + Math.Abs(amountInEuro);
+                            To.Balance = GetRealAmount(DefaultCurrency, To.Currency, newToBalance);
+                            if (newFromBalance > MinimumBalance)
                             {
-                                Log(item);
+                                From.Balance = GetRealAmount(DefaultCurrency, From.Currency, newFromBalance);
+                                bool isTransfered = new AccountsRepo().Transfer(From, To);
+                                if (isTransfered)
+                                {
+                                    Log(item);
+                                }
+                                else
+                                {
+                                    throw new TransactionFailedException("Failed to transfer funds.");
+                                }
                             }
                             else
                             {
-                                throw new TransactionFailedException("Failed to transfer funds.");
+                                throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
                             }
                         }
                         else
                         {
-                            throw new Exception("Minimum balance exceeded. The minimum balance is Euro 10.");
+                            throw new Exception("Use term deposit to transfer funds to fixed term accounts");
                         }
                     }
                     else
@@ -146,7 +219,7 @@ namespace DSABusinessServices.BankTransaction
 
         public void Delete(int id)
         {
-            new TransactionsRepo().Delete(new Transaction {ID = id});
+            new TransactionsRepo().Delete(new Transaction { ID = id });
         }
 
         #region Lists
@@ -179,7 +252,7 @@ namespace DSABusinessServices.BankTransaction
 
         public TransactionView GetTransactionDetails(int id)
         {
-            Transaction t = new TransactionsRepo().Read(new Transaction {ID = id});
+            Transaction t = new TransactionsRepo().Read(new Transaction { ID = id });
             return new TransactionView
             {
                 ID = t.ID,
@@ -211,7 +284,7 @@ namespace DSABusinessServices.BankTransaction
             {
                 var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
                 var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
-                result = (decimal) client.ConversionRate(from, to)*amount;
+                result = (decimal)client.ConversionRate(from, to) * amount;
             }
 
             return result;
@@ -219,7 +292,7 @@ namespace DSABusinessServices.BankTransaction
 
         private Account GetAccount(int id)
         {
-            Account result = new AccountsRepo().Read(new Account {ID = id});
+            Account result = new AccountsRepo().Read(new Account { ID = id });
 
             return result;
         }

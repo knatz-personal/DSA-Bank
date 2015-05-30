@@ -11,6 +11,7 @@ using WebPortal.BankAccountServices;
 using WebPortal.Helpers;
 using WebPortal.Models;
 using WebPortal.TransactionServices;
+using FixedAccountView = WebPortal.TransactionServices.FixedAccountView;
 
 namespace WebPortal.Controllers
 {
@@ -143,10 +144,21 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int months = GetDurationInMonths(model.Duration);
                     using (var client = new TransactionServicesClient())
                     {
-                        //Create method to effect a term deposit
-                        client.TermDeposit(new TransactionView
+                        var accountInfo = new FixedAccountView()
+                        {
+                            AccumulatedInterest = 0,
+                            IncomeTaxDeduction = 0,
+                            MaturityAmount = 0,
+                            ID = model.AccountToID,
+                            DurationID = model.Duration,
+                            ExpiryDate = DateTime.Now.AddMonths(months),
+                            IsExpired = false
+                        };
+
+                        var transactionInfo = new TransactionView()
                         {
                             DateIssued = DateTime.Now,
                             TypeID = 1,
@@ -155,7 +167,10 @@ namespace WebPortal.Controllers
                             AccountToID = model.AccountToID,
                             Amount = model.Amount,
                             Currency = model.Currency
-                        });
+                        };
+
+                        //Create method to effect a term deposit
+                        client.TermDeposit(accountInfo, transactionInfo);
 
                         return Json(new { Result = "OK", Message = "Successfully transfered funds" });
                     }
@@ -167,9 +182,44 @@ namespace WebPortal.Controllers
                     @"There was an error completing the transaction, contact the administrator for help.");
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return Deposit();
+
+            using (var client = new AccountServicesClient())
+            {
+                model.MyTermAccounts = new SelectList(client.GetFixedAccounts(User.Identity.Name), "ID", "Name");
+                model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
+                model.MyAccounts = new SelectList(client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3), "ID", "Name");
+            }
+
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("_Deposit", model) : View("Deposit", model);
         }
 
+        private int GetDurationInMonths(int duration)
+        {
+            int result;
+
+            if (duration == 2)
+            {
+                //THREE Months
+                result = 3;
+            }
+            else if (duration == 3)
+            {
+                //ONE Year
+                result = 6;
+            }
+            else if (duration == 4)
+            {
+                //ONE Year
+                result = 12;
+            }
+            else
+            {
+                result = 1;
+            }
+
+            return result;
+        }
+        
         [HttpGet]
         [ActionName("Local Transfer")]
         public ActionResult TransferOther()

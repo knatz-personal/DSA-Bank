@@ -71,6 +71,7 @@
         <MappingFragment StoreEntitySet="FixedTermAccounts">
           <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
           <ScalarProperty Name="RateID" ColumnName="RateID" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
           <ScalarProperty Name="AccumulatedInterest" ColumnName="AccumulatedInterest" />
           <ScalarProperty Name="IncomeTaxDeduction" ColumnName="IncomeTaxDeduction" />
           <ScalarProperty Name="MaturityAmount" ColumnName="MaturityAmount" />

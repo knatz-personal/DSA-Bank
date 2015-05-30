@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using DataAccess.EntityModel;
 
 namespace DSABusinessServices.BankAccount
 {
@@ -21,7 +22,7 @@ namespace DSABusinessServices.BankAccount
         IQueryable<AccountTypeView> GetTypes();
 
         [OperationContract]
-        IQueryable<AccountView> GetFixedAccounts(string username);
+        IQueryable<FixedAccountView> GetFixedAccounts(string username);
 
         [OperationContract]
         IQueryable<TermView> GetFixedTerms();
@@ -34,6 +35,10 @@ namespace DSABusinessServices.BankAccount
 
         [OperationContract]
         void Update(AccountView item);
+
+        [OperationContract]
+        void UpdateFixedAccount(FixedAccountView item);
+
     }
 
     [DataContract]
@@ -69,7 +74,35 @@ namespace DSABusinessServices.BankAccount
         public DateTime DateOpened { get; set; }
 
         [DataMember]
-        public DateTime? ExpiryDate { get; set; }
+        public int ID { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public string Remarks { get; set; }
+
+        [DataMember]
+        public int? TypeID { get; set; }
+
+        [DataMember]
+        public string TypeName { get; set; }
+
+        [DataMember]
+        public string Username { get; set; }
+    }
+
+    [DataContract]
+    public class FixedAccountView
+    {
+        [DataMember]
+        public decimal Balance { get; set; }
+
+        [DataMember]
+        public string Currency { get; set; }
+
+        [DataMember]
+        public DateTime DateOpened { get; set; }
 
         [DataMember]
         public int ID { get; set; }
@@ -88,5 +121,29 @@ namespace DSABusinessServices.BankAccount
 
         [DataMember]
         public string Username { get; set; }
+
+        [DataMember]
+        public decimal? MaturityAmount { get; set; }
+
+        [DataMember]
+        public decimal? IncomeTaxDeduction { get; set; }
+
+        [DataMember]
+        public decimal? AccumulatedInterest { get; set; }
+
+        [DataMember]
+        public int? RateID { get; set; }
+        
+        [DataMember]
+        public decimal InterestRate { get; set; }
+
+        [DataMember]
+        public int DurationID { get; set; }
+
+        [DataMember]
+        public bool? IsExpired { get; set; }
+
+        [DataMember]
+        public DateTime ExpiryDate { get; set; }
     }
 }

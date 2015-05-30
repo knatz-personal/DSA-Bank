@@ -32,9 +32,6 @@ namespace WebPortal.BankAccountServices {
         private System.DateTime DateOpenedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> ExpiryDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -97,19 +94,6 @@ namespace WebPortal.BankAccountServices {
                 if ((this.DateOpenedField.Equals(value) != true)) {
                     this.DateOpenedField = value;
                     this.RaisePropertyChanged("DateOpened");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> ExpiryDate {
-            get {
-                return this.ExpiryDateField;
-            }
-            set {
-                if ((this.ExpiryDateField.Equals(value) != true)) {
-                    this.ExpiryDateField = value;
-                    this.RaisePropertyChanged("ExpiryDate");
                 }
             }
         }
@@ -265,6 +249,307 @@ namespace WebPortal.BankAccountServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.SerializableAttribute()]
+    public partial class FixedAccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AccumulatedInterestField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal BalanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateOpenedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DurationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpiryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IncomeTaxDeductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal InterestRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsExpiredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> MaturityAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RateIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> AccumulatedInterest {
+            get {
+                return this.AccumulatedInterestField;
+            }
+            set {
+                if ((this.AccumulatedInterestField.Equals(value) != true)) {
+                    this.AccumulatedInterestField = value;
+                    this.RaisePropertyChanged("AccumulatedInterest");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Balance {
+            get {
+                return this.BalanceField;
+            }
+            set {
+                if ((this.BalanceField.Equals(value) != true)) {
+                    this.BalanceField = value;
+                    this.RaisePropertyChanged("Balance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Currency {
+            get {
+                return this.CurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
+                    this.CurrencyField = value;
+                    this.RaisePropertyChanged("Currency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateOpened {
+            get {
+                return this.DateOpenedField;
+            }
+            set {
+                if ((this.DateOpenedField.Equals(value) != true)) {
+                    this.DateOpenedField = value;
+                    this.RaisePropertyChanged("DateOpened");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DurationID {
+            get {
+                return this.DurationIDField;
+            }
+            set {
+                if ((this.DurationIDField.Equals(value) != true)) {
+                    this.DurationIDField = value;
+                    this.RaisePropertyChanged("DurationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpiryDate {
+            get {
+                return this.ExpiryDateField;
+            }
+            set {
+                if ((this.ExpiryDateField.Equals(value) != true)) {
+                    this.ExpiryDateField = value;
+                    this.RaisePropertyChanged("ExpiryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IncomeTaxDeduction {
+            get {
+                return this.IncomeTaxDeductionField;
+            }
+            set {
+                if ((this.IncomeTaxDeductionField.Equals(value) != true)) {
+                    this.IncomeTaxDeductionField = value;
+                    this.RaisePropertyChanged("IncomeTaxDeduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal InterestRate {
+            get {
+                return this.InterestRateField;
+            }
+            set {
+                if ((this.InterestRateField.Equals(value) != true)) {
+                    this.InterestRateField = value;
+                    this.RaisePropertyChanged("InterestRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsExpired {
+            get {
+                return this.IsExpiredField;
+            }
+            set {
+                if ((this.IsExpiredField.Equals(value) != true)) {
+                    this.IsExpiredField = value;
+                    this.RaisePropertyChanged("IsExpired");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> MaturityAmount {
+            get {
+                return this.MaturityAmountField;
+            }
+            set {
+                if ((this.MaturityAmountField.Equals(value) != true)) {
+                    this.MaturityAmountField = value;
+                    this.RaisePropertyChanged("MaturityAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RateID {
+            get {
+                return this.RateIDField;
+            }
+            set {
+                if ((this.RateIDField.Equals(value) != true)) {
+                    this.RateIDField = value;
+                    this.RaisePropertyChanged("RateID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks {
+            get {
+                return this.RemarksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
+                    this.RemarksField = value;
+                    this.RaisePropertyChanged("Remarks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TypeID {
+            get {
+                return this.TypeIDField;
+            }
+            set {
+                if ((this.TypeIDField.Equals(value) != true)) {
+                    this.TypeIDField = value;
+                    this.RaisePropertyChanged("TypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TermView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
     [System.SerializableAttribute()]
     public partial class TermView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -353,10 +638,10 @@ namespace WebPortal.BankAccountServices {
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView>> GetTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetFixedAccounts", ReplyAction="http://tempuri.org/IAccountServices/GetFixedAccountsResponse")]
-        System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> GetFixedAccounts(string username);
+        System.Collections.Generic.List<WebPortal.BankAccountServices.FixedAccountView> GetFixedAccounts(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetFixedAccounts", ReplyAction="http://tempuri.org/IAccountServices/GetFixedAccountsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> GetFixedAccountsAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.FixedAccountView>> GetFixedAccountsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetFixedTerms", ReplyAction="http://tempuri.org/IAccountServices/GetFixedTermsResponse")]
         System.Collections.Generic.List<WebPortal.BankAccountServices.TermView> GetFixedTerms();
@@ -381,6 +666,12 @@ namespace WebPortal.BankAccountServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/Update", ReplyAction="http://tempuri.org/IAccountServices/UpdateResponse")]
         System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/UpdateFixedAccount", ReplyAction="http://tempuri.org/IAccountServices/UpdateFixedAccountResponse")]
+        void UpdateFixedAccount(WebPortal.BankAccountServices.FixedAccountView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/UpdateFixedAccount", ReplyAction="http://tempuri.org/IAccountServices/UpdateFixedAccountResponse")]
+        System.Threading.Tasks.Task UpdateFixedAccountAsync(WebPortal.BankAccountServices.FixedAccountView item);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -442,11 +733,11 @@ namespace WebPortal.BankAccountServices {
             return base.Channel.GetTypesAsync();
         }
         
-        public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView> GetFixedAccounts(string username) {
+        public System.Collections.Generic.List<WebPortal.BankAccountServices.FixedAccountView> GetFixedAccounts(string username) {
             return base.Channel.GetFixedAccounts(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.AccountView>> GetFixedAccountsAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebPortal.BankAccountServices.FixedAccountView>> GetFixedAccountsAsync(string username) {
             return base.Channel.GetFixedAccountsAsync(username);
         }
         
@@ -480,6 +771,14 @@ namespace WebPortal.BankAccountServices {
         
         public System.Threading.Tasks.Task UpdateAsync(WebPortal.BankAccountServices.AccountView item) {
             return base.Channel.UpdateAsync(item);
+        }
+        
+        public void UpdateFixedAccount(WebPortal.BankAccountServices.FixedAccountView item) {
+            base.Channel.UpdateFixedAccount(item);
+        }
+        
+        public System.Threading.Tasks.Task UpdateFixedAccountAsync(WebPortal.BankAccountServices.FixedAccountView item) {
+            return base.Channel.UpdateFixedAccountAsync(item);
         }
     }
 }

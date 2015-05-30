@@ -18,6 +18,7 @@ namespace DataAccess.EntityModel
         public Nullable<decimal> MaturityAmount { get; set; }
         public Nullable<decimal> IncomeTaxDeduction { get; set; }
         public Nullable<decimal> AccumulatedInterest { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
         public Nullable<int> RateID { get; set; }
         public Nullable<bool> IsExpired { get; set; }
     
