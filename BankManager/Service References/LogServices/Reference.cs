@@ -15,7 +15,7 @@ namespace BankManager.LogServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ErrorView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ErrorView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class ErrorView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -124,7 +124,7 @@ namespace BankManager.LogServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.Log")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class EventView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

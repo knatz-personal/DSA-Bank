@@ -175,12 +175,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\TransactionServices\Reference.cs">
+    <Compile Include="Service References\LogServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\LogServices\Reference.cs">
+    <Compile Include="Service References\TransactionServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -237,18 +237,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\AppointmentServices\AppointmentServices.wsdl" />
+    <None Include="Service References\AppointmentServices\AppointmentServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\AppointmentServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\AppointmentServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AppointmentServices\BankManager.AppointmentServices.AppointmentView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AppointmentServices\DSABusinessServices.Appointment.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppointmentServices\service.wsdl" />
-    <None Include="Service References\AppointmentServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppointmentServices\service1.xsd">
-      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\LogServices\BankManager.LogServices.ErrorView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -256,36 +256,27 @@
     <None Include="Service References\LogServices\BankManager.LogServices.EventView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TransactionServices\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\LogServices\LogServices.wsdl" />
     <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionTypeView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TransactionServices\DSABusinessServices.BankTransaction.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices.wsdl" />
+    <None Include="Service References\TransactionServices\TransactionServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\service.wsdl" />
-    <None Include="Service References\TransactionServices\service.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\service1.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogServices\DSABusinessServices.Log.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LogServices\service.wsdl" />
-    <None Include="Service References\LogServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LogServices\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserServices\Arrays.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\BankManager.UserServices.GenderView.datasource">
@@ -300,14 +291,17 @@
     <None Include="Service References\UserServices\BankManager.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
+    <None Include="Service References\UserServices\UserServices.wsdl" />
+    <None Include="Service References\UserServices\UserServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service.wsdl" />
-    <None Include="Service References\UserServices\service.xsd">
+    <None Include="Service References\UserServices\UserServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\service1.xsd">
+    <None Include="Service References\UserServices\UserServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -321,12 +315,6 @@
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\AppointmentServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
-    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
     <None Include="Service References\TransactionServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -345,11 +333,21 @@
     </None>
     <None Include="Service References\UserServices\configuration.svcinfo" />
     <None Include="Service References\UserServices\configuration91.svcinfo" />
+    <None Include="Service References\AppointmentServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
+    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
       <Project>{0e2dd92d-ea34-4d28-bbcf-1bb014e41ab9}</Project>
       <Name>CommonUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WcfServiceDSABank\WcfServiceDSABank.csproj">
+      <Project>{4BD4F3B7-400A-4B8F-93DC-756856998A4C}</Project>
+      <Name>WcfServiceDSABank</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -374,8 +372,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AppointmentServices\" />
-    <WCFMetadataStorage Include="Service References\TransactionServices\" />
     <WCFMetadataStorage Include="Service References\LogServices\" />
+    <WCFMetadataStorage Include="Service References\TransactionServices\" />
     <WCFMetadataStorage Include="Service References\UserServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

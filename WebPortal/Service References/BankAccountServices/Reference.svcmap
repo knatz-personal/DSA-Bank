@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="83fa8380-07aa-455b-918b-f57e0e3505e8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="57560be6-918b-4819-9444-d228f65fb9ee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="69b646ce-293f-4a88-86ef-33b88f5d9a15" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.BankAccount.xsd" MetadataType="Schema" ID="6e6f7b71-7da2-4c5d-b1de-a029bc28c357" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="37776df8-39ab-472f-a383-b4671b46a479" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.BankAccount/AccountServices/mex" />
+    <MetadataFile FileName="AccountServices.xsd" MetadataType="Schema" ID="5bc62c3f-75d9-4738-bbb4-2dd6b650470f" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountServices1.xsd" MetadataType="Schema" ID="ab10b0c9-8550-49bf-9c30-1b1b6d987baa" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountServices2.xsd" MetadataType="Schema" ID="f18a5d67-5828-47fb-bdfd-981fdca02fc1" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?xsd=xsd3" />
+    <MetadataFile FileName="AccountServices.wsdl" MetadataType="Wsdl" ID="8cd84481-d478-40b9-badd-c250f7c2cf21" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?wsdl" />
+    <MetadataFile FileName="AccountServices3.xsd" MetadataType="Schema" ID="c6671526-7f76-42f5-b2e4-3703343cbb65" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AccountServices.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

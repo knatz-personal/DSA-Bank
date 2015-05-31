@@ -15,7 +15,7 @@ namespace WebPortal.BankAccountServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AccountView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class AccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -188,7 +188,7 @@ namespace WebPortal.BankAccountServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AccountTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountTypeView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class AccountTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -249,7 +249,7 @@ namespace WebPortal.BankAccountServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class FixedAccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -550,7 +550,7 @@ namespace WebPortal.BankAccountServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TermView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TermView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class TermView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

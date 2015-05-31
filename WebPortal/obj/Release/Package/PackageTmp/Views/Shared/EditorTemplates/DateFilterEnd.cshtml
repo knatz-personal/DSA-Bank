@@ -1,0 +1,5 @@
+﻿@model System.DateTime?
+@Html.TextBox("", String.Format("{0:dd/MM/yyyy}", (Model == DateTime.MinValue) ? null : Model),
+                    new { @class = "input-sm date ", @placeholder = "End Date" })
+
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="41719bed-ee60-4955-85d1-7d6094714a8c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5e05a52a-84c7-4543-be2a-ae968faff5b2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,14 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8f69e84a-8493-4a99-8118-b3323becd161" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6161c40a-b130-4652-8f5c-90f8a2394739" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="304911b0-6849-45f2-801a-3542f83dcecb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.BankTransaction.xsd" MetadataType="Schema" ID="1ba9c0f7-b479-417e-af36-885ba8cfbfa2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="feca48a0-2f3a-44bd-9ea9-4ea7059f379f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/TransactionServices/mex" />
+    <MetadataFile FileName="TransactionServices.xsd" MetadataType="Schema" ID="9b1bd045-3758-4e85-928d-ac4c918121ca" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd4" />
+    <MetadataFile FileName="TransactionServices1.xsd" MetadataType="Schema" ID="d89714d0-e8b4-4429-9090-2e6cc94d37b4" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="TransactionServices2.xsd" MetadataType="Schema" ID="40f46d54-a0ca-46c8-a570-b04fc4411467" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="TransactionServices3.xsd" MetadataType="Schema" ID="73f755e5-ab26-4185-b3c2-d94a47449a26" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd3" />
+    <MetadataFile FileName="TransactionServices.wsdl" MetadataType="Wsdl" ID="b4557942-53ab-41fc-87be-63c633773dcb" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?wsdl" />
+    <MetadataFile FileName="TransactionServices4.xsd" MetadataType="Schema" ID="04daa46e-53bf-436a-a084-c34289550a5a" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

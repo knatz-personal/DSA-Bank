@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfAppointmentView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AppointmentView" nillable="true" type="tns:AppointmentView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAppointmentView" nillable="true" type="tns:ArrayOfAppointmentView" />
+  <xs:complexType name="AppointmentView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAccepted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SuggestedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SuggestedTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AppointmentView" nillable="true" type="tns:AppointmentView" />
+</xs:schema>

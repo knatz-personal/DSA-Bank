@@ -249,6 +249,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\DSABankWebPortal %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\DSABankWebPortal.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -270,19 +272,32 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\AppointmentServices\DSABusinessServices.Appointment.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices.wsdl" />
+    <None Include="Service References\AppointmentServices\AppointmentServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service.wsdl" />
-    <None Include="Service References\AppointmentServices\service.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\service1.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices2.xsd">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Service References\AppointmentServices\WebPortal.AppointmentServices.AppointmentView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\BankAccountServices\AccountServices.wsdl" />
+    <None Include="Service References\BankAccountServices\AccountServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountServices\AccountServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountServices\AccountServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountServices\AccountServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
     <None Include="Service References\BankAccountServices\configuration.svcinfo" />
     <None Include="Service References\BankAccountServices\Reference.svcmap">
@@ -310,6 +325,16 @@
     <None Include="Service References\CurrencyConvertorServices\CurrencyConvertor.wsdl" />
     <None Include="Service References\LoggingServices\configuration91.svcinfo" />
     <None Include="Service References\LoggingServices\configuration.svcinfo" />
+    <None Include="Service References\LoggingServices\LogServices.wsdl" />
+    <None Include="Service References\LoggingServices\LogServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoggingServices\LogServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoggingServices\LogServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\LoggingServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -320,81 +345,51 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\BankAccountServices\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BankAccountServices\DSABusinessServices.BankAccount.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BankAccountServices\service.wsdl" />
-    <None Include="Service References\BankAccountServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BankAccountServices\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoggingServices\DSABusinessServices.Log.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoggingServices\service.wsdl" />
-    <None Include="Service References\LoggingServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoggingServices\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\LoggingServices\WebPortal.LoggingServices.ErrorView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\LoggingServices\WebPortal.LoggingServices.EventView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\NavigationServices\DSABusinessServices.Navigation.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\NavigationServices\service1.wsdl" />
-    <None Include="Service References\NavigationServices\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\NavigationServices\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\DSABusinessServices.BankAccount.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\DSABusinessServices.BankTransaction.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\service.wsdl" />
-    <None Include="Service References\TransactionServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionTypeView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\UserServices\Arrays.xsd">
+    <None Include="Service References\NavigationServices\NavigationServices.wsdl" />
+    <None Include="Service References\NavigationServices\NavigationServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NavigationServices\NavigationServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NavigationServices\NavigationServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\TransactionServices\TransactionServices.wsdl" />
+    <None Include="Service References\TransactionServices\TransactionServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\configuration91.svcinfo" />
     <None Include="Service References\UserServices\configuration.svcinfo" />
-    <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UserServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\NavigationServices\configuration91.svcinfo" />
     <None Include="Service References\NavigationServices\configuration.svcinfo" />
@@ -406,7 +401,6 @@
     <None Include="Service References\TransactionServices\configuration.svcinfo" />
     <None Include="Service References\TransactionServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -435,13 +429,6 @@
     <Content Include="Views\Users\_Delete.cshtml" />
     <Content Include="Views\Users\_Details.cshtml" />
     <Content Include="Views\Users\_Edit.cshtml" />
-    <None Include="Service References\UserServices\service1.wsdl" />
-    <None Include="Service References\UserServices\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserServices\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -482,6 +469,19 @@
     <Content Include="Views\Transactions\_TOther.cshtml" />
     <Content Include="Views\Accounts\_CAccount.cshtml" />
     <Content Include="Views\Transactions\_Deposit.cshtml" />
+    <None Include="Service References\UserServices\UserServices.wsdl" />
+    <None Include="Service References\UserServices\UserServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

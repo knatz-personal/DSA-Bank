@@ -1,0 +1,151 @@
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@model WebPortal.Models.UserListItemModel
+
+<dl class="col-md-offset-1 dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Username)
+    </dt>
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.Username)
+        </div>
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.FirstName)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.MiddleInitial)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.MiddleInitial)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.GenderID)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.GenderName)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.DateOfBirth)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </div>
+    </dd>
+
+    <dt>
+
+        @Html.DisplayNameFor(model => model.Address)
+
+    </dt>
+
+    <dd>
+        <div class="well well-lg">
+            @Html.DisplayFor(model => model.Address)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.TownID)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.TownName)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Mobile)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.Mobile)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.UserRoles)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            <ul class="nav nav-stacked">
+                @foreach (var r in Model.UserRoles)
+                {
+                    <li>@r.Text</li>
+                }
+            </ul>
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Username)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.Username)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.NoOfAttempts)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.NoOfAttempts)
+        </div>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Blocked)
+    </dt>
+
+    <dd>
+        <div class="well well-sm">
+            @Html.DisplayFor(model => model.Blocked)
+        </div>
+    </dd>
+
+</dl>
+

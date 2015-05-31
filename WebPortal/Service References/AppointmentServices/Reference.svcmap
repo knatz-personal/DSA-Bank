@@ -15,19 +15,19 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4266c3d9-3c94-4155-a222-955192fd0a26" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="04825947-40ee-4662-8fca-e371f8cc7534" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="349fee92-9db0-4888-9d6d-ac4aebc8191a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.Appointment.xsd" MetadataType="Schema" ID="f0d1ac84-17c8-4246-aed5-31ae5e5676ba" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Appointment/AppointmentServices/mex" />
+    <MetadataFile FileName="AppointmentServices.wsdl" MetadataType="Wsdl" ID="58d14200-57b7-48e8-a218-2963eb90e6d2" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?wsdl" />
+    <MetadataFile FileName="AppointmentServices.xsd" MetadataType="Schema" ID="65a5120d-92e7-4411-b8f6-7bca6c4b6d0e" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="AppointmentServices1.xsd" MetadataType="Schema" ID="aa222581-062a-4983-a14d-bd183e22d0df" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="AppointmentServices2.xsd" MetadataType="Schema" ID="2bbbb217-1d36-4003-be72-9cf48b6c5977" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

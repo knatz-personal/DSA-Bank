@@ -1,3 +1,5 @@
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\logo.png
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\favicon.ico
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\client_secret.json
@@ -22,10 +24,13 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Owin.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\System.Net.Http.Extensions.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\WcfServiceDSABank.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Zlib.Portable.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\itextsharp.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\DataAccess.dll
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\CommonUtils.pdb
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\WcfServiceDSABank.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\EntityFramework.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Google.Apis.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Google.Apis.xml
@@ -50,6 +55,7 @@ C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\Zlib.Portable.xml
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\itextsharp.xml
+C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\bin\Debug\DataAccess.pdb
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.csproj.App.config
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.csprojResolveAssemblyReference.cache
 C:\Users\Natha_000\Dropbox\Assignments\WIP\DSA\DSA_Bank_Solution\BankManager\obj\Debug\BankManager.EventLogForm.resources

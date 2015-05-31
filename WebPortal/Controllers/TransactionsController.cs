@@ -127,11 +127,14 @@ namespace WebPortal.Controllers
         public ActionResult Deposit()
         {
             var model = new DepositModel();
+
             using (var client = new AccountServicesClient())
             {
-                model.MyTermAccounts = new SelectList(client.GetFixedAccounts(User.Identity.Name), "ID", "Name");
+                var temp = client.GetFixedAccounts(User.Identity.Name);
+                var temp2 = client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3);
+                model.MyTermAccounts = new SelectList(temp, "ID", "Name");
                 model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
-                model.MyAccounts = new SelectList(client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3), "ID", "Name");
+                model.MyAccounts = new SelectList(temp2, "ID", "Name");
             }
             return View(model);
         }
@@ -219,7 +222,7 @@ namespace WebPortal.Controllers
 
             return result;
         }
-        
+
         [HttpGet]
         [ActionName("Local Transfer")]
         public ActionResult TransferOther()

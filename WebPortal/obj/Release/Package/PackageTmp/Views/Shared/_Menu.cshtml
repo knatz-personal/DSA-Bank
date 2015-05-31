@@ -1,0 +1,8 @@
+﻿@using WebPortal.Helpers
+@model WebPortal.Models.MenuViewModel
+@Html.Partial("_LoginPartial")
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        @Html.RenderMenu(Model)
+    </ul>
+</div>

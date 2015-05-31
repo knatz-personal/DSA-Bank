@@ -111,19 +111,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\UserServices\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserServices\DSABusinessServices.UserAccount.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserServices\service.wsdl" />
-    <None Include="Service References\UserServices\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserServices\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UserServices\TokenGenerator.UserServices.GenderView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -133,11 +120,21 @@
     <None Include="Service References\UserServices\TokenGenerator.UserServices.TownView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserServices\TokenGenerator.UserServices.UserTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\UserServices\TokenGenerator.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserServices\UserServices.wsdl" />
+    <None Include="Service References\UserServices\UserServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServices\UserServices3.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="TokenGenerator_TemporaryKey.pfx" />
   </ItemGroup>

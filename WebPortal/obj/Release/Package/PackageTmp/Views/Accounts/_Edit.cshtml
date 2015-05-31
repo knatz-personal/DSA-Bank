@@ -1,0 +1,67 @@
+﻿@model WebPortal.Models.AccountEditModel
+@using (Html.BeginForm(Html.BeginForm("Edit", "Accounts", FormMethod.Post, new { id = "editform" })))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <fieldset>
+            @if (ViewData.ModelState[string.Empty] != null && ViewData.ModelState[string.Empty].Errors.Any())
+            {
+            <div id="editAlert" class="alert alert-danger" data-dismiss="alert" role="alert">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                @Html.ValidationSummary(true, "Error: ")
+            </div>
+            }
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Remarks, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { rows = 10,  @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
+    </div>
+}
+<script>
+    var ACCOUNT_EDIT = {
+        EditForm: function () {
+            $("#editform").on('submit', function (ev) {
+                ev.preventDefault();
+                $.validator.unobtrusive.parse("#editform");
+                var data = $("#editform").serialize();
+                $.post("@Url.Action("Edit", "Accounts")", data).done(function (response) {
+                    if (response.result !== "undefined" && response.Result === "OK") {
+                        $("#editModal").modal('hide');
+                        
+                        $.get("@Url.Action("Index","Accounts")?" + $('#listform').serialize()).done(function (response) {
+                            $("#pagedList").html(response);
+                        });
+
+                        BindGridButtonEvents();
+                    } else {
+                        $("#editBody").html(response);
+                        $.validator.unobtrusive.parse("#editform");
+                    }
+                });
+            });
+        },
+        Init: function () {
+            this.EditForm();
+        }
+    };
+    $(function () {
+        ACCOUNT_EDIT.Init();
+    });
+</script>

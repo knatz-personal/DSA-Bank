@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LogServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_ILogServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" />
+      <xs:element name="DeleteError">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteErrorResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteEvent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteEventResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterErrorsList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="end" nillable="true" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterErrorsListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" minOccurs="0" name="FilterErrorsListResult" nillable="true" type="q1:ArrayOfErrorView" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterEventsList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="source" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="end" nillable="true" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FilterEventsListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" minOccurs="0" name="FilterEventsListResult" nillable="true" type="q2:ArrayOfEventView" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogError">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="innerException" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogErrorResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogEvent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="source" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogEventResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfErrorView">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ErrorView" nillable="true" type="tns:ErrorView" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfErrorView" nillable="true" type="tns:ArrayOfErrorView" />
+      <xs:complexType name="ErrorView">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DateTriggered" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="InnerException" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ErrorView" nillable="true" type="tns:ErrorView" />
+      <xs:complexType name="ArrayOfEventView">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EventView" nillable="true" type="tns:EventView" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEventView" nillable="true" type="tns:ArrayOfEventView" />
+      <xs:complexType name="EventView">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DateModified" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SourceTable" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EventView" nillable="true" type="tns:EventView" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ILogServices_DeleteError_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteError" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_DeleteError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_DeleteEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEvent" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_DeleteEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_FilterErrorsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterErrorsList" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_FilterErrorsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterErrorsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_FilterEventsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterEventsList" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_FilterEventsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterEventsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_LogError_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogError" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_LogError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_LogEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogEvent" />
+  </wsdl:message>
+  <wsdl:message name="ILogServices_LogEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogEventResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILogServices">
+    <wsdl:operation name="DeleteError">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/DeleteError" message="tns:ILogServices_DeleteError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/DeleteErrorResponse" message="tns:ILogServices_DeleteError_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/DeleteEvent" message="tns:ILogServices_DeleteEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/DeleteEventResponse" message="tns:ILogServices_DeleteEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterErrorsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/FilterErrorsList" message="tns:ILogServices_FilterErrorsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/FilterErrorsListResponse" message="tns:ILogServices_FilterErrorsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterEventsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/FilterEventsList" message="tns:ILogServices_FilterEventsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/FilterEventsListResponse" message="tns:ILogServices_FilterEventsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/LogError" message="tns:ILogServices_LogError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/LogErrorResponse" message="tns:ILogServices_LogError_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogServices/LogEvent" message="tns:ILogServices_LogEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogServices/LogEventResponse" message="tns:ILogServices_LogEvent_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ILogServices" type="tns:ILogServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteError">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/DeleteError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterErrorsList">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/FilterErrorsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterEventsList">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/FilterEventsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/LogError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogEvent">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/LogEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpsBinding_ILogServices" type="tns:ILogServices">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_ILogServices_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteError">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/DeleteError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterErrorsList">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/FilterErrorsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterEventsList">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/FilterEventsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/LogError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogEvent">
+      <soap:operation soapAction="http://tempuri.org/ILogServices/LogEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LogServices">
+    <wsdl:port name="BasicHttpBinding_ILogServices" binding="tns:BasicHttpBinding_ILogServices">
+      <soap:address location="http://dsabankwebservices.azurewebsites.net/LogServices.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpsBinding_ILogServices" binding="tns:BasicHttpsBinding_ILogServices">
+      <soap:address location="https://dsabankwebservices.azurewebsites.net/LogServices.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

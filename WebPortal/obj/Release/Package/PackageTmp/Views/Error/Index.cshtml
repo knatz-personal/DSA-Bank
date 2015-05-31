@@ -1,0 +1,20 @@
+﻿@model WebPortal.Models.ErrorInfoModel
+
+<div class="jumbotron">
+    <hgroup>
+        <h1>Error Code: @Model.HttpStatusCode</h1>
+        <h2>@Model.StatusDescription</h2>
+    </hgroup>
+
+    @if (User.IsInRole("Administrator"))
+    {<div class="alert alert-warning">
+         <h3>Message:</h3>
+         <p>@Model.Exception.Message</p>
+        <h3>Stack Trace:</h3>
+         <p style="-moz-word-break: keep-all; -o-word-break: keep-all; word-break: keep-all;overflow: hidden; padding: 5px; font-size: 16px;">
+             @Model.Exception.StackTrace
+         </p>
+
+    </div>
+    }
+</div>

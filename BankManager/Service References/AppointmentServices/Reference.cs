@@ -15,7 +15,7 @@ namespace BankManager.AppointmentServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AppointmentView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.Appointment")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AppointmentView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class AppointmentView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

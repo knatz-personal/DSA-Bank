@@ -15,7 +15,7 @@ namespace WebPortal.TransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class TransactionView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -187,19 +187,22 @@ namespace WebPortal.TransactionServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SortOrder", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SortOrder", Namespace="http://schemas.datacontract.org/2004/07/System.Windows.Forms")]
     public enum SortOrder : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Ascending = 0,
+        None = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Descending = 1,
+        Ascending = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Descending = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class TransactionTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -260,7 +263,7 @@ namespace WebPortal.TransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankAccount")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class FixedAccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -290,6 +293,9 @@ namespace WebPortal.TransactionServices {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<decimal> IncomeTaxDeductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal InterestRateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> IsExpiredField;
@@ -425,6 +431,19 @@ namespace WebPortal.TransactionServices {
                 if ((this.IncomeTaxDeductionField.Equals(value) != true)) {
                     this.IncomeTaxDeductionField = value;
                     this.RaisePropertyChanged("IncomeTaxDeduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal InterestRate {
+            get {
+                return this.InterestRateField;
+            }
+            set {
+                if ((this.InterestRateField.Equals(value) != true)) {
+                    this.InterestRateField = value;
+                    this.RaisePropertyChanged("InterestRate");
                 }
             }
         }

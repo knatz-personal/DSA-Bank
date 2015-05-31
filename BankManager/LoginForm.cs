@@ -20,7 +20,7 @@ namespace BankManager
             {
                 string username = txtUsername.Text;
                 string password = txtPassword.Text;
-                using (var client = new UserServicesClient())
+                using (var client = new UserServicesClient("BasicHttpsBinding_IUserServices"))
                 {
                     try
                     {

@@ -15,7 +15,7 @@ namespace BankManager.TransactionServices {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class TransactionView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -187,19 +187,22 @@ namespace BankManager.TransactionServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SortOrder", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SortOrder", Namespace="http://schemas.datacontract.org/2004/07/System.Windows.Forms")]
     public enum SortOrder : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Ascending = 0,
+        None = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Descending = 1,
+        Ascending = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Descending = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/DSABusinessServices.BankTransaction")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransactionTypeView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
     [System.SerializableAttribute()]
     public partial class TransactionTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -258,15 +261,310 @@ namespace BankManager.TransactionServices {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FixedAccountView", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceDSABank")]
+    [System.SerializableAttribute()]
+    public partial class FixedAccountView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AccumulatedInterestField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal BalanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateOpenedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DurationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpiryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IncomeTaxDeductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal InterestRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsExpiredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> MaturityAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RateIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemarksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> AccumulatedInterest {
+            get {
+                return this.AccumulatedInterestField;
+            }
+            set {
+                if ((this.AccumulatedInterestField.Equals(value) != true)) {
+                    this.AccumulatedInterestField = value;
+                    this.RaisePropertyChanged("AccumulatedInterest");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Balance {
+            get {
+                return this.BalanceField;
+            }
+            set {
+                if ((this.BalanceField.Equals(value) != true)) {
+                    this.BalanceField = value;
+                    this.RaisePropertyChanged("Balance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Currency {
+            get {
+                return this.CurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrencyField, value) != true)) {
+                    this.CurrencyField = value;
+                    this.RaisePropertyChanged("Currency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateOpened {
+            get {
+                return this.DateOpenedField;
+            }
+            set {
+                if ((this.DateOpenedField.Equals(value) != true)) {
+                    this.DateOpenedField = value;
+                    this.RaisePropertyChanged("DateOpened");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DurationID {
+            get {
+                return this.DurationIDField;
+            }
+            set {
+                if ((this.DurationIDField.Equals(value) != true)) {
+                    this.DurationIDField = value;
+                    this.RaisePropertyChanged("DurationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpiryDate {
+            get {
+                return this.ExpiryDateField;
+            }
+            set {
+                if ((this.ExpiryDateField.Equals(value) != true)) {
+                    this.ExpiryDateField = value;
+                    this.RaisePropertyChanged("ExpiryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IncomeTaxDeduction {
+            get {
+                return this.IncomeTaxDeductionField;
+            }
+            set {
+                if ((this.IncomeTaxDeductionField.Equals(value) != true)) {
+                    this.IncomeTaxDeductionField = value;
+                    this.RaisePropertyChanged("IncomeTaxDeduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal InterestRate {
+            get {
+                return this.InterestRateField;
+            }
+            set {
+                if ((this.InterestRateField.Equals(value) != true)) {
+                    this.InterestRateField = value;
+                    this.RaisePropertyChanged("InterestRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsExpired {
+            get {
+                return this.IsExpiredField;
+            }
+            set {
+                if ((this.IsExpiredField.Equals(value) != true)) {
+                    this.IsExpiredField = value;
+                    this.RaisePropertyChanged("IsExpired");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> MaturityAmount {
+            get {
+                return this.MaturityAmountField;
+            }
+            set {
+                if ((this.MaturityAmountField.Equals(value) != true)) {
+                    this.MaturityAmountField = value;
+                    this.RaisePropertyChanged("MaturityAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RateID {
+            get {
+                return this.RateIDField;
+            }
+            set {
+                if ((this.RateIDField.Equals(value) != true)) {
+                    this.RateIDField = value;
+                    this.RaisePropertyChanged("RateID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Remarks {
+            get {
+                return this.RemarksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemarksField, value) != true)) {
+                    this.RemarksField = value;
+                    this.RaisePropertyChanged("Remarks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TypeID {
+            get {
+                return this.TypeIDField;
+            }
+            set {
+                if ((this.TypeIDField.Equals(value) != true)) {
+                    this.TypeIDField = value;
+                    this.RaisePropertyChanged("TypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypeName {
+            get {
+                return this.TypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeNameField, value) != true)) {
+                    this.TypeNameField = value;
+                    this.RaisePropertyChanged("TypeName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TransactionServices.ITransactionServices")]
     public interface ITransactionServices {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
-        System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListTransactions();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListTransactions", ReplyAction="http://tempuri.org/ITransactionServices/ListTransactionsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/ListAccountNumbers", ReplyAction="http://tempuri.org/ITransactionServices/ListAccountNumbersResponse")]
         System.Collections.Generic.List<string> ListAccountNumbers();
@@ -297,6 +595,24 @@ namespace BankManager.TransactionServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/GetTransactionTypes", ReplyAction="http://tempuri.org/ITransactionServices/GetTransactionTypesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/TermDeposit", ReplyAction="http://tempuri.org/ITransactionServices/TermDepositResponse")]
+        void TermDeposit(BankManager.TransactionServices.FixedAccountView accountInfo, BankManager.TransactionServices.TransactionView transactionInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/TermDeposit", ReplyAction="http://tempuri.org/ITransactionServices/TermDepositResponse")]
+        System.Threading.Tasks.Task TermDepositAsync(BankManager.TransactionServices.FixedAccountView accountInfo, BankManager.TransactionServices.TransactionView transactionInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransferResponse")]
+        void PersonalTransfer(BankManager.TransactionServices.TransactionView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/PersonalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/PersonalTransferResponse")]
+        System.Threading.Tasks.Task PersonalTransferAsync(BankManager.TransactionServices.TransactionView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/LocalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/LocalTransferResponse")]
+        void LocalTransfer(BankManager.TransactionServices.TransactionView item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/LocalTransfer", ReplyAction="http://tempuri.org/ITransactionServices/LocalTransferResponse")]
+        System.Threading.Tasks.Task LocalTransferAsync(BankManager.TransactionServices.TransactionView item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITransactionServices/Delete", ReplyAction="http://tempuri.org/ITransactionServices/DeleteResponse")]
         void Delete(int id);
@@ -330,14 +646,6 @@ namespace BankManager.TransactionServices {
         
         public TransactionServicesClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public System.Collections.Generic.List<BankManager.TransactionServices.TransactionView> ListTransactions() {
-            return base.Channel.ListTransactions();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionView>> ListTransactionsAsync() {
-            return base.Channel.ListTransactionsAsync();
         }
         
         public System.Collections.Generic.List<string> ListAccountNumbers() {
@@ -378,6 +686,30 @@ namespace BankManager.TransactionServices {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<BankManager.TransactionServices.TransactionTypeView>> GetTransactionTypesAsync() {
             return base.Channel.GetTransactionTypesAsync();
+        }
+        
+        public void TermDeposit(BankManager.TransactionServices.FixedAccountView accountInfo, BankManager.TransactionServices.TransactionView transactionInfo) {
+            base.Channel.TermDeposit(accountInfo, transactionInfo);
+        }
+        
+        public System.Threading.Tasks.Task TermDepositAsync(BankManager.TransactionServices.FixedAccountView accountInfo, BankManager.TransactionServices.TransactionView transactionInfo) {
+            return base.Channel.TermDepositAsync(accountInfo, transactionInfo);
+        }
+        
+        public void PersonalTransfer(BankManager.TransactionServices.TransactionView item) {
+            base.Channel.PersonalTransfer(item);
+        }
+        
+        public System.Threading.Tasks.Task PersonalTransferAsync(BankManager.TransactionServices.TransactionView item) {
+            return base.Channel.PersonalTransferAsync(item);
+        }
+        
+        public void LocalTransfer(BankManager.TransactionServices.TransactionView item) {
+            base.Channel.LocalTransfer(item);
+        }
+        
+        public System.Threading.Tasks.Task LocalTransferAsync(BankManager.TransactionServices.TransactionView item) {
+            return base.Channel.LocalTransferAsync(item);
         }
         
         public void Delete(int id) {

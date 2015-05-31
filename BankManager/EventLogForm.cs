@@ -5,15 +5,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using BankManager.LogServices;
-using BankManager.TransactionServices;
-using SortOrder = BankManager.TransactionServices.SortOrder;
 
 namespace BankManager
 {
     public partial class EventLogForm : Form
     {
-        private ObservableCollection<EventView> _list;
         private SortOrder _currentSortOrder;
+        private ObservableCollection<EventView> _list;
 
         public EventLogForm()
         {
@@ -52,20 +50,21 @@ namespace BankManager
             {
                 using (var client = new LogServicesClient())
                 {
-                    var list = new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text,start, end));
+                    var list =
+                        new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, start, end));
                     _list = list;
                     eventViewBindingSource.DataSource = list.ToBindingList();
                     _currentSortOrder = SortOrder.Descending;
                     eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
                     eventDataGrid.DataSource = eventViewBindingSource;
                 }
-
             }
             else
             {
                 using (var client = new LogServicesClient())
                 {
-                    var list = new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, null, null));
+                    var list =
+                        new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, null, null));
                     _list = list;
                     eventViewBindingSource.DataSource = list.ToBindingList();
                     _currentSortOrder = SortOrder.Descending;
@@ -191,7 +190,5 @@ namespace BankManager
                 comboBoxUsername.AutoCompleteCustomSource = list;
             }*/
         }
-
-
     }
 }

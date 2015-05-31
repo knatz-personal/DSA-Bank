@@ -1,0 +1,106 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using WebPortal.Models
+@model IPagedList<TransactionListItemModel>
+<table id="tblTansactions" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <input id="deleteAll" type="checkbox" value="false" />
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Remarks
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                <a class="btn btn-sm btn-default btn-block" href="@Url.Action("Report", "Transactions")" title="Print list of transactions">
+                    <i class="glyphicon glyphicon-print"></i>
+                    <span scr="Print list of transactions">Print</span>
+                </a>
+            </th>
+        </tr>
+    </thead>
+
+    @if (!Model.Any())
+    {
+        <tbody>
+            <tr>
+                <td colspan="9" style=" text-align: center; ">
+                    <b>No records found matching your query.</b>
+                </td>
+            </tr>
+        </tbody>
+    }
+    else
+    {
+        <tbody>
+            @foreach (TransactionListItemModel item in Model)
+            {
+                <tr>
+                    <td>
+                        <input id="@item.ID" type="checkbox" value="false" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateIssued)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeName)
+                        from account
+                        <span class="@item.AccountFromID">
+                            @Html.DisplayFor(modelItem => item.AccountFromID)
+                        </span>
+                        to account
+                        <span class="@item.AccountToID">
+                            @Html.DisplayFor(modelItem => item.AccountToID)
+                        </span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks, "TruncatedMultilineText")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Currency)
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td style="width: 85px;">
+                        <a class="bttnDetail btn btn-sm btn-default pull-left" id="@item.ID" href="@Url.Action("Details", "Transactions", new {id = item.ID})" title="Details">
+                            <i class="glyphicon glyphicon-list"></i>
+                            <span class="sr-only">Detail</span>
+                        </a>
+                        <a class="bttnPdfSaveThis btn btn-sm btn-default pull-right" href="@Url.Action("DetailReport", "Transactions", new { id = item.ID })" title="Save as pdf file">
+                            <i class="glyphicon glyphicon-floppy-save"></i>
+                            <span class="sr-only">Save as pdf file</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="0">
+                    @Html.PagedListPager(Model, p => Url.Action("Index", "Transactions",
+                        new { p, a = Request.QueryString["a"], st = Request.QueryString["st"], ed = Request.QueryString["a"] }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                            PagedListRenderOptions.TwitterBootstrapPagerAligned,
+                            new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "pagedList" }
+                            ))
+
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>
+<script>
+    $(function () {
+        TRANSACTION_MANAGER.HighLight();
+        TRANSACTION_MANAGER.BindGridButtonEvents();
+    });
+</script>

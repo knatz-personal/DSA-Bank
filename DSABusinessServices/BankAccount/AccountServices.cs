@@ -94,7 +94,7 @@ namespace DSABusinessServices.BankAccount
             {
                 new AccountsRepo().Delete(new Account { ID = id });
             }
-            catch (Exception ex)
+            catch
             {
                 throw new DataDeletionException();
             }
@@ -187,7 +187,11 @@ namespace DSABusinessServices.BankAccount
             try
             {
                 //3 is id of Term Deposit account type
-                return new AccountsRepo().ListByUsername(username).Where(u => u.TypeID == 3).Select(t => new FixedAccountView
+                var allAccounts = new AccountsRepo().ListByUsername(username);
+
+                var fixedAcounts = allAccounts.Where(u => u.TypeID == 3);
+
+                var result = fixedAcounts.Select(t => new FixedAccountView
                 {
                     ID = t.ID,
                     TypeID = t.TypeID,
@@ -207,6 +211,8 @@ namespace DSABusinessServices.BankAccount
                     IsExpired = t.FixedTermAccount.IsExpired,
                     DurationID = (int) t.FixedTermAccount.InterestRate.TermID
                 });
+
+                return result;
             }
             catch
             {

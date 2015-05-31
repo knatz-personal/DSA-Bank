@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TokenGenerator.exe" size="153056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TokenGenerator.exe" size="152032">
       <assemblyIdentity name="TokenGenerator" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gqssF42qt+ZO4IDC/fqHxN15DJRORHIfTdbeKh0hJuw=</dsig:DigestValue>
+        <dsig:DigestValue>igChC5klbPTZFrurFaokt/a9TchcqtHHwBo8I9ftQ0E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,13 +63,13 @@
       <dsig:DigestValue>olR8PwfVyMxMHpXb5U3owHvN6CjDhz7Lyywz7nVD+p4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="TokenGenerator.exe.config" size="757">
+  <file name="TokenGenerator.exe.config" size="1183">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>YtPTg0N+lFjmZLuempcGMB2CgWlWhvcidSIHSb7hf/0=</dsig:DigestValue>
+      <dsig:DigestValue>YUb0LJVkYYV9a2Lr3E/XJCbEBYtUaW4tJPqiX6uUKq0=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

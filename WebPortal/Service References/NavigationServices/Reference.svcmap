@@ -15,19 +15,19 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c8b72bd2-9b00-48ed-a604-94d594643513" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="2e721377-c8d5-42c7-9335-9206ee1726ef" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="8feddc82-8d25-47e9-8ca7-a8c4ab1aafdf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.Navigation.xsd" MetadataType="Schema" ID="794b071b-c92a-4510-9ae2-696667f5b9f9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices/NavigationServices/mex" />
+    <MetadataFile FileName="NavigationServices.xsd" MetadataType="Schema" ID="b4950228-eaa6-4685-bbb4-5a5de9ba35f1" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="NavigationServices.wsdl" MetadataType="Wsdl" ID="3e16acfb-4412-4d37-bda3-84a467f2cfac" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?wsdl" />
+    <MetadataFile FileName="NavigationServices1.xsd" MetadataType="Schema" ID="e36c382c-ca94-4c19-9ef9-35cdabe87d17" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="NavigationServices2.xsd" MetadataType="Schema" ID="6675e0e2-f599-4559-97f9-244fa79f0884" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

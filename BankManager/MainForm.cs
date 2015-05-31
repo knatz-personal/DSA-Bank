@@ -150,7 +150,7 @@ namespace BankManager
                     int id = Convert.ToInt32(row.Cells[0].Value);
                     if (id != 0)
                     {
-                        using (var client = new AppointmentServicesClient())
+                        using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                         {
                             client.Delete(id);
                         }
@@ -215,7 +215,7 @@ namespace BankManager
 
             if (drpAppointmentState.SelectedIndex == 0)
             {
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     appointmentViewBindingSource.DataSource = client.ListAppointments();
                     appointmentDataGrid.DataSource = appointmentViewBindingSource;
@@ -223,7 +223,7 @@ namespace BankManager
             }
             else if (drpAppointmentState.SelectedIndex == 1)
             {
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     if (start.Date != end.Date)
                     {
@@ -238,7 +238,7 @@ namespace BankManager
             }
             else if (drpAppointmentState.SelectedIndex == 3)
             {
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     if (start.Date != end.Date)
                     {
@@ -253,7 +253,7 @@ namespace BankManager
             }
             else
             {
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     if (start.Date != end.Date)
                     {
@@ -364,7 +364,7 @@ namespace BankManager
             if (!string.IsNullOrEmpty(iDTextBox.Text))
             {
                 int id = Convert.ToInt32(iDTextBox.Text);
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     client.Delete(id);
                 }
@@ -486,7 +486,7 @@ namespace BankManager
         {
             if (!string.IsNullOrEmpty(iDTextBox.Text))
             {
-                using (var client = new AppointmentServicesClient())
+                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
                 {
                     var model = new AppointmentView
                     {

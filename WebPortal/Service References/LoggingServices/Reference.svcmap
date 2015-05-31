@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/LogServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="a82ff569-58a5-4d59-a486-d77f96d8a83d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ce90ce78-0d33-4663-ac34-e2201e82c2ad" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c03788be-5c4d-4d94-af6d-f250fefb025f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
-    <MetadataFile FileName="DSABusinessServices.Log.xsd" MetadataType="Schema" ID="1eabeca3-41e1-4d5a-aa5b-ef33fbdcfc51" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/DSABusinessServices.Log/LogServices/mex" />
+    <MetadataFile FileName="LogServices.xsd" MetadataType="Schema" ID="d7b86c6e-d631-4786-8c13-7ba753543ba3" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/LogServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="LogServices1.xsd" MetadataType="Schema" ID="6f16b9be-7986-4ef9-b965-5811c2351ad8" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/LogServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="LogServices2.xsd" MetadataType="Schema" ID="c916c8e2-5cd6-4224-afa9-c2c768207185" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/LogServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="LogServices.wsdl" MetadataType="Wsdl" ID="ea2908c1-5150-4e1f-9db3-4719c17e5079" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/LogServices.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

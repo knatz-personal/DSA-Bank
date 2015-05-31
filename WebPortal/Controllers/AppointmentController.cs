@@ -30,24 +30,33 @@ namespace WebPortal.Controllers
                     {
                         model.Username = User.Identity.Name;
                         model.IsAccepted = null;
+                        DateTime dateTime2;
                         DateTime dateTime;
-                        bool isValidTime = DateTime.TryParseExact(model.SuggestedTime, "h:mm tt", 
+                        bool isValidDate =
+                            DateTime.TryParseExact(model.SuggestedDate.ToString(CultureInfo.InvariantCulture), "h:mm tt",
+                                CultureInfo.InvariantCulture,
+                                DateTimeStyles.None, out dateTime2);
+                        bool isValidTime = DateTime.TryParseExact(model.SuggestedTime, "DD/MM/YYYY",
                             CultureInfo.InvariantCulture,
                             DateTimeStyles.None, out dateTime);
-                        if (isValidTime)
+                        if (isValidDate)
                         {
-                            client.Schedule(new AppointmentView
+                            if (isValidTime)
                             {
-                                Username = model.Username,
-                                SuggestedDate = model.SuggestedDate,
-                                SuggestedTime = dateTime.TimeOfDay,
-                                Duration = model.Duration,
-                                Description = model.Description,
-                                IsAccepted = model.IsAccepted
-                            });
-                            return Json(new { Result = "OK", Message = "Successfully sent your appointment request." });
+                                client.Schedule(new AppointmentView
+                                {
+                                    Username = model.Username,
+                                    SuggestedDate = dateTime2,
+                                    SuggestedTime = dateTime.TimeOfDay,
+                                    Duration = model.Duration,
+                                    Description = model.Description,
+                                    IsAccepted = model.IsAccepted
+                                });
+                                return Json(new {Result = "OK", Message = "Successfully sent your appointment request."});
+                            }
+                            ModelState.AddModelError("SuggestedTime", "Invalid time value.");
                         }
-                        ModelState.AddModelError("SuggestedTime", "Invalid time value.");
+                        ModelState.AddModelError("SuggestedDate", "Invalid date value.");
                     }
                 }
             }
@@ -62,10 +71,10 @@ namespace WebPortal.Controllers
         private SelectList GetDurationList()
         {
             var list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Text = "Select", Value = null });
-            list.Add(new SelectListItem { Text = "30 mins", Value = "30 mins" });
-            list.Add(new SelectListItem { Text = "1 hour", Value = "1 hour" });
-            list.Add(new SelectListItem { Text = "1 hour 30 mins", Value = "1 hour 30 mins" });
+            list.Add(new SelectListItem {Text = "Select", Value = null});
+            list.Add(new SelectListItem {Text = "30 mins", Value = "30 mins"});
+            list.Add(new SelectListItem {Text = "1 hour", Value = "1 hour"});
+            list.Add(new SelectListItem {Text = "1 hour 30 mins", Value = "1 hour 30 mins"});
             return new SelectList(list, "Value", "Text");
         }
     }

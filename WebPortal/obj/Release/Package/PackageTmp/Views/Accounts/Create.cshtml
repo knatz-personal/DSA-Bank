@@ -1,0 +1,22 @@
+﻿@model WebPortal.Models.AccountCreateModel
+
+@{
+    ViewBag.Title = "Create Account";
+
+}
+<div class="panel panel-default well  col-md-offset-3 col-md-6">
+    <div class="panel-heading"><h2>Create bank account</h2></div>
+    <div class="panel-body">
+        <div id="CreateViewContainer">
+            @Html.Partial("_CAccount", Model)
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#fullPageSubmitBttn").show();
+    });
+</script>

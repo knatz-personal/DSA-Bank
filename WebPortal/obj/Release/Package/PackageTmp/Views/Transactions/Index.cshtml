@@ -1,0 +1,102 @@
+﻿@using WebPortal.Models
+@model TransactionViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Model.MyAccounts = (SelectList)Session["MyAccounts"];
+}
+
+<div id="detailModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                <h4 class="modal-title">Transaction Details</h4>
+            </div>
+            <div id="detailBody" class="modal-body well"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h2>My Transaction History</h2></div>
+    <div class="panel-body">
+        <div class="row">
+            @using (Html.BeginForm("Index", "Transactions", FormMethod.Get, new { id = "listform" }))
+            {
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.AccountToListID, Model.MyAccounts, "Select Account", new { @class = "form-control  input-sm", Name = "a", id = "a" })
+                </div>
+                <div class="input-group col-md-4">
+                    <span class="input-group-addon">from</span>
+                    @Html.EditorFor(model => model.StartDate, "DateFilterStart", "st")
+                    <span class="input-group-addon">to</span>
+                    @Html.EditorFor(model => model.EndDate, "DateFilterEnd", "ed")
+                    <span class="input-group-btn">
+                        <button id="filter" class="btn btn-warning btn-sm" type="submit">
+                            <i class="glyphicon glyphicon-filter"></i>
+                            Filter
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+        <div id="pagedList">
+            @Html.Partial("_PagedList", Model.TransactionsPagedList)
+        </div>
+    </div>
+</div>
+<script>
+    var TRANSACTION_MANAGER = {
+        DateTimePicker: function () {
+            $(".date").datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        },
+        Filter: function () {
+            $('#filter').on('click', function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("Index","Transactions")?" + $('#listform').serialize()).done(function (response) {
+                    $("#pagedList").html(response);
+                    TRANSACTION_MANAGER.BindGridButtonEvents();
+                    TRANSACTION_MANAGER.HighLight();
+                });
+            });
+        },
+        BindGridButtonEvents: function () {
+            $(".bttnDetail").on("click", function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $("#detailBody").load(url, function () {
+                    $("#detailModal").modal('show');
+                });
+            });
+        },
+        HighLight: function () {
+            var accno = $("#a").val();
+            if (accno != "") {
+                $("tbody tr td ." + accno).addClass("text-warning");
+            } else {
+                $("tbody tr td span" + accno).addClass("text-warning");
+            }
+        },
+        Init: function () {
+            this.BindGridButtonEvents();
+            this.Filter();
+            this.DateTimePicker();
+            $('input[name=st]').val("");
+            $('input[name=ed]').val("");
+            console.log("TRANSACTION_PROCESSING Initiated");
+        }
+    };
+
+    $(function () {
+        TRANSACTION_MANAGER.Init();
+    });
+</script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

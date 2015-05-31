@@ -1,0 +1,58 @@
+﻿@model WebPortal.Models.TransferOtherModel
+
+@{
+    ViewBag.Title = "Local Transfer";
+    Model.Currencies = (SelectList)Session["Currencies"];
+    Model.MyAccounts = (SelectList)Session["MyAccounts"];
+}
+
+<div class="container body-content">
+    @Html.ActionLink("View Transaction History", "Index", "Transactions", new { @class = "text-info col-md-offset-7 col-md-2 text-right" })
+    @if (!Model.MyAccounts.Any())
+    {
+        <div class="well col-md-offset-3 col-md-6">
+            <div id="editAlert" class="alert alert-danger" role="alert">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-exclamation-sign"></i></span>
+                </button>
+                Insufficient accounts. You must have at least 1 online bank account to use this feature.
+                You can create one @Html.ActionLink("here", "Create", "Accounts")
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="transactionContainer">
+            @Html.Partial("_TOther", Model)
+        </div>
+    }
+</div>
+
+<script>
+    var TRANSFER = {
+        Process: function () {
+            $("#transferform").on("submit", function (ev) {
+                ev.preventDefault();
+                $.validator.unobtrusive.parse("#transferform");
+                var data = $(this).serialize();
+                $.post("@Url.Action("Local Transfer", "Transactions")", data).done(function (response) {
+                    if (response.result !== "undefined" && response.Result === "OK") {
+                        $("#successMessage").html(response.Message);
+                        $("#infoAlert").show();
+                        $('#transferform')[0].reset();
+                    } else {
+                        $("#transactionContainer").html(response);
+                        $.validator.unobtrusive.parse("#transferform");
+                    }
+                });
+            });
+        },
+        Init: function () {
+            this.Process();
+        }
+    };
+    $(function () {
+        $("#infoAlert").hide();
+        TRANSFER.Init();
+    });
+</script>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows.Forms;
 using BankManager.TransactionServices;
 using BankManager.UserServices;
@@ -13,8 +13,8 @@ namespace BankManager
 {
     public partial class TransactionHistoryForm : Form
     {
-        private ObservableCollection<TransactionView> _list;
         private SortOrder _currentSortOrder;
+        private ObservableCollection<TransactionView> _list;
 
         public TransactionHistoryForm()
         {
@@ -110,8 +110,9 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        var list = new ObservableCollection<TransactionView>(client.FilterTransactions(comboBoxUsername.Text,
-                            accountNo, SortOrder.Descending, start, end));
+                        var list =
+                            new ObservableCollection<TransactionView>(client.FilterTransactions(comboBoxUsername.Text,
+                                accountNo, SortOrder.Descending, start, end));
                         _list = list;
                         transactionBindingSource.DataSource = list.ToBindingList();
                         _currentSortOrder = SortOrder.Descending;
@@ -123,11 +124,16 @@ namespace BankManager
                 {
                     using (var client = new TransactionServicesClient())
                     {
-                        var list = new ObservableCollection<TransactionView>(client.FilterTransactions(comboBoxUsername.Text,
+                        List<TransactionView> temp = client.FilterTransactions(
+                            comboBoxUsername.Text,
                             accountNo, SortOrder.Descending, null, null
-                            ));
+                            );
+
+                        var list =
+                            new ObservableCollection<TransactionView>(temp);
                         _list = list;
                         transactionBindingSource.DataSource = list.ToBindingList();
+
                         _currentSortOrder = SortOrder.Descending;
                         transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Descending);
                         transactionDataGrid.DataSource = transactionBindingSource;
@@ -231,7 +237,6 @@ namespace BankManager
                     transactionDataGrid.Sort(transactionDataGrid.Columns[1], ListSortDirection.Descending);
                 }
             }
-
         }
     }
 }
