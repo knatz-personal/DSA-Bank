@@ -28,27 +28,34 @@ namespace WebPortal.Controllers
             {
                 InitialiseAccountInfo();
 
-                using (var client = new AccountServicesClient())
+                try
                 {
-                    List<FixedAccountView> fixedtermaccounts = client.GetFixedAccounts(User.Identity.Name);
-                    //Term expiry check
-                    foreach (FixedAccountView item in fixedtermaccounts)
+                    using (var client = new AccountServicesClient())
                     {
-                        bool isExpired = (item.ExpiryDate - DateTime.Now).TotalDays < 0;
-                        if (isExpired && item.IsExpired == false)
+                        List<FixedAccountView> fixedtermaccounts = client.GetFixedAccounts(User.Identity.Name);
+                        //Term expiry check
+                        foreach (FixedAccountView item in fixedtermaccounts)
                         {
-                            item.IsExpired = true;
-                            decimal bal = item.Balance;
-                            decimal untaxedInterest = GetUnTaxedInterest(item);
-                            item.MaturityAmount = bal + untaxedInterest;
-                            item.IncomeTaxDeduction = untaxedInterest*Tax;
-                            item.AccumulatedInterest = untaxedInterest*RemainderAfterTax;
-                            client.UpdateFixedAccount(item);
+                            bool isExpired = (item.ExpiryDate - DateTime.Now).TotalDays < 0;
+                            if (isExpired && item.IsExpired == false)
+                            {
+                                item.IsExpired = true;
+                                decimal bal = item.Balance;
+                                decimal untaxedInterest = GetUnTaxedInterest(item);
+                                item.MaturityAmount = bal + untaxedInterest;
+                                item.IncomeTaxDeduction = untaxedInterest * Tax;
+                                item.AccumulatedInterest = untaxedInterest * RemainderAfterTax;
+                                client.UpdateFixedAccount(item);
 
-                            ViewBag.Message += "<p><h2>The fixed term for account number "+item.ID+" has expired. Go to services to renew or transfer funds.</h2></p>";
+                                ViewBag.Message += "<p><h2>The fixed term for account number " + item.ID + " has expired. Go to services to renew or transfer funds.</h2></p>";
 
+                            }
                         }
                     }
+                }
+                catch
+                {
+                    ViewBag.ErrorMessage = "An error occurred communicating over the network.";
                 }
             }
 

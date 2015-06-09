@@ -249,7 +249,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Properties\PublishProfiles\DSABankWebPortal %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\DSABankWebPortal.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -351,12 +350,6 @@
     <Content Include="Service References\LoggingServices\WebPortal.LoggingServices.EventView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\NavigationServices\NavigationServices.wsdl" />
     <None Include="Service References\NavigationServices\NavigationServices.xsd">
       <SubType>Designer</SubType>
@@ -386,6 +379,12 @@
     <None Include="Service References\TransactionServices\TransactionServices4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\UserServices\configuration91.svcinfo" />
     <None Include="Service References\UserServices\configuration.svcinfo" />
     <None Include="Service References\UserServices\Reference.svcmap">
@@ -401,6 +400,7 @@
     <None Include="Service References\TransactionServices\configuration.svcinfo" />
     <None Include="Service References\TransactionServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -482,6 +482,7 @@
     <None Include="Service References\UserServices\UserServices3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Appointment\_Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

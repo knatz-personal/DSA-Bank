@@ -23,22 +23,43 @@ namespace BankManager
 
         private void TransactionHistoryForm_Load(object sender, EventArgs e)
         {
-            DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
-            dateTimePickerStart.Value = result;
-            dateTimePickerEnd.Value = result;
-
-            using (var userclient = new UserServicesClient())
+            try
             {
-                var list = new AutoCompleteStringCollection();
-                list.AddRange(userclient.ListUsernames().ToArray());
-                comboBoxUsername.AutoCompleteCustomSource = list;
+                DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
+                dateTimePickerStart.Value = result;
+                dateTimePickerEnd.Value = result;
+
+                try
+                {
+                    using (var userclient = new UserServicesClient())
+                    {
+                        var list = new AutoCompleteStringCollection();
+                        list.AddRange(userclient.ListUsernames().ToArray());
+                        comboBoxUsername.AutoCompleteCustomSource = list;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new Exception("An error occurred communicating over the network.");
+                }
+
+                try
+                {
+                    using (var accclient = new TransactionServicesClient())
+                    {
+                        var list = new AutoCompleteStringCollection();
+                        list.AddRange(accclient.ListAccountNumbers().ToArray());
+                        comboBoxAccountNo.AutoCompleteCustomSource = list;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new Exception("An error occurred communicating over the network.");
+                }
             }
-
-            using (var accclient = new TransactionServicesClient())
+            catch (Exception ex)
             {
-                var list = new AutoCompleteStringCollection();
-                list.AddRange(accclient.ListAccountNumbers().ToArray());
-                comboBoxAccountNo.AutoCompleteCustomSource = list;
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -149,39 +170,67 @@ namespace BankManager
 
         private void transactionViewDataGrid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            try
             {
-                foreach (DataGridViewRow row in transactionDataGrid.SelectedRows)
+                if (e.KeyCode == Keys.Delete)
                 {
-                    int id = Convert.ToInt32(row.Cells[0].Value);
-                    if (id != 0)
+                    foreach (DataGridViewRow row in transactionDataGrid.SelectedRows)
+                    {
+                        int id = Convert.ToInt32(row.Cells[0].Value);
+                        if (id != 0)
+                        {
+                            try
+                            {
+                                using (var client = new TransactionServicesClient())
+                                {
+                                    client.Delete(id);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                throw new Exception("An error occurred communicating over the network.");
+                            }
+                        }
+                        transactionDataGrid.Rows.Remove(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                transactionBindingSource.EndEdit();
+                if (!string.IsNullOrEmpty(iDTextBox.Text))
+                {
+                    int id = Convert.ToInt32(iDTextBox.Text);
+                    try
                     {
                         using (var client = new TransactionServicesClient())
                         {
                             client.Delete(id);
                         }
                     }
-                    transactionDataGrid.Rows.Remove(row);
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                    transactionBindingSource.RemoveCurrent();
                 }
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            transactionBindingSource.EndEdit();
-            if (!string.IsNullOrEmpty(iDTextBox.Text))
-            {
-                int id = Convert.ToInt32(iDTextBox.Text);
-                using (var client = new TransactionServicesClient())
+                else
                 {
-                    client.Delete(id);
+                    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Asterisk);
                 }
-                transactionBindingSource.RemoveCurrent();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Asterisk);
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -23,6 +23,9 @@ namespace WebPortal.BankAccountServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> AccumulatedInterestField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal BalanceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -32,10 +35,31 @@ namespace WebPortal.BankAccountServices {
         private System.DateTime DateOpenedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DurationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpiryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> IncomeTaxDeductionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal InterestRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsExpiredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> MaturityAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RateIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RemarksField;
@@ -56,6 +80,19 @@ namespace WebPortal.BankAccountServices {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> AccumulatedInterest {
+            get {
+                return this.AccumulatedInterestField;
+            }
+            set {
+                if ((this.AccumulatedInterestField.Equals(value) != true)) {
+                    this.AccumulatedInterestField = value;
+                    this.RaisePropertyChanged("AccumulatedInterest");
+                }
             }
         }
         
@@ -99,6 +136,32 @@ namespace WebPortal.BankAccountServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DurationID {
+            get {
+                return this.DurationIDField;
+            }
+            set {
+                if ((this.DurationIDField.Equals(value) != true)) {
+                    this.DurationIDField = value;
+                    this.RaisePropertyChanged("DurationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpiryDate {
+            get {
+                return this.ExpiryDateField;
+            }
+            set {
+                if ((this.ExpiryDateField.Equals(value) != true)) {
+                    this.ExpiryDateField = value;
+                    this.RaisePropertyChanged("ExpiryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID {
             get {
                 return this.IDField;
@@ -112,6 +175,58 @@ namespace WebPortal.BankAccountServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> IncomeTaxDeduction {
+            get {
+                return this.IncomeTaxDeductionField;
+            }
+            set {
+                if ((this.IncomeTaxDeductionField.Equals(value) != true)) {
+                    this.IncomeTaxDeductionField = value;
+                    this.RaisePropertyChanged("IncomeTaxDeduction");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal InterestRate {
+            get {
+                return this.InterestRateField;
+            }
+            set {
+                if ((this.InterestRateField.Equals(value) != true)) {
+                    this.InterestRateField = value;
+                    this.RaisePropertyChanged("InterestRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsExpired {
+            get {
+                return this.IsExpiredField;
+            }
+            set {
+                if ((this.IsExpiredField.Equals(value) != true)) {
+                    this.IsExpiredField = value;
+                    this.RaisePropertyChanged("IsExpired");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> MaturityAmount {
+            get {
+                return this.MaturityAmountField;
+            }
+            set {
+                if ((this.MaturityAmountField.Equals(value) != true)) {
+                    this.MaturityAmountField = value;
+                    this.RaisePropertyChanged("MaturityAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -120,6 +235,19 @@ namespace WebPortal.BankAccountServices {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RateID {
+            get {
+                return this.RateIDField;
+            }
+            set {
+                if ((this.RateIDField.Equals(value) != true)) {
+                    this.RateIDField = value;
+                    this.RaisePropertyChanged("RateID");
                 }
             }
         }
@@ -631,6 +759,12 @@ namespace WebPortal.BankAccountServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetAccountDetail", ReplyAction="http://tempuri.org/IAccountServices/GetAccountDetailResponse")]
         System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetAccountDetailAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetFixedAccount", ReplyAction="http://tempuri.org/IAccountServices/GetFixedAccountResponse")]
+        WebPortal.BankAccountServices.AccountView GetFixedAccount(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetFixedAccount", ReplyAction="http://tempuri.org/IAccountServices/GetFixedAccountResponse")]
+        System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetFixedAccountAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountServices/GetTypes", ReplyAction="http://tempuri.org/IAccountServices/GetTypesResponse")]
         System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView> GetTypes();
         
@@ -723,6 +857,14 @@ namespace WebPortal.BankAccountServices {
         
         public System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetAccountDetailAsync(int id) {
             return base.Channel.GetAccountDetailAsync(id);
+        }
+        
+        public WebPortal.BankAccountServices.AccountView GetFixedAccount(int id) {
+            return base.Channel.GetFixedAccount(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebPortal.BankAccountServices.AccountView> GetFixedAccountAsync(int id) {
+            return base.Channel.GetFixedAccountAsync(id);
         }
         
         public System.Collections.Generic.List<WebPortal.BankAccountServices.AccountTypeView> GetTypes() {

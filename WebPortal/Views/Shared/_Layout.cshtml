@@ -49,6 +49,16 @@
                 </li>
             }
         </ol>
+        
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div id="WebServiceError" class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class=" glyphicon glyphicon-remove"></i></span>
+                </button>
+                @ViewBag.ErrorMessage
+            </div>
+        }
 
         @RenderBody()
 

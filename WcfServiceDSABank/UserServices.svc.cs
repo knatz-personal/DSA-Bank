@@ -10,8 +10,6 @@ namespace WcfServiceDSABank
 {
     public class UserServices : IUserServices
     {
-        private const string _dateFormat = "d/M/yyyy HH:mm:ss";
-
         public void AllocateRole(string username, int roleId)
         {
             new RolesRepo().Allocate(username, roleId);
@@ -217,6 +215,7 @@ namespace WcfServiceDSABank
                 catch (Exception)
                 {
                     throw new DataInsertionException();
+                   
                 }
             }
             else

@@ -18,6 +18,9 @@ namespace WcfServiceDSABank
         AccountView GetAccountDetail(int id);
 
         [OperationContract]
+        AccountView GetFixedAccount(int id);
+
+        [OperationContract]
         IQueryable<AccountTypeView> GetTypes();
 
         [OperationContract]
@@ -88,6 +91,30 @@ namespace WcfServiceDSABank
 
         [DataMember]
         public string Username { get; set; }
+
+        [DataMember]
+        public DateTime ExpiryDate { get; set; }
+
+        [DataMember]
+        public int? RateID { get; set; }
+
+        [DataMember]
+        public decimal InterestRate { get; set; }
+
+        [DataMember]
+        public decimal? IncomeTaxDeduction { get; set; }
+
+        [DataMember]
+        public decimal? AccumulatedInterest { get; set; }
+
+        [DataMember]
+        public decimal? MaturityAmount { get; set; }
+
+        [DataMember]
+        public bool? IsExpired { get; set; }
+
+        [DataMember]
+        public int DurationID { get; set; }
     }
 
     [DataContract]

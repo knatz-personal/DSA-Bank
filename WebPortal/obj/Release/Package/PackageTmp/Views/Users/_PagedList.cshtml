@@ -65,7 +65,7 @@
                         @Html.DisplayFor(modelItem => item.Blocked, "Boolean")
                     </td>
 
-                    <td>
+                    <td style="max-width: 135px;">
                         <a class="bttnAssignThis  btn btn-sm btn-default pull-left" href="@Url.Action("Role", "Users", new {id = item.Username})" title="Role">
                             <i class="glyphicon glyphicon-lock"></i>
                             <span class="sr-only">Role</span>

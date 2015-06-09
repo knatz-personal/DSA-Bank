@@ -22,25 +22,33 @@ namespace WebPortal.Controllers
     {
         public ActionResult Delete(string id)
         {
-            using (var client = new UserServicesClient())
+            try
             {
-                UserView u = client.ReadByUsername(id);
-                return PartialView("_Delete", new UserListItemModel()
+                using (var client = new UserServicesClient())
                 {
-                    Username = u.Username,
-                    FirstName = u.FirstName,
-                    MiddleInitial = u.MiddleInitial,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    Mobile = u.Mobile,
-                    DateOfBirth = u.DateOfBirth,
-                    Address = u.Address,
-                    GenderID = u.GenderID,
-                    TownID = u.TownID,
-                    Blocked = u.Blocked,
-                    NoOfAttempts = u.NoOfAttempts
-                });
+                    UserView u = client.ReadByUsername(id);
+                    return PartialView("_Delete", new UserListItemModel()
+                    {
+                        Username = u.Username,
+                        FirstName = u.FirstName,
+                        MiddleInitial = u.MiddleInitial,
+                        LastName = u.LastName,
+                        Email = u.Email,
+                        Mobile = u.Mobile,
+                        DateOfBirth = u.DateOfBirth,
+                        Address = u.Address,
+                        GenderID = u.GenderID,
+                        TownID = u.TownID,
+                        Blocked = u.Blocked,
+                        NoOfAttempts = u.NoOfAttempts
+                    });
+                }
             }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [ValidateAntiForgeryToken]
@@ -49,9 +57,16 @@ namespace WebPortal.Controllers
         {
             try
             {
-                using (var client = new UserServicesClient())
+                try
                 {
-                    client.Delete(id);
+                    using (var client = new UserServicesClient())
+                    {
+                        client.Delete(id);
+                    }
+                }
+                catch
+                {
+                    throw new Exception("An error occurred communicating over the network.");
                 }
                 return Json("OK");
             }
@@ -63,14 +78,48 @@ namespace WebPortal.Controllers
 
         public ActionResult Details(string id)
         {
-            using (var client = new UserServicesClient())
+            try
             {
-                UserView u = client.ReadByUsername(id);
-                if (u.TownID != null && u.GenderID != null)
+                using (var client = new UserServicesClient())
                 {
-                    return PartialView("_Details", new UserListItemModel
+                    UserView u = client.ReadByUsername(id);
+                    if (u.TownID != null && u.GenderID != null)
                     {
-                        Username = u.Username,
+                        return PartialView("_Details", new UserListItemModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            GenderName = u.GenderName,
+                            TownName = u.TownName,
+                            UserRoles = new SelectList(u.Roles, "ID", "Name"),
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                    }
+                }
+            }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            try
+            {
+                using (var client = new UserServicesClient())
+                {
+                    UserView u = client.ReadByUsername(id);
+                    return PartialView("_Edit", new UserListItemModel
+                    {
                         FirstName = u.FirstName,
                         MiddleInitial = u.MiddleInitial,
                         LastName = u.LastName,
@@ -78,40 +127,21 @@ namespace WebPortal.Controllers
                         Mobile = u.Mobile,
                         DateOfBirth = u.DateOfBirth,
                         Address = u.Address,
-                        GenderName = u.GenderName,
-                        TownName = u.TownName,
-                        UserRoles = new SelectList(u.Roles, "ID", "Name"),
+                        GenderID = u.GenderID,
+                        TownID = u.TownID,
+                        Username = u.Username,
                         Blocked = u.Blocked,
-                        NoOfAttempts = u.NoOfAttempts
+                        NoOfAttempts = u.NoOfAttempts,
+                        Genders = GetGenderList(),
+                        Towns = GetTownList()
                     });
                 }
             }
-            return null;
-        }
-
-        public ActionResult Edit(string id)
-        {
-            using (var client = new UserServicesClient())
+            catch
             {
-                UserView u = client.ReadByUsername(id);
-                return PartialView("_Edit", new UserListItemModel
-                {
-                    FirstName = u.FirstName,
-                    MiddleInitial = u.MiddleInitial,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    Mobile = u.Mobile,
-                    DateOfBirth = u.DateOfBirth,
-                    Address = u.Address,
-                    GenderID = u.GenderID,
-                    TownID = u.TownID,
-                    Username = u.Username,
-                    Blocked = u.Blocked,
-                    NoOfAttempts = u.NoOfAttempts,
-                    Genders = GetGenderList(),
-                    Towns = GetTownList()
-                });
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
             }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [ValidateAntiForgeryToken]
@@ -201,69 +231,75 @@ namespace WebPortal.Controllers
         {
             IEnumerable<UserListItemModel> list = null;
 
-            if (sb == "fname")
+            try
             {
-                using (var client = new UserServicesClient())
+                if (sb == "fname" && !string.IsNullOrEmpty(q))
                 {
-                    list = client.ListUsers()
-                        .Where(
-                            d =>
-                                d.FirstName.ToLower().Contains(q.ToLower()) ||
-                                d.MiddleInitial.ToLower().Contains(q.ToLower()) ||
-                                d.LastName.ToLower().Contains(q.ToLower()))
-                        .Select(u => new UserListItemModel
-                        {
-                            Username = u.Username,
-                            FirstName = u.FirstName,
-                            MiddleInitial = u.MiddleInitial,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Mobile = u.Mobile,
-                            DateOfBirth = u.DateOfBirth,
-                            Address = u.Address,
-                            Blocked = u.Blocked,
-                            NoOfAttempts = u.NoOfAttempts
-                        });
-                }
-            }
-            else if (sb == "username")
-            {
-                using (var client = new UserServicesClient())
-                {
-                    list = client.ListUsers().Where(d => d.Username.ToLower().Contains(q.ToLower()))
-                        .Select(u => new UserListItemModel
-                        {
-                            Username = u.Username,
-                            FirstName = u.FirstName,
-                            MiddleInitial = u.MiddleInitial,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Mobile = u.Mobile,
-                            DateOfBirth = u.DateOfBirth,
-                            Address = u.Address,
-                            Blocked = u.Blocked,
-                            NoOfAttempts = u.NoOfAttempts
-                        });
-                }
-            }
-            else
-            {
-                using (var client = new UserServicesClient())
-                {
-                    list = client.ListUsers().Select(u => new UserListItemModel
+                    using (var client = new UserServicesClient())
                     {
-                        Username = u.Username,
-                        FirstName = u.FirstName,
-                        MiddleInitial = u.MiddleInitial,
-                        LastName = u.LastName,
-                        Email = u.Email,
-                        Mobile = u.Mobile,
-                        DateOfBirth = u.DateOfBirth,
-                        Address = u.Address,
-                        Blocked = u.Blocked,
-                        NoOfAttempts = u.NoOfAttempts
-                    });
+                        list = client.ListUsers()
+                            .Where(
+                                d =>
+                                    d.FirstName.ToLower().Contains(q.ToLower()) ||
+                                     d.MiddleInitial != null && d.MiddleInitial.ToLower().Contains(q.ToLower()) ||
+                                    d.LastName.ToLower().Contains(q.ToLower())).Select(u => new UserListItemModel
+                            {
+                                Username = u.Username,
+                                FirstName = u.FirstName,
+                                MiddleInitial = u.MiddleInitial,
+                                LastName = u.LastName,
+                                Email = u.Email,
+                                Mobile = u.Mobile,
+                                DateOfBirth = u.DateOfBirth,
+                                Address = u.Address,
+                                Blocked = u.Blocked,
+                                NoOfAttempts = u.NoOfAttempts
+                            });
+                    }
                 }
+                else if (sb == "username" && !string.IsNullOrEmpty(q))
+                {
+                    using (var client = new UserServicesClient())
+                    {
+                        list = client.ListUsers().Where(d => d.Username.ToLower().Contains(q.ToLower()))
+                            .Select(u => new UserListItemModel
+                            {
+                                Username = u.Username,
+                                FirstName = u.FirstName,
+                                MiddleInitial = u.MiddleInitial,
+                                LastName = u.LastName,
+                                Email = u.Email,
+                                Mobile = u.Mobile,
+                                DateOfBirth = u.DateOfBirth,
+                                Address = u.Address,
+                                Blocked = u.Blocked,
+                                NoOfAttempts = u.NoOfAttempts
+                            });
+                    }
+                }
+                else
+                {
+                    using (var client = new UserServicesClient())
+                    {
+                        list = client.ListUsers().Select(u => new UserListItemModel
+                        {
+                            Username = u.Username,
+                            FirstName = u.FirstName,
+                            MiddleInitial = u.MiddleInitial,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Address = u.Address,
+                            Blocked = u.Blocked,
+                            NoOfAttempts = u.NoOfAttempts
+                        });
+                    }
+                }
+            }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
             }
             var model = new UserAccountViewModel()
             {
@@ -293,39 +329,46 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var client = new UserServicesClient())
+                    try
                     {
-                        if (!string.IsNullOrEmpty(model.SecurityToken))
+                        using (var client = new UserServicesClient())
                         {
-                            if (client.ValidateToken(model.SecurityToken))
+                            if (!string.IsNullOrEmpty(model.SecurityToken))
                             {
-                                if (client.Authenticate(model.Username, model.Password))
+                                if (client.ValidateToken(model.SecurityToken))
                                 {
-                                    var identity = new ClaimsIdentity(new[]
+                                    if (client.Authenticate(model.Username, model.Password))
+                                    {
+                                        var identity = new ClaimsIdentity(new[]
                                     {
                                         new Claim(ClaimTypes.Name, model.Username)
                                     }, "ApplicationCookie");
 
-                                    HttpContext.GetOwinContext()
-                                        .Authentication.SignIn(
-                                            new AuthenticationProperties { IsPersistent = model.Remember },
-                                            identity);
-                                    
-                                    return RedirectToAction("Index", "Home");
+                                        HttpContext.GetOwinContext()
+                                            .Authentication.SignIn(
+                                                new AuthenticationProperties { IsPersistent = model.Remember },
+                                                identity);
+
+                                        return RedirectToAction("Index", "Home");
+                                    }
+                                    ModelState.AddModelError(string.Empty,
+                                        @"The user name or security details provided are incorrect.");
                                 }
-                                ModelState.AddModelError(string.Empty,
-                                    @"The user name or security details provided are incorrect.");
+                                else
+                                {
+                                    ModelState.AddModelError("", @"The security token is invalid or has expired.");
+                                }
                             }
                             else
                             {
-                                ModelState.AddModelError("", @"The security token is invalid or has expired.");
+                                ModelState.AddModelError("", @"Something ate the security token.");
+                                Session["SecurityToken"] = client.GenerateToken();
                             }
                         }
-                        else
-                        {
-                            ModelState.AddModelError("", @"Something ate the security token.");
-                            Session["SecurityToken"] = client.GenerateToken();
-                        }
+                    }
+                    catch
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
                     }
                 }
             }
@@ -348,10 +391,19 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            var model = new RegisterModel();
-            model.Genders = GetGenderList();
-            model.Towns = GetTownList();
-            return View(model);
+            try
+            {
+                var model = new RegisterModel();
+                model.Genders = GetGenderList();
+                model.Towns = GetTownList();
+                return View(model);
+            }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+                return RedirectToAction("Index");
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [ValidateAntiForgeryToken]
@@ -363,36 +415,43 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var client = new UserServicesClient())
+                    try
                     {
-                        string salt = HashingUtil.GenerateSaltValue();
-                        string hashedPassword = HashingUtil.GenerateSaltedHash(model.Password, salt);
-                        bool isRegistered = client.Register(new UserView
+                        using (var client = new UserServicesClient())
                         {
-                            Username = model.Username,
-                            Password = hashedPassword,
-                            Salt = salt,
-                            FirstName = model.FirstName,
-                            MiddleInitial = model.MiddleInitial,
-                            LastName = model.LastName,
-                            Email = model.Email,
-                            Mobile = model.Mobile,
-                            DateOfBirth = model.DateOfBirth,
-                            Address = model.Address,
-                            GenderID = model.GenderID,
-                            TownID = model.TownID,
-                            Blocked = false,
-                            NoOfAttempts = 0
-                        });
-
-                        if (isRegistered)
-                        {
-                            if (client.Authenticate(model.Username, model.Password))
+                            string salt = HashingUtil.GenerateSaltValue();
+                            string hashedPassword = HashingUtil.GenerateSaltedHash(model.Password, salt);
+                            bool isRegistered = client.Register(new UserView
                             {
-                                FormsAuthentication.SetAuthCookie(model.Username, false);
-                                return RedirectToAction("Index", "Home");
+                                Username = model.Username,
+                                Password = hashedPassword,
+                                Salt = salt,
+                                FirstName = model.FirstName,
+                                MiddleInitial = model.MiddleInitial,
+                                LastName = model.LastName,
+                                Email = model.Email,
+                                Mobile = model.Mobile,
+                                DateOfBirth = model.DateOfBirth,
+                                Address = model.Address,
+                                GenderID = model.GenderID,
+                                TownID = model.TownID,
+                                Blocked = false,
+                                NoOfAttempts = 0
+                            });
+
+                            if (isRegistered)
+                            {
+                                if (client.Authenticate(model.Username, model.Password))
+                                {
+                                    FormsAuthentication.SetAuthCookie(model.Username, false);
+                                    return RedirectToAction("Index", "Home");
+                                }
                             }
                         }
+                    }
+                    catch
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
                     }
                 }
             }
@@ -409,16 +468,24 @@ namespace WebPortal.Controllers
 
         public ActionResult Role(string id)
         {
-            using (var client = new UserServicesClient())
+            try
             {
-                UserView u = client.ReadByUsername(id);
-                return PartialView("_Role", new RoleModel()
+                using (var client = new UserServicesClient())
                 {
-                    Username = u.Username,
-                    Roles = GetRoleList(),
-                    UserRoles = GetCurrentUserRoles(u.Username)
-                });
+                    UserView u = client.ReadByUsername(id);
+                    return PartialView("_Role", new RoleModel()
+                    {
+                        Username = u.Username,
+                        Roles = GetRoleList(),
+                        UserRoles = GetCurrentUserRoles(u.Username)
+                    });
+                }
             }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [ValidateAntiForgeryToken]
@@ -431,9 +498,16 @@ namespace WebPortal.Controllers
                 {
                     if (model.Action == true)
                     {
-                        using (var client = new UserServicesClient())
+                        try
                         {
-                            client.AllocateRole(id, model.RoleId);
+                            using (var client = new UserServicesClient())
+                            {
+                                client.AllocateRole(id, model.RoleId);
+                            }
+                        }
+                        catch
+                        {
+                            throw new Exception("An error occurred communicating over the network.");
                         }
                     }
                     if (model.Action == false)
@@ -444,9 +518,16 @@ namespace WebPortal.Controllers
                         {
                             if (temp.Count() > 1)
                             {
-                                using (var client = new UserServicesClient())
+                                try
                                 {
-                                    client.DeallocateRole(id, model.RoleId);
+                                    using (var client = new UserServicesClient())
+                                    {
+                                        client.DeallocateRole(id, model.RoleId);
+                                    }
+                                }
+                                catch
+                                {
+                                    throw new Exception("An error occurred communicating over the network.");
                                 }
                             }
                             else

@@ -80,9 +80,25 @@ namespace DataAccess.Reposiitories.Accounts
                         Account from = context.Accounts.Find(accountFromId);
                         from.Balance = newAccountFromBalance;
 
-                        context.Accounts.Add(accountTo);
-                        context.SaveChanges();
+                        if (accountTo.TypeID != 1){
+                            context.Accounts.Add(accountTo);
+                        }
+                        else
+                        {
+                            context.Accounts.Add(accountTo);
+                            context.FixedTermAccounts.Add(new FixedTermAccount()
+                            {
+                                AccountID = accountTo.ID,
+                                AccumulatedInterest = 0,
+                                ExpiryDate = DateTime.MinValue,
+                                IncomeTaxDeduction = 0,
+                                IsExpired = true,
+                                MaturityAmount = 0,
+                                RateID = 1
+                            });
+                        }
 
+                        context.SaveChanges();
                         ts.Complete();
                         result = true;
                     }
@@ -173,11 +189,10 @@ namespace DataAccess.Reposiitories.Accounts
             return _db.Accounts.Where(a => a.Username == username);
         }
 
-        public Account GetNewAccount(Account acc)
+        public FixedTermAccount GetFixedAccount(int id)
         {
-            return
-                _db.Accounts.Where(u => u.Username == acc.Username)
-                    .SingleOrDefault(a => a.TypeID == acc.TypeID && a.DateOpened == acc.DateOpened);
+            FixedTermAccount result = _db.FixedTermAccounts.SingleOrDefault(acc=> acc.Account.ID == id);
+            return result;
         }
 
         public int GetInterestRateId(int durationId)

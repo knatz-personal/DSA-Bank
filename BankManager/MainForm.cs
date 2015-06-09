@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using BankManager.AppointmentServices;
+using BankManager.LogServices;
 using BankManager.UserServices;
 using CommonUtils;
 using Google.Apis.Auth.OAuth2;
@@ -143,20 +144,37 @@ namespace BankManager
 
         private void appointmentDataGrid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            try
             {
-                foreach (DataGridViewRow row in appointmentDataGrid.SelectedRows)
+
+                if (e.KeyCode == Keys.Delete)
                 {
-                    int id = Convert.ToInt32(row.Cells[0].Value);
-                    if (id != 0)
+                    foreach (DataGridViewRow row in appointmentDataGrid.SelectedRows)
                     {
-                        using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
+                        int id = Convert.ToInt32(row.Cells[0].Value);
+                        if (id != 0)
                         {
-                            client.Delete(id);
+                            try
+                            {
+                                using (var client = new AppointmentServicesClient())
+                                {
+                                    client.Delete(id);
+                                }
+                            }
+                            catch (Exception)
+                            {
+
+                                throw new Exception("An error occurred communicating over the network.");
+                            }
                         }
+                        appointmentDataGrid.Rows.Remove(row);
                     }
-                    appointmentDataGrid.Rows.Remove(row);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                    @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -207,64 +225,99 @@ namespace BankManager
 
         private void bttnLoadRecords_Click(object sender, EventArgs e)
         {
-            appointmentDataGrid.DataSource = null;
-            appointmentDataGrid.Rows.Clear();
+            try
+            {
+                appointmentDataGrid.DataSource = null;
+                appointmentDataGrid.Rows.Clear();
 
-            DateTime start = dateTimePickerStart.Value;
-            DateTime end = dateTimePickerEnd.Value;
+                DateTime start = dateTimePickerStart.Value;
+                DateTime end = dateTimePickerEnd.Value;
 
-            if (drpAppointmentState.SelectedIndex == 0)
-            {
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
+                if (drpAppointmentState.SelectedIndex == 0)
                 {
-                    appointmentViewBindingSource.DataSource = client.ListAppointments();
-                    appointmentDataGrid.DataSource = appointmentViewBindingSource;
+                    try
+                    {
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            appointmentViewBindingSource.DataSource = client.ListAppointments();
+                            appointmentDataGrid.DataSource = appointmentViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                }
+                else if (drpAppointmentState.SelectedIndex == 1)
+                {
+                    try
+                    {
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            if (start.Date != end.Date)
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(true, start, end);
+                            }
+                            else
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(true, null, null);
+                            }
+                            appointmentDataGrid.DataSource = appointmentViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                }
+                else if (drpAppointmentState.SelectedIndex == 3)
+                {
+                    try
+                    {
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            if (start.Date != end.Date)
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(false, start, end);
+                            }
+                            else
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(false, null, null);
+                            }
+                            appointmentDataGrid.DataSource = appointmentViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            if (start.Date != end.Date)
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(null, start, end);
+                            }
+                            else
+                            {
+                                appointmentViewBindingSource.DataSource = client.FilterAppointmentList(null, null, null);
+                            }
+                            appointmentDataGrid.DataSource = appointmentViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
                 }
             }
-            else if (drpAppointmentState.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
-                {
-                    if (start.Date != end.Date)
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(true, start, end);
-                    }
-                    else
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(true, null, null);
-                    }
-                    appointmentDataGrid.DataSource = appointmentViewBindingSource;
-                }
-            }
-            else if (drpAppointmentState.SelectedIndex == 3)
-            {
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
-                {
-                    if (start.Date != end.Date)
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(false, start, end);
-                    }
-                    else
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(false, null, null);
-                    }
-                    appointmentDataGrid.DataSource = appointmentViewBindingSource;
-                }
-            }
-            else
-            {
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
-                {
-                    if (start.Date != end.Date)
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(null, start, end);
-                    }
-                    else
-                    {
-                        appointmentViewBindingSource.DataSource = client.FilterAppointmentList(null, null, null);
-                    }
-                    appointmentDataGrid.DataSource = appointmentViewBindingSource;
-                }
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -360,30 +413,45 @@ namespace BankManager
 
         private void deleteItem_Click(object sender, EventArgs e)
         {
-            appointmentViewBindingSource.EndEdit();
-            if (!string.IsNullOrEmpty(iDTextBox.Text))
+            try
             {
-                int id = Convert.ToInt32(iDTextBox.Text);
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
+                appointmentViewBindingSource.EndEdit();
+                if (!string.IsNullOrEmpty(iDTextBox.Text))
                 {
-                    client.Delete(id);
+                    int id = Convert.ToInt32(iDTextBox.Text);
+                    try
+                    {
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            client.Delete(id);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                    appointmentViewBindingSource.RemoveCurrent();
                 }
-                appointmentViewBindingSource.RemoveCurrent();
+                else
+                {
+                    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Asterisk);
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void EmailNotification(UserServicesClient userClient, AppointmentView model,
             AppointmentServicesClient client)
         {
+
             UserView u = userClient.ReadByUsername(model.Username);
             string fullName = string.Format("{0} {1} {2}", u.FirstName, u.MiddleInitial, u.LastName);
             string htmlString = "";
-            if (isAcceptedCheckBox.Checked)
+            if (isAcceptedCheckBox.CheckState == CheckState.Checked)
             {
                 client.Response(model);
 
@@ -391,12 +459,13 @@ namespace BankManager
 
                 ReminderNotification(model, userClient, u);
             }
-            else
+            else if (isAcceptedCheckBox.CheckState == CheckState.Unchecked)
             {
                 var justificationDialog = new RejectionJustificationForm();
                 if (justificationDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     string justification = justificationDialog.txtReason.Text;
+                    client.Response(model);
                     htmlString = CreateEmailHtml(model, fullName, justification);
                 }
                 justificationDialog.Dispose();
@@ -413,6 +482,7 @@ namespace BankManager
             htmlAlternateView.LinkedResources.Add(logo);
 
             CommunicationUtil.SendEmail(u.Email, "DSA Bank Appointment Request", htmlAlternateView);
+
         }
 
         private void errorMenuItem_Click(object sender, EventArgs e)
@@ -484,31 +554,53 @@ namespace BankManager
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(iDTextBox.Text))
+            try
             {
-                using (var client = new AppointmentServicesClient("BasicHttpsBinding_IAppointmentServices"))
+                if (!string.IsNullOrEmpty(iDTextBox.Text))
                 {
-                    var model = new AppointmentView
+                    try
                     {
-                        ID = Convert.ToInt32(iDTextBox.Text),
-                        Username = usernameTextBox.Text,
-                        Description = descriptionTextBox.Text,
-                        SuggestedDate = suggestedDateDateTimePicker.Value,
-                        SuggestedTime = Convert.ToDateTime(suggestedTimeTextBox.Text).TimeOfDay,
-                        Duration = durationTextBox.Text,
-                        IsAccepted = isAcceptedCheckBox.Checked
-                    };
+                        using (var client = new AppointmentServicesClient())
+                        {
+                            var model = new AppointmentView
+                            {
+                                ID = Convert.ToInt32(iDTextBox.Text),
+                                Username = usernameTextBox.Text,
+                                Description = descriptionTextBox.Text,
+                                SuggestedDate = suggestedDateDateTimePicker.Value,
+                                SuggestedTime = Convert.ToDateTime(suggestedTimeTextBox.Text).TimeOfDay,
+                                Duration = durationTextBox.Text,
+                                IsAccepted = isAcceptedCheckBox.Checked
+                            };
 
-                    var userClient = new UserServicesClient();
+                            try
+                            {
+                                var userClient = new UserServicesClient();
 
-                    EmailNotification(userClient, model, client);
+                                EmailNotification(userClient, model, client);
+                            }
+                            catch (Exception)
+                            {
+                                throw new Exception("An error occurred communicating over the network.");
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                    appointmentViewBindingSource.EndEdit();
                 }
-                appointmentViewBindingSource.EndEdit();
+                else
+                {
+                    MessageBox.Show(@"There is no record to edit",
+                        @"Item Editing", MessageBoxButtons.OK
+                        , MessageBoxIcon.Asterisk);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(@"There is no record to edit",
-                    @"Item Editing", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

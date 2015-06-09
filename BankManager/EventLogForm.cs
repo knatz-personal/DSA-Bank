@@ -41,55 +41,90 @@ namespace BankManager
 
         private void bttnLoad_Click(object sender, EventArgs e)
         {
-            eventDataGrid.DataSource = null;
-            eventDataGrid.Rows.Clear();
-
-            DateTime start = dateTimePickerStart.Value;
-            DateTime end = dateTimePickerEnd.Value;
-            if (start.Date != end.Date)
+            try
             {
-                using (var client = new LogServicesClient())
+                eventDataGrid.DataSource = null;
+                eventDataGrid.Rows.Clear();
+
+                DateTime start = dateTimePickerStart.Value;
+                DateTime end = dateTimePickerEnd.Value;
+                if (start.Date != end.Date)
                 {
-                    var list =
-                        new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, start, end));
-                    _list = list;
-                    eventViewBindingSource.DataSource = list.ToBindingList();
-                    _currentSortOrder = SortOrder.Descending;
-                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
-                    eventDataGrid.DataSource = eventViewBindingSource;
+                    try
+                    {
+                        using (var client = new LogServicesClient())
+                        {
+                            var list =
+                                new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, start, end));
+                            _list = list;
+                            eventViewBindingSource.DataSource = list.ToBindingList();
+                            _currentSortOrder = SortOrder.Descending;
+                            eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
+                            eventDataGrid.DataSource = eventViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        using (var client = new LogServicesClient())
+                        {
+                            var list =
+                                new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, null, null));
+                            _list = list;
+                            eventViewBindingSource.DataSource = list.ToBindingList();
+                            _currentSortOrder = SortOrder.Descending;
+                            eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
+                            eventDataGrid.DataSource = eventViewBindingSource;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                using (var client = new LogServicesClient())
-                {
-                    var list =
-                        new ObservableCollection<EventView>(client.FilterEventsList(comboBoxSource.Text, null, null));
-                    _list = list;
-                    eventViewBindingSource.DataSource = list.ToBindingList();
-                    _currentSortOrder = SortOrder.Descending;
-                    eventDataGrid.Sort(eventDataGrid.Columns[1], ListSortDirection.Descending);
-                    eventDataGrid.DataSource = eventViewBindingSource;
-                }
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            eventViewBindingSource.EndEdit();
-            if (!string.IsNullOrEmpty(iDTextBox.Text))
+            try
             {
-                int id = Convert.ToInt32(iDTextBox.Text);
-                using (var client = new LogServicesClient())
+                eventViewBindingSource.EndEdit();
+                if (!string.IsNullOrEmpty(iDTextBox.Text))
                 {
-                    client.DeleteEvent(id);
+                    int id = Convert.ToInt32(iDTextBox.Text);
+                    try
+                    {
+                        using (var client = new LogServicesClient())
+                        {
+                            client.DeleteEvent(id);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                    eventViewBindingSource.RemoveCurrent();
                 }
-                eventViewBindingSource.RemoveCurrent();
+                else
+                {
+                    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Asterisk);
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -127,20 +162,34 @@ namespace BankManager
 
         private void eventDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            try
             {
-                foreach (DataGridViewRow row in eventDataGrid.SelectedRows)
+                if (e.KeyCode == Keys.Delete)
                 {
-                    int id = Convert.ToInt32(row.Cells[0].Value);
-                    if (id != 0)
+                    foreach (DataGridViewRow row in eventDataGrid.SelectedRows)
                     {
-                        using (var client = new LogServicesClient())
+                        int id = Convert.ToInt32(row.Cells[0].Value);
+                        if (id != 0)
                         {
-                            client.DeleteEvent(id);
+                            try
+                            {
+                                using (var client = new LogServicesClient())
+                                {
+                                    client.DeleteEvent(id);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                throw new Exception("An error occurred communicating over the network.");
+                            }
                         }
+                        eventDataGrid.Rows.Remove(row);
                     }
-                    eventDataGrid.Rows.Remove(row);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -182,13 +231,6 @@ namespace BankManager
             DateTime result = DateTime.Today.Subtract(TimeSpan.FromDays(1));
             dateTimePickerStart.Value = result;
             dateTimePickerEnd.Value = result;
-            /*
-            using (var client = new LogServicesClient())
-            {
-                var list = new AutoCompleteStringCollection();
-                list.AddRange(client.ListUsernames().ToArray());
-                comboBoxUsername.AutoCompleteCustomSource = list;
-            }*/
         }
     }
 }

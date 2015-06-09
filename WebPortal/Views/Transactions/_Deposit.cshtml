@@ -25,8 +25,16 @@
                             @Html.ValidationSummary(true, "Error: ")
                         </div>
                     }
-
                     <div class="form-group">
+                        <label class="control-label col-md-4">
+                            Deposit type:
+                        </label>
+                        <div class="col-md-8">
+                            <label> @Html.RadioButton("dt", "initial", true)  Initial Deposit </label>
+                            <label> @Html.RadioButton("dt", "renewal")  Account Renewal </label>
+                        </div>
+                    </div>
+                    <div id="source" class="form-group">
                         @Html.LabelFor(model => model.AccountFromID, new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.DropDownListFor(model => model.AccountFromID, Model.MyAccounts, new { @class = "form-control" })
@@ -50,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div id="currencySelector" class="form-group">
                         @Html.LabelFor(model => model.Currency, new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.DropDownListFor(model => model.Currency, Model.Currencies, new { @class = "form-control" })
@@ -58,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div id="amountSelector" class="form-group">
                         @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
@@ -84,3 +92,24 @@
         }
     </div>
 </div>
+<script>
+    $(function () {
+        if ($('input:radio[name=dt]:checked').val() != 'initial') {
+            $("#source").hide();
+            $("#currencySelector").hide();
+            $("#amountSelector").hide();
+        }
+        $("input[name='dt']").change(function () {
+            var depositType = $('input:radio[name=dt]:checked').val();
+            if (depositType === 'initial') {
+                $("#source").show();
+                $("#currencySelector").show();
+                $("#amountSelector").show();
+            } else {
+                $("#source").hide();
+                $("#currencySelector").hide();
+                $("#amountSelector").hide();
+            }
+        });
+    });
+</script>

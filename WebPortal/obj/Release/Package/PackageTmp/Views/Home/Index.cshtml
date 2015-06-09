@@ -15,7 +15,7 @@
 </div>
 <script>
     var FIXEDACCOUNT = {
-        Init: function() {
+        Init: function () {
             @if (!string.IsNullOrEmpty(ViewBag.Message))
             {
                 @: $("#successMessage").html("@Html.Raw(ViewBag.Message)");
@@ -27,8 +27,7 @@
             }
         }
     };
-    $(function() {
-
+    $(function () {
         FIXEDACCOUNT.Init();
     });
 </script>

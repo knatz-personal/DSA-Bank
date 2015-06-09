@@ -18,53 +18,69 @@ namespace WebPortal.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        public FileResult DetailReport(int id)
+        public ActionResult DetailReport(int id)
         {
-            string html;
-            using (var client = new TransactionServicesClient())
+            try
             {
-                TransactionView t = client.GetTransactionDetails(id);
-                html = this.RenderView("DetailReport", new TransactionDetailModel
+                string html;
+                using (var client = new TransactionServicesClient())
                 {
-                    ID = t.ID,
-                    DateIssued = t.DateIssued,
-                    TypeName = t.TypeName,
-                    AccountFromID = t.AccountFromID,
-                    AccountToID = t.AccountToID,
-                    Amount = t.Amount,
-                    Currency = t.Currency,
-                    Remarks = t.Remarks
-                });
-            }
-            string css;
-            using (var streamReader =
-                new StreamReader(Server.MapPath("~/Content/paper.bootstrap.min.css"),
-                    Encoding.UTF8))
-            {
-                css = streamReader.ReadToEnd();
-            }
-            MemoryStream outStream = PrintUtil.CreatePDF(html, css);
+                    TransactionView t = client.GetTransactionDetails(id);
+                    html = this.RenderView("DetailReport", new TransactionDetailModel
+                    {
+                        ID = t.ID,
+                        DateIssued = t.DateIssued,
+                        TypeName = t.TypeName,
+                        AccountFromID = t.AccountFromID,
+                        AccountToID = t.AccountToID,
+                        Amount = t.Amount,
+                        Currency = t.Currency,
+                        Remarks = t.Remarks
+                    });
+                }
+                string css;
+                using (var streamReader =
+                    new StreamReader(Server.MapPath("~/Content/paper.bootstrap.min.css"),
+                        Encoding.UTF8))
+                {
+                    css = streamReader.ReadToEnd();
+                }
+                MemoryStream outStream = PrintUtil.CreatePDF(html, css);
 
-            return File(outStream.ToArray(), "application/pdf");
+                return File(outStream.ToArray(), "application/pdf");
+            }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Details(int id)
         {
-            using (var client = new TransactionServicesClient())
+            try
             {
-                TransactionView t = client.GetTransactionDetails(id);
-                return PartialView("_Details", new TransactionDetailModel
+                using (var client = new TransactionServicesClient())
                 {
-                    ID = t.ID,
-                    DateIssued = t.DateIssued,
-                    TypeName = t.TypeName,
-                    AccountFromID = t.AccountFromID,
-                    AccountToID = t.AccountToID,
-                    Amount = t.Amount,
-                    Currency = t.Currency,
-                    Remarks = t.Remarks
-                });
+                    TransactionView t = client.GetTransactionDetails(id);
+                    return PartialView("_Details", new TransactionDetailModel
+                    {
+                        ID = t.ID,
+                        DateIssued = t.DateIssued,
+                        TypeName = t.TypeName,
+                        AccountFromID = t.AccountFromID,
+                        AccountToID = t.AccountToID,
+                        Amount = t.Amount,
+                        Currency = t.Currency,
+                        Remarks = t.Remarks
+                    });
+                }
             }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Index(int? a, string st, string ed, int? p, int ps = 15)
@@ -74,46 +90,54 @@ namespace WebPortal.Controllers
             bool isValidStartDate = DateTime.TryParse(st ?? string.Empty, out start);
             bool isValidEndDate = DateTime.TryParse(ed ?? string.Empty, out end);
             IEnumerable<TransactionListItemModel> list;
-            using (var client = new TransactionServicesClient())
+            try
             {
-                IEnumerable<TransactionView> temp = null;
-                if (a != null && (isValidStartDate && isValidEndDate))
+                using (var client = new TransactionServicesClient())
                 {
-                    temp = client.FilterTransactions(User.Identity.Name, (int)a, SortOrder.Descending, start, end);
-                }
-                else
-                {
-                    temp =
-                        client.ListUserTransactions(User.Identity.Name)
-                            .Where(ua => ua.AccountFromID == a || ua.AccountToID == a);
+                    IEnumerable<TransactionView> temp = null;
+                    if (a != null && (isValidStartDate && isValidEndDate))
+                    {
+                        temp = client.FilterTransactions(User.Identity.Name, (int)a, SortOrder.Descending, start, end);
+                    }
+                    else
+                    {
+                        temp =
+                            client.ListUserTransactions(User.Identity.Name)
+                                .Where(ua => ua.AccountFromID == a || ua.AccountToID == a);
+                    }
+
+                    list = temp.Select(t => new TransactionListItemModel
+                    {
+                        ID = t.ID,
+                        DateIssued = t.DateIssued,
+                        TypeID = t.TypeID,
+                        TypeName = t.TypeName,
+                        AccountFromID = t.AccountFromID,
+                        AccountToID = t.AccountToID,
+                        Amount = t.Amount,
+                        Currency = t.Currency,
+                        Remarks = t.Remarks
+                    });
                 }
 
-                list = temp.Select(t => new TransactionListItemModel
+
+
+                var results = new TransactionViewModel
                 {
-                    ID = t.ID,
-                    DateIssued = t.DateIssued,
-                    TypeID = t.TypeID,
-                    TypeName = t.TypeName,
-                    AccountFromID = t.AccountFromID,
-                    AccountToID = t.AccountToID,
-                    Amount = t.Amount,
-                    Currency = t.Currency,
-                    Remarks = t.Remarks
-                });
+                    AccountToListID = a,
+                    StartDate = start,
+                    EndDate = end,
+                    TransactionsPagedList = list.ToPagedList(p ?? 1, ps)
+                };
+                Session["TransactionsCurrentResults"] = results;
             }
-
-
-            var results = new TransactionViewModel
+            catch
             {
-                AccountToListID = a,
-                StartDate = start,
-                EndDate = end,
-                TransactionsPagedList = list.ToPagedList(p ?? 1, ps)
-            };
-            Session["TransactionsCurrentResults"] = results;
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
             return Request.IsAjaxRequest()
-                ? (ActionResult)PartialView("_PagedList", results.TransactionsPagedList)
-                : View(results);
+                ? (ActionResult)PartialView("_PagedList", ((TransactionViewModel)Session["TransactionsCurrentResults"]).TransactionsPagedList)
+                : View(Session["TransactionsCurrentResults"]);
         }
 
         public ActionResult Report()
@@ -127,15 +151,23 @@ namespace WebPortal.Controllers
         public ActionResult Deposit()
         {
             var model = new DepositModel();
-
-            using (var client = new AccountServicesClient())
+            try
             {
-                var temp = client.GetFixedAccounts(User.Identity.Name);
-                var temp2 = client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3);
-                model.MyTermAccounts = new SelectList(temp, "ID", "Name");
-                model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
-                model.MyAccounts = new SelectList(temp2, "ID", "Name");
+
+                using (var client = new AccountServicesClient())
+                {
+                    var temp = client.GetFixedAccounts(User.Identity.Name);
+                    var temp2 = client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3);
+                    model.MyTermAccounts = new SelectList(temp, "ID", "Name");
+                    model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
+                    model.MyAccounts = new SelectList(temp2, "ID", "Name");
+                }
             }
+            catch
+            {
+                ViewBag.ErrorMessage = "An error occurred communicating over the network.";
+            }
+
             return View(model);
         }
 
@@ -145,55 +177,119 @@ namespace WebPortal.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                int months = GetDurationInMonths(model.Duration);
+
+                try
                 {
-                    int months = GetDurationInMonths(model.Duration);
-                    using (var client = new TransactionServicesClient())
+                    using (var clientAccount = new AccountServicesClient())
                     {
-                        var accountInfo = new FixedAccountView()
+                        var fixedAccount = clientAccount.GetFixedAccount(model.AccountToID);
+
+                        if (fixedAccount != null && (fixedAccount.IsExpired == true && fixedAccount.MaturityAmount > 0))
                         {
-                            AccumulatedInterest = 0,
-                            IncomeTaxDeduction = 0,
-                            MaturityAmount = 0,
-                            ID = model.AccountToID,
-                            DurationID = model.Duration,
-                            ExpiryDate = DateTime.Now.AddMonths(months),
-                            IsExpired = false
-                        };
-
-                        var transactionInfo = new TransactionView()
+                            return RenewFixedTermAccount(model, fixedAccount, months);
+                        }
+                        if (ModelState.IsValid)
                         {
-                            DateIssued = DateTime.Now,
-                            TypeID = 1,
-                            Remarks = model.Remarks,
-                            AccountFromID = model.AccountFromID,
-                            AccountToID = model.AccountToID,
-                            Amount = model.Amount,
-                            Currency = model.Currency
-                        };
-
-                        //Create method to effect a term deposit
-                        client.TermDeposit(accountInfo, transactionInfo);
-
-                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                            return InitialTermDeposit(model, months);
+                        }
                     }
                 }
+                catch
+                {
+                    ModelState.AddModelError(string.Empty, @"An error occurred communicating over the network.");
+                }
             }
-            catch (Exception ex)
+            catch (Exception conn)
             {
                 ModelState.AddModelError(string.Empty,
-                    @"There was an error completing the transaction, contact the administrator for help.");
-                ModelState.AddModelError(string.Empty, ex.Message);
+                    @"There was an error completing the transaction, contact the administrator for help. Note: You can only renew accounts after they expire.");
+                ModelState.AddModelError(string.Empty, conn.Message);
             }
 
-            using (var client = new AccountServicesClient())
+            try
             {
-                model.MyTermAccounts = new SelectList(client.GetFixedAccounts(User.Identity.Name), "ID", "Name");
-                model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
-                model.MyAccounts = new SelectList(client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3), "ID", "Name");
+                using (var client = new AccountServicesClient())
+                {
+                    model.MyTermAccounts = new SelectList(client.GetFixedAccounts(User.Identity.Name), "ID", "Name");
+                    model.TermsList = new SelectList(client.GetFixedTerms(), "ID", "Name");
+                    model.MyAccounts = new SelectList(client.ListUserAccounts(User.Identity.Name).Where(o => o.TypeID != 3), "ID", "Name");
+                }
+            }
+            catch (Exception conn)
+            {
+                ModelState.AddModelError(string.Empty,
+                    @"An error occurred communicating over the network.");
             }
 
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("_Deposit", model) : View("Deposit", model);
+        }
+
+        private ActionResult RenewFixedTermAccount(DepositModel model, AccountView fixedAccount, int months)
+        {
+            using (var client = new TransactionServicesClient())
+            {
+                var accountInfo = new FixedAccountView()
+                {
+                    AccumulatedInterest = fixedAccount.AccumulatedInterest,
+                    IncomeTaxDeduction = fixedAccount.IncomeTaxDeduction,
+                    MaturityAmount = fixedAccount.MaturityAmount,
+                    Balance = (decimal)fixedAccount.MaturityAmount,
+                    ID = model.AccountToID,
+                    DurationID = model.Duration,
+                    ExpiryDate = DateTime.Now.AddMonths(months),
+                    IsExpired = false
+                };
+
+                var transactionInfo = new TransactionView()
+                {
+                    DateIssued = DateTime.Now,
+                    TypeID = 1,
+                    Remarks = model.Remarks,
+                    AccountFromID = fixedAccount.ID,
+                    AccountToID = model.AccountToID,
+                    Amount = (decimal)fixedAccount.MaturityAmount,
+                    Currency = model.Currency
+                };
+
+                //Create method to effect a term deposit
+                client.TermDeposit(accountInfo, transactionInfo);
+
+                return Json(new { Result = "OK", Message = "Successfully renewed fixed term account" });
+            }
+        }
+
+        private ActionResult InitialTermDeposit(DepositModel model, int months)
+        {
+            using (var client = new TransactionServicesClient())
+            {
+                var accountInfo = new FixedAccountView()
+                {
+                    AccumulatedInterest = 0,
+                    IncomeTaxDeduction = 0,
+                    MaturityAmount = 0,
+                    ID = model.AccountToID,
+                    DurationID = model.Duration,
+                    ExpiryDate = DateTime.Now.AddMonths(months),
+                    IsExpired = false
+                };
+
+                var transactionInfo = new TransactionView()
+                {
+                    DateIssued = DateTime.Now,
+                    TypeID = 1,
+                    Remarks = model.Remarks,
+                    AccountFromID = model.AccountFromID,
+                    AccountToID = model.AccountToID,
+                    Amount = model.Amount,
+                    Currency = model.Currency
+                };
+
+                //Create method to effect a term deposit
+                client.TermDeposit(accountInfo, transactionInfo);
+
+                return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+            }
         }
 
         private int GetDurationInMonths(int duration)
@@ -207,7 +303,7 @@ namespace WebPortal.Controllers
             }
             else if (duration == 3)
             {
-                //ONE Year
+                //Six months
                 result = 6;
             }
             else if (duration == 4)
@@ -239,20 +335,27 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var client = new TransactionServicesClient())
+                    try
                     {
-                        client.LocalTransfer(new TransactionView()
+                        using (var client = new TransactionServicesClient())
                         {
-                            DateIssued = DateTime.Now,
-                            AccountFromID = model.AccountFromID,
-                            AccountToID = model.AccountToID,
-                            Amount = model.Amount,
-                            Currency = model.Currency,
-                            Remarks = model.Remarks,
-                            TypeID = 3
-                        });
+                            client.LocalTransfer(new TransactionView()
+                            {
+                                DateIssued = DateTime.Now,
+                                AccountFromID = model.AccountFromID,
+                                AccountToID = model.AccountToID,
+                                Amount = model.Amount,
+                                Currency = model.Currency,
+                                Remarks = model.Remarks,
+                                TypeID = 3
+                            });
 
-                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                            return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                        }
+                    }
+                    catch
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
                     }
                 }
             }
@@ -281,21 +384,47 @@ namespace WebPortal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var client = new TransactionServicesClient())
+                    try
                     {
-
-                        client.PersonalTransfer(new TransactionView()
+                        using (var clientAccount = new AccountServicesClient())
                         {
-                            DateIssued = DateTime.Now,
-                            AccountFromID = model.AccountFromID,
-                            AccountToID = model.AccountToID,
-                            Amount = model.Amount,
-                            Currency = model.Currency,
-                            Remarks = model.Remarks,
-                            TypeID = 2
-                        });
+                            var fixedAccount = clientAccount.GetFixedAccount((int)model.AccountFromID);
+                            using (var client = new TransactionServicesClient())
+                            {
+                                if (fixedAccount != null && (fixedAccount.IsExpired == true && fixedAccount.MaturityAmount > 0))
+                                {
+                                    client.PersonalTransfer(new TransactionView()
+                                   {
+                                       DateIssued = DateTime.Now,
+                                       AccountFromID = model.AccountFromID,
+                                       AccountToID = model.AccountToID,
+                                       Amount = (decimal)fixedAccount.MaturityAmount,
+                                       Currency = fixedAccount.Currency,
+                                       Remarks = model.Remarks,
+                                       TypeID = 2
+                                   });
+                                    return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                                }
+                                
+                                client.PersonalTransfer(new TransactionView()
+                                {
+                                    DateIssued = DateTime.Now,
+                                    AccountFromID = model.AccountFromID,
+                                    AccountToID = model.AccountToID,
+                                    Amount = model.Amount,
+                                    Currency = model.Currency,
+                                    Remarks = model.Remarks,
+                                    TypeID = 2
+                                });
 
-                        return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                                return Json(new { Result = "OK", Message = "Successfully transfered funds" });
+                            }
+
+                        }
+                    }
+                    catch
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
                     }
                 }
             }

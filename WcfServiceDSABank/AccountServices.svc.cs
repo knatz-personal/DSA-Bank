@@ -15,7 +15,7 @@ namespace WcfServiceDSABank
         #region Constants
 
         private const string DefaultCurrency = "EUR";
-        private const decimal MinimumBalance = (decimal) 10.0;
+        private const decimal MinimumBalance = (decimal)10.0;
 
         #endregion
 
@@ -92,7 +92,7 @@ namespace WcfServiceDSABank
         {
             try
             {
-                new AccountsRepo().Delete(new Account {ID = id});
+                new AccountsRepo().Delete(new Account { ID = id });
             }
             catch
             {
@@ -150,7 +150,7 @@ namespace WcfServiceDSABank
 
         public AccountView GetAccountDetail(int id)
         {
-            Account acc = new AccountsRepo().Read(new Account {ID = id});
+            Account acc = new AccountsRepo().Read(new Account { ID = id });
             return (new AccountView
             {
                 ID = acc.ID,
@@ -163,6 +163,36 @@ namespace WcfServiceDSABank
                 Balance = acc.Balance,
                 Remarks = acc.Remarks
             });
+        }
+
+        public AccountView GetFixedAccount(int id)
+        {
+            FixedTermAccount acc = new AccountsRepo().GetFixedAccount(id);
+            var arrr = new AccountsRepo().Read(new Account() { ID = id });
+            if (acc != null)
+            {
+                return (new AccountView
+                {
+                    ID = acc.AccountID,
+                    TypeID = acc.Account.TypeID,
+                    TypeName = acc.Account.AccountType.Name,
+                    DateOpened = acc.Account.DateOpened,
+                    Username = acc.Account.Username,
+                    Name = acc.Account.Name,
+                    Currency = acc.Account.Currency,
+                    Balance = acc.Account.Balance,
+                    Remarks = acc.Account.Remarks,
+                    ExpiryDate = acc.ExpiryDate,
+                    RateID = acc.RateID,
+                    InterestRate = acc.InterestRate.Rate,
+                    IncomeTaxDeduction = acc.IncomeTaxDeduction,
+                    AccumulatedInterest = acc.AccumulatedInterest,
+                    MaturityAmount = acc.MaturityAmount,
+                    IsExpired = acc.IsExpired,
+                    DurationID = (int)acc.InterestRate.TermID
+                });
+            }
+            return null;
         }
 
         public IQueryable<AccountTypeView> GetTypes()
@@ -199,15 +229,6 @@ namespace WcfServiceDSABank
                             Currency = t.Currency,
                             Balance = t.Balance,
                             Remarks = t.Remarks
-                            //,
-                            //ExpiryDate = t.FixedTermAccount.ExpiryDate,
-                            //RateID = t.FixedTermAccount.RateID,
-                            //InterestRate = t.FixedTermAccount.InterestRate.Rate,
-                            //IncomeTaxDeduction = t.FixedTermAccount.IncomeTaxDeduction,
-                            //AccumulatedInterest = t.FixedTermAccount.AccumulatedInterest,
-                            //MaturityAmount = t.FixedTermAccount.MaturityAmount,
-                            //IsExpired = t.FixedTermAccount.IsExpired,
-                            //DurationID = (int)t.FixedTermAccount.InterestRate.TermID
                         });
 
                 return result;
@@ -247,7 +268,7 @@ namespace WcfServiceDSABank
             {
                 var from = ConverterUtil.StringToEnum<Currency>(currencyFrom);
                 var to = ConverterUtil.StringToEnum<Currency>(currencyTo);
-                result = (decimal) client.ConversionRate(from, to)*amount;
+                result = (decimal)client.ConversionRate(from, to) * amount;
             }
 
             return result;
