@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -271,19 +273,25 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\AppointmentServices\AppointmentServices.wsdl" />
-    <None Include="Service References\AppointmentServices\AppointmentServices.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppointmentServices\AppointmentServices1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AppointmentServices\AppointmentServices2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Service References\AppointmentServices\WebPortal.AppointmentServices.AppointmentView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\AppointmentServices\AppointmentServices1.wsdl" />
+    <None Include="Service References\AppointmentServices\AppointmentServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\AppointmentServices31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\AppointmentServices32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
+    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
+    <None Include="Service References\AppointmentServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Service References\BankAccountServices\AccountServices.wsdl" />
     <None Include="Service References\BankAccountServices\AccountServices.xsd">
       <SubType>Designer</SubType>
@@ -297,33 +305,42 @@
     <None Include="Service References\BankAccountServices\AccountServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
-    <None Include="Service References\BankAccountServices\configuration.svcinfo" />
-    <None Include="Service References\BankAccountServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\AppointmentServices\configuration91.svcinfo" />
-    <None Include="Service References\AppointmentServices\configuration.svcinfo" />
-    <None Include="Service References\AppointmentServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountTypeView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.AccountView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.TermView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.FixedAccountView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\BankAccountServices\WebPortal.BankAccountServices.TermView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CurrencyConvertorServices\CurrencyConvertor.wsdl" />
+    <None Include="Service References\CurrencyConvertorServices\configuration91.svcinfo" />
+    <None Include="Service References\CurrencyConvertorServices\configuration.svcinfo" />
+    <None Include="Service References\CurrencyConvertorServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\LoggingServices\LogServices.disco" />
     <None Include="Service References\LoggingServices\configuration91.svcinfo" />
     <None Include="Service References\LoggingServices\configuration.svcinfo" />
+    <None Include="Service References\LoggingServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\BankAccountServices\AccountServices.disco" />
+    <None Include="Service References\BankAccountServices\configuration91.svcinfo" />
+    <None Include="Service References\BankAccountServices\configuration.svcinfo" />
+    <None Include="Service References\BankAccountServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\LoggingServices\LogServices.wsdl" />
     <None Include="Service References\LoggingServices\LogServices.xsd">
       <SubType>Designer</SubType>
@@ -334,49 +351,20 @@
     <None Include="Service References\LoggingServices\LogServices2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LoggingServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\CurrencyConvertorServices\configuration91.svcinfo" />
-    <None Include="Service References\CurrencyConvertorServices\configuration.svcinfo" />
-    <None Include="Service References\CurrencyConvertorServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Service References\LoggingServices\WebPortal.LoggingServices.ErrorView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\LoggingServices\WebPortal.LoggingServices.EventView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\NavigationServices\NavigationServices.wsdl" />
-    <None Include="Service References\NavigationServices\NavigationServices.xsd">
+    <None Include="Service References\NavigationServices\NavigationServices1.wsdl" />
+    <None Include="Service References\NavigationServices\NavigationServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\NavigationServices\NavigationServices1.xsd">
+    <None Include="Service References\NavigationServices\NavigationServices31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\NavigationServices\NavigationServices2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\NavigationServices\WebPortal.NavigationServices.MenuView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\TransactionServices\TransactionServices.wsdl" />
-    <None Include="Service References\TransactionServices\TransactionServices.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\TransactionServices1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\TransactionServices2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\TransactionServices3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TransactionServices\TransactionServices4.xsd">
+    <None Include="Service References\NavigationServices\NavigationServices32.xsd">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionTypeView.datasource">
@@ -385,10 +373,21 @@
     <Content Include="Service References\TransactionServices\WebPortal.TransactionServices.TransactionView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\UserServices\configuration91.svcinfo" />
-    <None Include="Service References\UserServices\configuration.svcinfo" />
-    <None Include="Service References\UserServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
+    <None Include="Service References\TransactionServices\TransactionServices1.wsdl" />
+    <None Include="Service References\TransactionServices\TransactionServices5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices54.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NavigationServices\configuration91.svcinfo" />
     <None Include="Service References\NavigationServices\configuration.svcinfo" />
@@ -399,6 +398,13 @@
     <None Include="Service References\TransactionServices\configuration91.svcinfo" />
     <None Include="Service References\TransactionServices\configuration.svcinfo" />
     <None Include="Service References\TransactionServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UserServices\UserServices.disco" />
+    <None Include="Service References\UserServices\configuration91.svcinfo" />
+    <None Include="Service References\UserServices\configuration.svcinfo" />
+    <None Include="Service References\UserServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -444,18 +450,6 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Users\_PagedList.cshtml" />
     <Content Include="Views\Transactions\DetailReport.cshtml" />
-    <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.RoleView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.TownView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Users\_Role.cshtml" />
     <Content Include="Views\Users\Role.cshtml" />
     <Content Include="Views\Transactions\Report.cshtml" />
@@ -469,6 +463,7 @@
     <Content Include="Views\Transactions\_TOther.cshtml" />
     <Content Include="Views\Accounts\_CAccount.cshtml" />
     <Content Include="Views\Transactions\_Deposit.cshtml" />
+    <Content Include="Views\Appointment\_Schedule.cshtml" />
     <None Include="Service References\UserServices\UserServices.wsdl" />
     <None Include="Service References\UserServices\UserServices.xsd">
       <SubType>Designer</SubType>
@@ -482,7 +477,18 @@
     <None Include="Service References\UserServices\UserServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Appointment\_Schedule.cshtml" />
+    <Content Include="Service References\UserServices\WebPortal.UserServices.GenderView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.RoleView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.TownView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\UserServices\WebPortal.UserServices.UserView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -10,6 +10,13 @@
     </WebStackScaffolding_LayoutPageFile>
     <ProjectView>ProjectFiles</ProjectView>
     <NameOfLastUsedPublishProfile>DSABankWebPortal</NameOfLastUsedPublishProfile>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

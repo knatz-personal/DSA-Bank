@@ -2,7 +2,6 @@
 <ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7c099f66-303f-4fd8-aa6c-b538ef3b3900" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
-    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -21,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:60125/AppointmentServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AppointmentServices.wsdl" MetadataType="Wsdl" ID="58d14200-57b7-48e8-a218-2963eb90e6d2" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?wsdl" />
-    <MetadataFile FileName="AppointmentServices.xsd" MetadataType="Schema" ID="65a5120d-92e7-4411-b8f6-7bca6c4b6d0e" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd1" />
-    <MetadataFile FileName="AppointmentServices1.xsd" MetadataType="Schema" ID="aa222581-062a-4983-a14d-bd183e22d0df" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd2" />
-    <MetadataFile FileName="AppointmentServices2.xsd" MetadataType="Schema" ID="2bbbb217-1d36-4003-be72-9cf48b6c5977" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/AppointmentServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="AppointmentServices3.xsd" MetadataType="Schema" ID="59d160d7-71ba-49c2-aa4a-06c75cc8bf25" SourceId="1" SourceUrl="http://localhost:60125/AppointmentServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="AppointmentServices31.xsd" MetadataType="Schema" ID="14001e88-5c6d-49fa-b4b5-71379df43170" SourceId="1" SourceUrl="http://localhost:60125/AppointmentServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="AppointmentServices1.wsdl" MetadataType="Wsdl" ID="50bc1fec-5831-4d3d-b1a6-d839cec53ae2" SourceId="1" SourceUrl="http://localhost:60125/AppointmentServices.svc?wsdl" />
+    <MetadataFile FileName="AppointmentServices32.xsd" MetadataType="Schema" ID="6be9c06a-6a57-429b-ba3f-499e12834dd1" SourceId="1" SourceUrl="http://localhost:60125/AppointmentServices.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

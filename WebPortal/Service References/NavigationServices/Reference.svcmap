@@ -2,7 +2,6 @@
 <ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="126f3de2-e5b5-4887-a3b1-a25084a85771" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
-    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -21,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:60125/NavigationServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="NavigationServices.xsd" MetadataType="Schema" ID="b4950228-eaa6-4685-bbb4-5a5de9ba35f1" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd1" />
-    <MetadataFile FileName="NavigationServices.wsdl" MetadataType="Wsdl" ID="3e16acfb-4412-4d37-bda3-84a467f2cfac" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?wsdl" />
-    <MetadataFile FileName="NavigationServices1.xsd" MetadataType="Schema" ID="e36c382c-ca94-4c19-9ef9-35cdabe87d17" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd2" />
-    <MetadataFile FileName="NavigationServices2.xsd" MetadataType="Schema" ID="6675e0e2-f599-4559-97f9-244fa79f0884" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/NavigationServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="NavigationServices1.wsdl" MetadataType="Wsdl" ID="e93fa37c-e5ae-48a0-9c7d-1d60cf1dbe26" SourceId="1" SourceUrl="http://localhost:60125/NavigationServices.svc?wsdl" />
+    <MetadataFile FileName="NavigationServices3.xsd" MetadataType="Schema" ID="2859e2da-6e85-4ebf-b9db-b9ff96d136ba" SourceId="1" SourceUrl="http://localhost:60125/NavigationServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="NavigationServices31.xsd" MetadataType="Schema" ID="bf0661ee-9e85-4f79-a0df-3b4d0d2a3def" SourceId="1" SourceUrl="http://localhost:60125/NavigationServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="NavigationServices32.xsd" MetadataType="Schema" ID="8f883225-29af-49e1-b012-7fb39f52c691" SourceId="1" SourceUrl="http://localhost:60125/NavigationServices.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
