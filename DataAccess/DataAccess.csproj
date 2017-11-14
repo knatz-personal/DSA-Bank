@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,6 +89,8 @@
       <DependentUpon>DSABankModel.edmx</DependentUpon>
       <LastGenOutput>DSABankModel.cs</LastGenOutput>
     </Content>
+    <Content Include="SQL Scripts\DDL.linq" />
+    <Content Include="SQL Scripts\TCL.linq" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
