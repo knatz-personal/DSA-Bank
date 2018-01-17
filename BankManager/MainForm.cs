@@ -16,21 +16,12 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using WcfServiceDSABank;
 
 namespace BankManager
 {
     public partial class MainForm : Form
     {
-        private const string ApplicationName = "DSA Bank Appointments";
-
-        private static readonly string[] Scopes =
-        {
-            CalendarService.Scope.Calendar, // Manage calendar
-            CalendarService.Scope.CalendarReadonly // View  Calendar
-        };
-
-        private static UserCredential _credential;
-
         public MainForm()
         {
             InitializeComponent();
@@ -91,6 +82,16 @@ namespace BankManager
             }
         }
 
+        private const string ApplicationName = "DSA Bank Appointments";
+
+        private static readonly string[] Scopes =
+        {
+            CalendarService.Scope.Calendar, // Manage calendar
+            CalendarService.Scope.CalendarReadonly // View  Calendar
+        };
+
+        private static UserCredential _credential;
+
         private static void ReminderNotification(AppointmentView model, UserServicesClient userClient,
             UserView currentUser)
         {
@@ -146,7 +147,6 @@ namespace BankManager
         {
             try
             {
-
                 if (e.KeyCode == Keys.Delete)
                 {
                     foreach (DataGridViewRow row in appointmentDataGrid.SelectedRows)
@@ -163,7 +163,6 @@ namespace BankManager
                             }
                             catch (Exception)
                             {
-
                                 throw new Exception("An error occurred communicating over the network.");
                             }
                         }
@@ -447,7 +446,6 @@ namespace BankManager
         private void EmailNotification(UserServicesClient userClient, AppointmentView model,
             AppointmentServicesClient client)
         {
-
             UserView u = userClient.ReadByUsername(model.Username);
             string fullName = string.Format("{0} {1} {2}", u.FirstName, u.MiddleInitial, u.LastName);
             string htmlString = "";
@@ -482,7 +480,6 @@ namespace BankManager
             htmlAlternateView.LinkedResources.Add(logo);
 
             CommunicationUtil.SendEmail(u.Email, "DSA Bank Appointment Request", htmlAlternateView);
-
         }
 
         private void errorMenuItem_Click(object sender, EventArgs e)
@@ -631,6 +628,5 @@ namespace BankManager
             }
             Hide();
         }
-
     }
 }

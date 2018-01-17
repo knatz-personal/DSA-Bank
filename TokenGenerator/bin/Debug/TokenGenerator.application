@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="TokenGenerator.exe.manifest" size="3975">
+    <dependentAssembly dependencyType="install" codebase="TokenGenerator.exe.manifest" size="3974">
       <assemblyIdentity name="TokenGenerator.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JFf6gZXpM+tJCPjLJhpM1djNLyPyP4CVUc1b5zXjEu8=</dsig:DigestValue>
+        <dsig:DigestValue>LBPce9Uq7kqh3FiBenzVEQc/N32s6i+UiUJ/bA2WzH0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

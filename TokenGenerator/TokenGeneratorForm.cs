@@ -29,13 +29,13 @@ namespace TokenGenerator
                     txtTokenOutput.Text = client.GenerateToken();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                txtTokenOutput.Text = @"An error occurred while generating the token";
+                var msg = string.Format("An error occurred while generating the token {0}", ex.Message);
+                txtTokenOutput.Text = msg;//@"An error occurred while generating the token {ex.Message}";
                 txtTokenOutput.Font = new Font(txtTokenOutput.Font.FontFamily, 10);
                 txtTokenOutput.ForeColor = Color.Red;
             }
-          
         }
     }
 }

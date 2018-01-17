@@ -15,20 +15,21 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/UserServices.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:60125/UserServices.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UserServices.xsd" MetadataType="Schema" ID="b1c46fe1-7ad5-44ca-9993-ff3ee645b034" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/UserServices.svc?xsd=xsd3" />
-    <MetadataFile FileName="UserServices1.xsd" MetadataType="Schema" ID="c7cdbdaf-662e-4163-8e31-ddd132563060" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/UserServices.svc?xsd=xsd2" />
-    <MetadataFile FileName="UserServices.wsdl" MetadataType="Wsdl" ID="067024a6-c5b1-4b90-84e6-89a6d98ccbf0" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/UserServices.svc?wsdl" />
-    <MetadataFile FileName="UserServices2.xsd" MetadataType="Schema" ID="a63892f0-852c-420c-b09a-42787946da41" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/UserServices.svc?xsd=xsd1" />
-    <MetadataFile FileName="UserServices3.xsd" MetadataType="Schema" ID="e2b834d3-e4f4-4f3c-a45d-97dda961e09e" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/UserServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserServices.disco" MetadataType="Disco" ID="9e7adc65-3885-4758-a4c3-1cf650e45043" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?disco" />
+    <MetadataFile FileName="UserServices4.xsd" MetadataType="Schema" ID="179aed3b-5dff-463c-ac99-8885503e0761" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserServices41.xsd" MetadataType="Schema" ID="f1afda43-68f1-48bb-8ff3-ea384d41115f" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserServices1.wsdl" MetadataType="Wsdl" ID="bab4a6e7-5395-407b-951a-c2fa160e80f4" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?wsdl" />
+    <MetadataFile FileName="UserServices42.xsd" MetadataType="Schema" ID="7558ba05-3013-47f3-9ea1-57911f1cc01e" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserServices43.xsd" MetadataType="Schema" ID="60c274dc-2e4c-4a8f-b5c0-8a5c370dd3f5" SourceId="1" SourceUrl="http://localhost:60125/UserServices.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

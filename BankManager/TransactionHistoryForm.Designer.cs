@@ -1,4 +1,6 @@
-﻿namespace BankManager
+﻿using WcfServiceDSABank;
+
+namespace BankManager
 {
     partial class TransactionHistoryForm
     {
@@ -318,7 +320,7 @@
             // 
             // transactionBindingSource
             // 
-            this.transactionBindingSource.DataSource = typeof(BankManager.TransactionServices.TransactionView);
+            this.transactionBindingSource.DataSource = typeof(TransactionView);
             // 
             // tableLayoutPanel2
             // 
@@ -585,8 +587,8 @@
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
-            this.bindingNavigator1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.bindingNavigator1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bindingNavigator1.AutoSize = false;
             this.bindingNavigator1.BindingSource = this.transactionBindingSource;

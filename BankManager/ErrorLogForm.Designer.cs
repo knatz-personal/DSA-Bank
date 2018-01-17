@@ -1,4 +1,6 @@
-﻿namespace BankManager
+﻿using WcfServiceDSABank;
+
+namespace BankManager
 {
     partial class ErrorLogForm
     {
@@ -307,7 +309,7 @@
             // 
             // errorViewBindingSource
             // 
-            this.errorViewBindingSource.DataSource = typeof(BankManager.LogServices.ErrorView);
+            this.errorViewBindingSource.DataSource = typeof(ErrorView);
             // 
             // tableLayoutPanel2
             // 
@@ -600,7 +602,7 @@
             // 
             // appointmentViewBindingSource
             // 
-            this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
+            this.appointmentViewBindingSource.DataSource = typeof(AppointmentView);
             // 
             // ErrorLogForm
             // 

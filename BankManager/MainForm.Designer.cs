@@ -1,4 +1,6 @@
-﻿namespace BankManager
+﻿using WcfServiceDSABank;
+
+namespace BankManager
 {
     partial class MainForm
     {
@@ -358,7 +360,7 @@
             // 
             // appointmentViewBindingSource
             // 
-            this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
+            this.appointmentViewBindingSource.DataSource = typeof(AppointmentView);
             // 
             // tableLayoutPanel2
             // 

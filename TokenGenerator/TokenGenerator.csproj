@@ -51,10 +51,10 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7547048E335DF740653AC81B388992E4BEAE084A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5396C10098530AB8CE6E2193644A4998A09C7AA6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>TokenGenerator_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>TokenGenerator_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -123,20 +123,20 @@
     <None Include="Service References\UserServices\TokenGenerator.UserServices.UserView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UserServices\UserServices.wsdl" />
-    <None Include="Service References\UserServices\UserServices.xsd">
+    <None Include="Service References\UserServices\UserServices1.wsdl" />
+    <None Include="Service References\UserServices\UserServices4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\UserServices1.xsd">
+    <None Include="Service References\UserServices\UserServices41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\UserServices2.xsd">
+    <None Include="Service References\UserServices\UserServices42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserServices\UserServices3.xsd">
+    <None Include="Service References\UserServices\UserServices43.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TokenGenerator_TemporaryKey.pfx" />
+    <None Include="TokenGenerator_1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Service References\UserServices\UserServices.disco" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

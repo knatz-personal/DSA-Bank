@@ -24,7 +24,7 @@ namespace BankManager
                     string password = txtPassword.Text;
                     try
                     {
-                        using (var client = new UserServicesClient("BasicHttpsBinding_IUserServices"))
+                        using (var client = new UserServicesClient())
                         {
                             try
                             {
@@ -64,9 +64,11 @@ namespace BankManager
                             }
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex2)
                     {
-                        throw new Exception("An error occurred communicating over the network.");
+                        lblMessage.Text = ex2.Message;
+                        lblMessage.ForeColor = Color.Red;
+                        //throw new Exception("An error occurred communicating over the network.");
                     }
                 }
                 else

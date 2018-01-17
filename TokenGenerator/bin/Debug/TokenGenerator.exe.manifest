@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9cVLggwDivo8gofF7/MD6sBPBBPndydXSAJ1Y7bGbmQ=</dsig:DigestValue>
+        <dsig:DigestValue>xHdQGWElW7srh2iVzelDt85KArUB631ue433h72oFqk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,13 +63,13 @@
       <dsig:DigestValue>olR8PwfVyMxMHpXb5U3owHvN6CjDhz7Lyywz7nVD+p4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="TokenGenerator.exe.config" size="1176">
+  <file name="TokenGenerator.exe.config" size="719">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>zB2KgQQZdTeXTbTjhdyutmjFSBAVkNEJ/7mt798f+Jo=</dsig:DigestValue>
+      <dsig:DigestValue>VOgdXLYZzgRzZQSJEC11BjXPLZOWqwSQpwlBv48SC7I=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -15,16 +15,20 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/LogServices.svc?singleWsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:60125/LogServices.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LogServices.wsdl" MetadataType="Wsdl" ID="00598220-9b78-4687-9ddc-428f6875cb06" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/LogServices.svc?singleWsdl" />
+    <MetadataFile FileName="LogServices.disco" MetadataType="Disco" ID="3fc31436-6a8f-42e3-a27b-f87f37687a82" SourceId="1" SourceUrl="http://localhost:60125/LogServices.svc?disco" />
+    <MetadataFile FileName="LogServices.xsd" MetadataType="Schema" ID="4d713419-08b0-45fb-aac7-9932fef5e03f" SourceId="1" SourceUrl="http://localhost:60125/LogServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="LogServices1.xsd" MetadataType="Schema" ID="78ae963b-05ac-43c4-9313-fd42f79e7ac3" SourceId="1" SourceUrl="http://localhost:60125/LogServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="LogServices1.wsdl" MetadataType="Wsdl" ID="c67de2d6-509b-464a-8d31-fef7e0dd6aba" SourceId="1" SourceUrl="http://localhost:60125/LogServices.svc?wsdl" />
+    <MetadataFile FileName="LogServices2.xsd" MetadataType="Schema" ID="71027a53-aada-410d-99ee-d7cff3113e92" SourceId="1" SourceUrl="http://localhost:60125/LogServices.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

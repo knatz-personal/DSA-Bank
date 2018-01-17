@@ -1,4 +1,6 @@
-﻿namespace BankManager
+﻿using WcfServiceDSABank;
+
+namespace BankManager
 {
     partial class EventLogForm
     {
@@ -358,7 +360,7 @@
             // 
             // eventViewBindingSource
             // 
-            this.eventViewBindingSource.DataSource = typeof(BankManager.LogServices.EventView);
+            this.eventViewBindingSource.DataSource = typeof(EventView);
             this.eventViewBindingSource.Sort = "DateModified";
             // 
             // dateModifiedDateTimePicker
@@ -587,7 +589,7 @@
             // 
             // appointmentViewBindingSource
             // 
-            this.appointmentViewBindingSource.DataSource = typeof(BankManager.AppointmentServices.AppointmentView);
+            this.appointmentViewBindingSource.DataSource = typeof(AppointmentView);
             // 
             // label3
             // 

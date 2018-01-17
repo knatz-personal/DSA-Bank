@@ -48,7 +48,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.50746F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.49254F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.Controls.Add(this.txtUsername, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtPassword, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.bttnLogin, 1, 2);
@@ -71,7 +71,7 @@
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(65, 3);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(198, 20);
+            this.txtUsername.Size = new System.Drawing.Size(197, 20);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
@@ -80,7 +80,7 @@
             this.txtPassword.Location = new System.Drawing.Point(65, 28);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(198, 20);
+            this.txtPassword.Size = new System.Drawing.Size(197, 20);
             this.txtPassword.TabIndex = 1;
             // 
             // bttnLogin
@@ -89,7 +89,7 @@
             this.bttnLogin.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.bttnLogin.Location = new System.Drawing.Point(65, 52);
             this.bttnLogin.Name = "bttnLogin";
-            this.bttnLogin.Size = new System.Drawing.Size(198, 27);
+            this.bttnLogin.Size = new System.Drawing.Size(197, 27);
             this.bttnLogin.TabIndex = 2;
             this.bttnLogin.Text = "Login";
             this.bttnLogin.UseVisualStyleBackColor = false;

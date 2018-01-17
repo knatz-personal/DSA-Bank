@@ -5,27 +5,23 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using BankManager.LogServices;
+using WcfServiceDSABank;
 
 namespace BankManager
 {
     public partial class ErrorLogForm : Form
     {
-        private SortOrder _currentSortOrder;
-        private ObservableCollection<ErrorView> _list;
-
         public ErrorLogForm()
         {
             InitializeComponent();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private SortOrder _currentSortOrder;
+        private ObservableCollection<ErrorView> _list;
 
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is LoginForm);
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is MainForm);
             if (formToShow != null)
             {
                 formToShow.Show();
@@ -34,9 +30,42 @@ namespace BankManager
             }
             else
             {
-                new LoginForm().Show();
+                new MainForm().Show();
             }
             Hide();
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                errorViewBindingSource.EndEdit();
+                if (!string.IsNullOrEmpty(iDTextBox.Text))
+                {
+                    int id = Convert.ToInt32(iDTextBox.Text);
+                    try
+                    {
+                        using (var client = new LogServicesClient())
+                        {
+                            client.DeleteError(id);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("An error occurred communicating over the network.");
+                    }
+                    errorViewBindingSource.RemoveCurrent();
+                }
+                else
+                {
+                    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Asterisk);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void bttnLoad_Click(object sender, EventArgs e)
@@ -95,69 +124,21 @@ namespace BankManager
             }
         }
 
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        private void errorDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
+            if (e.ColumnIndex == 1)
             {
-                errorViewBindingSource.EndEdit();
-                if (!string.IsNullOrEmpty(iDTextBox.Text))
+                if (_currentSortOrder == SortOrder.Descending)
                 {
-                    int id = Convert.ToInt32(iDTextBox.Text);
-                    try
-                    {
-                        using (var client = new LogServicesClient())
-                        {
-                            client.DeleteError(id);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("An error occurred communicating over the network.");
-                    }
-                    errorViewBindingSource.RemoveCurrent();
+                    _currentSortOrder = SortOrder.Ascending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Ascending);
                 }
                 else
                 {
-                    MessageBox.Show(@"There is no record to delete", @"Item Deletion", MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Asterisk);
+                    _currentSortOrder = SortOrder.Descending;
+                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Descending);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, @"Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void transactionHistoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is TransactionHistoryForm);
-            if (formToShow != null)
-            {
-                formToShow.Show();
-                errorDataGrid.DataSource = null;
-                errorDataGrid.Rows.Clear();
-            }
-            else
-            {
-                new TransactionHistoryForm().Show();
-            }
-            Hide();
-        }
-
-        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is MainForm);
-            if (formToShow != null)
-            {
-                formToShow.Show();
-                errorDataGrid.DataSource = null;
-                errorDataGrid.Rows.Clear();
-            }
-            else
-            {
-                new MainForm().Show();
-            }
-            Hide();
         }
 
         private void errorDataGrid_KeyDown(object sender, KeyEventArgs e)
@@ -171,7 +152,6 @@ namespace BankManager
                         int id = Convert.ToInt32(row.Cells[0].Value);
                         if (id != 0)
                         {
-
                             try
                             {
                                 using (var client = new LogServicesClient())
@@ -210,21 +190,41 @@ namespace BankManager
             Hide();
         }
 
-        private void errorDataGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            Application.Exit();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is LoginForm);
+            if (formToShow != null)
             {
-                if (_currentSortOrder == SortOrder.Descending)
-                {
-                    _currentSortOrder = SortOrder.Ascending;
-                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Ascending);
-                }
-                else
-                {
-                    _currentSortOrder = SortOrder.Descending;
-                    errorDataGrid.Sort(errorDataGrid.Columns[1], ListSortDirection.Descending);
-                }
+                formToShow.Show();
+                errorDataGrid.DataSource = null;
+                errorDataGrid.Rows.Clear();
             }
+            else
+            {
+                new LoginForm().Show();
+            }
+            Hide();
+        }
+
+        private void transactionHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formToShow = Application.OpenForms.Cast<Form>().FirstOrDefault(c => c is TransactionHistoryForm);
+            if (formToShow != null)
+            {
+                formToShow.Show();
+                errorDataGrid.DataSource = null;
+                errorDataGrid.Rows.Clear();
+            }
+            else
+            {
+                new TransactionHistoryForm().Show();
+            }
+            Hide();
         }
     }
 }

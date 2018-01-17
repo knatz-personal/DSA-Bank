@@ -237,46 +237,40 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\AppointmentServices\AppointmentServices.wsdl" />
-    <None Include="Service References\AppointmentServices\AppointmentServices.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices1.wsdl" />
+    <None Include="Service References\AppointmentServices\AppointmentServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\AppointmentServices1.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\AppointmentServices2.xsd">
+    <None Include="Service References\AppointmentServices\AppointmentServices32.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AppointmentServices\BankManager.AppointmentServices.AppointmentView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LogServices\BankManager.LogServices.ErrorView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LogServices\BankManager.LogServices.EventView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\LogServices\LogServices.wsdl" />
-    <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionTypeView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TransactionServices\BankManager.TransactionServices.TransactionView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TransactionServices\TransactionServices.wsdl" />
-    <None Include="Service References\TransactionServices\TransactionServices.xsd">
+    <None Include="Service References\LogServices\LogServices.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\TransactionServices1.xsd">
+    <None Include="Service References\LogServices\LogServices1.wsdl" />
+    <None Include="Service References\LogServices\LogServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\TransactionServices2.xsd">
+    <None Include="Service References\LogServices\LogServices2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\TransactionServices3.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices1.wsdl" />
+    <None Include="Service References\TransactionServices\TransactionServices5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TransactionServices\TransactionServices4.xsd">
+    <None Include="Service References\TransactionServices\TransactionServices51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TransactionServices\TransactionServices54.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserServices\BankManager.UserServices.GenderView.datasource">
@@ -304,6 +298,11 @@
     <None Include="Service References\UserServices\UserServices3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="WcfServiceDSABank.AppointmentView.datasource" />
+    <None Include="WcfServiceDSABank.ErrorView.datasource" />
+    <None Include="WcfServiceDSABank.EventView.datasource" />
+    <None Include="WcfServiceDSABank.TransactionTypeView.datasource" />
+    <None Include="WcfServiceDSABank.TransactionView.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -315,6 +314,7 @@
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\LogServices\LogServices.disco" />
     <None Include="Service References\TransactionServices\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

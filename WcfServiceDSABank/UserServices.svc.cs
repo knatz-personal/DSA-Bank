@@ -21,7 +21,7 @@ namespace WcfServiceDSABank
 
             if (user.DoesUserNameExist(username))
             {
-                User tmp = user.Read(new User {Username = username});
+                User tmp = user.Read(new User { Username = username });
                 if (tmp != null)
                 {
                     if (tmp.NoOfAttempts <= 3)
@@ -59,7 +59,7 @@ namespace WcfServiceDSABank
         {
             try
             {
-                User user = new UsersRepo().Read(new User {Username = username});
+                User user = new UsersRepo().Read(new User { Username = username });
                 new UsersRepo().Delete(user);
             }
             catch (Exception)
@@ -71,13 +71,6 @@ namespace WcfServiceDSABank
         public bool DoesUsernameExist(string username)
         {
             return new UsersRepo().DoesUserNameExist(username);
-        }
-
-        public bool IsUserInRole(string username, int roleId)
-        {
-            return
-                ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
-                    t => t.ID == roleId) != null);
         }
 
         public IEnumerable<GenderView> Genders()
@@ -92,13 +85,13 @@ namespace WcfServiceDSABank
         public string GenerateToken()
         {
             DateTime current = DateTime.Now.AddMinutes(10);
-            string token = (current.ToFileTime()/93939109)*151 + "";
+            string token = (current.ToFileTime() / 93939109) * 151 + "";
             return token;
         }
 
         public RoleView GetRoleById(int id)
         {
-            Role r = new RolesRepo().Read(new Role {ID = id});
+            Role r = new RolesRepo().Read(new Role { ID = id });
             return new RoleView
             {
                 ID = r.ID,
@@ -122,6 +115,13 @@ namespace WcfServiceDSABank
             return list;
         }
 
+        public bool IsUserInRole(string username, int roleId)
+        {
+            return
+                ((new RolesRepo().GetRolesOfUser(username)).SingleOrDefault(
+                    t => t.ID == roleId) != null);
+        }
+
         public IEnumerable<RoleView> ListRoles()
         {
             return new RolesRepo().ListAll().Select(r => new RoleView
@@ -129,6 +129,11 @@ namespace WcfServiceDSABank
                 ID = r.ID,
                 Name = r.Name
             });
+        }
+
+        public IQueryable<string> ListUsernames()
+        {
+            return new UsersRepo().GetUsernames().AsQueryable();
         }
 
         public IQueryable<UserView> ListUsers()
@@ -154,14 +159,9 @@ namespace WcfServiceDSABank
             return list;
         }
 
-        public IQueryable<string> ListUsernames()
-        {
-            return new UsersRepo().GetUsernames().AsQueryable();
-        }
-
         public UserView ReadByUsername(string username)
         {
-            User u = new UsersRepo().Read(new User {Username = username});
+            User u = new UsersRepo().Read(new User { Username = username });
             return new UserView
             {
                 Username = u.Username,
@@ -179,7 +179,7 @@ namespace WcfServiceDSABank
                 TownName = u.Town.Name,
                 Blocked = u.Blocked,
                 NoOfAttempts = u.NoOfAttempts,
-                Roles = u.Roles.Select(r => new RoleView {ID = r.ID, Name = r.Name})
+                Roles = u.Roles.Select(r => new RoleView { ID = r.ID, Name = r.Name })
             };
         }
 
@@ -215,12 +215,12 @@ namespace WcfServiceDSABank
                 catch (Exception)
                 {
                     throw new DataInsertionException();
-                   
                 }
             }
             else
             {
-                throw new UserAlreadyExistsException();
+                //throw new UserAlreadyExistsException();
+                return false;
             }
             return true;
         }
@@ -242,7 +242,7 @@ namespace WcfServiceDSABank
                 TownID = u.TownID,
                 Blocked = u.Blocked,
                 NoOfAttempts = u.NoOfAttempts,
-                Roles = u.Roles.Select(r => new RoleView {ID = r.ID, Name = r.Name})
+                Roles = u.Roles.Select(r => new RoleView { ID = r.ID, Name = r.Name })
             });
         }
 
@@ -287,7 +287,7 @@ namespace WcfServiceDSABank
             bool isValidToken = false;
             try
             {
-                var fileTime = (long) ((Convert.ToDouble(securityToken)/151)*93939109);
+                var fileTime = (long)((Convert.ToDouble(securityToken) / 151) * 93939109);
                 DateTime date = DateTime.FromFileTime(fileTime);
                 //is valid date time value
                 if (DateTime.Now < date)

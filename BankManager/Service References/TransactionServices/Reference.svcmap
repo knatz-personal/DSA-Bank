@@ -15,21 +15,21 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:60125/TransactionServices.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TransactionServices.xsd" MetadataType="Schema" ID="9b1bd045-3758-4e85-928d-ac4c918121ca" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd4" />
-    <MetadataFile FileName="TransactionServices1.xsd" MetadataType="Schema" ID="d89714d0-e8b4-4429-9090-2e6cc94d37b4" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd0" />
-    <MetadataFile FileName="TransactionServices2.xsd" MetadataType="Schema" ID="40f46d54-a0ca-46c8-a570-b04fc4411467" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd1" />
-    <MetadataFile FileName="TransactionServices3.xsd" MetadataType="Schema" ID="73f755e5-ab26-4185-b3c2-d94a47449a26" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd3" />
-    <MetadataFile FileName="TransactionServices.wsdl" MetadataType="Wsdl" ID="b4557942-53ab-41fc-87be-63c633773dcb" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?wsdl" />
-    <MetadataFile FileName="TransactionServices4.xsd" MetadataType="Schema" ID="04daa46e-53bf-436a-a084-c34289550a5a" SourceId="1" SourceUrl="http://dsabankwebservices.azurewebsites.net/TransactionServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="TransactionServices1.wsdl" MetadataType="Wsdl" ID="89719747-4bc4-43bf-8e25-711b7d077788" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?wsdl" />
+    <MetadataFile FileName="TransactionServices5.xsd" MetadataType="Schema" ID="a3d2dd5b-0fc0-40b0-9532-e2a56cc59aac" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?xsd=xsd3" />
+    <MetadataFile FileName="TransactionServices51.xsd" MetadataType="Schema" ID="0b5b1223-45eb-4ec3-8c5b-44f4b3cc1b0f" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="TransactionServices52.xsd" MetadataType="Schema" ID="914355d9-3f41-4f9c-874f-e1fc15a7d4d4" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="TransactionServices53.xsd" MetadataType="Schema" ID="96d841ac-2d49-4c68-b007-18810936664b" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="TransactionServices54.xsd" MetadataType="Schema" ID="94dc9afb-5a9e-4f18-9191-147ce6e15c8f" SourceId="1" SourceUrl="http://localhost:60125/TransactionServices.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
